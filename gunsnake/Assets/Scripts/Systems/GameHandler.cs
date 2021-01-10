@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-
+    public LayerMask wallLayerMask;
 
 
     void Start()
