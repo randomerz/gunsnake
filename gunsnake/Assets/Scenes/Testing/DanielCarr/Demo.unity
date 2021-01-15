@@ -4623,9 +4623,9 @@ GameObject:
   - component: {fileID: 609240018}
   - component: {fileID: 609240017}
   - component: {fileID: 609240020}
-  - component: {fileID: 609240021}
   - component: {fileID: 609240023}
   - component: {fileID: 609240022}
+  - component: {fileID: 609240021}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4748,7 +4748,7 @@ MonoBehaviour:
   m_PixelSnapping: 1
   m_CropFrameX: 1
   m_CropFrameY: 1
-  m_StretchFill: 0
+  m_StretchFill: 1
 --- !u!114 &609240022
 MonoBehaviour:
   m_ObjectHideFlags: 0
