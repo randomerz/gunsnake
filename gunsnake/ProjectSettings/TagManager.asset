@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 654362671
+    locked: 0
+  - name: Floor
+    uniqueID: 331369119
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1192949365
+    locked: 0
+  - name: Entities
+    uniqueID: 2259661873
+    locked: 0
+  - name: Projectiles and Effects
+    uniqueID: 279595307
+    locked: 0
