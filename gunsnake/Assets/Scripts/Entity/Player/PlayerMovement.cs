@@ -6,9 +6,9 @@ public class PlayerMovement : Entity
 {
     public GameObject[] body = new GameObject[3];
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
-    
+
     private LinkedList<directions> directionQueue = new LinkedList<directions>();
-    private bool queueCleared = false;
+    private bool addedDirection = false;
 
     public bool isSprinting;
 
@@ -55,17 +55,19 @@ public class PlayerMovement : Entity
         if (tick % 4 == 0 || (isSprinting && tick % 2 == 0))
         {
             // move
-            while (directionQueue.Count != 0)
+
+            // try moving in front of queue direction, else do nothing
+            if (directionQueue.Count != 0 && !IsWallAhead(transform.position, directionQueue.First.Value))
             {
-                // set currDir to first valid direction
-                if (!IsWallAhead(transform.position, directionQueue.First.Value))
-                {
-                    currDir = directionQueue.First.Value;
-                    directionQueue.RemoveFirst();
-                    break;
-                }
+                currDir = directionQueue.First.Value;
                 directionQueue.RemoveFirst();
             }
+            // clear queue if nothing was added
+            if (!addedDirection)
+                directionQueue.Clear();
+            addedDirection = true;
+
+            // moving snake code
             if (IsWallAhead(transform.position, currDir))
             {
                 Debug.Log("bonk!");
@@ -103,20 +105,22 @@ public class PlayerMovement : Entity
 
     private void ChangeDirection(directions dir)
     {
-        // if same as last input, don't add
-        if (directionQueue.Count != 0 && directionQueue.Last.Value == dir)
+        // if same as last input OR queue has >=2, don't add
+        if ((directionQueue.Count != 0 && directionQueue.Last.Value == dir) || directionQueue.Count >= 2)
         {
             return;
         }
-        // if queue is empty, don't go backwards
-        if (directionQueue.Count == 0)
+        
+        // if queue is empty, don't go backwards, OR if isn't empty, don't go in last queued opposite
+        directions lastDir = currDir;
+        if (directionQueue.Count != 0)
+            lastDir = directionQueue.Last.Value;
+
+        if (!IsOppositeDirection(lastDir, dir))
         {
-            if (!IsOppositeDirection(currDir, dir))
-                directionQueue.AddLast(dir);
-        }
-        // if queue isn't empty, don't go in last queued opposite
-        else if (!IsOppositeDirection(directionQueue.Last.Value, dir))
             directionQueue.AddLast(dir);
+            addedDirection = true;
+        }
     }
 
     public void MoveBody()
