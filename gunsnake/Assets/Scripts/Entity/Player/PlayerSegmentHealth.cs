@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBodySegment : MonoBehaviour
+public class PlayerSegmentHealth : MonoBehaviour
 {
     public PlayerHealth playerHealth;
 
