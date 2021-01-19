@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    public LayerMask wallLayerMask;
+    //[SerializeField]
+    //private LayerMask _wallLayerMask;
+    //public static LayerMask wallLayerMask;
 
+    private void Awake()
+    {
+        //wallLayerMask = _wallLayerMask;
+    }
 
     void Start()
     {

@@ -58,7 +58,7 @@ public class DiscoDamageTile : Tile
         if (other.tag == "Player" && !didDamage)
         {
             didDamage = true;
-            other.GetComponent<PlayerBodySegment>().TakeDamage();
+            other.GetComponent<PlayerSegmentHealth>().TakeDamage();
         }
     }
 }

@@ -8,7 +8,7 @@ public class Spike : Tile
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerBodySegment>().TakeDamage();
+            other.GetComponent<PlayerSegmentHealth>().TakeDamage();
         }
     }
 }

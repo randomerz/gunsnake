@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public LayerMask wallLayerMask;
+    [SerializeField]
+    private LayerMask wallLayerMask;
 
     public enum directions
     {
@@ -16,10 +17,10 @@ public class Entity : MonoBehaviour
 
     protected directions currDir;
 
-    void Awake()
+    protected virtual void Awake()
     {
-        wallLayerMask = GameObject.Find("Main Camera").GetComponent<GameHandler>().wallLayerMask;
-        //wallLayerMask = LayerMask.GetMask("Walls");
+        //wallLayerMask = GameHandler.wallLayerMask;
+        wallLayerMask = LayerMask.GetMask("Walls");
     }
 
 

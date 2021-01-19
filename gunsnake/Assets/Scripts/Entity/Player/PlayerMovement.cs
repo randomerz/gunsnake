@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class PlayerMovement : Entity
 {
-    public GameObject[] body = new GameObject[3];
+    //public GameObject[] body = new GameObject[4];
+    private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[4];
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
+
+    public Sprite snakeHead;
+    public Sprite snakeStraight;
+    public Sprite snakeBent;
+    public Sprite snakeTail;
 
     private LinkedList<directions> directionQueue = new LinkedList<directions>();
     private bool addedDirection = false;
 
     public bool isSprinting;
+
+    [SerializeField]
+    private PlayerWeaponManager pWeapon;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        for (int i = 0; i < 4; i++)
+        {
+            segSprites[i] = Player.body[i].GetComponent<PlayerSegmentSprite>();
+        }
+    }
 
     void Start()
     {
@@ -74,21 +92,6 @@ public class PlayerMovement : Entity
                 return;
             }
             MoveBody();
-            switch (currDir)
-            {
-                case directions.right:
-                    transform.position += new Vector3(1, 0);
-                    break;
-                case directions.down:
-                    transform.position += new Vector3(0, -1);
-                    break;
-                case directions.left:
-                    transform.position += new Vector3(-1, 0);
-                    break;
-                case directions.up:
-                    transform.position += new Vector3(0, 1);
-                    break;
-            }
 
             //if (isSprinting && tick % 4 == 0 && !Input.GetKey(KeyCode.LeftShift))
             //{
@@ -125,17 +128,68 @@ public class PlayerMovement : Entity
 
     public void MoveBody()
     {
-        body[2].transform.position = body[1].transform.position;
-        body[1].transform.position = body[0].transform.position;
-        body[0].transform.position = transform.position;
+        Vector3 headDir = Vector3.zero;
+        Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
+
+        switch (currDir)
+        {
+            case directions.right:
+                headDir = Vector3.right;
+                break;
+            case directions.down:
+                headDir = Vector3.down;
+                break;
+            case directions.left:
+                headDir = Vector3.left;
+                break;
+            case directions.up:
+                headDir = Vector3.up;
+                break;
+        }
+        Player.body[3].transform.position = Player.body[2].transform.position;
+        Player.body[2].transform.position = Player.body[1].transform.position;
+        Player.body[1].transform.position = Player.body[0].transform.position;
+        transform.position += headDir;
+
+        // setting sprites
+        float headRot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
+
+        // tail
+        Vector3 tailBodyDir = Player.body[2].transform.position - Player.body[3].transform.position;
+        float tailRot = Mathf.Atan2(tailBodyDir.y, tailBodyDir.x) * Mathf.Rad2Deg;
+
+        segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, Vector3.zero);
+        
+        // body
+        bool body1ShouldBend = Vector3.Dot(headDir, body2Dir) == 0;
+        float body1Rot = 0;
+
+        segSprites[2].SetSprite(segSprites[1]);
+        
+        if (body1ShouldBend)
+        {
+            Vector3 bendDir = headDir + body2Dir;
+            body1Rot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
+            // float forwardAngle = (headRot - body1Rot - 45) * 2 + body1Rot + 45
+            segSprites[1].SetSprite(snakeBent, true, body1Rot, headDir, body2Dir);
+        }
+        else
+        {
+            body1Rot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
+            segSprites[1].SetSprite(snakeStraight, false, body1Rot, headDir, body2Dir);
+        }
+
+        
+        // head
+        segSprites[0].SetSprite(snakeHead, false, headRot, Vector3.zero, -headDir);
+
     }
 
     public void RestartSnake()
     {
         currDir = directions.right;
         directionQueue.Clear();
-        transform.position = snakeSpawn;
         for (int i = 0; i < 3; i++)
-            body[i].transform.position = snakeSpawn + new Vector3(-i - 1, 0);
+            Player.body[i].transform.position = snakeSpawn + new Vector3(-i, 0);
     }
 }
