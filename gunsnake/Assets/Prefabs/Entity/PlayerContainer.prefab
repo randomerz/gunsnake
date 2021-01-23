@@ -54,6 +54,9 @@ MonoBehaviour:
   - {fileID: 3208875470606727234}
   - {fileID: 3208875470378985768}
   - {fileID: 3208875471297816215}
+  _playerHealth: {fileID: 3208875469782037514}
+  _playerMovement: {fileID: 3208875470261152530}
+  _playerWeaponManager: {fileID: 2683957711208423870}
 --- !u!114 &3208875469782037514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +203,6 @@ MonoBehaviour:
   snakeTail: {fileID: 8951306585610963716, guid: 2314bd4b58793cf45a9bb103c8b6d1ab,
     type: 3}
   isSprinting: 0
-  pWeapon: {fileID: 0}
 --- !u!114 &3208875470261152541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +229,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3208875471408638631}
+  isHead: 1
+  isTail: 0
   isBent: 0
   nextSegDir: {x: 0, y: 0, z: 0}
   prevSegDir: {x: 0, y: 0, z: 0}
@@ -390,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3208875470827657868}
+  isHead: 0
+  isTail: 0
   isBent: 0
   nextSegDir: {x: 0, y: 0, z: 0}
   prevSegDir: {x: 0, y: 0, z: 0}
@@ -635,6 +641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3208875470392214742}
+  isHead: 0
+  isTail: 0
   isBent: 0
   nextSegDir: {x: 0, y: 0, z: 0}
   prevSegDir: {x: 0, y: 0, z: 0}
@@ -962,6 +970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 3208875470908733808}
+  isHead: 0
+  isTail: 1
   isBent: 0
   nextSegDir: {x: 0, y: 0, z: 0}
   prevSegDir: {x: 0, y: 0, z: 0}
@@ -1161,6 +1171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
+        type: 3}
+      propertyPath: mount
+      value: 
+      objectReference: {fileID: 3208875470261152543}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638145d775febae479369d75c5a33237, type: 3}
 --- !u!114 &5252091778620982569 stripped
@@ -1248,6 +1263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
+        type: 3}
+      propertyPath: mount
+      value: 
+      objectReference: {fileID: 3208875471297816221}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638145d775febae479369d75c5a33237, type: 3}
 --- !u!4 &6560897417473816622 stripped
@@ -1335,6 +1355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
+        type: 3}
+      propertyPath: mount
+      value: 
+      objectReference: {fileID: 3208875470606727240}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638145d775febae479369d75c5a33237, type: 3}
 --- !u!4 &6138440435404965323 stripped
@@ -1422,6 +1447,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
+        type: 3}
+      propertyPath: mount
+      value: 
+      objectReference: {fileID: 3208875470378985782}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638145d775febae479369d75c5a33237, type: 3}
 --- !u!4 &7034380815266460737 stripped

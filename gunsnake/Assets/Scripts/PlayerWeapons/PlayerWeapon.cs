@@ -14,6 +14,6 @@ public abstract class PlayerWeapon : MonoBehaviour
     public PlayerSegmentSprite mount;
 
     // runs once per game tick
-    public abstract void WeaponTick();
+    public abstract void WeaponTick(int tick);
     public abstract void Attack();
 }

@@ -17,7 +17,7 @@ public class DiscoDamageTile : Tile
     void Start()
     {
         originalTile = spriteRenderer.sprite;
-        TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+        TimeTickSystem.OnTick_Dungeon += TimeTickSystem_OnTick;
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
