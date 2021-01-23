@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerSegmentSprite : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    public bool isHead;
+    public bool isTail;
     public bool isBent;
     public Vector3 nextSegDir;
     public Vector3 prevSegDir; 

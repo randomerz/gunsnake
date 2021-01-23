@@ -18,21 +18,19 @@ public class PlayerMovement : Entity
 
     public bool isSprinting;
 
-    [SerializeField]
-    private PlayerWeaponManager pWeapon;
 
     protected override void Awake()
     {
         base.Awake();
-        for (int i = 0; i < 4; i++)
-        {
-            segSprites[i] = Player.body[i].GetComponent<PlayerSegmentSprite>();
-        }
     }
 
     void Start()
     {
-        TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+        for (int i = 0; i < 4; i++)
+        {
+            segSprites[i] = Player.body[i].GetComponent<PlayerSegmentSprite>();
+        }
+        TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
     }
 
 
@@ -60,6 +58,7 @@ public class PlayerMovement : Entity
         //    isSprinting = true;
         //}
         isSprinting = Input.GetKey(KeyCode.LeftShift);
+        Player.playerWeaponManager.isSprinting = isSprinting;
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -67,10 +66,9 @@ public class PlayerMovement : Entity
         }
     }
 
-
-    private void TickUpdate(int tick)
+    private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        if (tick % 4 == 0 || (isSprinting && tick % 2 == 0))
+        if (e.tick % 4 == 0 || (isSprinting && e.tick % 2 == 0))
         {
             // move
 
@@ -98,11 +96,6 @@ public class PlayerMovement : Entity
             //    isSprinting = false;
             //}
         }
-    }
-
-    private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
-    {
-        TickUpdate(e.tick);
     }
 
 

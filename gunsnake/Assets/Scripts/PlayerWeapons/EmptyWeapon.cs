@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicShot : PlayerWeapon
+public class EmptyWeapon : PlayerWeapon
 {
-    public GameObject bulletPrefab;
-
-    public override void WeaponTick()
+    public override void WeaponTick(int tick)
     {
 
     }
 
     public override void Attack()
     {
-        Debug.Log("bang!");
+
     }
 }

@@ -16,7 +16,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Start()
     {
-        TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+        TimeTickSystem.OnTick_PlayerWeapons += TimeTickSystem_OnTick;
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].mount = Player.body[i].GetComponent<PlayerSegmentSprite>();
@@ -27,10 +27,13 @@ public class PlayerWeaponManager : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        foreach (PlayerWeapon w in weapons)
-            w.WeaponTick();
+        if (!CanFire())
+            return;
 
-        if ((e.tick + 2) % 4 == 0)
+        foreach (PlayerWeapon w in weapons)
+            w.WeaponTick(e.tick);
+
+        if (e.tick % 4 == 0)
         {
             ticksTillCooldown--;
             if (ticksTillCooldown <= 0)
