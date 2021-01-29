@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    //[SerializeField]
-    //private LayerMask _wallLayerMask;
-    //public static LayerMask wallLayerMask;
+    public Material enemyWhiteFlashMat;
 
     private void Awake()
     {
-        //wallLayerMask = _wallLayerMask;
+
     }
 
     void Start()
     {
         TimeTickSystem.Create();
 
-        //TimeTickSystem.OnTick += delegate (object sender, TimeTickSystem.OnTickEventArgs e)
-        //{
-        //    Debug.Log("tick: " + TimeTickSystem.GetTick());
-        //};
-        //TimeTickSystem.OnTick_4 += delegate (object sender, TimeTickSystem.OnTickEventArgs e)
-        //{
-        //    Debug.Log("QUAD");
-        //};
+        Enemy.whiteFlashMat = enemyWhiteFlashMat;
     }
     
     void Update()

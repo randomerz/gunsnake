@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : Entity
 {
     //public GameObject[] body = new GameObject[4];
-    private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[4];
+    private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[Player.body.Length];
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
 
     public Sprite snakeHead;
@@ -30,7 +30,6 @@ public class PlayerMovement : Entity
         {
             segSprites[i] = Player.body[i].GetComponent<PlayerSegmentSprite>();
         }
-        TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
     }
 
 
@@ -66,14 +65,14 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
+    public void OnTick(int tick)
     {
-        if (e.tick % 4 == 0 || (isSprinting && e.tick % 2 == 0))
+        if (tick % 4 == 0 || (isSprinting && tick % 2 == 0))
         {
             // move
 
             // try moving in front of queue direction, else do nothing
-            if (directionQueue.Count != 0 && !IsWallAhead(transform.position, directionQueue.First.Value))
+            if (directionQueue.Count != 0 && CanMove(transform.position, directionQueue.First.Value))
             {
                 currDir = directionQueue.First.Value;
                 directionQueue.RemoveFirst();
@@ -81,10 +80,10 @@ public class PlayerMovement : Entity
             // clear queue if nothing was added
             if (!addedDirection)
                 directionQueue.Clear();
-            addedDirection = true;
+            addedDirection = false;
 
             // moving snake code
-            if (IsWallAhead(transform.position, currDir))
+            if (!CanMove(transform.position, currDir))
             {
                 Debug.Log("bonk!");
                 return;

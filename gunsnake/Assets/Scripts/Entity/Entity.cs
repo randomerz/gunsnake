@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask wallLayerMask;
+    private static LayerMask wallLayerMask;
+    private static LayerMask collidableEntityLayerMask;
+    private static LayerMask collidableLayerMask;
 
     public enum directions
     {
@@ -21,15 +22,40 @@ public class Entity : MonoBehaviour
     {
         //wallLayerMask = GameHandler.wallLayerMask;
         wallLayerMask = LayerMask.GetMask("Walls");
+        collidableEntityLayerMask = LayerMask.GetMask("Collidable Entity");
+        collidableLayerMask = LayerMask.GetMask("Walls", "Collidable Entity");
     }
 
 
-    protected bool IsOppositeDirection(directions d1, directions d2)
+    protected static bool IsOppositeDirection(directions d1, directions d2)
     {
         return Mathf.Abs((int)d1 - (int)d2) == 2;
     }
 
-    protected bool IsWallAhead(Vector3 pos, directions dir)
+    protected static bool CanMove(Vector3 pos, directions dir)
+    {
+        RaycastHit2D rh;
+        Vector3 rcDir = Vector3.zero;
+        switch (dir)
+        {
+            case directions.right:
+                rcDir = Vector3.right;
+                break;
+            case directions.down:
+                rcDir = Vector3.down;
+                break;
+            case directions.left:
+                rcDir = Vector3.left;
+                break;
+            case directions.up:
+                rcDir = Vector3.up;
+                break;
+        }
+        rh = Physics2D.Raycast(pos, rcDir, 1, collidableLayerMask);
+        return rh.collider == null;
+    }
+
+    protected static bool IsWallAhead(Vector3 pos, directions dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
@@ -51,4 +77,5 @@ public class Entity : MonoBehaviour
         rh = Physics2D.Raycast(pos, rcDir, 1, wallLayerMask);
         return rh.collider != null;
     }
+
 }

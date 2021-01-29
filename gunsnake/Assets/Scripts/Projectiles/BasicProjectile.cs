@@ -10,4 +10,17 @@ public class BasicProjectile : Projectile
     {
         transform.position += direction;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            ProjectileManager.RemoveProjectile(gameObject);
+        }
+        if (other.tag == "Wall" || other.tag == "Player")
+        {
+            ProjectileManager.RemoveProjectile(gameObject);
+        }
+    }
 }

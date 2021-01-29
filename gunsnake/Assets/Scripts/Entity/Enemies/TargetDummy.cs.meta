@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 5fa0fc2cac0cf2c43a4ed2a9d7c8fd3d
+guid: 8b5ff97515880bc499763444da99234e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - whiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

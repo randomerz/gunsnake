@@ -8,21 +8,12 @@ public class PlayerSegmentHealth : MonoBehaviour
 
     void Start()
     {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
-    
-    public void TakeDamage()
-    {
-        TakeDamage(1);
-    }
 
+    }
+    
     public void TakeDamage(int amount)
     {
         playerHealth.TakeDamage(amount);
     }
+
 }

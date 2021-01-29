@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject[] _body = new GameObject[4];
     public static GameObject[] body = new GameObject[4];
+    [SerializeField]
+    private SpriteRenderer[] _sprites = new SpriteRenderer[4];
+    public static SpriteRenderer[] sprites = new SpriteRenderer[4];
 
     [SerializeField]
     private PlayerHealth _playerHealth;
@@ -21,8 +24,17 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         body = _body;
+        sprites = _sprites;
         playerHealth = _playerHealth;
         playerMovement = _playerMovement;
         playerWeaponManager = _playerWeaponManager;
+
+        TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
+    }
+
+    private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
+    {
+        playerHealth.OnTick(e.tick);
+        playerMovement.OnTick(e.tick);
     }
 }
