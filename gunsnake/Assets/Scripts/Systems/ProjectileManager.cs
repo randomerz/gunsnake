@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    private static Dictionary<Projectile, List<GameObject>> activeProjectiles = 
-        new Dictionary<Projectile, List<GameObject>>();
-    private static Dictionary<Projectile, List<GameObject>> inactiveProjectiles = 
-        new Dictionary<Projectile, List<GameObject>>();
+    private static Dictionary<Type, List<GameObject>> activeProjectiles = 
+        new Dictionary<Type, List<GameObject>>();
+    private static Dictionary<Type, List<GameObject>> inactiveProjectiles = 
+        new Dictionary<Type, List<GameObject>>();
 
     private static ProjectileManager _instance;
 
@@ -47,7 +48,7 @@ public class ProjectileManager : MonoBehaviour
     public static GameObject CreateProjectile(GameObject projectilePrefab)
     {
         GameObject proj;
-        Projectile type = projectilePrefab.GetComponent<Projectile>();
+        Type type = projectilePrefab.GetComponent<Projectile>().GetType();
         if (!inactiveProjectiles.ContainsKey(type))
         {
             //Debug.Log("Creating new projectile container: " + type);
@@ -73,7 +74,8 @@ public class ProjectileManager : MonoBehaviour
 
     public static void RemoveProjectile(GameObject proj)
     {
-        Projectile type = proj.GetComponent<Projectile>();
+        Type type = proj.GetComponent<Projectile>().GetType();
+        //Debug.Log("Destroying projectile of container: " + type);
         if (activeProjectiles[type].Contains(proj))
         {
             inactiveProjectiles[type].Add(proj);
