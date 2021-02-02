@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6825726326987646214}
   - component: {fileID: 6825726326987646209}
-  - component: {fileID: 6825726326987646213}
+  - component: {fileID: 6176893917118304532}
   - component: {fileID: 6825726326987646212}
   - component: {fileID: 6825726326987646215}
   m_Layer: 9
-  m_Name: Mushroom_Fast
+  m_Name: Slime_3Yellow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,9 +73,10 @@ SpriteRenderer:
   m_SortingLayerID: -2035305423
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 343414262037349783, guid: a714afdfca7af87499c6c4bad160e7b3, type: 3}
+  m_Sprite: {fileID: 5320086426962971780, guid: a714afdfca7af87499c6c4bad160e7b3,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6825726326987646213
+--- !u!114 &6176893917118304532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,15 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6825726326987646208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b590d9a5864bb141b85fff86d22d79b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c6913b3f957d674eaa7f6a51c8a7191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
-  damage: 1
+  maxHealth: 6
+  damage: 2
   randomizeStartingVars: 1
   attackSpeed: 4
-  mushroomAttackEffect: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5,
-    type: 3}
 --- !u!61 &6825726326987646212
 BoxCollider2D:
   m_ObjectHideFlags: 0
