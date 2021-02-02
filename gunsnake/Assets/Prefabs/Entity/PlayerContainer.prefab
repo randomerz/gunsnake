@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 182173090807714812}
   - component: {fileID: 3208875469782037514}
   - component: {fileID: 2683957711208423870}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerContainer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 3208875470261152529}
   - component: {fileID: 3208875470261152531}
   - component: {fileID: 3208875470261152540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 3208875470378985782}
   - component: {fileID: 3208875470378985770}
   - component: {fileID: 3208875470378985783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3208875470392214743}
   - component: {fileID: 3208875470392214742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BodySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 3208875470606727240}
   - component: {fileID: 3208875470606727244}
   - component: {fileID: 3208875470606727241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3208875470827657869}
   - component: {fileID: 3208875470827657868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BodySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,7 +686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3208875470908733809}
   - component: {fileID: 3208875470908733808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BodySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 3208875471297816221}
   - component: {fileID: 3208875471297816209}
   - component: {fileID: 3208875471297816210}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3208875471408638628}
   - component: {fileID: 3208875471408638631}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BodySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1024,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 3040688680196296757, guid: 638145d775febae479369d75c5a33237,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
         type: 3}
@@ -1121,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 3040688680196296757, guid: 638145d775febae479369d75c5a33237,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
         type: 3}
@@ -1218,7 +1218,7 @@ PrefabInstance:
     - target: {fileID: 3040688680196296757, guid: 638145d775febae479369d75c5a33237,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
         type: 3}
@@ -1315,7 +1315,7 @@ PrefabInstance:
     - target: {fileID: 3040688680196296757, guid: 638145d775febae479369d75c5a33237,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8103376397024278693, guid: 638145d775febae479369d75c5a33237,
         type: 3}

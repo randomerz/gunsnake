@@ -8,7 +8,8 @@ public class BasicProjectile : Projectile
 
     public override void ProjectileTick(int tick)
     {
-        transform.position += direction;
+        if (tick % 2 == 0)
+            transform.position += direction;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,7 +19,7 @@ public class BasicProjectile : Projectile
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             ProjectileManager.RemoveProjectile(gameObject);
         }
-        if (other.tag == "Wall" || other.tag == "Player")
+        if (other.tag == "Wall")
         {
             ProjectileManager.RemoveProjectile(gameObject);
         }
