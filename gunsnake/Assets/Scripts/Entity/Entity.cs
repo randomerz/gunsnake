@@ -34,6 +34,11 @@ public class Entity : MonoBehaviour
         return Mathf.Abs((int)d1 - (int)d2) == 2;
     }
 
+    public static float Manhattan(Vector3 a, Vector3 b)
+    {
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+    }
+
     protected static bool CanMove(Vector3 pos, directions dir)
     {
         RaycastHit2D rh;
@@ -55,6 +60,12 @@ public class Entity : MonoBehaviour
         }
         rh = Physics2D.Raycast(pos, rcDir, 1, collidableLayerMask);
         return rh.collider == null;
+    }
+
+    protected static bool CanMove(Vector3 pos)
+    {
+        Collider2D rh = Physics2D.OverlapPoint(pos, collidableEntityLayerMask);
+        return rh == null;
     }
 
     protected static bool IsWallAhead(Vector3 pos, directions dir)

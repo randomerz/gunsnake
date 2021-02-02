@@ -32,6 +32,12 @@ public class Player : MonoBehaviour
         TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
     }
 
+    // my favorite method
+    public GameObject GetHead()
+    {
+        return body[0];
+    }
+
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
         playerHealth.OnTick(e.tick);

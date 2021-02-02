@@ -14,6 +14,6 @@ public class TargetDummy : Enemy
         health -= damage;
         StrobeWhite(1);
 
-        Debug.Log("Ouch! I just took " + damage + " damage.");
+        //Debug.Log("Ouch! I just took " + damage + " damage.");
     }
 }

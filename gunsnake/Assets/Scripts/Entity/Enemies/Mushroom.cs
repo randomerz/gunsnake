@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Mushroom : Enemy
 {
-    public Collider2D hitbox;
-
-    [Tooltip("1 = 4 ticks")]
+    [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
 
@@ -19,7 +17,6 @@ public class Mushroom : Enemy
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
             ticksTillAttack = attackSpeed;
-        hitbox.enabled = false;
     }
 
     public override void EnemyTick(int tick)
@@ -52,7 +49,7 @@ public class Mushroom : Enemy
         // or use hitbox.OverlapCollider();
         if (h != null && h.tag == "Player")
         {
-            h.GetComponent<PlayerSegmentHealth>().TakeDamage(1);
+            h.GetComponent<PlayerSegmentHealth>().TakeDamage(damage);
         }
 
         // boonk gang bingo bongo hard coder
