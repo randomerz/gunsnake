@@ -30,19 +30,19 @@ public class ProjectileManager : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        if (e.tick % 4 == 0)
+        //if (e.tick % 4 == 0)
+        //{
+        foreach (List<GameObject> projList in activeProjectiles.Values)
         {
-            foreach (List<GameObject> projList in activeProjectiles.Values)
+            foreach (GameObject g in projList)
             {
-                foreach (GameObject g in projList)
+                if (g.GetComponent<Projectile>() != null)
                 {
-                    if (g.GetComponent<Projectile>() != null)
-                    {
-                        g.GetComponent<Projectile>().ProjectileTick(e.tick);
-                    }
+                    g.GetComponent<Projectile>().ProjectileTick(e.tick);
                 }
             }
         }
+        //}
     }
 
     public static GameObject CreateProjectile(GameObject projectilePrefab)
@@ -84,7 +84,7 @@ public class ProjectileManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Could not remove projectile! Something went wrong.");
+            Debug.LogWarning("Could not remove projectile: " + type + "! Something went wrong.");
             proj.SetActive(false);
         }
     }

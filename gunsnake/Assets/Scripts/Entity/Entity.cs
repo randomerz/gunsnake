@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    private static LayerMask wallLayerMask;
-    private static LayerMask collidableEntityLayerMask;
-    private static LayerMask collidableLayerMask;
+    protected static LayerMask wallLayerMask;
+    protected static LayerMask collidableEntityLayerMask;
+    protected static LayerMask playerLayerMask;
+    protected static LayerMask collidableLayerMask;
 
     public enum directions
     {
@@ -23,6 +24,7 @@ public class Entity : MonoBehaviour
         //wallLayerMask = GameHandler.wallLayerMask;
         wallLayerMask = LayerMask.GetMask("Walls");
         collidableEntityLayerMask = LayerMask.GetMask("Collidable Entity");
+        playerLayerMask = LayerMask.GetMask("Player");
         collidableLayerMask = LayerMask.GetMask("Walls", "Collidable Entity");
     }
 

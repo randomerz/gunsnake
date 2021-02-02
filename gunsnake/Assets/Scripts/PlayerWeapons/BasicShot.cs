@@ -30,7 +30,7 @@ public class BasicShot : PlayerWeapon
 
             Vector3 dir1;
             Vector3 dir2;
-            if (mount.isBent)
+            if (mount.isBent && !mount.isTail)
             {
                 dir1 = mount.nextSegDir + mount.prevSegDir;
                 dir2 = -dir1;
