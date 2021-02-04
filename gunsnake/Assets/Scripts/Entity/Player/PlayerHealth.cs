@@ -44,6 +44,12 @@ public class PlayerHealth : MonoBehaviour
         healthText.text = health.ToString();
     }
 
+    public void GainHealth(int amount)
+    {
+        health += amount;
+        UpdateHUD();
+    }
+
     public void TakeDamage(int amount)
     {
         if (!isInvulnerable)
