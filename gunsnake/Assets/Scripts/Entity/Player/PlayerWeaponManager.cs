@@ -50,4 +50,12 @@ public class PlayerWeaponManager : MonoBehaviour
     {
         return !isSprinting;
     }
+
+
+    public PlayerWeapon SwapWeapon(PlayerWeapon newWeapon, int index)
+    {
+        PlayerWeapon oldWeapon = weapons[index];
+        weapons[index] = newWeapon;
+        return oldWeapon;
+    }
 }

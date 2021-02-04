@@ -56,6 +56,12 @@ TagManager:
   - name: Entities
     uniqueID: 2259661873
     locked: 0
-  - name: Projectiles and Effects
+  - name: Projectiles
     uniqueID: 279595307
+    locked: 0
+  - name: Ceiling
+    uniqueID: 1212460585
+    locked: 0
+  - name: Effects
+    uniqueID: 4163478019
     locked: 0
