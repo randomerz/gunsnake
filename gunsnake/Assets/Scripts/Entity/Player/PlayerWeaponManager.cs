@@ -31,14 +31,16 @@ public class PlayerWeaponManager : MonoBehaviour
             return;
 
         foreach (PlayerWeapon w in weapons)
-            w.WeaponTick(e.tick);
+            if (w != null)
+                w.WeaponTick(e.tick);
 
         if (e.tick % 4 == 0)
         {
             ticksTillCooldown--;
             if (ticksTillCooldown <= 0)
             {
-                weapons[currMountIndex].Attack(); // test CanAttack() => Attack() maybe
+                if (weapons[currMountIndex] != null)
+                    weapons[currMountIndex].Attack(); // test CanAttack() => Attack() maybe
                 currMountIndex = (currMountIndex + 1) % weapons.Length;
 
                 ticksTillCooldown = shotCooldown;
@@ -52,10 +54,15 @@ public class PlayerWeaponManager : MonoBehaviour
     }
 
 
-    public PlayerWeapon SwapWeapon(PlayerWeapon newWeapon, int index)
+    public PlayerWeapon SetWeapon(PlayerWeapon newWeapon, int index)
     {
         PlayerWeapon oldWeapon = weapons[index];
         weapons[index] = newWeapon;
         return oldWeapon;
+    }
+
+    public PlayerWeapon GetWeapon(int index)
+    {
+        return weapons[index];
     }
 }

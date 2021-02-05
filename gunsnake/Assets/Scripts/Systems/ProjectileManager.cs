@@ -84,7 +84,8 @@ public class ProjectileManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Could not remove projectile: " + type + "! Something went wrong.");
+            Debug.LogWarning("Could not remove projectile: " + type + "! Something went wrong." +
+                "Current projectile containers are: " + activeProjectiles.Keys);
             proj.SetActive(false);
         }
     }

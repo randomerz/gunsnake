@@ -62,6 +62,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     private void SetInvulnerable(int frames)
     {
         isInvulnerable = true;

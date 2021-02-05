@@ -13,7 +13,7 @@ public class PlayerMovement : Entity
     public Sprite snakeBent;
     public Sprite snakeTail;
 
-    private LinkedList<directions> directionQueue = new LinkedList<directions>();
+    private LinkedList<Directions> directionQueue = new LinkedList<Directions>();
     private bool addedDirection = false;
 
     public bool isSprinting;
@@ -37,19 +37,19 @@ public class PlayerMovement : Entity
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ChangeDirection(directions.right);
+            ChangeDirection(Directions.right);
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            ChangeDirection(directions.down);
+            ChangeDirection(Directions.down);
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ChangeDirection(directions.left);
+            ChangeDirection(Directions.left);
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            ChangeDirection(directions.up);
+            ChangeDirection(Directions.up);
         }
 
         //if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -98,7 +98,7 @@ public class PlayerMovement : Entity
     }
 
 
-    private void ChangeDirection(directions dir)
+    private void ChangeDirection(Directions dir)
     {
         // if same as last input OR queue has >=2, don't add
         if ((directionQueue.Count != 0 && directionQueue.Last.Value == dir) || directionQueue.Count >= 2)
@@ -107,7 +107,7 @@ public class PlayerMovement : Entity
         }
         
         // if queue is empty, don't go backwards, OR if isn't empty, don't go in last queued opposite
-        directions lastDir = currDir;
+        Directions lastDir = currDir;
         if (directionQueue.Count != 0)
             lastDir = directionQueue.Last.Value;
 
@@ -125,16 +125,16 @@ public class PlayerMovement : Entity
 
         switch (currDir)
         {
-            case directions.right:
+            case Directions.right:
                 headDir = Vector3.right;
                 break;
-            case directions.down:
+            case Directions.down:
                 headDir = Vector3.down;
                 break;
-            case directions.left:
+            case Directions.left:
                 headDir = Vector3.left;
                 break;
-            case directions.up:
+            case Directions.up:
                 headDir = Vector3.up;
                 break;
         }
@@ -179,7 +179,7 @@ public class PlayerMovement : Entity
 
     public void RestartSnake()
     {
-        currDir = directions.right;
+        currDir = Directions.right;
         directionQueue.Clear();
         for (int i = 0; i < 3; i++)
             Player.body[i].transform.position = snakeSpawn + new Vector3(-i, 0);
