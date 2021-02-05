@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     protected static LayerMask playerLayerMask;
     protected static LayerMask collidableLayerMask;
 
-    public enum directions
+    public enum Directions
     {
         right,
         down,
@@ -17,7 +17,7 @@ public class Entity : MonoBehaviour
         up,
     }
 
-    protected directions currDir;
+    protected Directions currDir;
 
     protected virtual void Awake()
     {
@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
     }
 
 
-    protected static bool IsOppositeDirection(directions d1, directions d2)
+    protected static bool IsOppositeDirection(Directions d1, Directions d2)
     {
         return Mathf.Abs((int)d1 - (int)d2) == 2;
     }
@@ -39,22 +39,22 @@ public class Entity : MonoBehaviour
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
-    protected static bool CanMove(Vector3 pos, directions dir)
+    protected static bool CanMove(Vector3 pos, Directions dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case directions.right:
+            case Directions.right:
                 rcDir = Vector3.right;
                 break;
-            case directions.down:
+            case Directions.down:
                 rcDir = Vector3.down;
                 break;
-            case directions.left:
+            case Directions.left:
                 rcDir = Vector3.left;
                 break;
-            case directions.up:
+            case Directions.up:
                 rcDir = Vector3.up;
                 break;
         }
@@ -68,22 +68,22 @@ public class Entity : MonoBehaviour
         return rh == null;
     }
 
-    protected static bool IsWallAhead(Vector3 pos, directions dir)
+    protected static bool IsWallAhead(Vector3 pos, Directions dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case directions.right:
+            case Directions.right:
                 rcDir = Vector3.right;
                 break;
-            case directions.down:
+            case Directions.down:
                 rcDir = Vector3.down;
                 break;
-            case directions.left:
+            case Directions.left:
                 rcDir = Vector3.left;
                 break;
-            case directions.up:
+            case Directions.up:
                 rcDir = Vector3.up;
                 break;
         }
