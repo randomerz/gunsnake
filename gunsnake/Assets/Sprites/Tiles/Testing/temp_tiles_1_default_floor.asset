@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: temp_tiles_1
+  m_Name: temp_tiles_1_default_floor
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -7918778903070741875, guid: b4d080f299081fa4998ebaa009815b69,
     type: 3}
