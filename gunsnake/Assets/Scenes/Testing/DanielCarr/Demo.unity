@@ -1019,6 +1019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_3Yellow
       objectReference: {fileID: 0}
+    - target: {fileID: 6825726326987646208, guid: d211f8cbf782d4d4f8094f81ac9a451d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6825726326987646214, guid: d211f8cbf782d4d4f8094f81ac9a451d,
         type: 3}
       propertyPath: m_RootOrder
@@ -15853,6 +15858,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_1Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 6825726326987646208, guid: b7922fcbff4941249afd422cd5bbdbb4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6825726326987646214, guid: b7922fcbff4941249afd422cd5bbdbb4,
         type: 3}
       propertyPath: m_RootOrder
@@ -19862,7 +19872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1620462451
 Transform:
   m_ObjectHideFlags: 0
@@ -19871,7 +19881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620462450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 483.9199, y: 286.43304, z: -40.613995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20501,6 +20511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_2Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825726326987646208, guid: 4f027efcdbf1a204fbe8ee4b3a97dd7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6825726326987646214, guid: 4f027efcdbf1a204fbe8ee4b3a97dd7e,
         type: 3}
@@ -27376,6 +27391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TargetDummy
       objectReference: {fileID: 0}
+    - target: {fileID: 2228987706198435034, guid: 1c07ab952727b6a4094acbb0b6188c1f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2228987706198435037, guid: 1c07ab952727b6a4094acbb0b6188c1f,
         type: 3}
       propertyPath: m_RootOrder
@@ -27562,6 +27582,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825726326987646208, guid: 6cab87b905cc9374f9340003193ea278,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6825726326987646214, guid: 6cab87b905cc9374f9340003193ea278,
         type: 3}
