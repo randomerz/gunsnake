@@ -5,7 +5,7 @@ using UnityEngine;
 public static class PlayerInventory
 {
     public static int gold;
-    public static int keys;
+    public static int keys = 1;
 
     public static PlayerWeapon[] weaponStorage = new PlayerWeapon[2];
 
@@ -20,7 +20,10 @@ public static class PlayerInventory
     {
         keys += amount;
     }
-
+    public static bool HasKeys()
+    {
+        return keys > 0;
+    }
 
 
     public static PlayerWeapon SetWeapon(PlayerWeapon newWeapon, int index)

@@ -8,14 +8,14 @@ public class CreateRoom : MonoBehaviour
     public const int MAX_ROOM_SIZE = 100;
 
     public string roomName;
-    public Room.RoomType roomType;
+    public RoomData.RoomType roomType;
 
     public bool hasNorthDoor;
     public bool hasEastDoor;
     public bool hasSouthDoor;
     public bool hasWestDoor;
 
-    public Room currentRoom;
+    public RoomData currentRoom;
 
 
     public Tilemap floor;
@@ -28,6 +28,8 @@ public class CreateRoom : MonoBehaviour
 
     public void String2Room(string roomString, int width, int height)
     {
+        if (roomString == null)
+            roomString = "";
         char[] roomChar = roomString.ToCharArray();
 
         string s = "";
@@ -38,12 +40,12 @@ public class CreateRoom : MonoBehaviour
             {
                 char t = roomChar[r * (width + 1) + c];
 
-                if (t == Room.WALLCHAR)
+                if (t == RoomData.WALLCHAR)
                 {
                     sideWall.SetTile(new Vector3Int(c, height - r - 1, 0), defaultSideWall);
                     topWall.SetTile(new Vector3Int(c, height - r - 1, 0), defaultTopWall);
                 }
-                if (t == Room.FLOORCHAR)
+                if (t == RoomData.FLOORCHAR)
                 {
                     floor.SetTile(new Vector3Int(c, height - r - 1, 0), defaultFloor);
                 }
@@ -103,18 +105,18 @@ public class CreateRoom : MonoBehaviour
 
                 if (sideTile != null || topTile != null)
                 {
-                    roomString += Room.WALLCHAR;
+                    roomString += RoomData.WALLCHAR;
                     sideWall.SetTile(pos, defaultSideWall);
                     topWall.SetTile(pos, defaultTopWall);
                 }
                 else if (floorTile != null)
                 {
-                    roomString += Room.FLOORCHAR;
+                    roomString += RoomData.FLOORCHAR;
                     floor.SetTile(pos, defaultFloor);
                 }
                 else
                 {
-                    roomString += Room.EMPTYCHAR;
+                    roomString += RoomData.EMPTYCHAR;
                 }
             }
             roomString += '\n';

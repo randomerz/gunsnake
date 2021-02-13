@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : ScriptableObject
+public class RoomData : ScriptableObject
 {
     public enum RoomType
     {
@@ -11,6 +11,13 @@ public class Room : ScriptableObject
         loot,
         entrance,
         exit,
+    }
+
+    public enum RoomDrop
+    {
+        health,
+        gold,
+        key,
     }
 
     [Header("Manually set")]
@@ -23,18 +30,22 @@ public class Room : ScriptableObject
     public bool hasWestDoor;
 
     [Header("Automatically set")]
-    public GameObject roomObject;
+    //public GameObject roomObject;
+    public string roomObjectPath;
+
+    [HideInInspector]
+    public RoomDrop roomDrop = RoomDrop.health;
 
     [TextArea()]
     public string roomString;
     public int width;
     public int height;
 
-    public static char WALLCHAR = '#';
-    public static char FLOORCHAR = '.';
-    public static char EMPTYCHAR = ' ';
+    public const char WALLCHAR = '#';
+    public const char FLOORCHAR = '.';
+    public const char EMPTYCHAR = ' ';
 
-    public void SetData(Room other)
+    public void SetData(RoomData other)
     {
         roomName = other.roomName;
         roomType = other.roomType;
@@ -43,7 +54,8 @@ public class Room : ScriptableObject
         hasSouthDoor = other.hasSouthDoor;
         hasWestDoor = other.hasWestDoor;
 
-        roomObject = other.roomObject;
+        //roomObject = other.roomObject;
+        roomObjectPath = other.roomObjectPath;
         roomString = other.roomString;
         width = other.width;
         height = other.height;

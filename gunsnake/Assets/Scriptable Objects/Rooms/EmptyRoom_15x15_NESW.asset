@@ -9,34 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a34f623a619ad41a6dfc64f0e00e36, type: 3}
-  m_Name: test2
+  m_Script: {fileID: 11500000, guid: 81c54a8d060f1cd4e81dfb521562f2d8, type: 3}
+  m_Name: EmptyRoom_15x15_NESW
   m_EditorClassIdentifier: 
-  roomName: test3
-  roomType: 1
+  roomName: EmptyRoom_15x15_NESW
+  roomType: 0
   hasNorthDoor: 0
   hasEastDoor: 0
   hasSouthDoor: 0
   hasWestDoor: 0
   roomObject: {fileID: 0}
-  roomString: '############
+  roomDrop: 0
+  roomString: '..######
 
-    #..........#
+    .......#
 
-    #..........#
+    .......#
 
-    #..........#
+    .......#
 
-    #..........#
+    .......#
 
-    #..........#
+    .......#
 
-    #..........#
+    ........
 
-    #..........#
-
-    ############
+    ........
 
 '
-  width: 12
-  height: 9
+  width: 8
+  height: 8
