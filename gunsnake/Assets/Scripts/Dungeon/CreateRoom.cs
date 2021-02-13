@@ -25,6 +25,8 @@ public class CreateRoom : MonoBehaviour
     public TileBase defaultSideWall;
     public TileBase defaultTopWall;
 
+    public GameObject defaultRoomGameObj;
+
 
     public void String2Room(string roomString, int width, int height)
     {
@@ -150,7 +152,7 @@ public class CreateRoom : MonoBehaviour
         }
     }
 
-    private void ClearTilemaps()
+    public void ClearTilemaps()
     {
         floor.ClearAllTiles();
         sideWall.ClearAllTiles();

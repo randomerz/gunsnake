@@ -14,28 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: EmptyRoom_15x15_NESW
   roomType: 0
-  hasNorthDoor: 0
-  hasEastDoor: 0
-  hasSouthDoor: 0
-  hasWestDoor: 0
-  roomObject: {fileID: 0}
+  hasNorthDoor: 1
+  hasEastDoor: 1
+  hasSouthDoor: 1
+  hasWestDoor: 1
+  roomObjectPath: SObj Rooms/EmptyRoom_15x15_NESW
   roomDrop: 0
-  roomString: '..######
+  roomString: '######...######
 
-    .......#
+    #.............#
 
-    .......#
+    #.............#
 
-    .......#
+    #.............#
 
-    .......#
+    #.............#
 
-    .......#
+    #.............#
 
-    ........
+    ...............
 
-    ........
+    ...............
+
+    ...............
+
+    #.............#
+
+    #.............#
+
+    #.............#
+
+    #.............#
+
+    #.............#
+
+    ######...######
 
 '
-  width: 8
-  height: 8
+  width: 15
+  height: 15

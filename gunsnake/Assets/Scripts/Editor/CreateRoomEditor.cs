@@ -34,9 +34,20 @@ public class CreateRoomEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("hasWestDoor"));
 
 
-        if (GUILayout.Button("Add Tops"))
+        if (GUILayout.Button("Clear Everything"))
+        {
+            if (EditorUtility.DisplayDialog("Clear Room Data", 
+                "Are you sure you want to clear all room data?", "Yes", "Cancel")) {
+                Clear();
+            }
+        }
+        if (GUILayout.Button("Add Wall Tops"))
         {
             _target.AddTops();
+        }
+        if (GUILayout.Button("Create Default Room Game Obj"))
+        {
+            CreateDefaultRoomGameObj();
         }
         if (GUILayout.Button("Create New Room from Scene!"))
         {
@@ -76,7 +87,8 @@ public class CreateRoomEditor : Editor
             EditorGUILayout.PropertyField(serializedObject.FindProperty("topWall"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultFloor"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultSideWall"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultTopWall"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultTopWall")); 
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultRoomGameObj"));
         }
 
         serializedObject.ApplyModifiedProperties();
@@ -107,11 +119,12 @@ public class CreateRoomEditor : Editor
         GameObject roomObj = Resources.Load<GameObject>(roomObjectPath);
         if (roomObj != null)
         {
-            Instantiate(roomObj, roomObjContainer.transform);
+            PrefabUtility.InstantiatePrefab(roomObj, roomObjContainer.transform);
         }
         else
         {
-            Debug.LogError("No prefab in resour ces with name " + rName + " at " + roomObjectPath + "!");
+            Debug.LogError("No prefab in resources with name " + rName + " at " + roomObjectPath + "! Creating default room");
+            CreateDefaultRoomGameObj();
         }
 
         // loading into scene stuff
@@ -158,5 +171,29 @@ public class CreateRoomEditor : Editor
         propObj.ApplyModifiedProperties();
 
         _target.Room2String();
+    }
+
+    private void Clear()
+    {
+        _target.ClearTilemaps();
+
+        foreach (Transform t in roomObjContainer.GetComponentInChildren<Transform>())
+            DestroyImmediate(t.gameObject);
+
+        serializedObject.FindProperty("roomName").stringValue = "";
+        serializedObject.FindProperty("roomType").enumValueIndex = 0;
+        serializedObject.FindProperty("hasNorthDoor").boolValue = false;
+        serializedObject.FindProperty("hasEastDoor").boolValue = false;
+        serializedObject.FindProperty("hasSouthDoor").boolValue = false;
+        serializedObject.FindProperty("hasWestDoor").boolValue = false;
+    }
+
+    private void CreateDefaultRoomGameObj()
+    {
+        foreach (Transform t in roomObjContainer.GetComponentInChildren<Transform>())
+            DestroyImmediate(t.gameObject);
+
+        GameObject g = Instantiate(_target.defaultRoomGameObj, roomObjContainer.transform);
+        g.name = _target.defaultRoomGameObj.name;
     }
 }
