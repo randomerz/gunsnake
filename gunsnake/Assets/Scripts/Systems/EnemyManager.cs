@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
             {
                 foreach (GameObject g in enemyList)
                 {
-                    if (g.GetComponent<Enemy>() != null)
+                    if (g.GetComponent<Enemy>() != null && g.activeSelf)
                     {
                         g.GetComponent<Enemy>().EnemyTick(e.tick);
                     }
@@ -82,7 +82,8 @@ public class EnemyManager : MonoBehaviour
             activeEnemies.Add(type, new List<GameObject>());
         }
 
-        activeEnemies[type].Add(enemy.gameObject);
+        if (!activeEnemies[type].Contains(enemy.gameObject))
+            activeEnemies[type].Add(enemy.gameObject);
     }
 
     public static void RemoveEnemy(GameObject enemy)
@@ -93,11 +94,13 @@ public class EnemyManager : MonoBehaviour
             inactiveEnemies[type].Add(enemy);
             activeEnemies[type].Remove(enemy);
             enemy.SetActive(false);
+            enemy.transform.parent = enemyContainer.transform;
         }
         else
         {
-            Debug.LogWarning("Could not remove projectile! Something went wrong.");
+            Debug.LogWarning("Could not remove enemy! Something went wrong.");
             enemy.SetActive(false);
+            enemy.transform.parent = enemyContainer.transform;
         }
     }
 }

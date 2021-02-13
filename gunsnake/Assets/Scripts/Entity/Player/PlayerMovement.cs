@@ -82,6 +82,8 @@ public class PlayerMovement : Entity
                 directionQueue.Clear();
             addedDirection = false;
 
+            CheckUnlockDoor(currDir);
+
             // moving snake code
             if (!CanMove(transform.position, currDir))
             {
@@ -116,6 +118,40 @@ public class PlayerMovement : Entity
             directionQueue.AddLast(dir);
             addedDirection = true;
         }
+    }
+
+    private void CheckUnlockDoor(Directions dir)
+    {
+        RaycastHit2D rh;
+        Vector3 rcDir = Vector3.zero;
+        switch (dir)
+        {
+            case Directions.right:
+                rcDir = Vector3.right;
+                break;
+            case Directions.down:
+                rcDir = Vector3.down;
+                break;
+            case Directions.left:
+                rcDir = Vector3.left;
+                break;
+            case Directions.up:
+                rcDir = Vector3.up;
+                break;
+        }
+        rh = Physics2D.Raycast(transform.position, rcDir, 1, wallLayerMask);
+
+        if (rh.collider != null)
+        {
+            Door d = rh.collider.gameObject.GetComponent<Door>();
+            //Debug.Log("checking door " + d.isLocked + "  " + d.isClosed + " " + PlayerInventory.HasKeys() + " " + PlayerInventory.keys);
+            if (d != null && d.isLocked && d.isClosed && PlayerInventory.HasKeys())
+            {
+                PlayerInventory.AddKey(-1);
+                d.UnlockDoor();
+            }
+        }
+
     }
 
     public void MoveBody()

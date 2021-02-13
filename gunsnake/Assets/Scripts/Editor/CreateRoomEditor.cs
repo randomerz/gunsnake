@@ -7,14 +7,19 @@ using UnityEditor.EditorTools;
 [CustomEditor(typeof(CreateRoom))]
 public class CreateRoomEditor : Editor
 {
+    private const string sObjPath = "Assets/Scriptable Objects/Rooms/";
+    private const string gObjPath = "SObj Rooms/"; // make sure is in "Resources" folder
+    private const string roomObjGameObj = "CurrentRoomObject";
+
     protected static bool showReferences;
-    
+
     private CreateRoom _target;
-    private const string objPath = "Assets/Scriptable Objects/Rooms/";
+    GameObject roomObjContainer;
 
     private void OnEnable()
     {
         _target = (CreateRoom)target;
+        roomObjContainer = GameObject.Find(roomObjGameObj);
     }
 
     public override void OnInspectorGUI()
@@ -35,10 +40,10 @@ public class CreateRoomEditor : Editor
         }
         if (GUILayout.Button("Create New Room from Scene!"))
         {
-            Room newRoom = ScriptableObject.CreateInstance<Room>();
+            RoomData newRoom = ScriptableObject.CreateInstance<RoomData>();
 
             string roomName = serializedObject.FindProperty("roomName").stringValue;
-            AssetDatabase.CreateAsset(newRoom, objPath + roomName + ".asset");
+            AssetDatabase.CreateAsset(newRoom, sObjPath + roomName + ".asset");
             //AssetDatabase.CreateAsset(newRoom, objPath + "tempRoom.asset");
             AssetDatabase.SaveAssets();
             EditorGUIUtility.PingObject(newRoom);
@@ -82,12 +87,32 @@ public class CreateRoomEditor : Editor
         SerializedProperty prop = serializedObject.FindProperty("currentRoom");
         SerializedObject propObj = new SerializedObject(prop.objectReferenceValue);
 
-        serializedObject.FindProperty("roomName").stringValue = propObj.FindProperty("roomName").stringValue;
+        if (propObj.FindProperty("roomName").stringValue == "")
+            serializedObject.FindProperty("roomName").stringValue = propObj.FindProperty("m_Name").stringValue;
+        else
+            serializedObject.FindProperty("roomName").stringValue = propObj.FindProperty("roomName").stringValue;
         serializedObject.FindProperty("roomType").enumValueIndex = propObj.FindProperty("roomType").enumValueIndex;
         serializedObject.FindProperty("hasNorthDoor").boolValue = propObj.FindProperty("hasNorthDoor").boolValue;
         serializedObject.FindProperty("hasEastDoor").boolValue = propObj.FindProperty("hasEastDoor").boolValue;
         serializedObject.FindProperty("hasSouthDoor").boolValue = propObj.FindProperty("hasSouthDoor").boolValue;
         serializedObject.FindProperty("hasWestDoor").boolValue = propObj.FindProperty("hasWestDoor").boolValue;
+
+
+        string rName = serializedObject.FindProperty("roomName").stringValue;
+        string roomObjectPath = propObj.FindProperty("roomObjectPath").stringValue;
+
+        foreach (Transform t in roomObjContainer.GetComponentInChildren<Transform>())
+            DestroyImmediate(t.gameObject); // maybe it can just be Destroy()
+
+        GameObject roomObj = Resources.Load<GameObject>(roomObjectPath);
+        if (roomObj != null)
+        {
+            Instantiate(roomObj, roomObjContainer.transform);
+        }
+        else
+        {
+            Debug.LogError("No prefab in resour ces with name " + rName + " at " + roomObjectPath + "!");
+        }
 
         // loading into scene stuff
         _target.String2Room();
@@ -96,6 +121,15 @@ public class CreateRoomEditor : Editor
 
     private void SaveData()
     {
+        if (roomObjContainer.transform.childCount == 0)
+        {
+            Debug.LogError("No Room Game Object to save into room under " + roomObjGameObj + "!");
+            return;
+        }
+        GameObject roomObj = roomObjContainer.transform.GetChild(0).gameObject;
+
+
+        // serialized data i think
         SerializedProperty prop = serializedObject.FindProperty("currentRoom");
         SerializedObject propObj = new SerializedObject(prop.objectReferenceValue);
 
@@ -105,6 +139,21 @@ public class CreateRoomEditor : Editor
         propObj.FindProperty("hasEastDoor").boolValue = serializedObject.FindProperty("hasEastDoor").boolValue;
         propObj.FindProperty("hasSouthDoor").boolValue = serializedObject.FindProperty("hasSouthDoor").boolValue;
         propObj.FindProperty("hasWestDoor").boolValue = serializedObject.FindProperty("hasWestDoor").boolValue;
+
+        // tried doing this stuff originally: 
+        // https://answers.unity.com/questions/778647/objectreferencevalue-in-serializedproperty.html
+        // switching to just saving with roomName
+
+        string rName = serializedObject.FindProperty("roomName").stringValue;
+        propObj.FindProperty("roomObjectPath").stringValue = gObjPath + rName;
+
+        roomObj.name = rName;
+        bool created = false;
+        string pathName = "Assets/Resources/" + gObjPath + rName + ".prefab";
+        // should i check overriding?
+        PrefabUtility.SaveAsPrefabAssetAndConnect(roomObj, pathName, InteractionMode.UserAction, out created);
+
+
 
         propObj.ApplyModifiedProperties();
 
