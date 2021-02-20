@@ -87,7 +87,7 @@ public class PlayerMovement : Entity
             // moving snake code
             if (!CanMove(transform.position, currDir))
             {
-                Debug.Log("bonk!");
+                //Debug.Log("bonk!");
                 return;
             }
             MoveBody();

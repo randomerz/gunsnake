@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     public bool isClosed;
     public bool isLocked;
     public bool isVertical;
+    public bool isOptional;
 
 
     [Header("References")]

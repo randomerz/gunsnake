@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWeaponManager : MonoBehaviour
 {
-    public int shotCooldown = 2;
+    public int shotCooldown = 1;
     private int ticksTillCooldown = 0;
 
     [SerializeField]
@@ -41,6 +41,8 @@ public class PlayerWeaponManager : MonoBehaviour
             {
                 if (weapons[currMountIndex] != null)
                     weapons[currMountIndex].Attack(); // test CanAttack() => Attack() maybe
+                if (weapons[(currMountIndex + 2) % 4] != null)
+                    weapons[(currMountIndex + 2) % 4].Attack(); // test CanAttack() => Attack() maybe
                 currMountIndex = (currMountIndex + 1) % weapons.Length;
 
                 ticksTillCooldown = shotCooldown;

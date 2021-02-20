@@ -4,25 +4,13 @@ using UnityEngine;
 
 public class RoomData : ScriptableObject
 {
-    public enum RoomType
-    {
-        combat,
-        shop,
-        loot,
-        entrance,
-        exit,
-    }
-
-    public enum RoomDrop
-    {
-        health,
-        gold,
-        key,
-    }
-
     [Header("Manually set")]
     public string roomName;
     public RoomType roomType;
+
+    public bool isJungle;
+    public bool isDungeon;
+    public bool isTemple;
 
     public bool hasNorthDoor;
     public bool hasEastDoor;
@@ -32,9 +20,6 @@ public class RoomData : ScriptableObject
     [Header("Automatically set")]
     //public GameObject roomObject;
     public string roomObjectPath;
-
-    [HideInInspector]
-    public RoomDrop roomDrop = RoomDrop.health;
 
     [TextArea()]
     public string roomString;

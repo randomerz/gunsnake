@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Directions
+{
+    right,
+    down,
+    left,
+    up,
+}
+
 public class Entity : MonoBehaviour
 {
     protected static LayerMask wallLayerMask;
@@ -9,13 +17,6 @@ public class Entity : MonoBehaviour
     protected static LayerMask playerLayerMask;
     protected static LayerMask collidableLayerMask;
 
-    public enum Directions
-    {
-        right,
-        down,
-        left,
-        up,
-    }
 
     protected Directions currDir;
 
