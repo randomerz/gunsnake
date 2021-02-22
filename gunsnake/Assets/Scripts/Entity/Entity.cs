@@ -2,12 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Directions
+public enum Direction
 {
     right,
     down,
     left,
     up,
+}
+
+public static class DirectionToVector
+{
+    public static Vector3Int Convert(Direction dir)
+    {
+        switch (dir)
+        {
+            case Direction.right:
+                return Vector3Int.right;
+            case Direction.down:
+                return Vector3Int.down;
+            case Direction.left:
+                return Vector3Int.left;
+            case Direction.up:
+                return Vector3Int.up;
+        }
+        return Vector3Int.zero;
+    }
 }
 
 public class Entity : MonoBehaviour
@@ -18,7 +37,7 @@ public class Entity : MonoBehaviour
     protected static LayerMask collidableLayerMask;
 
 
-    protected Directions currDir;
+    protected Direction currDir;
 
     protected virtual void Awake()
     {
@@ -30,7 +49,7 @@ public class Entity : MonoBehaviour
     }
 
 
-    protected static bool IsOppositeDirection(Directions d1, Directions d2)
+    protected static bool IsOppositeDirection(Direction d1, Direction d2)
     {
         return Mathf.Abs((int)d1 - (int)d2) == 2;
     }
@@ -40,22 +59,22 @@ public class Entity : MonoBehaviour
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
-    protected static bool CanMove(Vector3 pos, Directions dir)
+    protected static bool CanMove(Vector3 pos, Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }
@@ -69,22 +88,22 @@ public class Entity : MonoBehaviour
         return rh == null;
     }
 
-    protected static bool IsWallAhead(Vector3 pos, Directions dir)
+    protected static bool IsWallAhead(Vector3 pos, Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }

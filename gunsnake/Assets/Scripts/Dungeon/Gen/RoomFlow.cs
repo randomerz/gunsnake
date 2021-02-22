@@ -3,6 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class FlowNode
+{
+    public string name;
+    public RoomType type;
+    [NonSerialized]
+    public List<FlowNode> neighbors = new List<FlowNode>();
+}
+
 [CreateAssetMenu(fileName = "New Room Flow", menuName = "Dungeon/Room Flow")]
 public class RoomFlow : ScriptableObject
 {
@@ -11,15 +20,6 @@ public class RoomFlow : ScriptableObject
     public List<Edge> edges = new List<Edge>();
 
     private Dictionary<string, FlowNode> string2node = new Dictionary<string, FlowNode>();
-    
-    [System.Serializable]
-    public class FlowNode
-    {
-        public string name;
-        public RoomType type;
-        [NonSerialized]
-        public List<FlowNode> neighbors;
-    }
 
     [System.Serializable]
     public struct Edge

@@ -13,7 +13,7 @@ public class PlayerMovement : Entity
     public Sprite snakeBent;
     public Sprite snakeTail;
 
-    private LinkedList<Directions> directionQueue = new LinkedList<Directions>();
+    private LinkedList<Direction> directionQueue = new LinkedList<Direction>();
     private bool addedDirection = false;
 
     public bool isSprinting;
@@ -37,19 +37,19 @@ public class PlayerMovement : Entity
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ChangeDirection(Directions.right);
+            ChangeDirection(Direction.right);
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            ChangeDirection(Directions.down);
+            ChangeDirection(Direction.down);
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ChangeDirection(Directions.left);
+            ChangeDirection(Direction.left);
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            ChangeDirection(Directions.up);
+            ChangeDirection(Direction.up);
         }
 
         //if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -100,7 +100,7 @@ public class PlayerMovement : Entity
     }
 
 
-    private void ChangeDirection(Directions dir)
+    private void ChangeDirection(Direction dir)
     {
         // if same as last input OR queue has >=2, don't add
         if ((directionQueue.Count != 0 && directionQueue.Last.Value == dir) || directionQueue.Count >= 2)
@@ -109,7 +109,7 @@ public class PlayerMovement : Entity
         }
         
         // if queue is empty, don't go backwards, OR if isn't empty, don't go in last queued opposite
-        Directions lastDir = currDir;
+        Direction lastDir = currDir;
         if (directionQueue.Count != 0)
             lastDir = directionQueue.Last.Value;
 
@@ -120,22 +120,22 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void CheckUnlockDoor(Directions dir)
+    private void CheckUnlockDoor(Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }
@@ -161,16 +161,16 @@ public class PlayerMovement : Entity
 
         switch (currDir)
         {
-            case Directions.right:
+            case Direction.right:
                 headDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 headDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 headDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 headDir = Vector3.up;
                 break;
         }
@@ -215,7 +215,7 @@ public class PlayerMovement : Entity
 
     public void RestartSnake()
     {
-        currDir = Directions.right;
+        currDir = Direction.right;
         directionQueue.Clear();
         for (int i = 0; i < 3; i++)
             Player.body[i].transform.position = snakeSpawn + new Vector3(-i, 0);

@@ -13,6 +13,26 @@ public class DungeonRoomPlacer : MonoBehaviour
     public TileBase defaultTopWall;
 
 
+    public void PlaceComposite(RoomComposite composite, int x, int y, GameObject dungeonContainer = null)
+    {
+        if (dungeonContainer == null)
+            dungeonContainer = GameObject.Find("DungeonContainer"); // maybe do a new GameObject() here
+
+        Vector3Int offset = composite.basePos + new Vector3Int(x, y, 0);
+        foreach (RCObj o in composite.rooms)
+        {
+            PlaceRoom(o.roomData, offset.x + o.pos.x, offset.y + o.pos.y, dungeonContainer);
+        }
+        foreach (HallwayObj h in composite.hallways)
+        {
+            Debug.Log("doing hallway!");
+            foreach (Vector3Int p in h.path)
+            {
+                floor.SetTile(offset + p, defaultFloor);
+            }
+        }
+    }
+
     public bool CanPlaceRoom(RoomData room, int x, int y)
     {
         for (int r = y; r < y + room.height; r++)

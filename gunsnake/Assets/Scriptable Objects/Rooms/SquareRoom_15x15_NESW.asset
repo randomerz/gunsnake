@@ -22,6 +22,19 @@ MonoBehaviour:
   hasSouthDoor: 1
   hasWestDoor: 1
   roomObjectPath: SObj Rooms/SquareRoom_15x15_NESW
+  defaultConnections:
+  - pos: {x: 7, y: 14, z: 0}
+    side: 3
+    isAvailable: 1
+  - pos: {x: 7, y: 0, z: 0}
+    side: 1
+    isAvailable: 1
+  - pos: {x: 14, y: 7, z: 0}
+    side: 0
+    isAvailable: 1
+  - pos: {x: 0, y: 7, z: 0}
+    side: 2
+    isAvailable: 1
   roomString: '######...######
 
     #.............#
