@@ -145,10 +145,42 @@ public class Room : MonoBehaviour
         //   - ..
         doors = new List<Door>();
         GameObject doorContainer = transform.Find("Doors").gameObject;
+        List<RCConnection> connections = new List<RCConnection>();
         foreach (Door d in doorContainer.GetComponentsInChildren<Door>())
         {
             doors.Add(d);
+            int x = (int)d.transform.position.x;
+            int y = (int)d.transform.position.y;
+            Direction dir;
+            if (x == 0)
+                dir = Direction.left;
+            if (y == 0)
+                dir = Direction.down;
+            else if (x == roomData.width - 1)
+                dir = Direction.right;
+            else if (y == roomData.height - 1)
+                dir = Direction.up;
+            else
+            {
+                // manhattan distance to edges
+                int dl = x + Mathf.Abs(y - roomData.height / 2);
+                int dd = y + Mathf.Abs(x - roomData.width / 2);
+                int dr = (roomData.width - x) + Mathf.Abs(y - roomData.height / 2);
+                int du = (roomData.height - y) + Mathf.Abs(x - roomData.width / 2);
+
+                int min = Mathf.Min(dl, dd, dr, du);
+                if (dl == min)
+                    dir = Direction.left;
+                else if (dd == min)
+                    dir = Direction.down;
+                else if (dr == min)
+                    dir = Direction.right;
+                else
+                    dir = Direction.up;
+            }
+            connections.Add(new RCConnection(new Vector3Int(x, y, 0), dir));
         }
+        roomData.SetDefaultConnections(connections);
     }
 
     #region Combat

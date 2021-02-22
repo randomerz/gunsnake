@@ -21,6 +21,9 @@ public class RoomData : ScriptableObject
     //public GameObject roomObject;
     public string roomObjectPath;
 
+    [SerializeField]
+    private List<RCConnection> defaultConnections = new List<RCConnection>();
+
     [TextArea()]
     public string roomString;
     public int width;
@@ -29,6 +32,20 @@ public class RoomData : ScriptableObject
     public const char WALLCHAR = '#';
     public const char FLOORCHAR = '.';
     public const char EMPTYCHAR = ' ';
+
+    public void SetDefaultConnections(List<RCConnection> defaultCons)
+    {
+        defaultConnections = defaultCons;
+    }
+
+    // Don't use me too often!
+    public List<RCConnection> GetDefaultConnections()
+    {
+        List<RCConnection> cons = new List<RCConnection>();
+        foreach (RCConnection c in defaultConnections)
+            cons.Add(c.Copy());
+        return cons;
+    }
 
     public void SetData(RoomData other)
     {

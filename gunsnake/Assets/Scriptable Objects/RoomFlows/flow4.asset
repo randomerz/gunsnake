@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8cf61ff20b9780478b907d2eabc5ebc, type: 3}
+  m_Name: flow4
+  m_EditorClassIdentifier: 
+  verticies:
+  - name: Start
+    type: 4
+  - name: Hub1
+    type: 0
+  - name: Hub2
+    type: 0
+  - name: N1
+    type: 0
+  - name: N2
+    type: 0
+  - name: Loot
+    type: 3
+  - name: Shop
+    type: 2
+  - name: Chall
+    type: 1
+  - name: Exit
+    type: 5
+  edges:
+  - nodeA: Start
+    nodeB: Hub1
+    isOneWay: 0
+  - nodeA: Hub1
+    nodeB: N1
+    isOneWay: 0
+  - nodeA: N1
+    nodeB: Loot
+    isOneWay: 0
+  - nodeA: Loot
+    nodeB: Hub1
+    isOneWay: 1
+  - nodeA: Hub1
+    nodeB: Hub2
+    isOneWay: 0
+  - nodeA: Hub2
+    nodeB: N2
+    isOneWay: 0
+  - nodeA: N2
+    nodeB: Shop
+    isOneWay: 0
+  - nodeA: Shop
+    nodeB: Hub2
+    isOneWay: 1
+  - nodeA: Hub2
+    nodeB: Chall
+    isOneWay: 0
+  - nodeA: Chall
+    nodeB: Exit
+    isOneWay: 0
