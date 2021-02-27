@@ -5,7 +5,9 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField]
     private int health;
+    [SerializeField]
     private int maxHealth = 3;
 
     public bool isInvulnerable;
@@ -65,6 +67,12 @@ public class PlayerHealth : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+
+    public int GetmaxHealth()
+    {
+        return maxHealth;
     }
 
     private void SetInvulnerable(int frames)
