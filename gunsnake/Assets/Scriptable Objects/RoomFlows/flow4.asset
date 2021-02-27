@@ -43,7 +43,7 @@ MonoBehaviour:
     isOneWay: 0
   - nodeA: Loot
     nodeB: Hub1
-    isOneWay: 1
+    isOneWay: 0
   - nodeA: Hub1
     nodeB: Hub2
     isOneWay: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     isOneWay: 0
   - nodeA: Shop
     nodeB: Hub2
-    isOneWay: 1
+    isOneWay: 0
   - nodeA: Hub2
     nodeB: Chall
     isOneWay: 0

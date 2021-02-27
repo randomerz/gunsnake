@@ -19,17 +19,19 @@ public class DungeonRoomPlacer : MonoBehaviour
             dungeonContainer = GameObject.Find("DungeonContainer"); // maybe do a new GameObject() here
 
         Vector3Int offset = composite.basePos + new Vector3Int(x, y, 0);
-        foreach (RCObj o in composite.rooms)
+        foreach (RCObj rco in composite.rooms)
         {
-            PlaceRoom(o.roomData, offset.x + o.pos.x, offset.y + o.pos.y, dungeonContainer);
+            GameObject roomGameObj = PlaceRoom(rco.roomData, offset.x + rco.pos.x, offset.y + rco.pos.y, dungeonContainer);
+            Room room = roomGameObj.GetComponent<Room>();
+
+            for (int doorInd = 0; doorInd < rco.connections.Count; doorInd++)
+            {
+                UpdateDoorWallCheck(room.doors[doorInd], rco.connections[doorInd], offset + rco.pos);
+            }
         }
         foreach (HallwayObj h in composite.hallways)
         {
-            Debug.Log("doing hallway!");
-            foreach (Vector3Int p in h.path)
-            {
-                floor.SetTile(offset + p, defaultFloor);
-            }
+            PlaceHallway(h, offset);
         }
     }
 
@@ -54,7 +56,7 @@ public class DungeonRoomPlacer : MonoBehaviour
         return true;
     }
 
-    public void PlaceRoom(RoomData room, int x, int y, GameObject dungeonContainer=null)
+    public GameObject PlaceRoom(RoomData room, int x, int y, GameObject dungeonContainer=null)
     {
         string roomObjectPath = room.roomObjectPath;
         if (dungeonContainer == null)
@@ -63,12 +65,14 @@ public class DungeonRoomPlacer : MonoBehaviour
         GameObject roomObj = Resources.Load<GameObject>(roomObjectPath);
         if (roomObj != null)
         {
-            Instantiate(roomObj, new Vector3(x, y), Quaternion.identity, dungeonContainer.transform);
+            GameObject roomGameObj = Instantiate(roomObj, new Vector3(x, y), Quaternion.identity, dungeonContainer.transform);
             PlaceRoomTiles(room, x, y);
+            return roomGameObj;
         }
         else
         {
             Debug.LogError("Error in creating room: No prefab in resources with name " + room.name + " at " + roomObjectPath + "!");
+            return null;
         }
     }
 
@@ -102,6 +106,80 @@ public class DungeonRoomPlacer : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    private void PlaceHallway(HallwayObj hallway, Vector3Int offset)
+    {
+        foreach (Vector3Int p in hallway.path)
+        {
+            PlaceHallwayWalls(offset + p);
+        }
+        foreach (Vector3Int p in hallway.path)
+        {
+            for (int r = -1; r <= 1; r++)
+                for (int c = -1; c <= 1; c++)
+                    ClearWallAddFloor(offset + p + new Vector3Int(c, r, 0));
+        }
+    }
+
+    private void PlaceHallwayWalls(Vector3Int pos)
+    {
+        for (int i = -2; i <= 2; i++)
+        {
+            PlaceWallIfEmpty(pos + new Vector3Int(i, 2, 0));
+            PlaceWallIfEmpty(pos + new Vector3Int(i, -2, 0));
+            PlaceWallIfEmpty(pos + new Vector3Int(2, i, 0));
+            PlaceWallIfEmpty(pos + new Vector3Int(-2, i, 0));
+        }
+    }
+
+    private void PlaceWallIfEmpty(Vector3Int pos)
+    {
+        TileBase sideTile = sideWall.GetTile(pos);
+        TileBase topTile = topWall.GetTile(pos);
+        TileBase floorTile = floor.GetTile(pos);
+
+        if (sideTile == null && topTile == null && floorTile == null)
+        {
+            sideWall.SetTile(pos, defaultSideWall);
+            topWall.SetTile(pos, defaultTopWall);
+        }
+    }
+
+
+    private void UpdateDoorWallCheck(Door door, RCConnection connection, Vector3Int offset)
+    {
+        bool shouldWall = connection.isWall || connection.isAvailable;
+        door.SetIsWall(shouldWall);
+        if (shouldWall)
+        {
+            sideWall.SetTile(offset + connection.pos, defaultSideWall);
+            topWall.SetTile(offset + connection.pos, defaultTopWall);
+
+            if (door.isVertical)
+            {
+                sideWall.SetTile(offset + Vector3Int.up + connection.pos, defaultSideWall);
+                topWall.SetTile(offset + Vector3Int.up + connection.pos, defaultTopWall);
+                sideWall.SetTile(offset + Vector3Int.down + connection.pos, defaultSideWall);
+                topWall.SetTile(offset + Vector3Int.down + connection.pos, defaultTopWall);
+            }
+            else
+            {
+                sideWall.SetTile(offset + Vector3Int.left + connection.pos, defaultSideWall);
+                topWall.SetTile(offset + Vector3Int.left + connection.pos, defaultTopWall);
+                sideWall.SetTile(offset + Vector3Int.right + connection.pos, defaultSideWall);
+                topWall.SetTile(offset + Vector3Int.right + connection.pos, defaultTopWall);
+            }
+        }
+    }
+
+
+    private void ClearWallAddFloor(Vector3Int pos)
+    {
+        sideWall.SetTile(pos, null);
+        topWall.SetTile(pos, null);
+        floor.SetTile(pos, defaultFloor);
     }
 
     public void ClearTilemaps()

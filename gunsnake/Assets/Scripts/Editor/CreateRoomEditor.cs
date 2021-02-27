@@ -175,6 +175,8 @@ public class CreateRoomEditor : Editor
         string rName = serializedObject.FindProperty("roomName").stringValue;
         propObj.FindProperty("roomObjectPath").stringValue = gObjPath + rName;
 
+        propObj.ApplyModifiedProperties();
+
         roomObj.name = rName;
         Room room = roomObj.GetComponent<Room>();
         room.roomData = _target.currentRoom;
@@ -183,7 +185,6 @@ public class CreateRoomEditor : Editor
         string pathName = "Assets/Resources/" + gObjPath + rName + ".prefab";
         // should i check overriding?
         PrefabUtility.SaveAsPrefabAssetAndConnect(roomObj, pathName, InteractionMode.UserAction, out created);
-
 
 
         propObj.ApplyModifiedProperties();

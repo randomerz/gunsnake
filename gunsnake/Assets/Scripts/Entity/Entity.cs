@@ -10,7 +10,7 @@ public enum Direction
     up,
 }
 
-public static class DirectionToVector
+public static class DirectionUtil
 {
     public static Vector3Int Convert(Direction dir)
     {
@@ -26,6 +26,16 @@ public static class DirectionToVector
                 return Vector3Int.up;
         }
         return Vector3Int.zero;
+    }
+
+    public static Direction NextDir(Direction dir)
+    {
+        return (Direction)(((int)dir + 1) % 4);
+    }
+
+    public static Direction PrevDir(Direction dir)
+    {
+        return (Direction)(((int)dir + 3) % 4);
     }
 }
 

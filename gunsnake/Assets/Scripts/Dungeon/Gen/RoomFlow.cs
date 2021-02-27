@@ -10,6 +10,36 @@ public class FlowNode
     public RoomType type;
     [NonSerialized]
     public List<FlowNode> neighbors = new List<FlowNode>();
+
+    public FlowNode Copy()
+    {
+        FlowNode n = new FlowNode();
+        n.name = name;
+        n.type = type;
+        n.neighbors = new List<FlowNode>();
+        foreach (FlowNode node in neighbors)
+            n.neighbors.Add(node);
+        return n;
+    }
+
+    public override bool Equals(object obj)
+    {
+        //Check for null and compare run-time types.
+        if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+        {
+            return false;
+        }
+        else
+        {
+            FlowNode n = (FlowNode)obj;
+            return name == n.name && type == n.type;
+        }
+    }
+
+    public override int GetHashCode()
+    {
+        return Tuple.Create(name, type).GetHashCode();
+    }
 }
 
 [CreateAssetMenu(fileName = "New Room Flow", menuName = "Dungeon/Room Flow")]

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
+    private const int MAX_TRIES = 3;
+
     public RoomFlow currentFlow;
 
 
@@ -15,6 +17,12 @@ public class DungeonGenerator : MonoBehaviour
 
     public static GameObject dungeonContainer;
     // static instance
+
+
+    private RoomComposite dungeonComposite;
+    private List<List<FlowNode>> addedCycles;
+    private Dictionary<FlowNode, RCObj> addedNodes;
+    private List<FlowNode> remainingNodes;
 
     void Awake()
     {
@@ -31,28 +39,106 @@ public class DungeonGenerator : MonoBehaviour
 
     public void CreateDungeon()
     {
+        Debug.Log("Creating dungeon!");
         ClearDungeon();
+        //int seed = 26155;//Random.Range(0, 32768);
+        //Random.InitState(seed);
+        //Debug.Log("Random seed: " + seed);
 
         currentFlow.Init();
         List<List<FlowNode>> cycles = FindCycles(currentFlow);
+        cycles.Sort((a, b) => b.Count.CompareTo(a.Count)); // sort in decending order
 
-        foreach (List<FlowNode> cycle in cycles)
+        for (int numTries = 0; numTries < 100; numTries++)
+        {
+            if (TryGenerating(cycles))
+            {
+                Debug.Log("Created dungeon in " + numTries + " tries!");
+                break;
+            }
+        }
+    }
+
+    private bool TryGenerating(List<List<FlowNode>> cycles)
+    {
+        addedCycles = new List<List<FlowNode>>();
+        addedNodes = new Dictionary<FlowNode, RCObj>();
+        remainingNodes = new List<FlowNode>();
+        foreach (FlowNode node in currentFlow.verticies)
+            remainingNodes.Add(node.Copy());
+
+        dungeonComposite = null;
+
+        if (cycles.Count > 0)
         {
             // TODO: progress cycle a random amount
-            ComposeCycle(cycle);
-            break;
+            FlowNode nodeInit = cycles[0][0];
+            RoomData roomInit = roomTable.GetRoom(nodeInit.type);
+            RCObj RCInit = new RCObj(roomInit);
+            dungeonComposite = new RoomComposite(RCInit);
+
+            AddNode(nodeInit, RCInit);
+            dungeonComposite = AddCycleToComposite(dungeonComposite, RCInit, cycles[0]);
+            if (dungeonComposite == null)
+                return false;
+
+            addedCycles.Add(cycles[0]);
+
+            CheckOverlappingCycles(cycles);
+        }
+        else
+        {
+            FlowNode maxNode = remainingNodes[0];
+            foreach (FlowNode node in remainingNodes)
+                if (node.neighbors.Count > maxNode.neighbors.Count)
+                    maxNode = node;
+
+            RoomData roomInit = roomTable.GetRoom(maxNode.type);
+            RCObj RCInit = new RCObj(roomInit);
+            dungeonComposite = new RoomComposite(RCInit);
+            AddNode(maxNode, RCInit);
         }
 
-        //int x = -4;
-        //foreach (FlowNode node in currentFlow.verticies)
-        //{
-        //    RoomData roomData = roomTable.GetRoom(node.type);
+        //Debug.Log(remainingNodes.Count + " remaining!");
 
-        //    //Debug.Log(node.name);
-        //    roomPlacer.PlaceRoom(roomData, x, -roomData.height / 2, dungeonContainer);
-        //    x += roomData.width;
-        //}
+        while (remainingNodes.Count > 0)
+        {
+            List<FlowNode> frontierNodes = new List<FlowNode>();
+            foreach (FlowNode node in addedNodes.Keys)
+                foreach (FlowNode adj in node.neighbors)
+                    if (remainingNodes.Contains(adj))
+                        frontierNodes.Add(adj);
+
+            FlowNode maxNode = remainingNodes[0];
+            foreach (FlowNode node in frontierNodes)
+                if (node.neighbors.Count > maxNode.neighbors.Count)
+                    maxNode = node;
+
+            FlowNode origNode = null;
+            foreach (FlowNode node in addedNodes.Keys)
+                if (node.neighbors.Contains(maxNode))
+                    origNode = node;
+
+
+            bool didAdd = AddRoomRandom(dungeonComposite, addedNodes[origNode], maxNode);
+            if (!didAdd)
+                return false;
+
+            if (addedCycles.Count < cycles.Count)
+            {
+                CheckOverlappingCycles(cycles);
+            }
+        }
+
+
+        if (dungeonComposite == null)
+            return false;
+
+        roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
+        return true;
     }
+
+    #region Cycles
 
     private List<List<FlowNode>> FindCycles(RoomFlow flow)
     {
@@ -105,91 +191,234 @@ public class DungeonGenerator : MonoBehaviour
         return cycles;
     }
 
-    private bool ComposeCycle(List<FlowNode> cycle)
+    private bool DoesCycleContain(List<List<FlowNode>> container, List<FlowNode> containee)
     {
-        int MAX_TRIES = 3;
+        foreach (List<FlowNode> cycle in container)
+            if (DoCyclesMatch(cycle, containee))
+                return true;
+        return false;
+    }
 
-        RoomComposite cycleComposite = null;
-        for (int tri = 0; tri < 20 + MAX_TRIES; tri++)
+    private bool DoCyclesMatch(List<FlowNode> a, List<FlowNode> b)
+    {
+        if (a.Count != b.Count)
+            return false;
+        for (int i = 0; i < a.Count; i++)
         {
-            FlowNode nodeA = cycle[0];
-            FlowNode nodeN = cycle[1];
-            RoomData roomA = roomTable.GetRoom(nodeA.type);
-            RoomData roomN = roomTable.GetRoom(nodeN.type);
-            RCObj RCA = new RCObj(roomA);
-            RCObj RCN = new RCObj(roomN);
-            cycleComposite = new RoomComposite(RCA);
+            if (a[i] != b[i])
+                return false;
+        }
+        return true;
+    }
 
-            // pick first pair of rooms
-            bool didAdd = false;
-            int randDir = Random.Range(0, 4);
+    private bool CheckOverlappingCycles(List<List<FlowNode>> cycles)
+    {
+        // check for overlapping nodes in other cycles 
+        bool hadOverlap = true;
+        while (hadOverlap)
+        {
+            bool properlyGenerated = true;
+            hadOverlap = CheckOverlappingCyclesHelper(cycles, out properlyGenerated);
+            if (!properlyGenerated) // THIS IS UNTESTED
+            {
+                Debug.Log("Not properly generated!");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private bool CheckOverlappingCyclesHelper(List<List<FlowNode>> cycles, out bool properlyGenerated)
+    {
+        properlyGenerated = true;
+        foreach (List<FlowNode> cycle in cycles)
+        {
+            if (DoesCycleContain(addedCycles, cycle))
+                continue;
+
+            foreach (FlowNode currentNode in addedNodes.Keys)
+            {
+                if (cycle.Contains(currentNode))
+                {
+                    while (cycle[0] != currentNode) // cycle until currentNode is in the front
+                    {
+                        cycle.Add(cycle[0]);
+                        cycle.RemoveAt(0);
+                    }
+                    RoomComposite rc = AddCycleToComposite(dungeonComposite, addedNodes[currentNode], cycle);
+                    if (rc == null)
+                    {
+                        properlyGenerated = false;
+                        return false;
+                    }
+                    else
+                    {
+                        addedCycles.Add(cycle);
+                        properlyGenerated = true;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private RoomComposite AddCycleToComposite(RoomComposite composite, RCObj RCA, List<FlowNode> cycle)
+    {
+        FlowNode nodeN = cycle[1];
+        RoomData roomN = null;
+        RCObj RCN = null;
+
+        bool didAdd = false;
+
+        if (!addedNodes.ContainsKey(cycle[1]))
+        {
+            // try adding first 2 rooms together
             for (int i = 0; i < MAX_TRIES; i++)
             {
-                int dirA = (randDir + i) % 4;
-                int dirN = (randDir + i + 2) % 4;
+                roomN = roomTable.GetRoom(nodeN.type);
+                RCN = new RCObj(roomN);
 
-                // TODO: pick random connecting points
-                int indA = RCA.GetRandomConnection((Direction)dirA);
-                int indN = RCN.GetRandomConnection((Direction)dirN);
-
-                if (indA == -1 || indN == -1)
-                    continue;
-
-                didAdd = cycleComposite.Add(RCA, indA, RCN, indN);
+                didAdd = TryCombiningRooms(composite, RCA, RCN, RCA.GetAvailableConnections());
                 if (didAdd)
+                {
+                    if (!AddNode(nodeN, RCN))
+                        return null; // couldn't generate complex hallway
                     break;
+                }
             }
 
             // failed to place first two rooms
             if (!didAdd)
-                continue;
+                return null;
+        }
+        else
+        {
+            RCN = addedNodes[nodeN];
+        }
 
-            // place rest of rooms
-            for (int n = 2; n < cycle.Count; n++)
+
+        // place rest of rooms
+        for (int n = 2; n < cycle.Count; n++)
+        {
+            didAdd = false;
+
+            FlowNode nodeM = cycle[n];
+
+            if (!addedNodes.ContainsKey(nodeM))
             {
-                didAdd = false;
+                int[] indsN;
+                // get furthest dir
+                if (n < (cycle.Count + 1) / 2)
+                    indsN = RCN.GetFurthestConnection(RCA, 3);
+                else // get closest dir
+                    indsN = RCN.GetClosestConnections(RCA, 3);
+                if (indsN[0] == -1)
+                    continue;
+
                 for (int i = 0; i < MAX_TRIES; i++)
                 {
-                    FlowNode nodeM = cycle[n];
                     RoomData roomM = roomTable.GetRoom(nodeM.type);
                     RCObj RCM = new RCObj(roomM);
 
-                    int indN = -1;
-                    // get furthest dir
-                    if (n < (cycle.Count + 1) / 2)
-                        indN = RCN.GetFurthestConnection(RCA);
-                    else // get closest dir
-                        indN = RCN.GetClosestConnection(RCA);
-                    if (indN == -1)
-                        continue;
+                    didAdd = TryCombiningRooms(composite, RCN, RCM, indsN);
 
-                    Direction d = (Direction)((int)(RCN.connections[indN].side + 2) % 4);
-                    //Debug.Log(n > (cycle.Count + 1) / 2);
-                    //Debug.Log(tri + "/" + i + ": " + d);
-                    int indM = RCM.GetRandomConnection(d);
-                    if (indM == -1)
-                        continue;
-
-                    didAdd = cycleComposite.Add(RCN, indN, RCM, indM);
                     if (didAdd)
                     {
-                        // progress
+                        if (!AddNode(nodeM, RCM))
+                            return null; // couldn't generate complex hallway
                         RCN = RCM;
                         break;
                     }
                 }
 
                 if (!didAdd)
-                    break;
+                    return null; // restart composite
             }
-            if (!didAdd)
-                continue;
-
-            break;
+            else
+            {
+                // already added
+                RCN = addedNodes[nodeM];
+            }
         }
-        roomPlacer.PlaceComposite(cycleComposite, 0, 0);
+
+        //if (!composite.TryGenerateComplexHallway(RCN, RCA))
+        //    return null; // couldnt do the last hallway :(
+
+        // succeeded
+        //Debug.Log("Rooms added successfully!");
+        return composite;
+    }
+
+    #endregion
+
+    private bool AddRoomRandom(RoomComposite composite, RCObj RCOrig, FlowNode nodeNew)
+    {
+        RoomData roomNew;
+        RCObj RCNew;
+        // try adding first 2 rooms together
+        for (int i = 0; i < MAX_TRIES; i++)
+        {
+            roomNew = roomTable.GetRoom(nodeNew.type);
+            RCNew = new RCObj(roomNew);
+
+            bool didAdd = TryCombiningRooms(composite, RCOrig, RCNew, RCOrig.GetAvailableConnections());
+            if (didAdd)
+            {
+                if (!AddNode(nodeNew, RCNew))
+                    return false; // couldn't generate complex hallway
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool TryCombiningRooms(RoomComposite composite, RCObj RCOrig, RCObj RCNew, int[] indsOrig)
+    {
+        foreach (int indA in indsOrig)
+        {
+            Direction dirA = RCOrig.connections[indA].side;
+            Direction dirN = (Direction)(((int)dirA + 2) % 4);
+
+            int[] indsN = RCNew.GetRandomConnection(dirN);
+
+            foreach (int indN in indsN)
+            {
+                if (indA == -1 || indN == -1) // should be unneccesary
+                    continue;
+
+                bool didAdd = composite.Add(RCOrig, indA, RCNew, indN);
+                if (didAdd)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    private bool AddNode(FlowNode node, RCObj rco)
+    {
+        addedNodes[node] = rco;
+        remainingNodes.Remove(node);
+
+        foreach (FlowNode adj in node.neighbors)
+        {
+            if (addedNodes.ContainsKey(adj))
+            { 
+                if (!rco.connectedObjects.Contains(addedNodes[adj]))
+                {
+                    bool didGen = dungeonComposite.TryGenerateComplexHallway(rco, addedNodes[adj]);
+
+                    if (!didGen)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
         return true;
     }
+
+
 
     public void ClearDungeon()
     {
@@ -305,6 +534,114 @@ public class DungeonGenerator : MonoBehaviour
         PlaceRoom(temp_endRoom, curX, -temp_endRoom.height / 2);
         curX += temp_endRoom.width;
     }
+
+    //private RoomComposite ComposeCycle(List<FlowNode> cycle)
+    //{
+    //    RoomComposite cycleComposite = null;
+    //    for (int tri = 0; tri < 100; tri++)
+    //    {
+    //        FlowNode nodeA = cycle[0];
+    //        FlowNode nodeN = cycle[1];
+    //        RoomData roomA = roomTable.GetRoom(nodeA.type);
+    //        RoomData roomN = roomTable.GetRoom(nodeN.type);
+    //        RCObj RCA = new RCObj(roomA);
+    //        RCObj RCN = new RCObj(roomN);
+    //        cycleComposite = new RoomComposite(RCA);
+
+    //        // pick first pair of rooms
+    //        bool didAdd = false;
+    //        int randDir = Random.Range(0, 4);
+    //        for (int i = 0; i < MAX_TRIES; i++)
+    //        {
+    //            int dirA = (randDir + i) % 4;
+    //            int dirN = (randDir + i + 2) % 4;
+
+    //            // TODO: pick random connecting points
+    //            int indA = RCA.GetRandomConnection((Direction)dirA)[0];
+    //            int indN = RCN.GetRandomConnection((Direction)dirN)[0];
+
+    //            //Debug.Log("ind " + indA);
+
+    //            if (indA == -1 || indN == -1)
+    //                continue;
+
+    //            didAdd = cycleComposite.Add(RCA, indA, RCN, indN);
+    //            if (didAdd)
+    //                break;
+    //        }
+
+    //        // failed to place first two rooms
+    //        if (!didAdd)
+    //            continue;
+
+    //        //Debug.Log("adding rest of rooms");
+    //        // place rest of rooms
+    //        for (int n = 2; n < cycle.Count; n++)
+    //        {
+    //            didAdd = false;
+    //            for (int i = 0; i < MAX_TRIES; i++)
+    //            {
+    //                FlowNode nodeM = cycle[n];
+    //                RoomData roomM = roomTable.GetRoom(nodeM.type);
+    //                RCObj RCM = new RCObj(roomM);
+
+    //                int[] indNs = new int[] { -1 };
+    //                // get furthest dir
+    //                if (n < (cycle.Count + 1) / 2)
+    //                    indNs = RCN.GetFurthestConnection(RCA, 3);
+    //                else // get closest dir
+    //                    indNs = RCN.GetClosestConnections(RCA, 3);
+    //                if (indNs[0] == -1)
+    //                    continue;
+    //                int closestIndA = RCA.GetClosestConnections(RCN, 1)[0];
+
+    //                for (int doorInd = 0; doorInd < indNs.Length; doorInd++)
+    //                {
+    //                    if (indNs[doorInd] == -1)
+    //                        continue;
+
+    //                    // trashy code
+    //                    if (n >= (cycle.Count + 1) / 2 && // this is kinda hacky, prevents rooms from going far
+    //                        RCN.connections[indNs[doorInd]].side == RCA.connections[closestIndA].side)
+    //                        continue;
+
+    //                    Direction d = (Direction)((int)(RCN.connections[indNs[doorInd]].side + 2) % 4);
+    //                    // TODO get a list instead
+    //                    int indM = RCM.GetRandomConnection(d)[0];
+
+    //                    if (indM == -1)
+    //                        continue;
+
+    //                    didAdd = cycleComposite.Add(RCN, indNs[doorInd], RCM, indM);
+    //                    if (didAdd)
+    //                    {
+    //                        // progress
+    //                        RCN = RCM;
+    //                        break;
+    //                    }
+    //                }
+    //                if (didAdd)
+    //                    break;
+    //            }
+
+    //            if (!didAdd)
+    //                break; // restart trying
+    //        }
+    //        if (!didAdd)
+    //            continue; // restart composite
+
+    //        if (!cycleComposite.TryGenerateComplexHallway(RCN, RCA))
+    //            continue;
+
+    //        //Debug.Log("Rooms added successfully!");
+    //        // succeeded
+    //        Debug.Log("Succeeded in creating composite after " + tri + " attempts!");
+    //        roomPlacer.PlaceComposite(cycleComposite, 0, 0); // temp
+    //        return cycleComposite;
+    //    }
+
+    //    return null;
+    //}
 
     #endregion
 }
