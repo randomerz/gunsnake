@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
-    public Material enemyWhiteFlashMat;
+    [SerializeField]
+    private Material enemyWhiteFlashMat;
 
     private void Awake()
     {
-
+        Enemy.whiteFlashMat = enemyWhiteFlashMat;
+        TimeTickSystem.Create();
     }
 
     void Start()
     {
-        TimeTickSystem.Create();
 
-        Enemy.whiteFlashMat = enemyWhiteFlashMat;
     }
     
     void Update()

@@ -89,8 +89,6 @@ public class Room : MonoBehaviour
                     waves.Add(wave);
                 }
 
-                SetDoorRefs();
-
                 break;
 
             case RoomType.entrance:
@@ -135,6 +133,22 @@ public class Room : MonoBehaviour
                 break;
         }
     }
+
+    #region Combat
+
+    private void SpawnNextWave()
+    {
+        activeEnemies = waves[currentWave];
+        currentWave++;
+
+        foreach (Enemy e in activeEnemies)
+        {
+            e.gameObject.SetActive(true);
+        }
+    }
+
+    #endregion
+
 
 
     public void SetDoorRefs()
@@ -183,20 +197,6 @@ public class Room : MonoBehaviour
         roomData.SetDefaultConnections(connections);
     }
 
-    #region Combat
-
-    private void SpawnNextWave()
-    {
-        activeEnemies = waves[currentWave];
-        currentWave++;
-
-        foreach (Enemy e in activeEnemies)
-        {
-            e.gameObject.SetActive(true);
-        }
-    }
-
-    #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

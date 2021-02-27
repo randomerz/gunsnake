@@ -56,10 +56,11 @@ public class DungeonRoomTable : MonoBehaviour
 
     public RoomData GetRoom(RoomType type)
     {
-        if (tables == null)
-        {
-            Start();
-        }
+        //if (tables == null)
+        //{
+        //    Start();
+        //}
+        Start();
         TableEntry[] currTable = tables[(int)type];
         float currSum = tableSums[(int)type];
 
