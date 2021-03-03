@@ -15,10 +15,10 @@ public enum RoomType
 [RequireComponent(typeof(Collider2D))]
 public class Room : MonoBehaviour
 {
-    public enum RoomDrop { health, gold, key }
+    //public enum RoomDrop { health, gold, key }
+    //public RoomDrop roomDrop = RoomDrop.health;
 
     public RoomData roomData;
-    public RoomDrop roomDrop = RoomDrop.health;
 
 
     //  === Data for other classes ===
@@ -32,6 +32,8 @@ public class Room : MonoBehaviour
     // for counting when player enters
     private int numSegmentsIn; // could be buggy doing it this way
 
+
+    // combat
     private bool isInCombat;
     //[SerializeField]
     private List<Enemy> activeEnemies;
@@ -39,6 +41,10 @@ public class Room : MonoBehaviour
     private const int MAX_WAVES = 5;
     private List<List<Enemy>> waves; // may want to have different wave spawn conditions
     private int currentWave;
+
+    // entrance/exit
+    public GameObject entrancePrefab;
+    public GameObject exitPrefab;
 
     void Awake()
     {
@@ -94,6 +100,9 @@ public class Room : MonoBehaviour
             case RoomType.entrance:
                 didPlayerEnter = true;
                 break;
+
+            case RoomType.exit:
+                break;
         }
     }
 
@@ -145,6 +154,43 @@ public class Room : MonoBehaviour
         {
             e.gameObject.SetActive(true);
         }
+    }
+
+    #endregion
+
+    #region Entrance/Exit
+
+    public void SpawnEnterance(Direction side)
+    {
+
+    }
+
+    public void SpawnExit(Direction side)
+    {
+        Vector2 spawnPos;
+    }
+
+    private GameObject SpawnGate(GameObject gatePrefab, Direction side)
+    {
+        Vector3 spawnPos = Vector3.zero;
+
+        switch (side)
+        {
+            case Direction.right:
+                spawnPos = new Vector3(roomData.width - 1, roomData.height / 2);
+                break;
+            case Direction.up:
+                spawnPos = new Vector3(roomData.width - 1, roomData.height / 2);
+                break;
+            case Direction.left:
+                spawnPos = new Vector3(1, roomData.height / 2);
+                break;
+            case Direction.down:
+                spawnPos = new Vector3(1, roomData.height / 2);
+                break;
+        }
+
+        return null;
     }
 
     #endregion

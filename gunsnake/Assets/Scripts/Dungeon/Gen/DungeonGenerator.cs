@@ -54,9 +54,11 @@ public class DungeonGenerator : MonoBehaviour
             if (TryGenerating(cycles))
             {
                 Debug.Log("Created dungeon in " + numTries + " tries!");
+                roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
                 break;
             }
         }
+        // if failed, dungeonComposite will still be null
     }
 
     private bool TryGenerating(List<List<FlowNode>> cycles)
@@ -68,10 +70,19 @@ public class DungeonGenerator : MonoBehaviour
             remainingNodes.Add(node.Copy());
 
         dungeonComposite = null;
+        bool didGen = true;
 
         if (cycles.Count > 0)
         {
             // TODO: progress cycle a random amount
+            if (Constants.doRandom)
+            {
+                int n = Random.Range(0, cycles.Count);
+                for (int i = 0; i < n; i++)
+                    cycles[0].Add(cycles[0][0]);
+                cycles[0].RemoveRange(0, n);
+            }
+
             FlowNode nodeInit = cycles[0][0];
             RoomData roomInit = roomTable.GetRoom(nodeInit.type);
             RCObj RCInit = new RCObj(roomInit);
@@ -84,7 +95,9 @@ public class DungeonGenerator : MonoBehaviour
 
             addedCycles.Add(cycles[0]);
 
-            CheckOverlappingCycles(cycles);
+            didGen = CheckOverlappingCycles(cycles);
+            if (!didGen)
+                return false;
         }
         else
         {
@@ -96,13 +109,18 @@ public class DungeonGenerator : MonoBehaviour
             RoomData roomInit = roomTable.GetRoom(maxNode.type);
             RCObj RCInit = new RCObj(roomInit);
             dungeonComposite = new RoomComposite(RCInit);
-            AddNode(maxNode, RCInit);
+            didGen = AddNode(maxNode, RCInit);
+            if (!didGen)
+                return false;
         }
 
         //Debug.Log(remainingNodes.Count + " remaining!");
 
-        while (remainingNodes.Count > 0)
+        int limitCount = 0;
+        while (remainingNodes.Count > 0 && limitCount < 1000000)
         {
+            limitCount++;
+
             List<FlowNode> frontierNodes = new List<FlowNode>();
             foreach (FlowNode node in addedNodes.Keys)
                 foreach (FlowNode adj in node.neighbors)
@@ -120,21 +138,22 @@ public class DungeonGenerator : MonoBehaviour
                     origNode = node;
 
 
-            bool didAdd = AddRoomRandom(dungeonComposite, addedNodes[origNode], maxNode);
-            if (!didAdd)
+            didGen = AddRoomRandom(dungeonComposite, addedNodes[origNode], maxNode);
+            if (!didGen)
                 return false;
 
             if (addedCycles.Count < cycles.Count)
             {
-                CheckOverlappingCycles(cycles);
+                didGen = CheckOverlappingCycles(cycles);
+                if (!didGen)
+                    return false;
             }
         }
 
 
-        if (dungeonComposite == null)
+        if (dungeonComposite == null || limitCount > 1000000)
             return false;
 
-        roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
         return true;
     }
 
@@ -380,7 +399,7 @@ public class DungeonGenerator : MonoBehaviour
             Direction dirA = RCOrig.connections[indA].side;
             Direction dirN = (Direction)(((int)dirA + 2) % 4);
 
-            int[] indsN = RCNew.GetRandomConnection(dirN);
+            int[] indsN = RCNew.GetRandomConnections(dirN);
 
             foreach (int indN in indsN)
             {

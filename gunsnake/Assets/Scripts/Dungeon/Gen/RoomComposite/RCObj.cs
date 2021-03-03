@@ -47,7 +47,7 @@ public class RCObj
         return shuffled;
     }
 
-    public int[] GetRandomConnection(Direction dir)
+    public int[] GetRandomConnections(Direction dir)
     {
         List<int> valid = new List<int>();
         for (int i = 0; i < connections.Count; i++)
@@ -87,7 +87,14 @@ public class RCObj
 
             distIndexList.Add(new System.Tuple<int, int>(maxManhattan, furthestInd));
         }
-        distIndexList.Sort(); // TODO: randomize if the values are about the same
+        distIndexList.Sort(); 
+        if (Constants.doRandom && distIndexList.Count > 1 && 
+            distIndexList[0].Item2 == distIndexList[1].Item2 && Random.Range(0, 2) == 1)
+        {
+            System.Tuple<int, int> temp = distIndexList[0];
+            distIndexList[0] = distIndexList[1];
+            distIndexList[1] = temp;
+        }
         distIndexList.Reverse();
         int[] sortedIndexes = new int[n];
         int count = 0;
@@ -131,7 +138,14 @@ public class RCObj
 
             distIndexList.Add(new System.Tuple<int, int>(minManhattan, closestInd));
         }
-        distIndexList.Sort(); // TODO: randomize if the values are about the same
+        distIndexList.Sort();
+        if (Constants.doRandom && distIndexList.Count > 1 &&
+            distIndexList[0].Item2 == distIndexList[1].Item2 && Random.Range(0, 2) == 1)
+        {
+            System.Tuple<int, int> temp = distIndexList[0];
+            distIndexList[0] = distIndexList[1];
+            distIndexList[1] = temp;
+        }
         int[] sortedIndexes = new int[n];
         int count = 0;
         while (count < distIndexList.Count && count < n)
