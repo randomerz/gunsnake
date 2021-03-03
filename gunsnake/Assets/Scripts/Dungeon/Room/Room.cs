@@ -162,12 +162,14 @@ public class Room : MonoBehaviour
 
     public void SpawnEnterance(Direction side)
     {
-
+        GameObject gameObj = SpawnGate(entrancePrefab, side);
+        LevelHandler.startObject = gameObj;
     }
 
     public void SpawnExit(Direction side)
     {
-        Vector2 spawnPos;
+        GameObject gameObj = SpawnGate(exitPrefab, side);
+        LevelHandler.endObject = gameObj;
     }
 
     private GameObject SpawnGate(GameObject gatePrefab, Direction side)
@@ -180,17 +182,18 @@ public class Room : MonoBehaviour
                 spawnPos = new Vector3(roomData.width - 1, roomData.height / 2);
                 break;
             case Direction.up:
-                spawnPos = new Vector3(roomData.width - 1, roomData.height / 2);
+                spawnPos = new Vector3(roomData.width / 2, roomData.height - 1);
                 break;
             case Direction.left:
                 spawnPos = new Vector3(1, roomData.height / 2);
                 break;
             case Direction.down:
-                spawnPos = new Vector3(1, roomData.height / 2);
+                spawnPos = new Vector3(roomData.width / 2, 1);
                 break;
         }
+        GameObject gameObj = Instantiate(gatePrefab, spawnPos, Quaternion.identity, transform);
 
-        return null;
+        return gameObj;
     }
 
     #endregion
