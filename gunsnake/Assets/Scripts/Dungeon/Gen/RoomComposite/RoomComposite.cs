@@ -6,7 +6,6 @@ public class RoomComposite
 {
     private const int MAX_SIZE = 300;
     private const int MID = 150;
-    private bool DO_RANDOM = false;
     private const int MIN_HALLWAY = 5;
     private const int MAX_HALLWAY = 12;
     private const int SIMPLE_HALLWAY_LIMIT = 100;
@@ -45,8 +44,8 @@ public class RoomComposite
 
         for (int i = 0; i < MAX_HALLWAY; i++)
         {
-            if (DO_RANDOM)
-                if (Random.Range(0, 1f) < 0.2f)
+            if (Constants.doRandom)
+                if (Random.Range(0, 1f) < 0.3f)
                     continue;
 
             newRoom.pos = nearestPos + (i * DirectionUtil.Convert(dirOut));

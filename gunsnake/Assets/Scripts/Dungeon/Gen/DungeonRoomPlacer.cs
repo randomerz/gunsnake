@@ -58,10 +58,10 @@ public class DungeonRoomPlacer : MonoBehaviour
 
     public GameObject PlaceRoom(RoomData room, int x, int y, GameObject dungeonContainer=null)
     {
-        string roomObjectPath = room.roomObjectPath;
         if (dungeonContainer == null)
             dungeonContainer = GameObject.Find("DungeonContainer"); // maybe do a new GameObject() here
 
+        string roomObjectPath = room.roomObjectPath;
         GameObject roomObj = Resources.Load<GameObject>(roomObjectPath);
         if (roomObj != null)
         {
@@ -156,6 +156,7 @@ public class DungeonRoomPlacer : MonoBehaviour
         {
             sideWall.SetTile(offset + connection.pos, defaultSideWall);
             topWall.SetTile(offset + connection.pos, defaultTopWall);
+            floor.SetTile(offset + connection.pos, null);
 
             if (door.isVertical)
             {
@@ -163,6 +164,8 @@ public class DungeonRoomPlacer : MonoBehaviour
                 topWall.SetTile(offset + Vector3Int.up + connection.pos, defaultTopWall);
                 sideWall.SetTile(offset + Vector3Int.down + connection.pos, defaultSideWall);
                 topWall.SetTile(offset + Vector3Int.down + connection.pos, defaultTopWall);
+                floor.SetTile(offset + Vector3Int.up + connection.pos, null);
+                floor.SetTile(offset + Vector3Int.down + connection.pos, null);
             }
             else
             {
@@ -170,6 +173,8 @@ public class DungeonRoomPlacer : MonoBehaviour
                 topWall.SetTile(offset + Vector3Int.left + connection.pos, defaultTopWall);
                 sideWall.SetTile(offset + Vector3Int.right + connection.pos, defaultSideWall);
                 topWall.SetTile(offset + Vector3Int.right + connection.pos, defaultTopWall);
+                floor.SetTile(offset + Vector3Int.left + connection.pos, null);
+                floor.SetTile(offset + Vector3Int.right + connection.pos, null);
             }
         }
     }

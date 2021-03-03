@@ -35,33 +35,36 @@ public class PlayerMovement : Entity
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (CheckCanInput())
         {
-            ChangeDirection(Direction.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ChangeDirection(Direction.down);
-        }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeDirection(Direction.left);
-        }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ChangeDirection(Direction.up);
-        }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ChangeDirection(Direction.right);
+            }
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                ChangeDirection(Direction.down);
+            }
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                ChangeDirection(Direction.left);
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                ChangeDirection(Direction.up);
+            }
 
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
-        //{
-        //    isSprinting = true;
-        //}
-        isSprinting = Input.GetKey(KeyCode.LeftShift);
-        Player.playerWeaponManager.isSprinting = isSprinting;
+            //if (Input.GetKeyDown(KeyCode.LeftShift))
+            //{
+            //    isSprinting = true;
+            //}
+            isSprinting = Input.GetKey(KeyCode.LeftShift);
+            Player.playerWeaponManager.isSprinting = isSprinting;
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartSnake();
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+            //    RestartSnake();
+            //}
         }
     }
 
@@ -211,6 +214,11 @@ public class PlayerMovement : Entity
         // head
         segSprites[0].SetSprite(snakeHead, false, headRot, Vector3.zero, -headDir);
 
+    }
+
+    private bool CheckCanInput()
+    {
+        return !UIManager.stopPlayerInput && !UIEffects.stopPlayerInput;
     }
 
     public void RestartSnake()
