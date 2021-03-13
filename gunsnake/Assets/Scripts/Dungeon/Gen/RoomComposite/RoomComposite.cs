@@ -305,6 +305,7 @@ public class RoomComposite
             path.Add(p - basePos);
         }
 
+
         hallway.path = path;
         return true;
     }
@@ -368,4 +369,26 @@ public class RoomComposite
             grid[MID + basePos.x + p.x, MID + basePos.y + p.y] = true;
         }
     }
+
+
+
+    #region Debug
+
+    public void PrintGrid()
+    {
+        string s = "";
+        for (int r = 100; r < MAX_SIZE - 100; r++) {
+            for (int c = 100; c < MAX_SIZE - 100; c++)
+            {
+                if (grid[c, r])
+                    s += "X";
+                else
+                    s += ".";
+            }
+            s += "\n";
+        }
+        Debug.Log(s);
+    }
+
+    #endregion
 }

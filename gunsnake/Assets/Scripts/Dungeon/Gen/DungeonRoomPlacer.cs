@@ -6,29 +6,73 @@ using UnityEngine.Tilemaps;
 public class DungeonRoomPlacer : MonoBehaviour
 {
     public Tilemap floor;
-    public Tilemap sideWall;
-    public Tilemap topWall;
+    public Tilemap wall;
+    public Tilemap ceil;
     public TileBase defaultFloor;
-    public TileBase defaultSideWall;
-    public TileBase defaultTopWall;
+    public TileBase defaultWall;
+    public TileBase defaultCeil;
 
+    [SerializeField]
+    private GameObject entranceTilePrefab;
+    [SerializeField]
+    private GameObject exitTilePrefab;
+
+    private void Awake()
+    {
+        Room.entrancePrefab = entranceTilePrefab;
+        Room.exitPrefab = exitTilePrefab;
+    }
 
     public void PlaceComposite(RoomComposite composite, int x, int y, GameObject dungeonContainer = null)
     {
         if (dungeonContainer == null)
             dungeonContainer = GameObject.Find("DungeonContainer"); // maybe do a new GameObject() here
 
+        Awake(); // delete later
+
         Vector3Int offset = composite.basePos + new Vector3Int(x, y, 0);
         foreach (RCObj rco in composite.rooms)
         {
+            // placing room
             GameObject roomGameObj = PlaceRoom(rco.roomData, offset.x + rco.pos.x, offset.y + rco.pos.y, dungeonContainer);
             Room room = roomGameObj.GetComponent<Room>();
 
+            // special cases
+            if (rco.roomData.roomType == RoomType.entrance)
+            {
+                List<Direction> sides = new List<Direction>();
+
+                foreach (RCConnection connection in rco.connections)
+                {
+                    if (connection.isAvailable)
+                        sides.Add(connection.side);
+                }
+                Direction dir = sides[Random.Range(0, sides.Count)];
+                dir = (Direction)((int)dir % 4);
+                room.SpawnEnterance(dir);
+            }
+            else if (rco.roomData.roomType == RoomType.exit)
+            {
+                Direction dir = 0;
+                foreach (RCConnection connection in rco.connections)
+                {
+                    if (!connection.isAvailable)
+                    {
+                        dir = connection.side;
+                        break;
+                    }
+                }
+                dir = (Direction)(((int)dir + 2) % 4);
+                room.SpawnExit(dir);
+            }
+
+            // filling unused walls with doors
             for (int doorInd = 0; doorInd < rco.connections.Count; doorInd++)
             {
                 UpdateDoorWallCheck(room.doors[doorInd], rco.connections[doorInd], offset + rco.pos);
             }
         }
+        // placing hallway
         foreach (HallwayObj h in composite.hallways)
         {
             PlaceHallway(h, offset);
@@ -42,8 +86,8 @@ public class DungeonRoomPlacer : MonoBehaviour
             for (int c = x; c < x + room.width; c++)
             {
                 Vector3Int pos = new Vector3Int(c, r, 0);
-                TileBase sideTile = sideWall.GetTile(pos);
-                TileBase topTile = topWall.GetTile(pos);
+                TileBase sideTile = wall.GetTile(pos);
+                TileBase topTile = ceil.GetTile(pos);
                 TileBase floorTile = floor.GetTile(pos);
 
                 if (sideTile != null || topTile != null || floorTile != null)
@@ -97,8 +141,8 @@ public class DungeonRoomPlacer : MonoBehaviour
 
                 if (t == RoomData.WALLCHAR)
                 {
-                    sideWall.SetTile(pos, defaultSideWall);
-                    topWall.SetTile(pos, defaultTopWall);
+                    wall.SetTile(pos, defaultWall);
+                    ceil.SetTile(pos, defaultCeil);
                 }
                 if (t == RoomData.FLOORCHAR)
                 {
@@ -136,14 +180,14 @@ public class DungeonRoomPlacer : MonoBehaviour
 
     private void PlaceWallIfEmpty(Vector3Int pos)
     {
-        TileBase sideTile = sideWall.GetTile(pos);
-        TileBase topTile = topWall.GetTile(pos);
+        TileBase sideTile = wall.GetTile(pos);
+        TileBase topTile = ceil.GetTile(pos);
         TileBase floorTile = floor.GetTile(pos);
 
         if (sideTile == null && topTile == null && floorTile == null)
         {
-            sideWall.SetTile(pos, defaultSideWall);
-            topWall.SetTile(pos, defaultTopWall);
+            wall.SetTile(pos, defaultWall);
+            ceil.SetTile(pos, defaultCeil);
         }
     }
 
@@ -154,25 +198,25 @@ public class DungeonRoomPlacer : MonoBehaviour
         door.SetIsWall(shouldWall);
         if (shouldWall)
         {
-            sideWall.SetTile(offset + connection.pos, defaultSideWall);
-            topWall.SetTile(offset + connection.pos, defaultTopWall);
+            wall.SetTile(offset + connection.pos, defaultWall);
+            ceil.SetTile(offset + connection.pos, defaultCeil);
             floor.SetTile(offset + connection.pos, null);
 
             if (door.isVertical)
             {
-                sideWall.SetTile(offset + Vector3Int.up + connection.pos, defaultSideWall);
-                topWall.SetTile(offset + Vector3Int.up + connection.pos, defaultTopWall);
-                sideWall.SetTile(offset + Vector3Int.down + connection.pos, defaultSideWall);
-                topWall.SetTile(offset + Vector3Int.down + connection.pos, defaultTopWall);
+                wall.SetTile(offset + Vector3Int.up + connection.pos, defaultWall);
+                ceil.SetTile(offset + Vector3Int.up + connection.pos, defaultCeil);
+                wall.SetTile(offset + Vector3Int.down + connection.pos, defaultWall);
+                ceil.SetTile(offset + Vector3Int.down + connection.pos, defaultCeil);
                 floor.SetTile(offset + Vector3Int.up + connection.pos, null);
                 floor.SetTile(offset + Vector3Int.down + connection.pos, null);
             }
             else
             {
-                sideWall.SetTile(offset + Vector3Int.left + connection.pos, defaultSideWall);
-                topWall.SetTile(offset + Vector3Int.left + connection.pos, defaultTopWall);
-                sideWall.SetTile(offset + Vector3Int.right + connection.pos, defaultSideWall);
-                topWall.SetTile(offset + Vector3Int.right + connection.pos, defaultTopWall);
+                wall.SetTile(offset + Vector3Int.left + connection.pos, defaultWall);
+                ceil.SetTile(offset + Vector3Int.left + connection.pos, defaultCeil);
+                wall.SetTile(offset + Vector3Int.right + connection.pos, defaultWall);
+                ceil.SetTile(offset + Vector3Int.right + connection.pos, defaultCeil);
                 floor.SetTile(offset + Vector3Int.left + connection.pos, null);
                 floor.SetTile(offset + Vector3Int.right + connection.pos, null);
             }
@@ -182,15 +226,15 @@ public class DungeonRoomPlacer : MonoBehaviour
 
     private void ClearWallAddFloor(Vector3Int pos)
     {
-        sideWall.SetTile(pos, null);
-        topWall.SetTile(pos, null);
+        wall.SetTile(pos, null);
+        ceil.SetTile(pos, null);
         floor.SetTile(pos, defaultFloor);
     }
 
     public void ClearTilemaps()
     {
         floor.ClearAllTiles();
-        sideWall.ClearAllTiles();
-        topWall.ClearAllTiles();
+        wall.ClearAllTiles();
+        ceil.ClearAllTiles();
     }
 }

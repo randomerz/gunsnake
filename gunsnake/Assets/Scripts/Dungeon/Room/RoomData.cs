@@ -12,11 +12,6 @@ public class RoomData : ScriptableObject
     public bool isDungeon;
     public bool isTemple;
 
-    public bool hasNorthDoor;
-    public bool hasEastDoor;
-    public bool hasSouthDoor;
-    public bool hasWestDoor;
-
     [Header("Automatically set")]
     //public GameObject roomObject;
     public string roomObjectPath;
@@ -51,10 +46,6 @@ public class RoomData : ScriptableObject
     {
         roomName = other.roomName;
         roomType = other.roomType;
-        hasNorthDoor = other.hasNorthDoor;
-        hasEastDoor = other.hasEastDoor;
-        hasSouthDoor = other.hasSouthDoor;
-        hasWestDoor = other.hasWestDoor;
 
         //roomObject = other.roomObject;
         roomObjectPath = other.roomObjectPath;

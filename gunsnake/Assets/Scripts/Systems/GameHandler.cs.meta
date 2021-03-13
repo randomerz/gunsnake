@@ -6,6 +6,10 @@ MonoImporter:
   defaultReferences:
   - enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c,
       type: 2}
+  - entranceTilePrefab: {fileID: 5451867131178767231, guid: 71462f9ad7806ee48a96b017a57772c3,
+      type: 3}
+  - exitTilePrefab: {fileID: 5451867131178767231, guid: a6206a71e2767c74392f02e52e97ed11,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

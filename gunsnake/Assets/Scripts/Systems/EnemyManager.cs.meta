@@ -3,7 +3,15 @@ guid: f6af83830fd6a2f4190cd31b84b953dd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - goldDrop: {fileID: 7862952247370397497, guid: 9fe4a9a7559e9e64fbe3d0a493f50cd6,
+      type: 3}
+  - healthDrop: {fileID: 5647355823583502174, guid: 035abc31f2b056740acc0669ba907e9a,
+      type: 3}
+  - keyDrop: {fileID: 2124286722061074426, guid: 95f1f3076a8e0d3439469c35f3e7a3bc,
+      type: 3}
+  - keyEffect: {fileID: 5007785607388935045, guid: 9e49209aee7bdfb45a6ad764fcc7b2fb,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

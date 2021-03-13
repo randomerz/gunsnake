@@ -2,49 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction
-{
-    right,
-    down,
-    left,
-    up,
-}
-
-public static class DirectionUtil
-{
-    public static Vector3Int Convert(Direction dir)
-    {
-        switch (dir)
-        {
-            case Direction.right:
-                return Vector3Int.right;
-            case Direction.down:
-                return Vector3Int.down;
-            case Direction.left:
-                return Vector3Int.left;
-            case Direction.up:
-                return Vector3Int.up;
-        }
-        return Vector3Int.zero;
-    }
-
-    public static Direction NextDir(Direction dir)
-    {
-        return (Direction)(((int)dir + 1) % 4);
-    }
-
-    public static Direction PrevDir(Direction dir)
-    {
-        return (Direction)(((int)dir + 3) % 4);
-    }
-}
-
 public class Entity : MonoBehaviour
 {
     protected static LayerMask wallLayerMask;
-    protected static LayerMask collidableEntityLayerMask;
+    protected static LayerMask halfHeightEntitiesMask;
+    protected static LayerMask fullHeightEntitiesMask;
     protected static LayerMask playerLayerMask;
-    protected static LayerMask collidableLayerMask;
+    protected static LayerMask highCollidableMask;
+    protected static LayerMask fullCollidableMask;
 
 
     protected Direction currDir;
@@ -53,9 +18,11 @@ public class Entity : MonoBehaviour
     {
         //wallLayerMask = GameHandler.wallLayerMask;
         wallLayerMask = LayerMask.GetMask("Walls");
-        collidableEntityLayerMask = LayerMask.GetMask("Collidable Entity");
+        halfHeightEntitiesMask = LayerMask.GetMask("Half-Height Entity");
+        fullHeightEntitiesMask = LayerMask.GetMask("Full-Height Entity");
         playerLayerMask = LayerMask.GetMask("Player");
-        collidableLayerMask = LayerMask.GetMask("Walls", "Collidable Entity");
+        highCollidableMask = LayerMask.GetMask("Walls", "Full-Height Entity");
+        fullCollidableMask = LayerMask.GetMask("Walls", "Half-Height Entity", "Full-Height Entity");
     }
 
 
@@ -88,13 +55,13 @@ public class Entity : MonoBehaviour
                 rcDir = Vector3.up;
                 break;
         }
-        rh = Physics2D.Raycast(pos, rcDir, 1, collidableLayerMask);
+        rh = Physics2D.Raycast(pos, rcDir, 1, fullCollidableMask);
         return rh.collider == null;
     }
 
     protected static bool CanMove(Vector3 pos)
     {
-        Collider2D rh = Physics2D.OverlapPoint(pos, collidableEntityLayerMask);
+        Collider2D rh = Physics2D.OverlapPoint(pos, fullHeightEntitiesMask);
         return rh == null;
     }
 

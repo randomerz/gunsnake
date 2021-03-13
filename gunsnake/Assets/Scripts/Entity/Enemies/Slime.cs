@@ -23,17 +23,26 @@ public class Slime : Enemy
         {
             ticksTillAttack -= 1;
 
+            // visuals
+            if (animator != null)
+                SetAnimatorBool("isIdle", true);
+
             switch (ticksTillAttack)
             {
                 case 2:
                 case 1:
-                    spriteRenderer.color = Color.red;
+                    if (animator != null)
+                        SetAnimatorBool("isPrep", true);
                     break;
                 default:
                     if (ticksTillAttack <= 0)
                     {
-                        spriteRenderer.color = Color.white;
                         ticksTillAttack = attackSpeed;
+
+                        // visuals
+                        if (animator != null)
+                            SetAnimatorBool("isAttack", true);
+
 
                         // attack if within range
                         GameObject closestSeg = GetClosestPlayerSegment();

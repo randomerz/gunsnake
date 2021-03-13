@@ -88,17 +88,12 @@ public class PlayerMovement : Entity
             CheckUnlockDoor(currDir);
 
             // moving snake code
-            if (!CanMove(transform.position, currDir))
+            if (CanMove(transform.position, currDir) || Player.playerEffects.GetExitingIndex() != -1)
             {
-                //Debug.Log("bonk!");
-                return;
+                MoveBody();
             }
-            MoveBody();
 
-            //if (isSprinting && tick % 4 == 0 && !Input.GetKey(KeyCode.LeftShift))
-            //{
-            //    isSprinting = false;
-            //}
+            Player.playerEffects.UpdateMovementEffects();
         }
     }
 
@@ -159,24 +154,11 @@ public class PlayerMovement : Entity
 
     public void MoveBody()
     {
-        Vector3 headDir = Vector3.zero;
+        Vector3 headDir = DirectionUtil.Convert(currDir);
+        if (Player.playerEffects.GetExitingIndex() > 0)
+            headDir = Vector3.zero;
         Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
 
-        switch (currDir)
-        {
-            case Direction.right:
-                headDir = Vector3.right;
-                break;
-            case Direction.down:
-                headDir = Vector3.down;
-                break;
-            case Direction.left:
-                headDir = Vector3.left;
-                break;
-            case Direction.up:
-                headDir = Vector3.up;
-                break;
-        }
         Player.body[3].transform.position = Player.body[2].transform.position;
         Player.body[2].transform.position = Player.body[1].transform.position;
         Player.body[1].transform.position = Player.body[0].transform.position;
@@ -214,6 +196,18 @@ public class PlayerMovement : Entity
         // head
         segSprites[0].SetSprite(snakeHead, false, headRot, Vector3.zero, -headDir);
 
+    }
+
+    public void SetSnakeSpawn(Vector3 pos, Direction dir)
+    {
+        Player.body[0].transform.position = pos;
+        for (int i = 1; i < Player.body.Length; i++)
+        {
+            Player.body[i].transform.position = pos - DirectionUtil.Convert(dir);
+        }
+
+        currDir = dir;
+        directionQueue.Clear();
     }
 
     private bool CheckCanInput()

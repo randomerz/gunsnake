@@ -9,10 +9,19 @@ public class EnemyManager : MonoBehaviour
         new Dictionary<Type, List<GameObject>>();
     private static Dictionary<Type, List<GameObject>> inactiveEnemies = 
         new Dictionary<Type, List<GameObject>>();
+    private static List<Enemy> currentLevelEnemies = new List<Enemy>();
 
     private static EnemyManager _instance;
 
     private static GameObject enemyContainer;
+
+    // could be static
+    public GameObject goldDrop;
+    public GameObject healthDrop;
+    public GameObject keyDrop;
+    public float healthDropRate = 0.1f;
+
+    public GameObject keyEffect;
 
     private void Awake()
     {
@@ -36,14 +45,42 @@ public class EnemyManager : MonoBehaviour
             {
                 foreach (GameObject g in enemyList)
                 {
-                    if (g.GetComponent<Enemy>() != null && g.activeSelf)
+                    Enemy enemy = g.GetComponent<Enemy>();
+                    if (enemy != null && enemy.doTick && g.activeSelf)
                     {
-                        g.GetComponent<Enemy>().EnemyTick(e.tick);
+                        enemy.EnemyTick(e.tick);
                     }
                 }
             }
         }
     }
+
+    public static void InitializeEnemyDrops()
+    {
+        if (currentLevelEnemies.Count == 0)
+        {
+            Debug.LogError("Tring to initialize drops with 0 enemies in currentLevelEnemies!");
+            return;
+        }
+
+        Debug.Log("Setting drops for " + currentLevelEnemies.Count + " enemies");
+
+        int randInd = UnityEngine.Random.Range(0, currentLevelEnemies.Count);
+        currentLevelEnemies[randInd].itemDrop = _instance.keyDrop;
+        currentLevelEnemies[randInd].AddEffect(_instance.keyEffect);
+
+        for (int i = 0; i < currentLevelEnemies.Count; i++)
+        {
+            if (i != randInd) {
+                if (UnityEngine.Random.Range(0f, 1f) < _instance.healthDropRate)
+                    currentLevelEnemies[i].itemDrop = _instance.healthDrop;
+                else
+                    currentLevelEnemies[i].itemDrop = _instance.goldDrop;
+            }
+        }
+    }
+
+
 
     public static GameObject CreateEnemy(GameObject enemyPrefab)
     {
@@ -77,7 +114,7 @@ public class EnemyManager : MonoBehaviour
         Type type = enemy.GetType();
         if (!inactiveEnemies.ContainsKey(type))
         {
-            //Debug.Log("Creating new projectile container: " + type);
+            //Debug.Log("Creating new enemy container: " + type);
             inactiveEnemies.Add(type, new List<GameObject>());
             activeEnemies.Add(type, new List<GameObject>());
         }
@@ -102,5 +139,15 @@ public class EnemyManager : MonoBehaviour
             enemy.SetActive(false);
             enemy.transform.parent = enemyContainer.transform;
         }
+    }
+
+    public static void AddToCurrentLevelEnemies(Enemy enemy)
+    {
+        currentLevelEnemies.Add(enemy);
+    }
+
+    public static void ResetCurrentLevelEnemies()
+    {
+        currentLevelEnemies.Clear();
     }
 }

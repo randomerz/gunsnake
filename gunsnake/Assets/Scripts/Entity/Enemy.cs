@@ -5,13 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Enemy : Entity
 {
+    // stats
     public int maxHealth = -1;
     protected int health;
 
     public int damage = 1;
     public bool randomizeStartingVars;
 
+    // game stuff
+    public bool doTick = true;
+
+    public GameObject itemDrop;
+
+
     protected SpriteRenderer spriteRenderer;
+    public GeneralEnemyAnimator animator;
+
+    private List<GameObject> effects = new List<GameObject>();
 
     private bool strobing;
     private Material oldMat;
@@ -23,6 +33,8 @@ public abstract class Enemy : Entity
         base.Awake();
         health = maxHealth;
 
+        if (animator != null)
+            animator.animator.SetBool("isDead", false);
         spriteRenderer = GetComponent<SpriteRenderer>();
         oldMat = spriteRenderer.material;
 
@@ -48,10 +60,14 @@ public abstract class Enemy : Entity
     
     public virtual void Die()
     {
-        Debug.Log("I died!!");
-
-        // temp
-        //gameObject.SetActive(false);
+        if (animator != null)
+            animator.animator.SetBool("isDead", true);
+        foreach (GameObject e in effects)
+        {
+            Destroy(e);
+        }
+        if (itemDrop != null)
+            Instantiate(itemDrop, transform.position, Quaternion.identity, transform.parent);
         EnemyManager.RemoveEnemy(gameObject);
     }
 
@@ -140,6 +156,22 @@ public abstract class Enemy : Entity
 
     #endregion
 
+
+    protected void SetAnimatorBool(string name, bool value)
+    {
+        if (animator != null)
+        {
+            animator.animator.SetBool("isIdle", false);
+            animator.animator.SetBool("isPrep", false);
+            animator.animator.SetBool("isAttack", false);
+            animator.animator.SetBool(name, value);
+        }
+    }
+
+    public void AddEffect(GameObject effectPrefab)
+    {
+        effects.Add(Instantiate(effectPrefab, transform));
+    }
 
     #region Strobe Color
 

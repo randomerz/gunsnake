@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: -2035305423
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 343414262037349783, guid: a714afdfca7af87499c6c4bad160e7b3, type: 3}
+  m_Sprite: {fileID: -8428803214891725695, guid: 90bce07dda89126488b47afad5edec2c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +100,8 @@ MonoBehaviour:
   maxHealth: 4
   damage: 1
   randomizeStartingVars: 1
+  doTick: 1
+  itemDrop: {fileID: 0}
   attackSpeed: 8
   mushroomAttackEffect: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5,
     type: 3}
