@@ -43,8 +43,8 @@ public class Room : MonoBehaviour
     private int currentWave;
 
     // entrance/exit
-    public GameObject entrancePrefab;
-    public GameObject exitPrefab;
+    public static GameObject entrancePrefab;
+    public static GameObject exitPrefab;
 
     void Awake()
     {
@@ -52,48 +52,24 @@ public class Room : MonoBehaviour
 
         switch (roomData.roomType)
         {
-            case RoomType.normal: 
+            case RoomType.normal:
                 activeEnemies = new List<Enemy>();
-                waves = new List<List<Enemy>>();
 
-                // Room_WxH_Doors
-                // - Enemies
-                //   - Wave1
-                //     - Slime
-                //     - ..
-                //   - Wave2
-                //     - Slime
-                //     - ..
-                GameObject waveContainer = transform.Find("Enemies").gameObject;
-                for (int i = 0; i < MAX_WAVES; i++)
-                {
-                    Transform enemyContainer = waveContainer.transform.Find("Wave" + i);
-                    if (enemyContainer != null)
-                    {
-                        List<Enemy> wave = new List<Enemy>();
-                        foreach (Enemy e in enemyContainer.GetComponentsInChildren<Enemy>())
-                        {
-                            e.gameObject.SetActive(false);
-                            wave.Add(e);
-                        }
-                        waves.Add(wave);
-                    }
-                }
+                InitWaves();
+                foreach (List<Enemy> wave in waves)
+                    foreach (Enemy e in wave)
+                        e.doTick = false;
+                
 
-                // Room_WxH_Doors
-                // - Enemies
-                //   - Slime
-                //   - ..
-                if (waves.Count == 0)
-                {
-                    List<Enemy> wave = new List<Enemy>();
-                    foreach (Enemy e in waveContainer.GetComponentsInChildren<Enemy>())
-                    {
+                break;
+
+            case RoomType.challenge:
+                activeEnemies = new List<Enemy>();
+                
+                InitWaves();
+                foreach (List<Enemy> wave in waves)
+                    foreach (Enemy e in wave)
                         e.gameObject.SetActive(false);
-                        wave.Add(e);
-                    }
-                    waves.Add(wave);
-                }
 
                 break;
 
@@ -127,6 +103,32 @@ public class Room : MonoBehaviour
                     if (currentWave == waves.Count)
                     {
                         isInCombat = false;
+                        Debug.Log("Room complete!");
+                    }
+                    else
+                    {
+                        SetNextWaveDoTick(true);
+                    }
+                }
+                break;
+
+            case RoomType.challenge:
+                if (!isInCombat)
+                    break;
+
+                for (int i = activeEnemies.Count - 1; i >= 0; i--)
+                {
+                    if (!activeEnemies[i].gameObject.activeSelf)
+                    {
+                        activeEnemies.RemoveAt(i);
+                    }
+                }
+
+                if (activeEnemies.Count == 0)
+                {
+                    if (currentWave == waves.Count)
+                    {
+                        isInCombat = false;
                         foreach (Door d in doors)
                         {
                             if (!d.isLocked)
@@ -136,7 +138,7 @@ public class Room : MonoBehaviour
                     }
                     else
                     {
-                        SpawnNextWave();
+                        SetNextWaveActive(true);
                     }
                 }
                 break;
@@ -145,14 +147,68 @@ public class Room : MonoBehaviour
 
     #region Combat
 
-    private void SpawnNextWave()
+    private void InitWaves()
+    {
+        waves = new List<List<Enemy>>();
+
+        // Room_WxH_Doors
+        // - Enemies
+        //   - Wave1
+        //     - Slime
+        //     - ..
+        //   - Wave2
+        //     - Slime
+        //     - ..
+        GameObject waveContainer = transform.Find("Enemies").gameObject;
+        for (int i = 0; i < MAX_WAVES; i++)
+        {
+            Transform enemyContainer = waveContainer.transform.Find("Wave" + i);
+            if (enemyContainer != null)
+            {
+                waves.Add(GetWave(enemyContainer.gameObject));
+            }
+        }
+
+        // Room_WxH_Doors
+        // - Enemies
+        //   - Slime
+        //   - ..
+        if (waves.Count == 0)
+        {
+            waves.Add(GetWave(waveContainer));
+        }
+    }
+
+    private List<Enemy> GetWave(GameObject container)
+    {
+        List<Enemy> wave = new List<Enemy>();
+        foreach (Enemy e in container.GetComponentsInChildren<Enemy>())
+        {
+            EnemyManager.AddToCurrentLevelEnemies(e);
+            wave.Add(e);
+        }
+        return wave;
+    }
+
+    private void SetNextWaveActive(bool value)
     {
         activeEnemies = waves[currentWave];
         currentWave++;
 
         foreach (Enemy e in activeEnemies)
         {
-            e.gameObject.SetActive(true);
+            e.gameObject.SetActive(value);
+        }
+    }
+
+    private void SetNextWaveDoTick(bool value)
+    {
+        activeEnemies = waves[currentWave];
+        currentWave++;
+
+        foreach (Enemy e in activeEnemies)
+        {
+            e.doTick = value;
         }
     }
 
@@ -164,6 +220,7 @@ public class Room : MonoBehaviour
     {
         GameObject gameObj = SpawnGate(entrancePrefab, side);
         LevelHandler.startObject = gameObj;
+        LevelHandler.startDirection = (Direction)(((int)side + 2) % 4);
     }
 
     public void SpawnExit(Direction side)
@@ -179,10 +236,10 @@ public class Room : MonoBehaviour
         switch (side)
         {
             case Direction.right:
-                spawnPos = new Vector3(roomData.width - 1, roomData.height / 2);
+                spawnPos = new Vector3(roomData.width - 2, roomData.height / 2);
                 break;
             case Direction.up:
-                spawnPos = new Vector3(roomData.width / 2, roomData.height - 1);
+                spawnPos = new Vector3(roomData.width / 2, roomData.height - 2);
                 break;
             case Direction.left:
                 spawnPos = new Vector3(1, roomData.height / 2);
@@ -191,7 +248,7 @@ public class Room : MonoBehaviour
                 spawnPos = new Vector3(roomData.width / 2, 1);
                 break;
         }
-        GameObject gameObj = Instantiate(gatePrefab, spawnPos, Quaternion.identity, transform);
+        GameObject gameObj = Instantiate(gatePrefab, transform.position + spawnPos, Quaternion.identity, transform);
 
         return gameObj;
     }
@@ -255,11 +312,14 @@ public class Room : MonoBehaviour
             if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
             {
                 didPlayerEnter = true;
-                //Debug.Log("Player entered room " + gameObject.name);
+                Debug.Log("Player entered room type " + roomData.roomType);
 
                 switch (roomData.roomType)
                 {
                     case RoomType.normal:
+                        isInCombat = true;
+                        break;
+                    case RoomType.challenge:
                         isInCombat = true;
                         foreach (Door d in doors)
                         {

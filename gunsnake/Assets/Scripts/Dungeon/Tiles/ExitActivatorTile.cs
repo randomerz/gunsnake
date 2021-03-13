@@ -10,7 +10,8 @@ public class ExitActivatorTile : Tile
         {
             if (other.GetComponent<PlayerMovement>() != null) // is head
             {
-                Debug.Log("Finishing level...");
+                Debug.Log("Ending level");
+                LevelHandler.GetInstance().EndLevel();
             }
         }
     }

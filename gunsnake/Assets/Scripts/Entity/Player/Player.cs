@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public static SpriteRenderer[] sprites = new SpriteRenderer[4];
 
     [SerializeField]
+    private PlayerEffects _playerEffects;
+    public static PlayerEffects playerEffects;
+    [SerializeField]
     private PlayerHealth _playerHealth;
     public static PlayerHealth playerHealth;
     [SerializeField]
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour
     {
         body = _body;
         sprites = _sprites;
+        playerEffects = _playerEffects;
         playerHealth = _playerHealth;
         playerMovement = _playerMovement;
         playerWeaponManager = _playerWeaponManager;

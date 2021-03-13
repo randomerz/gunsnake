@@ -1,0 +1,428 @@
+fileFormatVersion: 2
+guid: ec2beb3e03efe2c41ab7fa23332cc9ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6034535684144490202
+    second: WizardSkele_Animations_0
+  - first:
+      213: 7855567390541017743
+    second: WizardSkele_Animations_1
+  - first:
+      213: -1078515105143686351
+    second: WizardSkele_Animations_2
+  - first:
+      213: 96208778528703505
+    second: WizardSkele_Animations_3
+  - first:
+      213: 6063595306535684683
+    second: WizardSkele_Animations_4
+  - first:
+      213: 4223442131285048533
+    second: WizardSkele_Animations_5
+  - first:
+      213: -3885665312731542807
+    second: WizardSkele_Animations_6
+  - first:
+      213: -1139222075832499471
+    second: WizardSkele_Animations_7
+  - first:
+      213: -635982195518995875
+    second: WizardSkele_Animations_8
+  - first:
+      213: -2499443922203127560
+    second: WizardSkele_Animations_9
+  - first:
+      213: 4569349591260113067
+    second: WizardSkele_Animations_10
+  - first:
+      213: 3683502922158260033
+    second: WizardSkele_Animations_11
+  - first:
+      213: -8327826742209330652
+    second: WizardSkele_Animations_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WizardSkele_Animations_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad6e9dd7b3afeb350800000000000000
+      internalID: 6034535684144490202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f82f65ecbe4940d60800000000000000
+      internalID: 7855567390541017743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 44
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b7401e9385801f0800000000000000
+      internalID: -1078515105143686351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_3
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 44
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1144a74df5dc55100800000000000000
+      internalID: 96208778528703505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_4
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 44
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a09c31ec7362450800000000000000
+      internalID: 6063595306535684683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 22
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dcf9acdd3eac9a30800000000000000
+      internalID: 4223442131285048533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 22
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ea44963cf7531ac0800000000000000
+      internalID: -3885665312731542807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_7
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 22
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f288b1de8ba030f0800000000000000
+      internalID: -1139222075832499471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 22
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d520e9010998c27f0800000000000000
+      internalID: -635982195518995875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0d211def0305dd0800000000000000
+      internalID: -2499443922203127560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_10
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8a2a96e37996f30800000000000000
+      internalID: 4569349591260113067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_11
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14f3b54446e6e1330800000000000000
+      internalID: 3683502922158260033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardSkele_Animations_12
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 17
+        height: 22
+      alignment: 9
+      pivot: {x: 0.5294118, y: 0.2727273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4224d9f53bd9d6c80800000000000000
+      internalID: -8327826742209330652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

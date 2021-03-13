@@ -33,15 +33,16 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Start()
     {
-        CreateDungeon();
+
     }
 
 
-    public void CreateDungeon()
+    public RoomComposite CreateDungeon()
     {
         Debug.Log("Creating dungeon!");
         ClearDungeon();
-        //int seed = 26155;//Random.Range(0, 32768);
+        //int seed = Random.Range(0, 32768);
+        //seed = 32024;
         //Random.InitState(seed);
         //Debug.Log("Random seed: " + seed);
 
@@ -54,11 +55,13 @@ public class DungeonGenerator : MonoBehaviour
             if (TryGenerating(cycles))
             {
                 Debug.Log("Created dungeon in " + numTries + " tries!");
+                //dungeonComposite.PrintGrid();
                 roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
-                break;
+                return dungeonComposite;
             }
         }
         // if failed, dungeonComposite will still be null
+        return null;
     }
 
     private bool TryGenerating(List<List<FlowNode>> cycles)
@@ -240,7 +243,7 @@ public class DungeonGenerator : MonoBehaviour
             hadOverlap = CheckOverlappingCyclesHelper(cycles, out properlyGenerated);
             if (!properlyGenerated) // THIS IS UNTESTED
             {
-                Debug.Log("Not properly generated!");
+                //Debug.Log("Not properly generated!");
                 return false;
             }
         }
