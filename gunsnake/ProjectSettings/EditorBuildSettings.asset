@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/DanielCarr/Demo.unity
     guid: ae29f91f836adbb4eb8ba3ca446d661f
+  - enabled: 1
+    path: Assets/Scenes/Testing/Bertram Zhai/Hudtesting.unity
+    guid: 77ae8a87f58299c4c973da990401cac6
+  - enabled: 1
+    path: Assets/Scenes/Testing/Bertram Zhai/TitleTest.unity
+    guid: a5b9667ef8cbfc841a1a9b11d461e34c
   m_configObjects: {}
