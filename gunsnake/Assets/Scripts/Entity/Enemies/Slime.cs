@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    [Header("Slime")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
@@ -58,13 +59,23 @@ public class Slime : Enemy
                     }
                     break;
             }
+
         }
+
+        // other updates not %4 tick
+        animator.UpdatePosition();
     }
 
     // TODO: fix movement, see card. 
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
+        animator.SetOrigPos(transform.position);
+        if (dir.x > 0)
+            animator.SetFacing(false);
+        else if (dir.x < 0)
+            animator.SetFacing(true);
+
         if (CanMove(transform.position + dir))
             transform.position += dir;
     }

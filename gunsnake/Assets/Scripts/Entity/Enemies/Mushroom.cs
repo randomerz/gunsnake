@@ -25,16 +25,25 @@ public class Mushroom : Enemy
         {
             ticksTillAttack -= 1;
 
+            // visuals
+            if (animator != null)
+                SetAnimatorBool("isIdle", true);
+
             switch (ticksTillAttack)
             {
                 case 2:
                 case 1:
-                    spriteRenderer.color = Color.red;
+                    if (animator != null)
+                        SetAnimatorBool("isPrep", true);
                     break;
                 default:
                     if (ticksTillAttack <= 0)
                     {
-                        spriteRenderer.color = Color.white;
+                        // visuals
+                        if (animator != null)
+                            SetAnimatorBool("isAttack", true);
+
+
                         ticksTillAttack = attackSpeed;
                         Attack();
                     }
