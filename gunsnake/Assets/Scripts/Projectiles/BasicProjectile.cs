@@ -6,6 +6,18 @@ public class BasicProjectile : Projectile
 {
     public Vector3 direction;
 
+    //  For making gifs
+    //private void Awake()
+    //{
+    //    TimeTickSystem.OnTick_Projectiles += TimeTickSystem_OnTick;
+    //}
+
+    //private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
+    //{
+    //    if (e.tick % 4 == 0)
+    //        ProjectileTick(e.tick);
+    //}
+
     public override void ProjectileTick(int tick)
     {
         if (tick % 2 == 0)
@@ -16,7 +28,8 @@ public class BasicProjectile : Projectile
     {
         if (other.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            Enemy e = other.gameObject.GetComponent<Enemy>();
+            e.TakeDamage(damage, direction);
             ProjectileManager.RemoveProjectile(gameObject);
         }
         if (other.tag == "Wall")

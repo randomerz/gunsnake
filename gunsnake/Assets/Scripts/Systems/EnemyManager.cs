@@ -39,17 +39,14 @@ public class EnemyManager : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        if (e.tick % 4 == 0)
+        foreach (List<GameObject> enemyList in activeEnemies.Values)
         {
-            foreach (List<GameObject> enemyList in activeEnemies.Values)
+            foreach (GameObject g in enemyList)
             {
-                foreach (GameObject g in enemyList)
+                Enemy enemy = g.GetComponent<Enemy>();
+                if (enemy != null && enemy.doTick && g.activeSelf)
                 {
-                    Enemy enemy = g.GetComponent<Enemy>();
-                    if (enemy != null && enemy.doTick && g.activeSelf)
-                    {
-                        enemy.EnemyTick(e.tick);
-                    }
+                    enemy.EnemyTick(e.tick);
                 }
             }
         }
