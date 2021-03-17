@@ -20520,6 +20520,7 @@ GameObject:
   - component: {fileID: 1702259685}
   - component: {fileID: 1702259684}
   - component: {fileID: 1702259686}
+  - component: {fileID: 1702259687}
   m_Layer: 9
   m_Name: Apple1
   m_TagString: Artifact
@@ -20617,6 +20618,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9627892, y: 0.9308944}
   m_EdgeRadius: 0
+--- !u!114 &1702259687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702259683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5dc1d6b550a1047b4851892b92077a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1702659873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 674645293390448104, guid: 661cc017904f52d4883cf264f4dcdc54,

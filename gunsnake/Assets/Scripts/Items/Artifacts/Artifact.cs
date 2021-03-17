@@ -7,14 +7,11 @@ public class Artifact : MonoBehaviour
     private GameObject player;
     private int artifact_code;
     private int artifact_val;
-    public Artifact(GameObject p)
+    private string[] artifacts = { "health", "attack" };
+    public Artifact(GameObject p, string name, int av)
     {
         player = p;
-    }
-    public Artifact(GameObject p, int an, int av)
-    {
-        player = p;
-        artifact_code = an;
+        artifact_code = System.Array.IndexOf(artifacts, name);
         artifact_val = av;
     }
     // Start is called before the first frame update
@@ -27,12 +24,5 @@ public class Artifact : MonoBehaviour
     void Update()
     {
 
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.GameObject == player)
-        {
-            
-        }
     }
 }
