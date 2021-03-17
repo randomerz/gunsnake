@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    [Header("Slime")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
@@ -23,17 +24,26 @@ public class Slime : Enemy
         {
             ticksTillAttack -= 1;
 
+            // visuals
+            if (animator != null)
+                SetAnimatorBool("isIdle", true);
+
             switch (ticksTillAttack)
             {
                 case 2:
                 case 1:
-                    spriteRenderer.color = Color.red;
+                    if (animator != null)
+                        SetAnimatorBool("isPrep", true);
                     break;
                 default:
                     if (ticksTillAttack <= 0)
                     {
-                        spriteRenderer.color = Color.white;
                         ticksTillAttack = attackSpeed;
+
+                        // visuals
+                        if (animator != null)
+                            SetAnimatorBool("isAttack", true);
+
 
                         // attack if within range
                         GameObject closestSeg = GetClosestPlayerSegment();
@@ -49,13 +59,23 @@ public class Slime : Enemy
                     }
                     break;
             }
+
         }
+
+        // other updates not %4 tick
+        animator.UpdatePosition();
     }
 
     // TODO: fix movement, see card. 
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
+        animator.SetOrigPos(transform.position);
+        if (dir.x > 0)
+            animator.SetFacing(false);
+        else if (dir.x < 0)
+            animator.SetFacing(true);
+
         if (CanMove(transform.position + dir))
             transform.position += dir;
     }

@@ -8,7 +8,7 @@ TagManager:
   - Enemy
   - Wall
   - Room
-  - Artifact
+  - Decoration
   layers:
   - Default
   - TransparentFX
@@ -19,9 +19,9 @@ TagManager:
   - 
   - 
   - Walls
-  - Collidable Entity
+  - Full-Height Entity
   - Player
-  - 
+  - Half-Height Entity
   - 
   - 
   - 

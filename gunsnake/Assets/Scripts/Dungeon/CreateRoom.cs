@@ -8,7 +8,11 @@ public class CreateRoom : MonoBehaviour
     public const int MAX_ROOM_SIZE = 100;
 
     public string roomName;
-    public RoomData.RoomType roomType;
+    public RoomType roomType;
+
+    public bool isJungle;
+    public bool isDungeon;
+    public bool isTemple;
 
     public bool hasNorthDoor;
     public bool hasEastDoor;

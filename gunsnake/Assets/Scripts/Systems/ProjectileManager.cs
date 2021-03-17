@@ -84,8 +84,13 @@ public class ProjectileManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Could not remove projectile: " + type + "! Something went wrong." +
-                "Current projectile containers are: " + activeProjectiles.Keys);
+            // sometimes RemoveProjectile() gets called twice, leading to this being executed
+            if (inactiveProjectiles[type].Contains(proj))
+                return;
+            String currentKeys = "";
+            foreach (Type t in activeProjectiles.Keys)
+                currentKeys += t.ToString() + ", ";
+            Debug.LogWarning("Could not remove projectile: " + type + ". Current projectile containers are: " + currentKeys);
             proj.SetActive(false);
         }
     }

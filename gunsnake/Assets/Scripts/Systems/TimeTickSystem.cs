@@ -12,6 +12,8 @@ public class TimeTickSystem
         public int tick;
     }
 
+    public static bool shouldTick = true;
+
     //public static event EventHandler<OnTickEventArgs> OnTick;
     //public static event EventHandler<OnTickEventArgs> OnTick_4;
     public static event EventHandler<OnTickEventArgs> OnTick_PlayerMove;
@@ -51,6 +53,8 @@ public class TimeTickSystem
 
         private void Update()
         {
+            if (!shouldTick)
+                return;
             tickTimer += Time.deltaTime;
             if (tickTimer >= TICK_TIMER_MAX)
             {

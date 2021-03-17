@@ -2,29 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public abstract class Enemy : Entity
 {
+    // stats
     public int maxHealth = -1;
     protected int health;
 
     public int damage = 1;
     public bool randomizeStartingVars;
 
-    protected SpriteRenderer spriteRenderer;
+    // game stuff
+    public bool doTick = true;
 
+    public GameObject itemDrop;
+
+    private List<GameObject> effects = new List<GameObject>();
+    protected Vector3 lastHitDir = Vector3.zero; // i have no idea how to properly do htis
     private bool strobing;
     private Material oldMat;
+
+    [Header("References")]
+    public SpriteRenderer spriteRenderer;
+    public GeneralEnemyAnimator animator;
+
     [HideInInspector]
     public static Material whiteFlashMat; // set in GameHandler.cs
+    [HideInInspector]
+    public static GameObject deathParticle; // set in GameHandler.cs
 
     protected override void Awake()
     {
         base.Awake();
         health = maxHealth;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+            Debug.LogError("Enemy doesn't have SpriteRenderer reference!");
         oldMat = spriteRenderer.material;
+        if (animator != null)
+            animator.animator.SetBool("isDead", false);
 
         EnemyManager.AddEnemy(this);
     }
@@ -32,6 +47,12 @@ public abstract class Enemy : Entity
     public abstract void EnemyTick(int tick);
 
     #region Health
+
+    public virtual void TakeDamage(int damage, Vector3 hitDirection)
+    {
+        lastHitDir = hitDirection.normalized;
+        TakeDamage(damage);
+    }
 
     public virtual void TakeDamage(int damage)
     {
@@ -48,10 +69,25 @@ public abstract class Enemy : Entity
     
     public virtual void Die()
     {
-        Debug.Log("I died!!");
-
-        // temp
-        //gameObject.SetActive(false);
+        if (animator != null)
+            animator.animator.SetBool("isDead", true);
+        foreach (GameObject e in effects)
+        {
+            Destroy(e);
+        }
+        if (itemDrop != null)
+            Instantiate(itemDrop, transform.position, Quaternion.identity, transform.parent);
+        if (deathParticle != null && lastHitDir != Vector3.zero)
+        {
+            double angle = Mathf.Atan2(lastHitDir.y, lastHitDir.x) * Mathf.Rad2Deg;
+            Quaternion rot = Quaternion.Euler(0, 0, (float)angle);
+            GameObject particle = Instantiate(deathParticle, transform.position, rot, transform.parent);
+            if (animator != null)
+            {
+                ParticleSystem.MainModule settings = particle.GetComponent<ParticleSystem>().main;
+                settings.startColor = new ParticleSystem.MinMaxGradient(animator.deathParticlesColor);
+            }
+        }
         EnemyManager.RemoveEnemy(gameObject);
     }
 
@@ -140,6 +176,22 @@ public abstract class Enemy : Entity
 
     #endregion
 
+
+    protected void SetAnimatorBool(string name, bool value)
+    {
+        if (animator != null)
+        {
+            animator.animator.SetBool("isIdle", false);
+            animator.animator.SetBool("isPrep", false);
+            animator.animator.SetBool("isAttack", false);
+            animator.animator.SetBool(name, value);
+        }
+    }
+
+    public void AddEffect(GameObject effectPrefab)
+    {
+        effects.Add(Instantiate(effectPrefab, transform));
+    }
 
     #region Strobe Color
 

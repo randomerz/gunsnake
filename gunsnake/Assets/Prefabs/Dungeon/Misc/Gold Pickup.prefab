@@ -72,9 +72,9 @@ SpriteRenderer:
   m_SortingLayerID: 331369119
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1707965713436258131, guid: a714afdfca7af87499c6c4bad160e7b3,
+  m_Sprite: {fileID: -7729092655846301277, guid: ceb9ca2bff021d948b52e6f8f826986a,
     type: 3}
-  m_Color: {r: 0.5286913, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKey: 0
   goldAmount: 5
+  randomizeGold: 1
+  minGold: 5
+  maxGold: 10
 --- !u!61 &7862952247370397445
 BoxCollider2D:
   m_ObjectHideFlags: 0

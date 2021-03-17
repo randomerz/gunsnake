@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
     public bool isClosed;
     public bool isLocked;
     public bool isVertical;
+    public bool isOptional;
+    public bool isWall;
 
 
     [Header("References")]
@@ -16,29 +18,39 @@ public class Door : MonoBehaviour
 
     // jank
     public Sprite[] doorSprites;
-    private Sprite spriteOpenedHors;
-    private Sprite spriteClosedHors;
-    private Sprite spriteOpenedVert;
-    private Sprite spriteClosedVert;
-    private Sprite spriteLockedOpenedHors;
-    private Sprite spriteLockedClosedHors;
-    private Sprite spriteLockedOpenedVert;
-    private Sprite spriteLockedClosedVert;
+    private static Sprite spriteOpenedHors;
+    private static Sprite spriteClosedHors;
+    private static Sprite spriteOpenedVert;
+    private static Sprite spriteClosedVert;
+    private static Sprite spriteLockedOpenedHors;
+    private static Sprite spriteLockedClosedHors;
+    private static Sprite spriteLockedOpenedVert;
+    private static Sprite spriteLockedClosedVert;
+    private static bool didInit = false;
 
     void Awake()
     {
-        spriteOpenedHors = doorSprites[0];
-        spriteClosedHors = doorSprites[1];
-        spriteOpenedVert = doorSprites[2];
-        spriteClosedVert = doorSprites[3];
-        spriteLockedOpenedHors = doorSprites[4];
-        spriteLockedClosedHors = doorSprites[5];
-        spriteLockedOpenedVert = doorSprites[6];
-        spriteLockedClosedVert = doorSprites[7];
+        Init();
 
         UpdateSpriteBoxes();
     }
+    
+    private void Init()
+    {
+        if (!didInit)
+        {
+            didInit = true;
 
+            spriteOpenedHors = doorSprites[0];
+            spriteClosedHors = doorSprites[1];
+            spriteOpenedVert = doorSprites[2];
+            spriteClosedVert = doorSprites[3];
+            spriteLockedOpenedHors = doorSprites[4];
+            spriteLockedClosedHors = doorSprites[5];
+            spriteLockedOpenedVert = doorSprites[6];
+            spriteLockedClosedVert = doorSprites[7];
+        }
+    }
 
     private float timer;
     private void Update()
@@ -62,8 +74,16 @@ public class Door : MonoBehaviour
         SetIsClosed(false);
     }
 
+    public void SetIsWall(bool wall)
+    {
+        isWall = wall;
+        Init();
+        UpdateSpriteBoxes();
+    }
+
     private void UpdateSpriteBoxes()
     {
+        spriteRenderer.enabled = !isWall;
         if (isVertical)
         {
             horsBox.enabled = false;

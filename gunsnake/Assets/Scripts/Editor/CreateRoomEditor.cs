@@ -28,10 +28,15 @@ public class CreateRoomEditor : Editor
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("roomName"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("roomType"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("hasNorthDoor"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("hasEastDoor"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("hasSouthDoor"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("hasWestDoor"));
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("isJungle"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("isDungeon"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("isTemple"));
+
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("hasNorthDoor"));
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("hasEastDoor"));
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("hasSouthDoor"));
+        //EditorGUILayout.PropertyField(serializedObject.FindProperty("hasWestDoor"));
 
 
         if (GUILayout.Button("Clear Everything"))
@@ -104,10 +109,15 @@ public class CreateRoomEditor : Editor
         else
             serializedObject.FindProperty("roomName").stringValue = propObj.FindProperty("roomName").stringValue;
         serializedObject.FindProperty("roomType").enumValueIndex = propObj.FindProperty("roomType").enumValueIndex;
-        serializedObject.FindProperty("hasNorthDoor").boolValue = propObj.FindProperty("hasNorthDoor").boolValue;
-        serializedObject.FindProperty("hasEastDoor").boolValue = propObj.FindProperty("hasEastDoor").boolValue;
-        serializedObject.FindProperty("hasSouthDoor").boolValue = propObj.FindProperty("hasSouthDoor").boolValue;
-        serializedObject.FindProperty("hasWestDoor").boolValue = propObj.FindProperty("hasWestDoor").boolValue;
+
+        serializedObject.FindProperty("isJungle").boolValue = propObj.FindProperty("isJungle").boolValue;
+        serializedObject.FindProperty("isDungeon").boolValue = propObj.FindProperty("isDungeon").boolValue;
+        serializedObject.FindProperty("isTemple").boolValue = propObj.FindProperty("isTemple").boolValue;
+
+        //serializedObject.FindProperty("hasNorthDoor").boolValue = propObj.FindProperty("hasNorthDoor").boolValue;
+        //serializedObject.FindProperty("hasEastDoor").boolValue = propObj.FindProperty("hasEastDoor").boolValue;
+        //serializedObject.FindProperty("hasSouthDoor").boolValue = propObj.FindProperty("hasSouthDoor").boolValue;
+        //serializedObject.FindProperty("hasWestDoor").boolValue = propObj.FindProperty("hasWestDoor").boolValue;
 
 
         string rName = serializedObject.FindProperty("roomName").stringValue;
@@ -148,10 +158,15 @@ public class CreateRoomEditor : Editor
 
         propObj.FindProperty("roomName").stringValue = serializedObject.FindProperty("roomName").stringValue;
         propObj.FindProperty("roomType").enumValueIndex = serializedObject.FindProperty("roomType").enumValueIndex;
-        propObj.FindProperty("hasNorthDoor").boolValue = serializedObject.FindProperty("hasNorthDoor").boolValue;
-        propObj.FindProperty("hasEastDoor").boolValue = serializedObject.FindProperty("hasEastDoor").boolValue;
-        propObj.FindProperty("hasSouthDoor").boolValue = serializedObject.FindProperty("hasSouthDoor").boolValue;
-        propObj.FindProperty("hasWestDoor").boolValue = serializedObject.FindProperty("hasWestDoor").boolValue;
+
+        propObj.FindProperty("isJungle").boolValue = serializedObject.FindProperty("isJungle").boolValue;
+        propObj.FindProperty("isDungeon").boolValue = serializedObject.FindProperty("isDungeon").boolValue;
+        propObj.FindProperty("isTemple").boolValue = serializedObject.FindProperty("isTemple").boolValue;
+
+        //propObj.FindProperty("hasNorthDoor").boolValue = serializedObject.FindProperty("hasNorthDoor").boolValue;
+        //propObj.FindProperty("hasEastDoor").boolValue = serializedObject.FindProperty("hasEastDoor").boolValue;
+        //propObj.FindProperty("hasSouthDoor").boolValue = serializedObject.FindProperty("hasSouthDoor").boolValue;
+        //propObj.FindProperty("hasWestDoor").boolValue = serializedObject.FindProperty("hasWestDoor").boolValue;
 
         // tried doing this stuff originally: 
         // https://answers.unity.com/questions/778647/objectreferencevalue-in-serializedproperty.html
@@ -160,12 +175,16 @@ public class CreateRoomEditor : Editor
         string rName = serializedObject.FindProperty("roomName").stringValue;
         propObj.FindProperty("roomObjectPath").stringValue = gObjPath + rName;
 
+        propObj.ApplyModifiedProperties();
+
         roomObj.name = rName;
+        Room room = roomObj.GetComponent<Room>();
+        room.roomData = _target.currentRoom;
+        room.SetDoorRefs();
         bool created = false;
         string pathName = "Assets/Resources/" + gObjPath + rName + ".prefab";
         // should i check overriding?
         PrefabUtility.SaveAsPrefabAssetAndConnect(roomObj, pathName, InteractionMode.UserAction, out created);
-
 
 
         propObj.ApplyModifiedProperties();
@@ -182,10 +201,13 @@ public class CreateRoomEditor : Editor
 
         serializedObject.FindProperty("roomName").stringValue = "";
         serializedObject.FindProperty("roomType").enumValueIndex = 0;
-        serializedObject.FindProperty("hasNorthDoor").boolValue = false;
-        serializedObject.FindProperty("hasEastDoor").boolValue = false;
-        serializedObject.FindProperty("hasSouthDoor").boolValue = false;
-        serializedObject.FindProperty("hasWestDoor").boolValue = false;
+        serializedObject.FindProperty("isJungle").boolValue = true;
+        serializedObject.FindProperty("isDungeon").boolValue = true;
+        serializedObject.FindProperty("isTemple").boolValue = true;
+        //serializedObject.FindProperty("hasNorthDoor").boolValue = false;
+        //serializedObject.FindProperty("hasEastDoor").boolValue = false;
+        //serializedObject.FindProperty("hasSouthDoor").boolValue = false;
+        //serializedObject.FindProperty("hasWestDoor").boolValue = false;
     }
 
     private void CreateDefaultRoomGameObj()

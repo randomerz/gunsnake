@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3208875469782037515}
   - component: {fileID: 182173090807714812}
+  - component: {fileID: 3845154875371999623}
   - component: {fileID: 3208875469782037514}
   - component: {fileID: 2683957711208423870}
   m_Layer: 10
@@ -59,9 +60,22 @@ MonoBehaviour:
   - {fileID: 3208875470392214742}
   - {fileID: 3208875470827657868}
   - {fileID: 3208875470908733808}
+  _playerEffects: {fileID: 3845154875371999623}
   _playerHealth: {fileID: 3208875469782037514}
   _playerMovement: {fileID: 3208875470261152530}
   _playerWeaponManager: {fileID: 2683957711208423870}
+--- !u!114 &3845154875371999623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208875469782037512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d971365c454bef44fbd21c4348c3cd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3208875469782037514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21059dbc3c65e4940a586c5549062930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 3
   isInvulnerable: 0
   iFramesTicks: 8
   healthText: {fileID: 0}
