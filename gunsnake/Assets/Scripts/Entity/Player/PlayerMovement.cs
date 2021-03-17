@@ -13,7 +13,7 @@ public class PlayerMovement : Entity
     public Sprite snakeBent;
     public Sprite snakeTail;
 
-    private LinkedList<Directions> directionQueue = new LinkedList<Directions>();
+    private LinkedList<Direction> directionQueue = new LinkedList<Direction>();
     private bool addedDirection = false;
 
     public bool isSprinting;
@@ -35,33 +35,36 @@ public class PlayerMovement : Entity
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (CheckCanInput())
         {
-            ChangeDirection(Directions.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            ChangeDirection(Directions.down);
-        }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeDirection(Directions.left);
-        }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ChangeDirection(Directions.up);
-        }
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ChangeDirection(Direction.right);
+            }
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                ChangeDirection(Direction.down);
+            }
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                ChangeDirection(Direction.left);
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                ChangeDirection(Direction.up);
+            }
 
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
-        //{
-        //    isSprinting = true;
-        //}
-        isSprinting = Input.GetKey(KeyCode.LeftShift);
-        Player.playerWeaponManager.isSprinting = isSprinting;
+            //if (Input.GetKeyDown(KeyCode.LeftShift))
+            //{
+            //    isSprinting = true;
+            //}
+            isSprinting = Input.GetKey(KeyCode.LeftShift);
+            Player.playerWeaponManager.isSprinting = isSprinting;
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartSnake();
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+            //    RestartSnake();
+            //}
         }
     }
 
@@ -85,22 +88,17 @@ public class PlayerMovement : Entity
             CheckUnlockDoor(currDir);
 
             // moving snake code
-            if (!CanMove(transform.position, currDir))
+            if (CanMove(transform.position, currDir) || Player.playerEffects.GetExitingIndex() != -1)
             {
-                Debug.Log("bonk!");
-                return;
+                MoveBody();
             }
-            MoveBody();
 
-            //if (isSprinting && tick % 4 == 0 && !Input.GetKey(KeyCode.LeftShift))
-            //{
-            //    isSprinting = false;
-            //}
+            Player.playerEffects.UpdateMovementEffects();
         }
     }
 
 
-    private void ChangeDirection(Directions dir)
+    private void ChangeDirection(Direction dir)
     {
         // if same as last input OR queue has >=2, don't add
         if ((directionQueue.Count != 0 && directionQueue.Last.Value == dir) || directionQueue.Count >= 2)
@@ -109,7 +107,7 @@ public class PlayerMovement : Entity
         }
         
         // if queue is empty, don't go backwards, OR if isn't empty, don't go in last queued opposite
-        Directions lastDir = currDir;
+        Direction lastDir = currDir;
         if (directionQueue.Count != 0)
             lastDir = directionQueue.Last.Value;
 
@@ -120,22 +118,22 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void CheckUnlockDoor(Directions dir)
+    private void CheckUnlockDoor(Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }
@@ -156,24 +154,11 @@ public class PlayerMovement : Entity
 
     public void MoveBody()
     {
-        Vector3 headDir = Vector3.zero;
+        Vector3 headDir = DirectionUtil.Convert(currDir);
+        if (Player.playerEffects.GetExitingIndex() > 0)
+            headDir = Vector3.zero;
         Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
 
-        switch (currDir)
-        {
-            case Directions.right:
-                headDir = Vector3.right;
-                break;
-            case Directions.down:
-                headDir = Vector3.down;
-                break;
-            case Directions.left:
-                headDir = Vector3.left;
-                break;
-            case Directions.up:
-                headDir = Vector3.up;
-                break;
-        }
         Player.body[3].transform.position = Player.body[2].transform.position;
         Player.body[2].transform.position = Player.body[1].transform.position;
         Player.body[1].transform.position = Player.body[0].transform.position;
@@ -213,9 +198,26 @@ public class PlayerMovement : Entity
 
     }
 
+    public void SetSnakeSpawn(Vector3 pos, Direction dir)
+    {
+        Player.body[0].transform.position = pos;
+        for (int i = 1; i < Player.body.Length; i++)
+        {
+            Player.body[i].transform.position = pos - DirectionUtil.Convert(dir);
+        }
+
+        currDir = dir;
+        directionQueue.Clear();
+    }
+
+    private bool CheckCanInput()
+    {
+        return !UIManager.stopPlayerInput && !UIEffects.stopPlayerInput;
+    }
+
     public void RestartSnake()
     {
-        currDir = Directions.right;
+        currDir = Direction.right;
         directionQueue.Clear();
         for (int i = 0; i < 3; i++)
             Player.body[i].transform.position = snakeSpawn + new Vector3(-i, 0);

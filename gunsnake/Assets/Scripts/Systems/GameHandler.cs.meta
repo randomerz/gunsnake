@@ -6,6 +6,8 @@ MonoImporter:
   defaultReferences:
   - enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c,
       type: 2}
+  - enemyDeathParticle: {fileID: 430776399415774282, guid: 4460e85fd4f162242b1f513ed33cf6f1,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

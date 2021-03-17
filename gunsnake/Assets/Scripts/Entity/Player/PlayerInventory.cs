@@ -5,6 +5,7 @@ using UnityEngine;
 public static class PlayerInventory
 {
     public static int gold;
+    [SerializeField]
     public static int keys = 1;
 
     public static PlayerWeapon[] weaponStorage = new PlayerWeapon[2];

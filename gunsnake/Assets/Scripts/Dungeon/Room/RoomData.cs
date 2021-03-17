@@ -4,37 +4,20 @@ using UnityEngine;
 
 public class RoomData : ScriptableObject
 {
-    public enum RoomType
-    {
-        combat,
-        shop,
-        loot,
-        entrance,
-        exit,
-    }
-
-    public enum RoomDrop
-    {
-        health,
-        gold,
-        key,
-    }
-
     [Header("Manually set")]
     public string roomName;
     public RoomType roomType;
 
-    public bool hasNorthDoor;
-    public bool hasEastDoor;
-    public bool hasSouthDoor;
-    public bool hasWestDoor;
+    public bool isJungle;
+    public bool isDungeon;
+    public bool isTemple;
 
     [Header("Automatically set")]
     //public GameObject roomObject;
     public string roomObjectPath;
 
-    [HideInInspector]
-    public RoomDrop roomDrop = RoomDrop.health;
+    [SerializeField]
+    private List<RCConnection> defaultConnections = new List<RCConnection>();
 
     [TextArea()]
     public string roomString;
@@ -45,14 +28,24 @@ public class RoomData : ScriptableObject
     public const char FLOORCHAR = '.';
     public const char EMPTYCHAR = ' ';
 
+    public void SetDefaultConnections(List<RCConnection> defaultCons)
+    {
+        defaultConnections = defaultCons;
+    }
+
+    // Don't use me too often!
+    public List<RCConnection> GetDefaultConnections()
+    {
+        List<RCConnection> cons = new List<RCConnection>();
+        foreach (RCConnection c in defaultConnections)
+            cons.Add(c.Copy());
+        return cons;
+    }
+
     public void SetData(RoomData other)
     {
         roomName = other.roomName;
         roomType = other.roomType;
-        hasNorthDoor = other.hasNorthDoor;
-        hasEastDoor = other.hasEastDoor;
-        hasSouthDoor = other.hasSouthDoor;
-        hasWestDoor = other.hasWestDoor;
 
         //roomObject = other.roomObject;
         roomObjectPath = other.roomObjectPath;

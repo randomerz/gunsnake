@@ -5,31 +5,28 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     protected static LayerMask wallLayerMask;
-    protected static LayerMask collidableEntityLayerMask;
+    protected static LayerMask halfHeightEntitiesMask;
+    protected static LayerMask fullHeightEntitiesMask;
     protected static LayerMask playerLayerMask;
-    protected static LayerMask collidableLayerMask;
+    protected static LayerMask highCollidableMask;
+    protected static LayerMask fullCollidableMask;
 
-    public enum Directions
-    {
-        right,
-        down,
-        left,
-        up,
-    }
 
-    protected Directions currDir;
+    protected Direction currDir;
 
     protected virtual void Awake()
     {
         //wallLayerMask = GameHandler.wallLayerMask;
         wallLayerMask = LayerMask.GetMask("Walls");
-        collidableEntityLayerMask = LayerMask.GetMask("Collidable Entity");
+        halfHeightEntitiesMask = LayerMask.GetMask("Half-Height Entity");
+        fullHeightEntitiesMask = LayerMask.GetMask("Full-Height Entity");
         playerLayerMask = LayerMask.GetMask("Player");
-        collidableLayerMask = LayerMask.GetMask("Walls", "Collidable Entity");
+        highCollidableMask = LayerMask.GetMask("Walls", "Full-Height Entity");
+        fullCollidableMask = LayerMask.GetMask("Walls", "Half-Height Entity", "Full-Height Entity");
     }
 
 
-    protected static bool IsOppositeDirection(Directions d1, Directions d2)
+    protected static bool IsOppositeDirection(Direction d1, Direction d2)
     {
         return Mathf.Abs((int)d1 - (int)d2) == 2;
     }
@@ -39,51 +36,51 @@ public class Entity : MonoBehaviour
         return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
-    protected static bool CanMove(Vector3 pos, Directions dir)
+    protected static bool CanMove(Vector3 pos, Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }
-        rh = Physics2D.Raycast(pos, rcDir, 1, collidableLayerMask);
+        rh = Physics2D.Raycast(pos, rcDir, 1, fullCollidableMask);
         return rh.collider == null;
     }
 
     protected static bool CanMove(Vector3 pos)
     {
-        Collider2D rh = Physics2D.OverlapPoint(pos, collidableEntityLayerMask);
+        Collider2D rh = Physics2D.OverlapPoint(pos, fullHeightEntitiesMask);
         return rh == null;
     }
 
-    protected static bool IsWallAhead(Vector3 pos, Directions dir)
+    protected static bool IsWallAhead(Vector3 pos, Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
         switch (dir)
         {
-            case Directions.right:
+            case Direction.right:
                 rcDir = Vector3.right;
                 break;
-            case Directions.down:
+            case Direction.down:
                 rcDir = Vector3.down;
                 break;
-            case Directions.left:
+            case Direction.left:
                 rcDir = Vector3.left;
                 break;
-            case Directions.up:
+            case Direction.up:
                 rcDir = Vector3.up;
                 break;
         }
