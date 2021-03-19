@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1257175443223125733}
   - component: {fileID: 2618884722322905533}
-  - component: {fileID: 1126519174187240351}
+  - component: {fileID: -4701535067520779013}
+  - component: {fileID: -2510290741924826964}
   m_Layer: 0
-  m_Name: BasicShot
+  m_Name: Cartonshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,21 +69,22 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingLayerID: -2035305423
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -559846151031775556, guid: aa9c6737f1cc1da4e86893034086b1fe,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1126519174187240351
+--- !u!114 &-4701535067520779013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,11 +93,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793473670551159033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bbdf4c936ad411429988466e349887f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be34bc8bfb37444fb21a183263813dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
   fireRate: 1
   mount: {fileID: 0}
-  bulletPrefab: {fileID: 1148371326340170767, guid: 550704a0602bc8c439e4042b18af4e61,
+  doDiagonal: 0
+  bulletPrefab: {fileID: 1148371326340170767, guid: 18ee9c986c364594aaacf43c1a8788bf,
+    type: 3}
+--- !u!114 &-2510290741924826964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793473670551159033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c3dd9c5b3f0424eb7f7e25ac2e9d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2618884722322905533}
+  weapon: {fileID: -559846151031775556, guid: aa9c6737f1cc1da4e86893034086b1fe, type: 3}
+  weaponBent: {fileID: -4362137254934154575, guid: aa9c6737f1cc1da4e86893034086b1fe,
+    type: 3}
+  weaponHead: {fileID: 7032807351048433993, guid: aa9c6737f1cc1da4e86893034086b1fe,
     type: 3}
