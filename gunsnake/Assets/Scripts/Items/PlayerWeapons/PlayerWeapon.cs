@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WeaponSprite))]
 public abstract class PlayerWeapon : MonoBehaviour
 {
     [Header("Stats")]
@@ -12,8 +13,17 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     [Header("Other")]
     public PlayerSegmentSprite mount;
+    protected WeaponSprite weaponSprite;
+
+    private void Awake()
+    {
+        weaponSprite = GetComponent<WeaponSprite>();
+    }
 
     // runs once per game tick
-    public abstract void WeaponTick(int tick);
+    public virtual void WeaponTick(int tick)
+    {
+        weaponSprite.SetSprite(mount.isBent, mount.isHead);
+    }
     public abstract void Attack();
 }

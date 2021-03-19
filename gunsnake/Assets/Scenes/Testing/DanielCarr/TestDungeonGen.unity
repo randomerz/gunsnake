@@ -3193,7 +3193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3208875470719630242}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &609240020
 MonoBehaviour:
@@ -3854,6 +3854,12 @@ MonoBehaviour:
   - name: HubX_Elizabeth_29x29
     freq: 1
     roomData: {fileID: 11400000, guid: f1e3658926d553544a7b25b27c5ca6a1, type: 2}
+  - name: DomesticCombat_Allison_21x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 23703678bd45ea84486402bd3ad75e7d, type: 2}
+  - name: MushRoom_Levi_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 7804e4eab6a880d47bc8365ef8545cd9, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
@@ -5704,6 +5710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c, type: 2}
+  enemyDeathParticle: {fileID: 0}
 --- !u!4 &1455916478
 Transform:
   m_ObjectHideFlags: 0
