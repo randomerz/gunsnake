@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    protected static LayerMask wallLayerMask;
-    protected static LayerMask halfHeightEntitiesMask;
-    protected static LayerMask fullHeightEntitiesMask;
-    protected static LayerMask playerLayerMask;
-    protected static LayerMask highCollidableMask;
-    protected static LayerMask fullCollidableMask;
+    public static LayerMask wallLayerMask;
+    public static LayerMask halfHeightEntitiesMask;
+    public static LayerMask fullHeightEntitiesMask;
+    public static LayerMask playerLayerMask;
+    public static LayerMask highCollidableMask;
+    public static LayerMask fullCollidableMask;
 
 
     protected Direction currDir;

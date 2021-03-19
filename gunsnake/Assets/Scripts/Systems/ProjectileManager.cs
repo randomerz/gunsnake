@@ -34,8 +34,9 @@ public class ProjectileManager : MonoBehaviour
         //{
         foreach (List<GameObject> projList in activeProjectiles.Values)
         {
-            foreach (GameObject g in projList)
+            for (int i = projList.Count - 1; i >= 0; i--)
             {
+                GameObject g = projList[i];
                 if (g.GetComponent<Projectile>() != null)
                 {
                     g.GetComponent<Projectile>().ProjectileTick(e.tick);
@@ -48,7 +49,7 @@ public class ProjectileManager : MonoBehaviour
     public static GameObject CreateProjectile(GameObject projectilePrefab)
     {
         GameObject proj;
-        Type type = projectilePrefab.GetComponent<Projectile>().GetType();
+        Type type = projectilePrefab.GetComponent<Projectile>().GetType(); // Projectile.SetSprite()
         if (!inactiveProjectiles.ContainsKey(type))
         {
             //Debug.Log("Creating new projectile container: " + type);
@@ -62,6 +63,12 @@ public class ProjectileManager : MonoBehaviour
             proj = inactiveProjectiles[type][len - 1];
             inactiveProjectiles[type].RemoveAt(len - 1);
             proj.SetActive(true);
+
+            SpriteRenderer sprite = proj.GetComponent<SpriteRenderer>();
+            SpriteRenderer prefabSprite = projectilePrefab.GetComponent<SpriteRenderer>();
+            sprite.sprite = prefabSprite.sprite;
+            sprite.color = prefabSprite.color;
+            proj.GetComponent<Projectile>().SetValues(projectilePrefab.GetComponent<Projectile>());
         }
         else
         {
