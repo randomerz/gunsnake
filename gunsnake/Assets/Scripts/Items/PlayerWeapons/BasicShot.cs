@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BasicShot : PlayerWeapon
 {
+    public bool doDiagonal;
     public GameObject bulletPrefab;
 
     public override void WeaponTick(int tick)
     {
-
+        base.WeaponTick(tick);
     }
 
     public override void Attack()
@@ -32,8 +33,16 @@ public class BasicShot : PlayerWeapon
             Vector3 dir2;
             if (mount.isBent && !mount.isTail)
             {
-                dir1 = mount.nextSegDir + mount.prevSegDir;
-                dir2 = -dir1;
+                if (doDiagonal)
+                {
+                    dir1 = mount.nextSegDir + mount.prevSegDir;
+                    dir2 = -dir1;
+                }
+                else
+                {
+                    dir1 = -mount.nextSegDir;
+                    dir2 = -mount.prevSegDir;
+                }
             }
             else
             {

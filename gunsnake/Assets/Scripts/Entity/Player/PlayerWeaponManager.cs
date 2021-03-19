@@ -8,18 +8,28 @@ public class PlayerWeaponManager : MonoBehaviour
     private int ticksTillCooldown = 0;
 
     [SerializeField]
+    private Item[] weaponItems = new Item[Player.body.Length];
     private PlayerWeapon[] weapons = new PlayerWeapon[Player.body.Length];
+    private GameObject[] weaponObjs = new GameObject[Player.body.Length];
     private int currMountIndex;
 
     // can fire
     public bool isSprinting;
+
+    //public Item defaultWeapon;
 
     void Start()
     {
         TimeTickSystem.OnTick_PlayerWeapons += TimeTickSystem_OnTick;
         for (int i = 0; i < weapons.Length; i++)
         {
-            weapons[i].mount = Player.body[i].GetComponent<PlayerSegmentSprite>();
+            if (weaponItems[i] != null)
+            {
+                GameObject weaponObj = Instantiate(weaponItems[i].prefab, Player.sprites[i].transform);
+                weapons[i] = weaponObj.GetComponent<PlayerWeapon>();
+                weapons[i].mount = Player.body[i].GetComponent<PlayerSegmentSprite>();
+                weaponObjs[i] = weaponObj;
+            }
         }
 
         ticksTillCooldown = shotCooldown;
@@ -56,15 +66,25 @@ public class PlayerWeaponManager : MonoBehaviour
     }
 
 
-    public PlayerWeapon SetWeapon(PlayerWeapon newWeapon, int index)
+    public Item SetWeapon(Item newWeaponItem, int index)
     {
-        PlayerWeapon oldWeapon = weapons[index];
-        weapons[index] = newWeapon;
-        return oldWeapon;
+        Item oldWeaponItem = weaponItems[index];
+        weaponItems[index] = newWeaponItem;
+        Destroy(weaponObjs[index]);
+
+        if (weaponItems[index] != null)
+        {
+            GameObject weaponObj = Instantiate(weaponItems[index].prefab, Player.sprites[index].transform);
+            weapons[index] = weaponObj.GetComponent<PlayerWeapon>();
+            weapons[index].mount = Player.body[index].GetComponent<PlayerSegmentSprite>();
+            weaponObjs[index] = weaponObj;
+        }
+
+        return oldWeaponItem;
     }
 
-    public PlayerWeapon GetWeapon(int index)
+    public Item GetWeapon(int index)
     {
-        return weapons[index];
+        return weaponItems[index];
     }
 }

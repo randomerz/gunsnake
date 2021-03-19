@@ -172,8 +172,13 @@ public class CreateRoomEditor : Editor
         // https://answers.unity.com/questions/778647/objectreferencevalue-in-serializedproperty.html
         // switching to just saving with roomName
 
+
         string rName = serializedObject.FindProperty("roomName").stringValue;
         propObj.FindProperty("roomObjectPath").stringValue = gObjPath + rName;
+
+        propObj.ApplyModifiedProperties();
+
+        _target.Room2String();
 
         propObj.ApplyModifiedProperties();
 
@@ -188,8 +193,7 @@ public class CreateRoomEditor : Editor
 
 
         propObj.ApplyModifiedProperties();
-
-        _target.Room2String();
+        AssetDatabase.SaveAssets(); // not needed? having issues saving prefabs after quiting unity
     }
 
     private void Clear()
