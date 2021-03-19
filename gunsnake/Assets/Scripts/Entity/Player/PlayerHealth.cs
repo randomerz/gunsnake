@@ -82,7 +82,11 @@ public class PlayerHealth : MonoBehaviour
         StrobeAlpha(frames / 4, 0.5f);
     }
 
-
+    public void ChangemaxHealth()
+    {
+        maxHealth++;
+        health++;
+    }
 
     #region Strobe Color
 
