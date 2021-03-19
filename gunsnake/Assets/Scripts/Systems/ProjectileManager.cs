@@ -69,6 +69,7 @@ public class ProjectileManager : MonoBehaviour
             sprite.sprite = prefabSprite.sprite;
             sprite.color = prefabSprite.color;
             proj.GetComponent<Projectile>().SetValues(projectilePrefab.GetComponent<Projectile>());
+            proj.GetComponent<Projectile>().Awake();
         }
         else
         {

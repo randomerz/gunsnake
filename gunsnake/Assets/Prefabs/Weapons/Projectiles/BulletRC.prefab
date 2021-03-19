@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf0f3aa88fee4444856a87a0482775a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  pierce: 0
+  baseDamage: 1
+  basePierce: 0
   startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   lineRenderer: {fileID: 5544460565853276446}
