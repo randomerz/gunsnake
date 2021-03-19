@@ -26,8 +26,8 @@ public class BasicProjectile : Projectile
 
     public override void SetValues(Projectile other)
     {
-        damage = other.damage;
-        pierce = other.pierce;
+        baseDamage = other.baseDamage;
+        basePierce = other.basePierce;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,9 +35,9 @@ public class BasicProjectile : Projectile
         if (other.tag == "Enemy")
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();
-            e.TakeDamage(damage, direction);
-            pierce -= 1;
-            if (pierce < 0) 
+            e.TakeDamage(CalculateDamage(), direction);
+            basePierce -= 1;
+            if (basePierce < 0) 
                 ProjectileManager.RemoveProjectile(gameObject);
         }
         if (other.tag == "Wall")

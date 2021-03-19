@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: HS Gun
+  m_Name: Laser Gun
   m_EditorClassIdentifier: 
-  name: H.S. Gun
-  description: Shoots a super high speed shot.
+  name: Laser Gun
+  description: Shoots an instant piercing laser.
   icon: {fileID: 0}
   itemType: 0
-  prefab: {fileID: 1793473670551159033, guid: 4a29785c44c9a1841be3d5e94e9f3397, type: 3}
+  prefab: {fileID: 1793473670551159033, guid: b29b65dba62be104dac56452b9b266f3, type: 3}
