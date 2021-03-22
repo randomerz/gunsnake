@@ -15,7 +15,6 @@ public class Artifact
 
 public class ArtifactManager : MonoBehaviour
 {
-    public int numArtifacts;
     public Artifact attack;
     public Artifact health;
     public Artifact pierce;
@@ -32,29 +31,34 @@ public class ArtifactManager : MonoBehaviour
         pierce,
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        artifactList = new Artifact[numArtifacts];
+        if (_instance == null)
+            _instance = this;
+        artifactList = new Artifact[System.Enum.GetNames(typeof(ArtIndex)).Length];
         artifactList[(int)ArtIndex.attack] = attack;
         artifactList[(int)ArtIndex.health] = health;
         artifactList[(int)ArtIndex.pierce] = pierce;
         for (int i = 0; i < artifactList.Length; i++)
         {
-            artifactList[i].codename = System.Enum.GetName(ArtIndex, i);
+            artifactList[i].codename = System.Enum.GetName(typeof(ArtIndex), i);
             freqsum += artifactList[i].freq;
         }
     }
-
-    public Artifact GenArtifact()
+    private float ResetFreq(Artifact a)
+    {
+        float retFreq = a.freq;
+        a.freq = 0;
+        freqsum -= retFreq;
+        return retFreq;
+    }
+    private Artifact GenArtifact()
     {
         float random = Random.Range(0, freqsum);
         for (int i = 0; i < artifactList.Length; i++)
         {
             if (random < artifactList[i].freq)
-            {
                 return artifactList[i];
-            }
             random -= artifactList[i].freq;
         }
         return null;
@@ -66,12 +70,12 @@ public class ArtifactManager : MonoBehaviour
         for(int i = 0; i < num; i++)
         {
             retArts[i] = GenArtifact();
-            tempfreq[i] = retArts[i].freq;
-            retArts[i].freq = 0;
+            tempfreq[i] = ResetFreq(retArts[i]);
         }
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             retArts[i].freq = tempfreq[i];
+            freqsum += tempfreq[i];
         }
         return retArts;
     }
@@ -79,9 +83,7 @@ public class ArtifactManager : MonoBehaviour
     {
         a.count++;
         //if(count == maxcount)
-        //{
-        // a.freq = 0;
-        //}
+        // ResetFreq(a);
     }
     //update get methods as daniel needs?
     public Artifact[] GetArtifacts()

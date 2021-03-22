@@ -7365,6 +7365,7 @@ GameObject:
   - component: {fileID: 609240022}
   - component: {fileID: 609240024}
   - component: {fileID: 609240025}
+  - component: {fileID: 609240026}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7543,6 +7544,30 @@ MonoBehaviour:
   keyDrop: {fileID: 0}
   healthDropRate: 0.1
   keyEffect: {fileID: 0}
+--- !u!114 &609240026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609240016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615b0fd5daa569d4d8acf41131d82215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack:
+    freq: 0.3
+    count: 0
+    codename: 
+  health:
+    freq: 0.4
+    count: 0
+    codename: 
+  pierce:
+    freq: 0.3
+    count: 0
+    codename: 
 --- !u!4 &625962661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 674645293390448104, guid: 661cc017904f52d4883cf264f4dcdc54,

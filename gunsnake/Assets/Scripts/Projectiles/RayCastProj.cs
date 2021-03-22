@@ -52,7 +52,7 @@ public class RayCastProj : Projectile
         int wallLayerMask = Entity.wallLayerMask;
         tickCount = ticksAlive;
 
-        if (basePierce <= 0)
+        if (CalculatePierce() <= 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(startPos, direction, Mathf.Infinity, targetLayerMask | wallLayerMask);
             if (hit)
@@ -74,7 +74,7 @@ public class RayCastProj : Projectile
 
             ContactFilter2D targetFilter = new ContactFilter2D();
             targetFilter.layerMask = targetLayerMask;
-            RaycastHit2D[] hits = new RaycastHit2D[basePierce];
+            RaycastHit2D[] hits = new RaycastHit2D[CalculatePierce()];
 
             int numHit = Physics2D.Raycast(startPos, direction, targetFilter, hits, wallHit.distance);
 
@@ -85,7 +85,7 @@ public class RayCastProj : Projectile
                     Enemy e = hits[i].transform.GetComponent<Enemy>();
                     if (e != null)
                     {
-                        e.TakeDamage(baseDamage, direction);
+                        e.TakeDamage(CalculateDamage(), direction);
                     }
 
                     // create effect
