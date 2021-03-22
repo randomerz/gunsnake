@@ -9,7 +9,6 @@ public class Artifact
     //public int maxcount;
     [HideInInspector]
     public int count = 0;
-    [HideInInspector]
     public string codename;
 }
 
