@@ -16,16 +16,17 @@ public class ProjectileManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            projectileContainer = new GameObject("ProjectileContainer");
-        }
+        //if (_instance == null)
+        //{
+        _instance = this;
+        projectileContainer = new GameObject("ProjectileContainer");
+        //}
+        TimeTickSystem.OnTick_Projectiles += TimeTickSystem_OnTick;
     }
 
     private void Start()
     {
-        TimeTickSystem.OnTick_Projectiles += TimeTickSystem_OnTick;
+
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
@@ -101,5 +102,19 @@ public class ProjectileManager : MonoBehaviour
             Debug.LogWarning("Could not remove projectile: " + type + ". Current projectile containers are: " + currentKeys);
             proj.SetActive(false);
         }
+    }
+
+    public static void ResetAllProjectiles()
+    {
+        activeProjectiles.Clear();
+        inactiveProjectiles.Clear();
+        //foreach (System.Type type in activeProjectiles.Keys)
+        //{
+        //    List<GameObject> projList = activeProjectiles[type];
+        //    for (int i = projList.Count - 1; i >= 0; i--)
+        //    {
+        //        RemoveProjectile(projList[i]);
+        //    }
+        //}
     }
 }

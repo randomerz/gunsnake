@@ -6,7 +6,7 @@ public static class PlayerInventory
 {
     public static int gold;
     [SerializeField]
-    public static int keys = 1;
+    public static int keys;
 
     public static Item[] weaponStorage = new Item[2];
 
