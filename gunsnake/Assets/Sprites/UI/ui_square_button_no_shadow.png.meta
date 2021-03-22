@@ -105,8 +105,8 @@ TextureImporter:
       name: button_square_16x16
       rect:
         serializedVersion: 2
-        x: 16
-        y: 99
+        x: 15
+        y: 100
         width: 18
         height: 18
       alignment: 0

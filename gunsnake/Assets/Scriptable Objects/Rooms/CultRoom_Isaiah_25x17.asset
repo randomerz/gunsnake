@@ -20,7 +20,7 @@ MonoBehaviour:
   roomObjectPath: SObj Rooms/CultRoom_Isaiah_25x17
   defaultConnections:
   - pos: {x: 0, y: 8, z: 0}
-    side: 3
+    side: 2
     isAvailable: 1
     isWall: 0
   - pos: {x: 24, y: 8, z: 0}
