@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: TEMP_ARTIFACT
+  m_Name: JambaJuice
   m_EditorClassIdentifier: 
-  name: TEMP ARTIFACT
-  description: hi im temporary temp artifact
-  icon: {fileID: 0}
+  name: JambaJuice
+  description: Increases damage by +1 per count.
+  icon: {fileID: 21300000, guid: 832f35a4357fa0e4c8e91481f24f9295, type: 3}
   itemType: 1
   prefab: {fileID: 0}

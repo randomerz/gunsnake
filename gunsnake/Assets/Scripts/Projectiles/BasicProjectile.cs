@@ -37,7 +37,7 @@ public class BasicProjectile : Projectile
             Enemy e = other.gameObject.GetComponent<Enemy>();
             e.TakeDamage(CalculateDamage(), direction);
             basePierce -= 1;
-            if (basePierce < 0) 
+            if (CalculatePierce() < 0) 
                 ProjectileManager.RemoveProjectile(gameObject);
         }
         if (other.tag == "Wall")
