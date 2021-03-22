@@ -107,12 +107,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotCooldown: 2
   weaponItems:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   isSprinting: 0
-  defaultWeapon: {fileID: 11400000, guid: 3eb4094f8592baa438525786f2021937, type: 2}
 --- !u!1 &3208875470261152534
 GameObject:
   m_ObjectHideFlags: 0

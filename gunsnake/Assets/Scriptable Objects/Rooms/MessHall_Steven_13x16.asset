@@ -20,11 +20,11 @@ MonoBehaviour:
   roomObjectPath: SObj Rooms/MessHall_Steven_13x16
   defaultConnections:
   - pos: {x: 0, y: 4, z: 0}
-    side: 3
+    side: 2
     isAvailable: 1
     isWall: 0
   - pos: {x: 0, y: 11, z: 0}
-    side: 3
+    side: 2
     isAvailable: 1
     isWall: 0
   - pos: {x: 14, y: 4, z: 0}
