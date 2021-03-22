@@ -5,7 +5,6 @@ using UnityEngine;
 public static class PlayerInventory
 {
     public static int gold;
-    public static ArtifactManager _artmanager;
     [SerializeField]
     public static int keys = 1;
 
@@ -60,12 +59,15 @@ public static class PlayerInventory
         switch(artifact.codename)
         {
             case "attack":
+                Projectile.bonusDamage++;
                 break;
             case "health":
                 Player.playerHealth.ChangemaxHealth();
                 break;
             case "pierce":
+                Projectile.bonusPierce++;
                 break;
         }
+        ArtifactManager._instance.AddArtifact(artifact);
     }
 }
