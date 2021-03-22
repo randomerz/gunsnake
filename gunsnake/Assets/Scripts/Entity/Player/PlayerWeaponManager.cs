@@ -18,9 +18,14 @@ public class PlayerWeaponManager : MonoBehaviour
 
     //public Item defaultWeapon;
 
-    void Start()
+
+    private void Awake()
     {
         TimeTickSystem.OnTick_PlayerWeapons += TimeTickSystem_OnTick;
+    }
+
+    void Start()
+    {
         for (int i = 0; i < weapons.Length; i++)
         {
             if (weaponItems[i] != null)

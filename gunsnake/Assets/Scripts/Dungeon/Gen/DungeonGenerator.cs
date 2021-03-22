@@ -7,7 +7,7 @@ public class DungeonGenerator : MonoBehaviour
     private const int MAX_TRIES = 3;
 
     public RoomFlow currentFlow;
-
+    public RoomFlow[] flows;
 
     public bool drawGizmos;
 
@@ -37,7 +37,7 @@ public class DungeonGenerator : MonoBehaviour
     }
 
 
-    public RoomComposite CreateDungeon()
+    public RoomComposite CreateDungeon(RoomFlow flow)
     {
         Debug.Log("Creating dungeon!");
         ClearDungeon();
@@ -46,6 +46,8 @@ public class DungeonGenerator : MonoBehaviour
         //Random.InitState(seed);
         //Debug.Log("Random seed: " + seed);
 
+        //Debug.Log(flow.name);
+        currentFlow = flow;
         currentFlow.Init();
         List<List<FlowNode>> cycles = FindCycles(currentFlow);
         cycles.Sort((a, b) => b.Count.CompareTo(a.Count)); // sort in decending order
@@ -62,6 +64,12 @@ public class DungeonGenerator : MonoBehaviour
         }
         // if failed, dungeonComposite will still be null
         return null;
+    }
+
+    public RoomComposite CreateDungeon()
+    {
+        RoomFlow flow = flows[Random.Range(0, flows.Length)];
+        return CreateDungeon(flow);
     }
 
     private bool TryGenerating(List<List<FlowNode>> cycles)
@@ -528,34 +536,34 @@ public class DungeonGenerator : MonoBehaviour
 
     #region Old
 
-    public RoomData temp_startRoom;
-    public RoomData temp_middleRoom;
-    public RoomData temp_endRoom;
+    //public RoomData temp_startRoom;
+    //public RoomData temp_middleRoom;
+    //public RoomData temp_endRoom;
 
-    public void TestCreateDungeon()
-    {
-        ClearDungeon();
+    //public void TestCreateDungeon()
+    //{
+    //    ClearDungeon();
 
-        int curX = 0;
+    //    int curX = 0;
 
-        // start room
-        curX = -temp_startRoom.width / 2;
+    //    // start room
+    //    curX = -temp_startRoom.width / 2;
 
-        PlaceRoom(temp_startRoom, curX, -temp_startRoom.height / 2);
-        curX += temp_startRoom.width;
-
-
-        int numCombat = Random.Range(4, 6);
-        for (int i = 0; i < numCombat; i++)
-        {
-            PlaceRoom(temp_middleRoom, curX, -temp_middleRoom.height / 2);
-            curX += temp_middleRoom.width;
-        }
+    //    PlaceRoom(temp_startRoom, curX, -temp_startRoom.height / 2);
+    //    curX += temp_startRoom.width;
 
 
-        PlaceRoom(temp_endRoom, curX, -temp_endRoom.height / 2);
-        curX += temp_endRoom.width;
-    }
+    //    int numCombat = Random.Range(4, 6);
+    //    for (int i = 0; i < numCombat; i++)
+    //    {
+    //        PlaceRoom(temp_middleRoom, curX, -temp_middleRoom.height / 2);
+    //        curX += temp_middleRoom.width;
+    //    }
+
+
+    //    PlaceRoom(temp_endRoom, curX, -temp_endRoom.height / 2);
+    //    curX += temp_endRoom.width;
+    //}
 
     //private RoomComposite ComposeCycle(List<FlowNode> cycle)
     //{
