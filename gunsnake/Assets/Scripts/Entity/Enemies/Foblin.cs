@@ -71,6 +71,7 @@ public class Foblin : Enemy
     private void Move(Vector3 dir)
     {
         animator.SetOrigPos(transform.position);
+       
         if (dir.x > 0)
             animator.SetFacing(false);
         else if (dir.x < 0)
