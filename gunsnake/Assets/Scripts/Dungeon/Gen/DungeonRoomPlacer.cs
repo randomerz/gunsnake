@@ -47,8 +47,17 @@ public class DungeonRoomPlacer : MonoBehaviour
                     if (connection.isAvailable)
                         sides.Add(connection.side);
                 }
-                Direction dir = sides[Random.Range(0, sides.Count)];
-                dir = (Direction)((int)dir % 4);
+                Direction dir;
+                if (sides.Count == 0)
+                {
+                    Debug.LogError("No sides to spawn entrance in!");
+                    dir = 0;
+                }
+                else
+                {
+                    dir = sides[Random.Range(0, sides.Count)];
+                    dir = (Direction)((int)dir % 4);
+                }
                 room.SpawnEnterance(dir);
             }
             else if (rco.roomData.roomType == RoomType.exit)
