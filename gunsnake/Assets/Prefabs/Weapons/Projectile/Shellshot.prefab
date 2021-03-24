@@ -99,6 +99,7 @@ MonoBehaviour:
   damage: 1
   fireRate: 1
   mount: {fileID: 0}
+  attackSound: weapon_egg
   doDiagonal: 0
   bulletPrefab: {fileID: 1148371326340170767, guid: 2dc8d165248595842a5914ea27abec9d,
     type: 3}

@@ -12,8 +12,12 @@ public abstract class PlayerWeapon : MonoBehaviour
     private bool isReady;
 
     [Header("Other")]
+    public string attackSound;
+
+    [HideInInspector]
     public PlayerSegmentSprite mount;
     protected WeaponSprite weaponSprite;
+
 
     private void Awake()
     {
@@ -25,5 +29,9 @@ public abstract class PlayerWeapon : MonoBehaviour
     {
         weaponSprite.SetSprite(mount.isBent, mount.isHead);
     }
-    public abstract void Attack();
+
+    public virtual void Attack()
+    {
+        AudioManager.Play(attackSound);
+    }
 }

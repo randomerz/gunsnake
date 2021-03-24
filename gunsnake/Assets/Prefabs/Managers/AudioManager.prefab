@@ -1,0 +1,173 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5655189462924632849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5655189462924632863}
+  - component: {fileID: 5655189462924632862}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5655189462924632863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655189462924632849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5655189462924632862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655189462924632849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5657a3e076af64dbc5657648f912f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: dungeon_door_close
+    clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_torch_lit
+    clip: {fileID: 8300000, guid: 8e6cec12ce0ba024aa19d24b25e6e467, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_goblin_attack
+    clip: {fileID: 8300000, guid: a3d8fe52e8ff2e64aa415ea4d9fb2bfb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_goblin_death
+    clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_skeleton_wizard_attack
+    clip: {fileID: 8300000, guid: 0330a86c1192bd64f8662402bfb7b4fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_slime_attack1
+    clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_slime_attack2
+    clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: enemy_slime_move
+    clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: pickup_heart
+    clip: {fileID: 8300000, guid: bed0902a39f4ae44cba62dcb8a421b35, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_death1
+    clip: {fileID: 8300000, guid: 3a0088914db8238468cac2b74921c274, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_death2
+    clip: {fileID: 8300000, guid: f0cd5577f7761fd4fb554323ca2aeb5b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_take_damage1
+    clip: {fileID: 8300000, guid: dc84f677c45d01742be3cb8917dd689b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_take_damage2
+    clip: {fileID: 8300000, guid: 3c22d5fdec1c4f24494e98690a330736, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_buy_item
+    clip: {fileID: 8300000, guid: 5061b3cbdaaf2594b9862a3f02e6c96e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_click
+    clip: {fileID: 8300000, guid: a518682eb98fa3141bf13fb4126555ab, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_open_loot
+    clip: {fileID: 8300000, guid: 79e90cf6219dd78428e05a6e7501381e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_egg
+    clip: {fileID: 8300000, guid: 28c8d53b16c2484478925cf45ab1c5c1, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_laser
+    clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_pea
+    clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  music:
+  - name: Temple Music
+    clip: {fileID: 8300000, guid: c292a4d678b6df4439795f83068e5669, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Jungle Music
+    clip: {fileID: 8300000, guid: 0ecf4d9b9dbfb46469bff08d34d88c70, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

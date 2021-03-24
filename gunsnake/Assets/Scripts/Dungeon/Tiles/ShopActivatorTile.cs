@@ -10,7 +10,7 @@ public class ShopActivatorTile : Tile
         {
             if (other.GetComponent<PlayerMovement>() != null) // is head
             {
-                Debug.Log("Opening shop...");
+                UIManager.OpenShop();
             }
         }
     }

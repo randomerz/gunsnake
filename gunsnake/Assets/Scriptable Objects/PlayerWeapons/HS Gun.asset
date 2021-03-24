@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: H.S. Gun
   description: Shoots a super high speed shot.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
   itemType: 0
+  baseCost: 15
   prefab: {fileID: 1793473670551159033, guid: 4a29785c44c9a1841be3d5e94e9f3397, type: 3}

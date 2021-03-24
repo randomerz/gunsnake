@@ -10,8 +10,7 @@ public class LootActivatorTile : Tile
         {
             if (other.GetComponent<PlayerMovement>() != null) // is head
             {
-                Debug.Log("Opening loot...");
-                isEnabled = false;
+                UIManager.OpenLoot();
             }
         }
     }

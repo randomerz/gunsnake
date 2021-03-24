@@ -9,7 +9,7 @@ public class PlayerEffects : MonoBehaviour
 
     private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[Player.body.Length];
 
-
+    
     void Start()
     {
         for (int i = 0; i < Player.body.Length; i++)

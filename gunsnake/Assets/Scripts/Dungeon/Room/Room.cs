@@ -129,11 +129,7 @@ public class Room : MonoBehaviour
                     if (currentWave == waves.Count)
                     {
                         isInCombat = false;
-                        foreach (Door d in doors)
-                        {
-                            if (!d.isLocked)
-                                d.SetIsClosed(false);
-                        }
+                        SetDoorIsClosed(false);
                         Debug.Log("Room complete!");
                     }
                     else
@@ -142,6 +138,15 @@ public class Room : MonoBehaviour
                     }
                 }
                 break;
+        }
+    }
+
+    private void SetDoorIsClosed(bool value)
+    {
+        foreach (Door d in doors)
+        {
+            if (!d.isLocked)
+                d.SetIsClosed(value);
         }
     }
 
@@ -321,11 +326,7 @@ public class Room : MonoBehaviour
                         break;
                     case RoomType.challenge:
                         isInCombat = true;
-                        foreach (Door d in doors)
-                        {
-                            if (!d.isLocked)
-                                d.SetIsClosed(true);
-                        }
+                        SetDoorIsClosed(true);
                         break;
                 }
             }

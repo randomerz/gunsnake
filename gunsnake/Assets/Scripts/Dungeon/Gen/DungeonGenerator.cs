@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class DungeonGenerator : MonoBehaviour
 {
@@ -39,7 +41,7 @@ public class DungeonGenerator : MonoBehaviour
 
     public RoomComposite CreateDungeon(RoomFlow flow)
     {
-        Debug.Log("Creating dungeon!");
+        //Debug.Log("Creating dungeon!");
         ClearDungeon();
         //int seed = Random.Range(0, 32768);
         //seed = 32024;
@@ -481,6 +483,8 @@ public class DungeonGenerator : MonoBehaviour
 
     #region Gizmos
 
+#if UNITY_EDITOR
+
     private void OnDrawGizmos()
     {
         if (!drawGizmos || currentFlow == null)
@@ -532,9 +536,11 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+#endif
+
     #endregion
 
-    #region Old
+#region Old
 
     //public RoomData temp_startRoom;
     //public RoomData temp_middleRoom;
@@ -673,5 +679,5 @@ public class DungeonGenerator : MonoBehaviour
     //    return null;
     //}
 
-    #endregion
+#endregion
 }

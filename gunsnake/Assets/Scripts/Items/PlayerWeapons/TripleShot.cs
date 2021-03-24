@@ -14,6 +14,8 @@ public class TripleShot : PlayerWeapon
 
     public override void Attack()
     {
+        base.Attack();
+
         GameObject proj1 = ProjectileManager.CreateProjectile(bulletPrefab);
         GameObject proj2 = ProjectileManager.CreateProjectile(bulletPrefab);
         GameObject proj3 = ProjectileManager.CreateProjectile(bulletPrefab);

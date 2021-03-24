@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     private PlayerWeaponManager _playerWeaponManager;
     public static PlayerWeaponManager playerWeaponManager;
 
+    private static bool didInit = false;
+
     private void Awake()
     {
         body = _body;
@@ -36,15 +38,31 @@ public class Player : MonoBehaviour
         TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
     }
 
-    // my favorite method
-    public GameObject GetHead()
+    private void Start()
     {
-        return body[0];
+        if (!didInit)
+        {
+            ResetSnakeToDefault();
+        }
     }
+
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
         playerHealth.OnTick(e.tick);
         playerMovement.OnTick(e.tick);
+    }
+
+    public static void ResetSnakeToDefault()
+    {
+        didInit = true;
+        playerHealth.ResetValuesToDefault();
+        playerWeaponManager.ResetWeaponsToDefault();
+    }
+
+    // my favorite method
+    public GameObject GetHead()
+    {
+        return body[0];
     }
 }

@@ -11,6 +11,6 @@ public class EmptyWeapon : PlayerWeapon
 
     public override void Attack()
     {
-
+        base.Attack();
     }
 }
