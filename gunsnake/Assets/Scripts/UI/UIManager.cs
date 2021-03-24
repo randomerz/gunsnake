@@ -8,22 +8,28 @@ public class UIManager : MonoBehaviour
 {
     public static bool stopPlayerInput;
 
-    
+    public bool isOpen = false;
+    public bool devEnabled;
+
+    [Header("PlayerInfo")]
+
     public TextMeshProUGUI[] snakeWeapons = new TextMeshProUGUI[4];
     public TextMeshProUGUI[] storageWeapons = new TextMeshProUGUI[2];
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI keysText;
-    public bool isOpen = false;
 
-    [Header("Options")]
+    [Header("Panels")]
 
+    public GameObject PlayerInfoPanel;
     public GameObject OptionPanel;
     public GameObject QuitPanel;
-    public GameObject PlayerInfoPanel;
     public GameObject MenuPanel;
-    
+    public GameObject ShopPanel;
+    public GameObject LootPanel;
+    public GameObject DevPanel;
+
 
     [Header("Menu")]
     public GameObject infoButton;
@@ -32,21 +38,22 @@ public class UIManager : MonoBehaviour
 
     [Header("Volume + Sxf")]
     public GameObject volumeSlider;
-    public float volumeNumber;
+    public static float volumeNumber;
     public TextMeshProUGUI volumeCounter;
 
     public GameObject sxfSlider;
-    public float sxfNumber;
+    public static float sxfNumber;
     public TextMeshProUGUI sxfCounter;
 
-    [Header("quit")]
+    [Header("Quit")]
     public GameObject yesButton;
 
 
 
     void Start()
     {
-        PlayerInventory.AddGold(100);
+        volumeCounter.text = volumeNumber.ToString();
+        sxfCounter.text = sxfNumber.ToString();
     }
 
     void Update()
@@ -58,14 +65,13 @@ public class UIManager : MonoBehaviour
             else
                 OpenUI();
         }
+        CheckDevPanel();
 
         if (isOpen)
         {
             healthText.text = "" + Player.playerHealth.GetHealth() + " / " + Player.playerHealth.GetmaxHealth(); ;
             goldText.text = "" + PlayerInventory.gold;
             keysText.text = "" + PlayerInventory.keys;
-            volumeCounter.text = volumeNumber.ToString();
-            sxfCounter.text = sxfNumber.ToString();
             for (int i = 0; i < snakeWeapons.Length; i++)
             {
                 if (Player.playerWeaponManager.GetWeapon(i) == null)
@@ -82,7 +88,6 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
 
     public void Heal()
     {
@@ -179,14 +184,65 @@ public class UIManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         volumeNumber = volume;
-        
+        volumeCounter.text = volumeNumber.ToString();
+
     }
 
     //sxf stuff
     public void SetSxf(float sxf)
     {
         sxfNumber = sxf;
+        sxfCounter.text = sxfNumber.ToString();
 
     }
+
+
+    #region Dev Tools
+
+    private void CheckDevPanel()
+    {
+        if (Input.GetKeyDown(KeyCode.BackQuote) && devEnabled) // ~ key
+        {
+            if (DevPanel.activeSelf)
+            {
+                Time.timeScale = 1f;
+                DevPanel.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                DevPanel.SetActive(true);
+            }
+        }
+    }
+
+    public void AddGold(int amount)
+    {
+        PlayerInventory.AddGold(amount);
+    }
+
+    public void AddKeys(int amount)
+    {
+        PlayerInventory.AddKey(amount);
+    }
+
+    public void SetInvuln(bool value)
+    {
+        Player.playerHealth.isInvulnerable = value;
+    }
+
+    public void SetInfDamage(bool value)
+    {
+        if (value)
+        {
+            // set damage high
+        }
+        else
+        {
+            // set damage low
+        }
+    }
+
+    #endregion
 }
 

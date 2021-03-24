@@ -36,6 +36,31 @@ public class TimeTickSystem
         }
     }
 
+    public static void ClearDelegates()
+    {
+        // clear everything
+        if (OnTick_PlayerMove != null)
+            foreach (Delegate e in OnTick_PlayerMove.GetInvocationList())
+                OnTick_PlayerMove -= (EventHandler<OnTickEventArgs>)e;
+        if (OnTick_PlayerWeapons != null)
+            foreach (Delegate e in OnTick_PlayerWeapons.GetInvocationList())
+                OnTick_PlayerWeapons -= (EventHandler<OnTickEventArgs>)e;
+        if (OnTick_Projectiles != null)
+            foreach (Delegate e in OnTick_Projectiles.GetInvocationList())
+                OnTick_Projectiles -= (EventHandler<OnTickEventArgs>)e;
+        if (OnTick_Enemies != null)
+            foreach (Delegate e in OnTick_Enemies.GetInvocationList())
+                OnTick_Enemies -= (EventHandler<OnTickEventArgs>)e;
+        if (OnTick_Dungeon != null)
+            foreach (Delegate e in OnTick_Dungeon.GetInvocationList())
+                OnTick_Dungeon -= (EventHandler<OnTickEventArgs>)e;
+        //OnTick_PlayerMove
+        //OnTick_PlayerWeapons
+        //OnTick_Projectiles
+        //OnTick_Enemies
+        //OnTick_Dungeon
+    }
+
     public static int GetTick()
     {
         return tick;

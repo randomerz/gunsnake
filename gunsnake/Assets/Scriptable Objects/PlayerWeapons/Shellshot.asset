@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: TEMP_ARTIFACT
+  m_Name: Shellshot
   m_EditorClassIdentifier: 
-  name: TEMP ARTIFACT
-  description: hi im temporary temp artifact
+  name: Shellshot
+  description: Shoots an eggshell that pierces 1 enemy.
   icon: {fileID: 0}
-  itemType: 1
-  prefab: {fileID: 0}
+  itemType: 0
+  prefab: {fileID: 1793473670551159033, guid: dbfb8eb302f96674984aef492596c689, type: 3}

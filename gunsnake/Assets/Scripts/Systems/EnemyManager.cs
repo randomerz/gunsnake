@@ -25,16 +25,17 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            enemyContainer = new GameObject("EnemyContainer");
-        }
+        //if (_instance == null)
+        //{
+        _instance = this;
+        enemyContainer = new GameObject("EnemyContainer");
+        //}
+        TimeTickSystem.OnTick_Enemies += TimeTickSystem_OnTick;
     }
 
     private void Start()
     {
-        TimeTickSystem.OnTick_Enemies += TimeTickSystem_OnTick;
+
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
@@ -143,8 +144,10 @@ public class EnemyManager : MonoBehaviour
         currentLevelEnemies.Add(enemy);
     }
 
-    public static void ResetCurrentLevelEnemies()
+    public static void ResetAllEnemies()
     {
+        activeEnemies.Clear();
+        inactiveEnemies.Clear();
         currentLevelEnemies.Clear();
     }
 }

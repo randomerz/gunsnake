@@ -6,12 +6,12 @@ public static class PlayerInventory
 {
     public static int gold;
     [SerializeField]
-    public static int keys = 1;
+    public static int keys;
 
-    public static PlayerWeapon[] weaponStorage = new PlayerWeapon[2];
+    public static Item[] weaponStorage = new Item[2];
 
     // TODO: make Aritact:Item and ArtifactManager for equiping/dequiping arts
-    //public static Artifact[] artifacts;
+    private static Artifact[] artifacts;
 
     public static void AddGold(int amount)
     {
@@ -27,9 +27,9 @@ public static class PlayerInventory
     }
 
 
-    public static PlayerWeapon SetWeapon(PlayerWeapon newWeapon, int index)
+    public static Item SetWeapon(Item newWeaponItem, int index)
     {
-        return Player.playerWeaponManager.SetWeapon(newWeapon, index);
+        return Player.playerWeaponManager.SetWeapon(newWeaponItem, index);
     }
 
     public static void MoveEquippedToStorage(int equipIndex, int storageIndex)
@@ -48,11 +48,26 @@ public static class PlayerInventory
 
     public static bool IsStorageFull()
     {
-        foreach (PlayerWeapon w in weaponStorage)
+        foreach (Item w in weaponStorage)
             if (w == null)
                 return false;
         return true;
     }
 
-    // public static void AddArtifact(Artifact artifact)
+    public static void AddArtifact(Artifact artifact)
+    {
+        switch(artifact.codename)
+        {
+            case "attack":
+                Projectile.bonusDamage++;
+                break;
+            case "health":
+                Player.playerHealth.ChangemaxHealth();
+                break;
+            case "pierce":
+                Projectile.bonusPierce++;
+                break;
+        }
+        ArtifactManager._instance.AddArtifact(artifact);
+    }
 }

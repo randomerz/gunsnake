@@ -3193,7 +3193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3208875470719630242}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &609240020
 MonoBehaviour:
@@ -3805,13 +3805,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497c0c2d8c82b2443a0cdec414a65ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFlow: {fileID: 11400000, guid: 055189b086d5515479569d4bb51eba12, type: 2}
-  drawGizmos: 0
+  currentFlow: {fileID: 11400000, guid: 0c4b0ebaec534ad4f9e1e079c661910e, type: 2}
+  flows:
+  - {fileID: 11400000, guid: 0c4b0ebaec534ad4f9e1e079c661910e, type: 2}
+  - {fileID: 11400000, guid: 36653b3c686bfe94d8b9b8de1d1c37c0, type: 2}
+  - {fileID: 11400000, guid: 055189b086d5515479569d4bb51eba12, type: 2}
+  - {fileID: 11400000, guid: cd739e4fd087a8e47b5415a00029cf4b, type: 2}
+  drawGizmos: 1
   roomPlacer: {fileID: 901504259}
   roomTable: {fileID: 901504262}
-  temp_startRoom: {fileID: 11400000, guid: 789fbdae39555364aa07fe8d1e2979c3, type: 2}
-  temp_middleRoom: {fileID: 11400000, guid: be284d7a6c53a6d408f751300a77a86b, type: 2}
-  temp_endRoom: {fileID: 11400000, guid: 2804e8daa6459844b8abc1e71c14a80e, type: 2}
 --- !u!4 &901504261
 Transform:
   m_ObjectHideFlags: 0
@@ -3854,6 +3856,12 @@ MonoBehaviour:
   - name: HubX_Elizabeth_29x29
     freq: 1
     roomData: {fileID: 11400000, guid: f1e3658926d553544a7b25b27c5ca6a1, type: 2}
+  - name: DomesticCombat_Allison_21x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 23703678bd45ea84486402bd3ad75e7d, type: 2}
+  - name: MushRoom_Levi_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 7804e4eab6a880d47bc8365ef8545cd9, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
@@ -5652,6 +5660,7 @@ GameObject:
   - component: {fileID: 1455916477}
   - component: {fileID: 1455916476}
   - component: {fileID: 1455916475}
+  - component: {fileID: 1455916479}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -5704,6 +5713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c, type: 2}
+  enemyDeathParticle: {fileID: 0}
 --- !u!4 &1455916478
 Transform:
   m_ObjectHideFlags: 0
@@ -5718,6 +5728,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1455916479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455916474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615b0fd5daa569d4d8acf41131d82215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack:
+    freq: 0.4
+    count: 0
+    codename: attack
+  health:
+    freq: 0.3
+    count: 0
+    codename: health
+  pierce:
+    freq: 0.4
+    count: 0
+    codename: pierce
 --- !u!1 &1463277085
 GameObject:
   m_ObjectHideFlags: 0

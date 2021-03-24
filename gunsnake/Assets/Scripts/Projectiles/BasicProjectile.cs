@@ -24,13 +24,21 @@ public class BasicProjectile : Projectile
             transform.position += direction;
     }
 
+    public override void SetValues(Projectile other)
+    {
+        baseDamage = other.baseDamage;
+        basePierce = other.basePierce;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy")
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();
-            e.TakeDamage(damage, direction);
-            ProjectileManager.RemoveProjectile(gameObject);
+            e.TakeDamage(CalculateDamage(), direction);
+            basePierce -= 1;
+            if (CalculatePierce() < 0) 
+                ProjectileManager.RemoveProjectile(gameObject);
         }
         if (other.tag == "Wall")
         {

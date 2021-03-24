@@ -16,16 +16,17 @@ public class ProjectileManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-            projectileContainer = new GameObject("ProjectileContainer");
-        }
+        //if (_instance == null)
+        //{
+        _instance = this;
+        projectileContainer = new GameObject("ProjectileContainer");
+        //}
+        TimeTickSystem.OnTick_Projectiles += TimeTickSystem_OnTick;
     }
 
     private void Start()
     {
-        TimeTickSystem.OnTick_Projectiles += TimeTickSystem_OnTick;
+
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
@@ -34,8 +35,9 @@ public class ProjectileManager : MonoBehaviour
         //{
         foreach (List<GameObject> projList in activeProjectiles.Values)
         {
-            foreach (GameObject g in projList)
+            for (int i = projList.Count - 1; i >= 0; i--)
             {
+                GameObject g = projList[i];
                 if (g.GetComponent<Projectile>() != null)
                 {
                     g.GetComponent<Projectile>().ProjectileTick(e.tick);
@@ -48,7 +50,7 @@ public class ProjectileManager : MonoBehaviour
     public static GameObject CreateProjectile(GameObject projectilePrefab)
     {
         GameObject proj;
-        Type type = projectilePrefab.GetComponent<Projectile>().GetType();
+        Type type = projectilePrefab.GetComponent<Projectile>().GetType(); // Projectile.SetSprite()
         if (!inactiveProjectiles.ContainsKey(type))
         {
             //Debug.Log("Creating new projectile container: " + type);
@@ -62,6 +64,13 @@ public class ProjectileManager : MonoBehaviour
             proj = inactiveProjectiles[type][len - 1];
             inactiveProjectiles[type].RemoveAt(len - 1);
             proj.SetActive(true);
+
+            SpriteRenderer sprite = proj.GetComponent<SpriteRenderer>();
+            SpriteRenderer prefabSprite = projectilePrefab.GetComponent<SpriteRenderer>();
+            sprite.sprite = prefabSprite.sprite;
+            sprite.color = prefabSprite.color;
+            proj.GetComponent<Projectile>().SetValues(projectilePrefab.GetComponent<Projectile>());
+            proj.GetComponent<Projectile>().Awake();
         }
         else
         {
@@ -93,5 +102,19 @@ public class ProjectileManager : MonoBehaviour
             Debug.LogWarning("Could not remove projectile: " + type + ". Current projectile containers are: " + currentKeys);
             proj.SetActive(false);
         }
+    }
+
+    public static void ResetAllProjectiles()
+    {
+        activeProjectiles.Clear();
+        inactiveProjectiles.Clear();
+        //foreach (System.Type type in activeProjectiles.Keys)
+        //{
+        //    List<GameObject> projList = activeProjectiles[type];
+        //    for (int i = projList.Count - 1; i >= 0; i--)
+        //    {
+        //        RemoveProjectile(projList[i]);
+        //    }
+        //}
     }
 }

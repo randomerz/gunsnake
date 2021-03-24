@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: BasicShot
+  m_Name: Podshooter
   m_EditorClassIdentifier: 
-  name: Peashooter
-  description: Shoots a basic, single shot.
+  name: Pod Shooter
+  description: Shoots three basic shots.
   icon: {fileID: 0}
   itemType: 0
-  prefab: {fileID: 1793473670551159033, guid: 1ecc18d03bbf83047a41f73bf3fe90ba, type: 3}
+  prefab: {fileID: 1793473670551159033, guid: 1b04d9b76c1d878409f190a685140c30, type: 3}
