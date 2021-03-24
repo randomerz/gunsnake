@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
         volumeCounter.text = volumeNumber.ToString();
         sxfCounter.text = sfxNumber.ToString();
 
-        areaText.text = LevelHandler.currentArea + " - " + (LevelHandler.currentFloor + 1);
+        areaText.text = LevelHandler.currentArea.ToLower() + " - " + (LevelHandler.currentFloor + 1);
 
         UpdateDescription();
 

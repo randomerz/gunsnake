@@ -171,16 +171,20 @@ public class RoomComposite
         List<Vector3Int> path = new List<Vector3Int>();
         Vector3Int dir = DirectionUtil.Convert(hallway.connectionA.side);
         Vector3Int pos = start + dir;
+        Vector3Int posP = pos + DirectionUtil.Convert(DirectionUtil.PrevDir(hallway.connectionA.side));
+        Vector3Int posN = pos + DirectionUtil.Convert(DirectionUtil.NextDir(hallway.connectionA.side));
         int lim = 0;
         while (pos != end && lim < SIMPLE_HALLWAY_LIMIT)
         {
-            if (grid[MID + pos.x, MID + pos.y])
+            if (grid[MID + pos.x, MID + pos.y] || grid[MID + posP.x, MID + posP.y] || grid[MID + posN.x, MID + posN.y])
             {
                 return false;
             }
 
             path.Add(pos - basePos);
             pos += dir;
+            posP += dir;
+            posN += dir;
             lim += 1;
         }
 
