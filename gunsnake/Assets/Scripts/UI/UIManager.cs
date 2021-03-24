@@ -108,6 +108,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        volumeSlider.GetComponent<Slider>().value = volumeNumber;
+        sfxSlider.GetComponent<Slider>().value = sfxNumber;
         volumeCounter.text = volumeNumber.ToString();
         sxfCounter.text = sfxNumber.ToString();
 
