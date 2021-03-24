@@ -78,6 +78,26 @@ public class Archer : Enemy
 
         if (CanMove(transform.position + dir))
             transform.position += dir;
+        else if (CanMove(transform.position + new Vector3(0, 1, 0)))
+        {
+            Vector3 newdir = new Vector3(0, 1, 0);
+            transform.position += newdir;
+        }
+        else if (CanMove(transform.position + new Vector3(0, -1, 0)))
+        {
+            Vector3 newdir = new Vector3(0, -1, 0);
+            transform.position += newdir;
+        }
+        else if (CanMove(transform.position + new Vector3(1, 0, 0)))
+        {
+            Vector3 newdir = new Vector3(1, 0, 0);
+            transform.position += newdir;
+        }
+        else
+        {
+            Vector3 newdir = new Vector3(-1, 0, 0);
+            transform.position += newdir;
+        }
     }
 
     private void Attack(GameObject seg)

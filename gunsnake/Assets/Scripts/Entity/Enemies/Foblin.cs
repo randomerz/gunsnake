@@ -71,7 +71,6 @@ public class Foblin : Enemy
     private void Move(Vector3 dir)
     {
         animator.SetOrigPos(transform.position);
-       
         if (dir.x > 0)
             animator.SetFacing(false);
         else if (dir.x < 0)
@@ -79,6 +78,26 @@ public class Foblin : Enemy
 
         if (CanMove(transform.position + dir))
             transform.position += dir;
+        else if (CanMove(transform.position + new Vector3(0, 1, 0)))
+        {
+            Vector3 newdir = new Vector3(0, 1, 0);
+            transform.position += newdir;
+        }
+        else if (CanMove(transform.position + new Vector3(0, -1, 0)))
+        {
+            Vector3 newdir = new Vector3(0, -1, 0);
+            transform.position += newdir;
+        }
+        else if (CanMove(transform.position + new Vector3(1, 0, 0)))
+        {
+            Vector3 newdir = new Vector3(1, 0, 0);
+            transform.position += newdir;
+        }
+        else
+        {
+            Vector3 newdir = new Vector3(-1, 0, 0);
+            transform.position += newdir;
+        }
     }
 
     private void Attack(GameObject seg)
