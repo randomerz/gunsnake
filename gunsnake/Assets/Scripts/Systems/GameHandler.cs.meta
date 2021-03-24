@@ -8,7 +8,7 @@ MonoImporter:
       type: 2}
   - enemyDeathParticle: {fileID: 430776399415774282, guid: 4460e85fd4f162242b1f513ed33cf6f1,
       type: 3}
-  executionOrder: 0
+  executionOrder: -1
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

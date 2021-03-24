@@ -17,6 +17,8 @@ public class Item : ScriptableObject
     }
     public ItemType itemType;
 
+    public int baseCost;
+
     public GameObject prefab; // i dont know if this is right
 
 }

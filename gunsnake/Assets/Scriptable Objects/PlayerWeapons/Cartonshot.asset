@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cartonshot
   description: Shoots three basic eggs.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
   itemType: 0
+  baseCost: 20
   prefab: {fileID: 1793473670551159033, guid: b7aec85d85484a2418fe5166afe97747, type: 3}

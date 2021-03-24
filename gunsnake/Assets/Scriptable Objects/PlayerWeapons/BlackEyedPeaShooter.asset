@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
   m_Name: BlackEyedPeaShooter
   m_EditorClassIdentifier: 
-  name: Black Eyed Pea Shooter
-  description: Shoots a single shot which pierces through 1 enemy.
-  icon: {fileID: 0}
+  name: BEP Shooter
+  description: Black-Eyed Pea Shooter shoots peas which can pierce though 1 enemy.
+  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
   itemType: 0
+  baseCost: 15
   prefab: {fileID: 1793473670551159033, guid: 4393a724c909d0e429221f28cc48f661, type: 3}

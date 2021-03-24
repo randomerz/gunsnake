@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   fireRate: 0
+  attackSound: weapon_laser
   mount: {fileID: 0}
   doDiagonal: 1
   bulletPrefab: {fileID: 1148371326340170767, guid: 38e881e53bb613e40929c3f0419d041e,

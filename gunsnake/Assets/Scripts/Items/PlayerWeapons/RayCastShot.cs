@@ -14,6 +14,8 @@ public class RayCastShot : PlayerWeapon
 
     public override void Attack()
     {
+        base.Attack();
+
         GameObject proj1 = ProjectileManager.CreateProjectile(bulletPrefab);
         RayCastProj rc1 = proj1.GetComponent<RayCastProj>();
 
