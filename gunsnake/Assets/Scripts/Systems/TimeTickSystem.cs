@@ -92,9 +92,9 @@ public class TimeTickSystem
 
                 if (OnTick_PlayerMove != null) OnTick_PlayerMove(this, new OnTickEventArgs { tick = tick });
                 if (OnTick_PlayerWeapons != null) OnTick_PlayerWeapons(this, new OnTickEventArgs { tick = tick });
-                if (OnTick_Projectiles != null) OnTick_Projectiles(this, new OnTickEventArgs { tick = tick });
                 if (OnTick_Enemies != null) OnTick_Enemies(this, new OnTickEventArgs { tick = tick });
                 if (OnTick_Dungeon != null) OnTick_Dungeon(this, new OnTickEventArgs { tick = tick });
+                if (OnTick_Projectiles != null) OnTick_Projectiles(this, new OnTickEventArgs { tick = tick });
 
             }
         }
