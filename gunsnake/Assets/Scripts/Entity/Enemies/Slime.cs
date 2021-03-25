@@ -70,9 +70,7 @@ public class Slime : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-        AudioManager.Play("enemy_slime_move");
         animator.SetOrigPos(transform.position);
-
         if (dir.x > 0)
             animator.SetFacing(false);
         else if (dir.x < 0)
@@ -80,24 +78,30 @@ public class Slime : Enemy
 
         if (CanMove(transform.position + dir))
             transform.position += dir;
-        else if (CanMove(transform.position + new Vector3(0, 1, 0))){
-            Vector3 newdir = new Vector3(0, 1, 0);
-            transform.position += newdir;
-        }
-        else if (CanMove(transform.position + new Vector3(0, -1, 0)))
-        {
-            Vector3 newdir = new Vector3(0, -1, 0);
-            transform.position += newdir;
-        }
-        else if (CanMove(transform.position + new Vector3(1, 0, 0)))
-        {
-            Vector3 newdir = new Vector3(1, 0, 0);
-            transform.position += newdir;
-        }
         else
         {
-            Vector3 newdir = new Vector3(-1, 0, 0);
-            transform.position += newdir;
+            int randomDir = Random.Range(0, 3);
+            switch (randomDir)
+            {
+                case 0:
+                    if (CanMove(transform.position + new Vector3(1, 0, 0)))
+                        transform.position += new Vector3(1, 0, 0);
+                    break;
+                case 1:
+                    if (CanMove(transform.position + new Vector3(-1, 0, 0)))
+                        transform.position += new Vector3(-1, 0, 0);
+                    break;
+                case 2:
+                    if (CanMove(transform.position + new Vector3(0, 1, 0)))
+                        transform.position += new Vector3(0, 1, 0);
+                    break;
+                case 3:
+                    if (CanMove(transform.position + new Vector3(0, -1, 0)))
+                        transform.position += new Vector3(0, -1, 0);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
