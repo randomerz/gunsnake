@@ -58,7 +58,7 @@ public class HudUpdater : MonoBehaviour
     void Update()
     {
         currentHealthnumber = Player.playerHealth.GetHealth();
-        maxHealthNumber = Player.playerHealth.GetmaxHealth();
+        maxHealthNumber = Player.playerHealth.GetMaxHealth();
 
         coinText.text = PlayerInventory.gold.ToString();
         

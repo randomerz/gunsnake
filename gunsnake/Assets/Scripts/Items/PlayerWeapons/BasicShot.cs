@@ -14,6 +14,8 @@ public class BasicShot : PlayerWeapon
 
     public override void Attack()
     {
+        base.Attack();
+
         GameObject proj1 = ProjectileManager.CreateProjectile(bulletPrefab);
         BasicProjectile bp1 = proj1.GetComponent<BasicProjectile>();
 

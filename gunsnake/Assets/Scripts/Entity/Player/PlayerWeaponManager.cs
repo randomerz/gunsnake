@@ -8,16 +8,16 @@ public class PlayerWeaponManager : MonoBehaviour
     private int ticksTillCooldown = 0;
 
     [SerializeField]
-    private Item[] weaponItems = new Item[Player.body.Length];
-    private PlayerWeapon[] weapons = new PlayerWeapon[Player.body.Length];
-    private GameObject[] weaponObjs = new GameObject[Player.body.Length];
-    private int currMountIndex;
+    private Item[] defaultItems = new Item[Player.body.Length];
+    private static Item[] weaponItems = new Item[Player.body.Length];
+    private static PlayerWeapon[] weapons = new PlayerWeapon[Player.body.Length];
+    private static GameObject[] weaponObjs = new GameObject[Player.body.Length];
+    private static int currMountIndex;
 
     // can fire
     public bool isSprinting;
 
-    //public Item defaultWeapon;
-
+    private bool didInit;
 
     private void Awake()
     {
@@ -26,18 +26,8 @@ public class PlayerWeaponManager : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < weapons.Length; i++)
-        {
-            if (weaponItems[i] != null)
-            {
-                GameObject weaponObj = Instantiate(weaponItems[i].prefab, Player.sprites[i].transform);
-                weapons[i] = weaponObj.GetComponent<PlayerWeapon>();
-                weapons[i].mount = Player.body[i].GetComponent<PlayerSegmentSprite>();
-                weaponObjs[i] = weaponObj;
-            }
-        }
-
-        ticksTillCooldown = shotCooldown;
+        if (!didInit)
+            InitializeWeapons();
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
@@ -91,5 +81,33 @@ public class PlayerWeaponManager : MonoBehaviour
     public Item GetWeapon(int index)
     {
         return weaponItems[index];
+    }
+
+    public void InitializeWeapons()
+    {
+        didInit = true;
+
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            if (weaponItems[i] != null)
+            {
+                GameObject weaponObj = Instantiate(weaponItems[i].prefab, Player.sprites[i].transform);
+                weapons[i] = weaponObj.GetComponent<PlayerWeapon>();
+                weapons[i].mount = Player.body[i].GetComponent<PlayerSegmentSprite>();
+                weaponObjs[i] = weaponObj;
+            }
+        }
+
+        ticksTillCooldown = shotCooldown;
+    }
+
+    public void ResetWeaponsToDefault()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            SetWeapon(null, i);
+        }
+        defaultItems.CopyTo(weaponItems, 0);
+        InitializeWeapons();
     }
 }

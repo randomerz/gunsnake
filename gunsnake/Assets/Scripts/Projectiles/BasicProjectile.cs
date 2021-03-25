@@ -20,14 +20,25 @@ public class BasicProjectile : Projectile
 
     public override void ProjectileTick(int tick)
     {
+        CheckIfEnemyOnSquare();
         if (tick % 2 == 0)
             transform.position += direction;
+        CheckIfEnemyOnSquare();
     }
 
     public override void SetValues(Projectile other)
     {
         baseDamage = other.baseDamage;
         basePierce = other.basePierce;
+    }
+
+    private void CheckIfEnemyOnSquare()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullHeightEntitiesMask);
+        foreach (Collider2D col in enemies)
+        {
+            OnTriggerEnter2D(col);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

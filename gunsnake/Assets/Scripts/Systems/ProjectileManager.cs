@@ -106,15 +106,22 @@ public class ProjectileManager : MonoBehaviour
 
     public static void ResetAllProjectiles()
     {
-        activeProjectiles.Clear();
-        inactiveProjectiles.Clear();
-        //foreach (System.Type type in activeProjectiles.Keys)
-        //{
-        //    List<GameObject> projList = activeProjectiles[type];
-        //    for (int i = projList.Count - 1; i >= 0; i--)
-        //    {
-        //        RemoveProjectile(projList[i]);
-        //    }
-        //}
+        //activeProjectiles.Clear();
+        //inactiveProjectiles.Clear();
+        foreach (System.Type type in activeProjectiles.Keys)
+        {
+            activeProjectiles[type].Clear();
+
+            //List<GameObject> projList = activeProjectiles[type];
+            //for (int i = projList.Count - 1; i >= 0; i--)
+            //{
+            //    RemoveProjectile(projList[i]);
+            //}
+        }
+
+        foreach (System.Type type in inactiveProjectiles.Keys)
+        {
+            inactiveProjectiles[type].Clear();
+        }
     }
 }

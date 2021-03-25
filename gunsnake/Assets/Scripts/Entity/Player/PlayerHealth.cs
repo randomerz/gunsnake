@@ -8,7 +8,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private int health;
     [SerializeField]
-    private int maxHealth = 3;
+    private int maxHealth;
+    [SerializeField]
+    private int baseMaxHealth = 3;
 
     public bool isInvulnerable;
     private int ticksUntilCanTakeDamage;
@@ -17,16 +19,12 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI healthText;
 
     private bool strobing;
-    private SpriteRenderer[] spriteRenderers;
+    //public GameObject[] spriteRenderers;
 
     void Start()
     {
         isInvulnerable = false;
         health = maxHealth;
-
-        spriteRenderers = new SpriteRenderer[Player.sprites.Length];
-        for (int i = 0; i < Player.sprites.Length; i++)
-            spriteRenderers[i] = Player.sprites[i];
     }
 
 
@@ -48,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void GainHealth(int amount)
     {
+        AudioManager.Play("pickup_heart");
+
         health += amount;
         UpdateHUD();
     }
@@ -56,12 +56,26 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvulnerable)
         {
+            AudioManager.Play("player_take_damage" + Random.Range(1, 3));
+
             health -= amount;
             UpdateHUD();
+
+            if (health <= 0)
+            {
+                Die();
+            }
 
             SetInvulnerable(iFramesTicks);
             CameraShake.Shake(0.25f, 0.25f);
         }
+    }
+
+    public void Die()
+    {
+        AudioManager.Play("player_death" + Random.Range(1, 3));
+
+        Debug.Log("Player died!");
     }
 
     public int GetHealth()
@@ -69,8 +83,7 @@ public class PlayerHealth : MonoBehaviour
         return health;
     }
 
-
-    public int GetmaxHealth()
+    public int GetMaxHealth()
     {
         return maxHealth;
     }
@@ -82,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
         StrobeAlpha(frames / 4, 0.5f);
     }
 
-    public void ChangemaxHealth()
+    public void ChangeMaxHealth()
     {
         maxHealth++;
         health++;
@@ -107,12 +120,12 @@ public class PlayerHealth : MonoBehaviour
     {
         if (_i <= _stopAt)
         {
-            for (int j = 0; j < spriteRenderers.Length; j++)
+            for (int j = 0; j < Player.sprites.Length; j++)
             {
                 if (_i % 2 == 0)
-                    spriteRenderers[j].color = _toStrobe;
+                    Player.sprites[j].color = _toStrobe;
                 else
-                    spriteRenderers[j].color = _color;
+                    Player.sprites[j].color = _color;
             }
 
             yield return new WaitForSeconds(0.25f);
@@ -125,4 +138,13 @@ public class PlayerHealth : MonoBehaviour
     }
 
     #endregion
+
+    public void ResetValuesToDefault()
+    {
+        maxHealth = baseMaxHealth;
+
+        //spriteRenderers = new SpriteRenderer[Player.sprites.Length];
+        //for (int i = 0; i < Player.sprites.Length; i++)
+        //    spriteRenderers[i] = Player.sprites[i];
+    }
 }

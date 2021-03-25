@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Does level stuff
-// Once level finishes, 
-// Loads next floor in same scene if in same area (Jung 1-1 -> Jung 1-2)
-// Loads new scene if different area (Jung 1-2 -> Dung 1-1)
-
-
 public class LevelHandler : MonoBehaviour
 {
     public GameObject playerPrefab;
@@ -32,20 +26,35 @@ public class LevelHandler : MonoBehaviour
 
     private static LevelHandler instance;
 
+    private static GameObject playerObj;
+
+    private static bool didInit;
+    private static bool shouldResetPlayer;
+
     private void Awake()
     {
-        if (currentArea == null)
+        if (!didInit)
         {
-            currentArea = "Jungle";
-            currentFloor = 0;
+            instance = this;
+            shouldResetPlayer = true;
+            SetToJungle();
         }
-
-        instance = this;
     }
 
     void Start()
     {
-        StartLevel();
+        if (!didInit)
+        {
+            didInit = true;
+            Initialize();
+        }
+        if (shouldResetPlayer)
+        {
+            shouldResetPlayer = false;
+            Player.ResetSnakeToDefault();
+        }
+
+        StartCoroutine(StartLevel());
     }
 
     public static LevelHandler GetInstance()
@@ -53,16 +62,46 @@ public class LevelHandler : MonoBehaviour
         return instance;
     }
 
-    public void StartLevel()
+    public static void Initialize()
     {
+        // spawn player
+        playerObj = GameObject.Find(instance.playerPrefab.name);
+        if (playerObj == null)
+            playerObj = Instantiate(instance.playerPrefab);
+    }
+
+    public IEnumerator StartLevel()
+    {
+        // wait a frame to let everything else be set up
+        yield return null;
+
+        // audio
+        if (Random.Range(0, 2) == 0)
+        {
+            AudioManager.Play("Jungle Music");
+        }
+        else
+        {
+            AudioManager.Play("Temple Music");
+        }
+        //if (currentArea == "Jungle")
+        //{
+        //    AudioManager.Play("Jungle Music");
+        //}
+        //else if (currentArea == "Dungeon")
+        //{
+        //    AudioManager.Play("Dungeon Music");
+        //}
+        //else if (currentArea == "Temple")
+        //{
+        //    AudioManager.Play("Temple Music");
+        //}
+
+
         // dungeon stuff
         dungeonGen.CreateDungeon();
         EnemyManager.InitializeEnemyDrops();
 
-        // spawn player
-        GameObject player = GameObject.Find(playerPrefab.name);
-        if (player == null)
-            player = GameObject.Instantiate(playerPrefab);
         //player.transform.position;
         Player.playerMovement.SetSnakeSpawn(startObject.transform.position, startDirection);
         Player.playerEffects.SetPlayerEntering();
@@ -108,10 +147,16 @@ public class LevelHandler : MonoBehaviour
         }
     }
 
-    public static void RestartGame()
+    public static void SetToJungle()
     {
         currentArea = "Jungle";
         currentFloor = 0;
+    }
+
+    public static void RestartGame()
+    {
+        SetToJungle();
+        shouldResetPlayer = true;
         LoadScene(jungleSceneName);
     }
 

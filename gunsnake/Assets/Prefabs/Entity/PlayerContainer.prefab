@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 3
+  baseMaxHealth: 3
   isInvulnerable: 0
   iFramesTicks: 8
   healthText: {fileID: 0}
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotCooldown: 2
-  weaponItems:
+  defaultItems:
   - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
   - {fileID: 0}
   - {fileID: 0}

@@ -70,7 +70,9 @@ public class Slime : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
+        AudioManager.Play("enemy_slime_move");
         animator.SetOrigPos(transform.position);
+
         if (dir.x > 0)
             animator.SetFacing(false);
         else if (dir.x < 0)
@@ -101,6 +103,8 @@ public class Slime : Enemy
 
     private void Attack(GameObject seg)
     {
+        AudioManager.Play("enemy_slime_attack" + Random.Range(1, 3));
+
         PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
         if (h != null)
         {

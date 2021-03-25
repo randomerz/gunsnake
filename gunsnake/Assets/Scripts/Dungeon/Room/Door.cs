@@ -65,12 +65,16 @@ public class Door : MonoBehaviour
 
     public void SetIsClosed(bool shouldClose)
     {
+        AudioManager.Play("dungeon_door_close");
+
         isClosed = shouldClose;
         UpdateSpriteBoxes();
     }
 
     public void UnlockDoor()
     {
+        AudioManager.Play("dungeon_door_close");
+
         SetIsClosed(false);
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public static class PlayerInventory
 {
     public static int gold;
-    [SerializeField]
     public static int keys;
 
     public static Item[] weaponStorage = new Item[2];
@@ -26,6 +25,11 @@ public static class PlayerInventory
         return keys > 0;
     }
 
+
+    public static Item GetWeapon(int index)
+    {
+        return Player.playerWeaponManager.GetWeapon(index);
+    }
 
     public static Item SetWeapon(Item newWeaponItem, int index)
     {
@@ -54,6 +58,24 @@ public static class PlayerInventory
         return true;
     }
 
+    public static void AddWeapon(Item weapon)
+    {
+        if (IsStorageFull())
+        {
+            Debug.LogWarning("Tried adding weapon to Player's weapon storage, but is full.");
+            return;
+        }
+
+        for (int i = 0; i < weaponStorage.Length; i++)
+        {
+            if (weaponStorage[i] == null)
+            {
+                weaponStorage[i] = weapon;
+                return;
+            }
+        }
+    }
+
     public static void AddArtifact(Artifact artifact)
     {
         switch(artifact.codename)
@@ -62,7 +84,7 @@ public static class PlayerInventory
                 Projectile.bonusDamage++;
                 break;
             case "health":
-                Player.playerHealth.ChangemaxHealth();
+                Player.playerHealth.ChangeMaxHealth();
                 break;
             case "pierce":
                 Projectile.bonusPierce++;

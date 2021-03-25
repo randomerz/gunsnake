@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pea Shooter
   description: Shoots a basic, single shot.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
   itemType: 0
+  baseCost: 10
   prefab: {fileID: 1793473670551159033, guid: 1ecc18d03bbf83047a41f73bf3fe90ba, type: 3}
