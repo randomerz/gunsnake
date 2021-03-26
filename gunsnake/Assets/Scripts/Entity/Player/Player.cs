@@ -24,26 +24,17 @@ public class Player : MonoBehaviour
     private PlayerWeaponManager _playerWeaponManager;
     public static PlayerWeaponManager playerWeaponManager;
 
-    private static bool didInit = false;
+    private bool didInit = false;
 
     private void Awake()
     {
-        body = _body;
-        sprites = _sprites;
-        playerEffects = _playerEffects;
-        playerHealth = _playerHealth;
-        playerMovement = _playerMovement;
-        playerWeaponManager = _playerWeaponManager;
-
+        InitReferences();
         TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
     }
 
     private void Start()
     {
-        if (!didInit)
-        {
-            ResetSnakeToDefault();
-        }
+
     }
 
 
@@ -53,15 +44,33 @@ public class Player : MonoBehaviour
         playerMovement.OnTick(e.tick);
     }
 
+    public void InitReferences()
+    {
+        if (didInit)
+            return;
+
+        didInit = true;
+
+        body = _body;
+        sprites = _sprites;
+        playerEffects = _playerEffects;
+        playerHealth = _playerHealth;
+        playerMovement = _playerMovement;
+        playerWeaponManager = _playerWeaponManager;
+
+        playerEffects.InitReferences();
+
+        //ResetSnakeToDefault();
+    }
+
     public static void ResetSnakeToDefault()
     {
-        didInit = true;
         playerHealth.ResetValuesToDefault();
         playerWeaponManager.ResetWeaponsToDefault();
     }
 
     // my favorite method
-    public GameObject GetHead()
+    public static GameObject GetHead()
     {
         return body[0];
     }

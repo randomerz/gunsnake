@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     
     // for counting when player enters
     private int numSegmentsIn; // could be buggy doing it this way
-
+    private bool didFog;
 
     // combat
     private bool isInCombat;
@@ -314,20 +314,41 @@ public class Room : MonoBehaviour
         if (collision.tag == "Player")
         {
             numSegmentsIn += 1;
-            if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
-            {
-                didPlayerEnter = true;
-                Debug.Log("Player entered room type " + roomData.roomType);
 
-                switch (roomData.roomType)
-                {
-                    case RoomType.normal:
+            switch (roomData.roomType)
+            {
+                case RoomType.normal:
+                    if (numSegmentsIn > 0 && !didPlayerEnter)
+                    {
+                        didPlayerEnter = true;
+                        Debug.Log("Player entered room type " + roomData.roomType);
+
                         isInCombat = true;
-                        break;
-                    case RoomType.challenge:
+                    }
+                    break;
+                case RoomType.challenge:
+
+                    if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
+                    {
+                        didPlayerEnter = true;
+                        Debug.Log("Player entered room type " + roomData.roomType);
+
                         isInCombat = true;
                         SetDoorIsClosed(true);
-                        break;
+                    }
+                    break;
+            }
+
+            if (!didFog)
+            {
+                didFog = true;
+                if (Fog.isActive)
+                {
+                    Vector3 pPos = Player.GetHead().transform.position;
+                    Vector3Int start = new Vector3Int((int)pPos.x, (int)pPos.y, 0);
+                    Vector3Int min = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0);
+                    Vector3Int max = min + new Vector3Int(roomData.width, roomData.height, 0);
+                    Fog.Flood(start, min, max);
                 }
             }
         }
