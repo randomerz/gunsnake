@@ -19,6 +19,9 @@ public class Item : ScriptableObject
 
     public int baseCost;
 
+    [HideInInspector]
+    public int count = 0;
+
     public GameObject prefab; // i dont know if this is right
 
 }
