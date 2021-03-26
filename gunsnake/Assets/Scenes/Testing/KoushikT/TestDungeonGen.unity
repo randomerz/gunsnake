@@ -5661,6 +5661,7 @@ GameObject:
   - component: {fileID: 1455916476}
   - component: {fileID: 1455916475}
   - component: {fileID: 1455916479}
+  - component: {fileID: 1455916480}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -5737,21 +5738,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 1455916474}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a036bf8767dafad49afff96e413d2494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+  artifacts:
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+  - name: 
+    freq: 0
+    value: {fileID: 0}
+--- !u!114 &1455916480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455916474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 615b0fd5daa569d4d8acf41131d82215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack:
-    freq: 0.4
-    count: 0
-    codename: attack
-  health:
-    freq: 0.3
-    count: 0
-    codename: health
-  pierce:
-    freq: 0.4
-    count: 0
-    codename: pierce
+  attack: {fileID: 11400000, guid: 55ecd22c0e51e9c46ac9db9386a88579, type: 2}
+  health: {fileID: 11400000, guid: a6199c77ca1b54f41974afaf4a2ff569, type: 2}
+  pierce: {fileID: 11400000, guid: 5a61f2236b4202c4f8185983ed588b50, type: 2}
 --- !u!1 &1463277085
 GameObject:
   m_ObjectHideFlags: 0

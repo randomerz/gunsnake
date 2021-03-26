@@ -380,25 +380,24 @@ public class UIManager : MonoBehaviour
     public void SelectArtifact(int i)
     {
 
-        //Item[] artifactList = PlayerInventory.GetArtifactList();
-        //if (artifactItems[i] != null)
-        //{
-        //    ButtonClicked();
+        Item[] artifactList = PlayerInventory.GetArtifactList();
+        if (artifactList[i] != null)
+        {
+            ButtonClicked();
 
-        //    currSelectedItem = artifactItems[i];
-        //    UpdateDescription();
-        //}
+            currSelectedItem = artifactList[i];
+            UpdateDescription();
+        }
     }
 
 
     public void UpdateArtifacts()
     {
-        //Item[] artifactList = PlayerInventory.GetArtifactList();
-        //int[] countList = PlayerInventory.GetCountList();
+        Item[] artifactList = PlayerInventory.GetArtifactList();
 
         for (int i = 0; i < artifactDisplays.Length; i++)
         {
-            //artifactDisplays[i].UpdateDisplay(artifactList[i].icon, countList[i]);
+            artifactDisplays[i].UpdateDisplay(artifactList[i].icon, artifactList[i].count);
         }
     }
 
@@ -476,8 +475,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            //PlayerInventory.AddArtifact(currSelectedItem);
-            Debug.Log("Bought " + currSelectedItem.name + ", but didn't add.");
+            PlayerInventory.AddArtifact(currSelectedItem);
+            //Debug.Log("Bought " + currSelectedItem.name + ", but didn't add.");
         }
 
         AudioManager.Play("ui_buy_item");
