@@ -17,4 +17,5 @@ MonoBehaviour:
   icon: {fileID: 3046544090647025007, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
   baseCost: 10
+  count: 0
   prefab: {fileID: 0}

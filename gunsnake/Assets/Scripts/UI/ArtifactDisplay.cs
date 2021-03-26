@@ -14,7 +14,10 @@ public class ArtifactDisplay : MonoBehaviour
 
     public void UpdateDisplay(Sprite image, int count)
     {
-        this.image.sprite = image;
+        if (count > 0)
+        {
+            this.image.sprite = image;
+        }
         if (count > 1)
         {
             this.count.text = count.ToString();

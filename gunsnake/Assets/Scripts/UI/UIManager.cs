@@ -79,8 +79,7 @@ public class UIManager : MonoBehaviour
     // -1 means not selected
     private static int currShopSelected = -1;   // 0 - 5
     private static int currLootSelected = -1;   // 0 - 2
-    [SerializeField]
-    private int currInvSelected = -1;    // 0 - 3 are snake, 4, 5 are storage
+    private static int currInvSelected = -1;    // 0 - 3 are snake, 4, 5 are storage
 
     private static int snakeLength = 4;
     private static bool canSwapAndTrash;
@@ -379,10 +378,11 @@ public class UIManager : MonoBehaviour
 
     public void SelectArtifact(int i)
     {
-
         Item[] artifactList = PlayerInventory.GetArtifactList();
-        if (artifactList[i] != null)
+        if (i < artifactList.Length && artifactList[i] != null)
         {
+            if (artifactList[i].count == 0)
+                return;
             ButtonClicked();
 
             currSelectedItem = artifactList[i];
@@ -395,9 +395,18 @@ public class UIManager : MonoBehaviour
     {
         Item[] artifactList = PlayerInventory.GetArtifactList();
 
-        for (int i = 0; i < artifactDisplays.Length; i++)
+        if (artifactList.Length > artifactDisplays.Length)
+            Debug.LogError("More artifact in inventory than room to display!");
+        for (int i = 0; i < artifactList.Length && i < artifactDisplays.Length; i++)
         {
-            artifactDisplays[i].UpdateDisplay(artifactList[i].icon, artifactList[i].count);
+            if (artifactList[i] == null)
+            {
+                artifactDisplays[i].UpdateDisplay(null, 0);
+            }
+            else
+            {
+                artifactDisplays[i].UpdateDisplay(artifactList[i].icon, artifactList[i].count);
+            }
         }
     }
 
@@ -624,8 +633,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            //PlayerInventory.AddArtifact(currSelectedItem);
-            Debug.Log("Chose " + currSelectedItem.name + ", but didn't add.");
+            PlayerInventory.AddArtifact(currSelectedItem);
+            //Debug.Log("Chose " + currSelectedItem.name + ", but didn't add.");
         }
 
         for (int i = 0; i < lootItems.Length; i++)
@@ -715,6 +724,13 @@ public class UIManager : MonoBehaviour
 
     #region Dev Tools
 
+    [Header("Dev tools")]
+    public Toggle invulnToggle;
+    public Toggle damageToggle;
+
+    private static bool devIsInvuln;
+    private static bool devIsDamage;
+
     private void CheckDevPanel()
     {
         if (Input.GetKeyDown(KeyCode.BackQuote) && devEnabled) // ~ key
@@ -723,6 +739,9 @@ public class UIManager : MonoBehaviour
             {
                 Time.timeScale = 1f;
                 DevPanel.SetActive(false);
+
+                invulnToggle.isOn = devIsInvuln;
+                damageToggle.isOn = devIsDamage;
             }
             else
             {
@@ -750,12 +769,16 @@ public class UIManager : MonoBehaviour
     {
         ButtonClicked();
 
+        devIsInvuln = value;
+
         Player.playerHealth.isInvulnerable = value;
     }
 
     public void SetInfDamage(bool value)
     {
         ButtonClicked();
+
+        devIsDamage = value;
 
         if (value)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomComposite
 {
-    private const int MAX_SIZE = 300;
+    public const int MAX_SIZE = 300;
     private const int MID = 150;
     private const int MIN_HALLWAY = 5;
     private const int MAX_HALLWAY = 12;

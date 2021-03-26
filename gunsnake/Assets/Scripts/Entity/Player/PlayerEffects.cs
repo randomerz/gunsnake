@@ -9,9 +9,20 @@ public class PlayerEffects : MonoBehaviour
 
     private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[Player.body.Length];
 
+    private bool didInit = false;
     
     void Start()
     {
+        InitReferences();
+    }
+
+    public void InitReferences()
+    {
+        if (didInit)
+            return;
+
+        didInit = true;
+
         for (int i = 0; i < Player.body.Length; i++)
         {
             segSprites[i] = Player.body[i].GetComponent<PlayerSegmentSprite>();

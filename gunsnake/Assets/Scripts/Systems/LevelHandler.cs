@@ -22,21 +22,20 @@ public class LevelHandler : MonoBehaviour
 
     [Header("References")]
     public DungeonGenerator dungeonGen;
+    public Fog fog;
 
 
     private static LevelHandler instance;
 
     private static GameObject playerObj;
 
-    private static bool didInit;
-    private static bool shouldResetPlayer;
+    private bool didInit = false;
+    private static bool shouldResetPlayer = true;
 
-    private void Awake()
+    public void Awake()
     {
-        if (!didInit)
+        if (currentArea == null)
         {
-            instance = this;
-            shouldResetPlayer = true;
             SetToJungle();
         }
     }
@@ -45,16 +44,16 @@ public class LevelHandler : MonoBehaviour
     {
         if (!didInit)
         {
-            didInit = true;
             Initialize();
         }
+
         if (shouldResetPlayer)
         {
             shouldResetPlayer = false;
             Player.ResetSnakeToDefault();
         }
 
-        StartCoroutine(StartLevel());
+        StartLevel();
     }
 
     public static LevelHandler GetInstance()
@@ -62,19 +61,23 @@ public class LevelHandler : MonoBehaviour
         return instance;
     }
 
-    public static void Initialize()
+    public void Initialize()
     {
+        if (didInit)
+            return;
+
+        didInit = true;
+
+        instance = this;
+
         // spawn player
         playerObj = GameObject.Find(instance.playerPrefab.name);
         if (playerObj == null)
             playerObj = Instantiate(instance.playerPrefab);
     }
 
-    public IEnumerator StartLevel()
+    public void StartLevel()
     {
-        // wait a frame to let everything else be set up
-        yield return null;
-
         // audio
         if (Random.Range(0, 2) == 0)
         {
@@ -100,6 +103,7 @@ public class LevelHandler : MonoBehaviour
 
         // dungeon stuff
         dungeonGen.CreateDungeon();
+        fog?.Init();
         EnemyManager.InitializeEnemyDrops();
 
         //player.transform.position;
