@@ -109,9 +109,9 @@ MonoBehaviour:
   shotCooldown: 2
   defaultItems:
   - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
+  - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
+  - {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
   isSprinting: 0
 --- !u!1 &3208875470261152534
 GameObject:
