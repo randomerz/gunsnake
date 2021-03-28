@@ -18,8 +18,10 @@ public class ArtifactManager : MonoBehaviour
     public Item attack;
     public Item health;
     public Item pierce;
+    public Item dodger;
 
     private Item[] artifactList;
+    private bool didInit = false;
     //private float freqsum = 0;
 
     public static ArtifactManager _instance;
@@ -29,9 +31,28 @@ public class ArtifactManager : MonoBehaviour
         attack,
         health,
         pierce,
+        dodger,
     }
 
     void Awake()
+    {
+        Initialize();
+        //for (int i = 0; i < artifactList.Length; i++)
+        //{
+        //    artifactList[i].codename = System.Enum.GetName(typeof(ArtIndex), i);
+        //    freqsum += artifactList[i].freq;
+        //}
+    }
+    public void ResetArtifacts()
+    {
+        if (!didInit)
+            Initialize();
+        for (int i = 0; i < artifactList.Length; i++)
+        {
+            artifactList[i].count = 0;
+        }
+    }
+    private void Initialize()
     {
         if (_instance == null)
             _instance = this;
@@ -39,11 +60,8 @@ public class ArtifactManager : MonoBehaviour
         artifactList[(int)ArtIndex.attack] = attack;
         artifactList[(int)ArtIndex.health] = health;
         artifactList[(int)ArtIndex.pierce] = pierce;
-        //for (int i = 0; i < artifactList.Length; i++)
-        //{
-        //    artifactList[i].codename = System.Enum.GetName(typeof(ArtIndex), i);
-        //    freqsum += artifactList[i].freq;
-        //}
+        artifactList[(int)ArtIndex.dodger] = dodger;
+        didInit = true;
     }
     //    private float ResetFreq(Artifact a)
     //    {

@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerWeaponManager _playerWeaponManager;
     public static PlayerWeaponManager playerWeaponManager;
+    [SerializeField]
+    private ArtifactManager _ArtifactManager;
+    public static ArtifactManager artifactManager;
 
     private bool didInit = false;
 
@@ -57,6 +60,7 @@ public class Player : MonoBehaviour
         playerHealth = _playerHealth;
         playerMovement = _playerMovement;
         playerWeaponManager = _playerWeaponManager;
+        artifactManager = _ArtifactManager;
 
         playerEffects.InitReferences();
 
@@ -67,6 +71,7 @@ public class Player : MonoBehaviour
     {
         playerHealth.ResetValuesToDefault();
         playerWeaponManager.ResetWeaponsToDefault();
+        artifactManager.ResetArtifacts();
     }
 
     // my favorite method

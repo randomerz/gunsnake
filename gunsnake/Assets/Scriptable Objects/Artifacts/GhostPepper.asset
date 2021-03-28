@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: PiercingGrapes
+  m_Name: GhostPepper
   m_EditorClassIdentifier: 
-  name: Piercing Grapes
-  description: 'Increases pierce of each bullet by +1 per count. '
-  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
+  name: Ghost Pepper
+  description: Increases Dodge chance by +13% per count.
+  icon: {fileID: 21300000, guid: ae4fbba1dffb5da498233e2f5cdce94f, type: 3}
   itemType: 1
-  baseCost: 0
+  baseCost: 10
   count: 0
   prefab: {fileID: 0}
