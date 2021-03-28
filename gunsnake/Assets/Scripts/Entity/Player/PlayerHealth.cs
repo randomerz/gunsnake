@@ -8,10 +8,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private int health;
     [SerializeField]
-    private int maxHealth;
+    private static int maxHealth;
     [SerializeField]
     private int baseMaxHealth = 3;
 
+    private static float dodgeChance = 0f;
     public bool isInvulnerable;
     private int ticksUntilCanTakeDamage;
     public int iFramesTicks = 8;
@@ -56,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvulnerable)
         {
+            if(Random.Range(0f, 1f) <= dodgeChance)
+            {
+                //Add sound
+                return;
+            }
             AudioManager.Play("player_take_damage" + Random.Range(1, 3));
 
             health -= amount;
@@ -70,7 +76,10 @@ public class PlayerHealth : MonoBehaviour
             CameraShake.Shake(0.25f, 0.25f);
         }
     }
-
+    public void UpdateDodge(int c)
+    {
+        dodgeChance = 1 - (1 / (.15f *c + 1));
+    }
     public void Die()
     {
         AudioManager.Play("player_death" + Random.Range(1, 3));
@@ -142,6 +151,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetValuesToDefault()
     {
         maxHealth = baseMaxHealth;
+        dodgeChance = 0f;
 
         //spriteRenderers = new SpriteRenderer[Player.sprites.Length];
         //for (int i = 0; i < Player.sprites.Length; i++)

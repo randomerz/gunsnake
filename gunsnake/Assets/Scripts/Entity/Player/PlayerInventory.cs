@@ -76,19 +76,22 @@ public static class PlayerInventory
 
     public static void AddArtifact(Item art)
     {
-        switch(art.name)
+        ArtifactManager._instance.AddArtifact(art);
+        switch (art.name)
         {
-            case "ProteinShake":
+            case "Protein Shake":
                 Projectile.bonusDamage++;
                 break;
-            case "HeartyApple":
+            case "Hearty Apple":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
-            case "PiercingGrapes":
+            case "Piercing Grapes":
                 Projectile.bonusPierce++;
                 break;
+            case "Ghost Pepper":
+                Player.playerHealth.UpdateDodge(art.count);
+                break;
         }
-        ArtifactManager._instance.AddArtifact(art);
     }
 
     public static Item[] GetArtifactList()

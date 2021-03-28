@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
   m_Name: ProteinShake
   m_EditorClassIdentifier: 
-  name: ProteinShake
+  name: Protein Shake
   description: Increases damage by +1 per count.
   icon: {fileID: -314262122811554439, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
