@@ -9612,7 +9612,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 1514518727}
   animator: {fileID: 618269005}
-  attackSpeed: 1
+  attackSpeed: 13
 --- !u!114 &618269005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -944116586543906224, guid: fafa098ec160fe043824a4cfe160ded3,
@@ -12870,7 +12870,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 1102918652}
   animator: {fileID: 764669062}
-  attackSpeed: 1
+  attackSpeed: 6
 --- !u!114 &764669062 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8981718172046880783, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
@@ -22245,7 +22245,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 408881380}
   animator: {fileID: 1326061304}
-  attackSpeed: 2
+  attackSpeed: 7
 --- !u!1001 &1339806077
 PrefabInstance:
   m_ObjectHideFlags: 0
