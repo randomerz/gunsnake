@@ -6,6 +6,8 @@ public class BasicProjectile : Projectile
 {
     public Vector3 direction;
 
+    private bool hitEnemyThisTile = false;
+
     //  For making gifs
     //private void Awake()
     //{
@@ -22,7 +24,10 @@ public class BasicProjectile : Projectile
     {
         CheckIfEnemyOnSquare();
         if (tick % 2 == 0)
+        {
+            hitEnemyThisTile = false;
             transform.position += direction;
+        }
         CheckIfEnemyOnSquare();
     }
 
@@ -34,22 +39,30 @@ public class BasicProjectile : Projectile
 
     private void CheckIfEnemyOnSquare()
     {
+        if (hitEnemyThisTile)
+            return;
+
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullHeightEntitiesMask);
         foreach (Collider2D col in enemies)
         {
             OnTriggerEnter2D(col);
+
+            if (hitEnemyThisTile)
+                break;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" && !hitEnemyThisTile)
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();
             e.TakeDamage(CalculateDamage(), direction);
             basePierce -= 1;
             if (CalculatePierce() < 0) 
                 ProjectileManager.RemoveProjectile(gameObject);
+
+            hitEnemyThisTile = true;
         }
         if (other.tag == "Wall")
         {

@@ -26,7 +26,6 @@ public class LevelHandler : MonoBehaviour
 
 
     private static LevelHandler instance;
-
     private static GameObject playerObj;
 
     private bool didInit = false;
@@ -38,10 +37,7 @@ public class LevelHandler : MonoBehaviour
         {
             SetToJungle();
         }
-    }
 
-    void Start()
-    {
         if (!didInit)
         {
             Initialize();
@@ -52,6 +48,10 @@ public class LevelHandler : MonoBehaviour
             shouldResetPlayer = false;
             Player.ResetSnakeToDefault();
         }
+    }
+
+    void Start()
+    {
 
         StartLevel();
     }
@@ -175,6 +175,6 @@ public class LevelHandler : MonoBehaviour
 
     private static void WinGame()
     {
-        Debug.Log("You won the game!");
+        Player.EndGame(true);
     }
 }

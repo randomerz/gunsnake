@@ -7,10 +7,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private int health;
-    [SerializeField]
     private static int maxHealth;
-    [SerializeField]
-    private int baseMaxHealth = 3;
+    private static int baseMaxHealth = 5;
 
     private static float dodgeChance = 0f;
     public bool isInvulnerable;
@@ -31,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnTick(int tick)
     {
+        UpdateHUD();
         if (isInvulnerable)
         {
             ticksUntilCanTakeDamage -= 1;
@@ -76,15 +75,19 @@ public class PlayerHealth : MonoBehaviour
             CameraShake.Shake(0.25f, 0.25f);
         }
     }
+
     public void UpdateDodge(int c)
     {
         dodgeChance = 1 - (1 / (.15f *c + 1));
     }
+
     public void Die()
     {
         AudioManager.Play("player_death" + Random.Range(1, 3));
 
-        Debug.Log("Player died!");
+        isInvulnerable = true;
+        health = 0;
+        Player.EndGame(false);
     }
 
     public int GetHealth()
@@ -107,7 +110,7 @@ public class PlayerHealth : MonoBehaviour
     public void ChangeMaxHealth()
     {
         maxHealth++;
-        health++;
+        GainHealth(1);
     }
 
     #region Strobe Color

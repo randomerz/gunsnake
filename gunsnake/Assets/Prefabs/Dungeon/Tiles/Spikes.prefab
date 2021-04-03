@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2536877950220229174}
   - component: {fileID: 2536877950220229175}
   - component: {fileID: 2536877950220229172}
+  - component: {fileID: 1427219945}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1192949365
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7918778903070741875, guid: b4d080f299081fa4998ebaa009815b69,
+  m_Sprite: {fileID: -7528943454168934651, guid: ceb9ca2bff021d948b52e6f8f826986a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,7 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f52ead11fe5c1941a32aafc03a72410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 0
+  breakAfterUse: 0
+  isOnTimer: 0
+  numTicksOn: 0
+  numTicksOff: 0
+  ticksTillChange: 0
+  isActive: 1
 --- !u!61 &2536877950220229172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123,3 +129,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1427219945
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536877950220229168}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a519b33687a82441bde2b56fa6e90ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

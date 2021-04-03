@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public static bool stopPlayerInput;
 
     private bool isOpen = false;
+    private bool canClose = true;
     public bool devEnabled;
 
     [Header("PlayerInfo")]
@@ -54,6 +55,12 @@ public class UIManager : MonoBehaviour
     public GameObject[] lootButtons;
     private Image[] lootIcons;
 
+    [Header("Win Lose")]
+    public TextMeshProUGUI winText;
+    public TextMeshProUGUI lossText;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI scoreText;
+
     [Header("Panels")]
     public GameObject PlayerInfoPanel;
     public GameObject OptionPanel;
@@ -62,6 +69,7 @@ public class UIManager : MonoBehaviour
     public GameObject ShopPanel;
     public GameObject LootPanel;
     public GameObject DevPanel;
+    public GameObject winLosePanel;
 
     [Header("Other References")]
     public ItemLootTable lootTable;
@@ -199,6 +207,9 @@ public class UIManager : MonoBehaviour
 
     public void CloseUI()
     {
+        if (!canClose)
+            return;
+
         Time.timeScale = 1f;
 
         MenuPanel.SetActive(false);
@@ -658,18 +669,21 @@ public class UIManager : MonoBehaviour
         PlayerInfoPanel.SetActive(false);
         OptionPanel.SetActive(false);
         QuitPanel.SetActive(true);
+        winLosePanel.SetActive(false);
     }
     public void TurnOnInfoPanel()
     {
         PlayerInfoPanel.SetActive(true);
         OptionPanel.SetActive(false);
         QuitPanel.SetActive(false);
+        winLosePanel.SetActive(false);
     }
     public void TurnOnOptionPanel()
     {
         PlayerInfoPanel.SetActive(false);
         OptionPanel.SetActive(true);
         QuitPanel.SetActive(false);
+        winLosePanel.SetActive(false);
     }
 
     #endregion
@@ -681,6 +695,7 @@ public class UIManager : MonoBehaviour
     {
         LevelHandler.SetToJungle();
 
+        canClose = true;
         CloseUI();
         SceneManager.LoadScene(mainMenuSceneName);
     }
@@ -717,6 +732,34 @@ public class UIManager : MonoBehaviour
         sfxNumber = volume;
         sxfCounter.text = sfxNumber.ToString();
         AudioManager.SetSfxVolume(volume / volumeSlider.GetComponent<Slider>().maxValue);
+    }
+
+    #endregion
+
+
+    #region Win Lose
+
+    public static void EndGame(bool didWin, int time, int score)
+    {
+        instance?.EndGameHelper(didWin, time, score);
+    }
+
+    private void EndGameHelper(bool didWin, int time, int score)
+    {
+        Time.timeScale = 0f;
+        winLosePanel.SetActive(true);
+        MenuPanel.SetActive(true);
+        canClose = false;
+        isOpen = true;
+
+        winText.gameObject.SetActive(didWin);
+        lossText.gameObject.SetActive(!didWin);
+
+        int mins = time / 60;
+        int secs = time % 60;
+        timeText.text = mins + ":" + secs.ToString("00");
+
+        scoreText.text = score.ToString();
     }
 
     #endregion

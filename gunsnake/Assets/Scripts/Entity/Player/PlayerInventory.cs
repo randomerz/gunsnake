@@ -9,11 +9,18 @@ public static class PlayerInventory
 
     public static Item[] weaponStorage = new Item[2];
 
-    // TODO: make Aritact:Item and ArtifactManager for equiping/dequiping arts
+    public static void ResetValues()
+    {
+        gold = 0;
+        keys = 0;
+        weaponStorage = new Item[2];
+    }
 
     public static void AddGold(int amount)
     {
         gold += amount;
+
+        Player.AddScore(amount);
     }
     public static void AddKey(int amount)
     {

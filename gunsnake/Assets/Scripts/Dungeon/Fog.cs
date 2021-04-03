@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,6 +17,12 @@ public class Fog : MonoBehaviour
     {
         public Transform transform;
         public float r;
+
+        public VisionPoint(Transform transform, float radius)
+        {
+            this.transform = transform;
+            this.r = radius;
+        }
     }
 
 
@@ -45,6 +52,9 @@ public class Fog : MonoBehaviour
 
         isActive = true;
         instance = this;
+
+        Torch.fogController = this;
+        playerVP.transform = Player.body[0].transform;
 
         int offsetX = 16;
         int offsetY = 9;
@@ -157,5 +167,11 @@ public class Fog : MonoBehaviour
         if (instance.coverOld)
             return;
         instance.StartCoroutine(instance.FloodIterHelper(start, min, max, null));
+    }
+
+
+    public void AddTorch(Transform transform, float radius)
+    {
+        torches.Add(new VisionPoint(transform, radius));
     }
 }

@@ -43,16 +43,16 @@ TextureImporter:
     second: dungeon_furniture_21
   - first:
       213: -3072806721896967408
-    second: dungeon_furniture_22
+    second: dungeon_furniture_spike0
   - first:
       213: 6214412541183801768
-    second: dungeon_furniture_23
+    second: dungeon_furniture_spike1
   - first:
       213: -4594867980660573468
-    second: dungeon_furniture_24
+    second: dungeon_furniture_spike2
   - first:
       213: -7528943454168934651
-    second: dungeon_furniture_25
+    second: dungeon_furniture_spike3
   - first:
       213: -9087617012821022163
     second: dungeon_furniture_26
@@ -70,7 +70,7 @@ TextureImporter:
     second: dungeon_furniture_30
   - first:
       213: -7729092655846301277
-    second: dungeon_furniture_31
+    second: dungeon_furniture_gold1
   - first:
       213: -4719324990235783236
     second: dungeon_furniture_32
@@ -92,6 +92,54 @@ TextureImporter:
   - first:
       213: 8754740608463029641
     second: dungeon_furniture_1
+  - first:
+      213: 7325937843289347054
+    second: dungeon_furniture_gold2
+  - first:
+      213: -6294140710570063419
+    second: dungeon_furniture_gold3
+  - first:
+      213: 7958042740176024912
+    second: dungeon_furniture_plant1
+  - first:
+      213: -9154947599341403848
+    second: dungeon_furniture_plant2
+  - first:
+      213: -1935124679356653804
+    second: dungeon_furniture_boxfx1
+  - first:
+      213: -3924410414599458276
+    second: dungeon_furniture_boxfx2
+  - first:
+      213: 4386078984146095553
+    second: dungeon_furniture_boxfx3
+  - first:
+      213: -7482587026434951482
+    second: dungeon_furniture_boxfx4
+  - first:
+      213: -7862576404385780705
+    second: dungeon_furniture_plantfx1
+  - first:
+      213: -3865644482360665573
+    second: dungeon_furniture_plantfx2
+  - first:
+      213: -5034953901983249622
+    second: dungeon_furniture_plantfx3
+  - first:
+      213: -4044668302025314197
+    second: dungeon_furniture_plantfx4
+  - first:
+      213: 9041304600293971852
+    second: dungeon_furniture_spike4
+  - first:
+      213: -8447299866082833838
+    second: dungeon_furniture_spike_prep
+  - first:
+      213: 5463578364935648369
+    second: dungeon_furniture_spike_b3
+  - first:
+      213: -879106743812985856
+    second: dungeon_furniture_spike_b4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -462,7 +510,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon_furniture_22
+      name: dungeon_furniture_spike0
       rect:
         serializedVersion: 2
         x: 176
@@ -483,7 +531,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon_furniture_23
+      name: dungeon_furniture_spike1
       rect:
         serializedVersion: 2
         x: 192
@@ -504,7 +552,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon_furniture_24
+      name: dungeon_furniture_spike2
       rect:
         serializedVersion: 2
         x: 208
@@ -525,7 +573,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon_furniture_25
+      name: dungeon_furniture_spike3
       rect:
         serializedVersion: 2
         x: 224
@@ -651,7 +699,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dungeon_furniture_31
+      name: dungeon_furniture_gold1
       rect:
         serializedVersion: 2
         x: 96
@@ -675,8 +723,8 @@ TextureImporter:
       name: dungeon_furniture_32
       rect:
         serializedVersion: 2
-        x: 128
-        y: 80
+        x: 256
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -696,8 +744,8 @@ TextureImporter:
       name: dungeon_furniture_33
       rect:
         serializedVersion: 2
-        x: 144
-        y: 80
+        x: 272
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -717,8 +765,8 @@ TextureImporter:
       name: dungeon_furniture_34
       rect:
         serializedVersion: 2
-        x: 176
-        y: 80
+        x: 288
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -780,8 +828,8 @@ TextureImporter:
       name: dungeon_furniture_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 48
+        x: 304
+        y: 112
         width: 32
         height: 32
       alignment: 9
@@ -801,8 +849,8 @@ TextureImporter:
       name: dungeon_furniture_1
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 336
+        y: 96
         width: 16
         height: 48
       alignment: 9
@@ -814,6 +862,342 @@ TextureImporter:
       bones: []
       spriteID: 9854024e2361f7970800000000000000
       internalID: 8754740608463029641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_gold2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee35adb67a5faa560800000000000000
+      internalID: 7325937843289347054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_gold3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9852c1f58b6a8a0800000000000000
+      internalID: -6294140710570063419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plant1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 48
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055719b65b5a07e60800000000000000
+      internalID: 7958042740176024912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plant2
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 48
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831c0f3d9a713f080800000000000000
+      internalID: -9154947599341403848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_boxfx1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 26
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41fdada5b5e0525e0800000000000000
+      internalID: -1935124679356653804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_boxfx2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 26
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12b4f43581b989c0800000000000000
+      internalID: -3924410414599458276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_boxfx3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cd85def89b7edc30800000000000000
+      internalID: 4386078984146095553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_boxfx4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 16
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c6f5607eb2882890800000000000000
+      internalID: -7482587026434951482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plantfx1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 26
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ca73dfa6482e290800000000000000
+      internalID: -7862576404385780705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plantfx2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 26
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a91f803d87a5ac0800000000000000
+      internalID: -3865644482360665573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plantfx3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b42db3a10402ab0800000000000000
+      internalID: -5034953901983249622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_plantfx4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 16
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b60bf7fdb937ed7c0800000000000000
+      internalID: -4044668302025314197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_spike4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8790ae81aa297d70800000000000000
+      internalID: 9041304600293971852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_spike_prep
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a8dea078925ca80800000000000000
+      internalID: -8447299866082833838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_spike_b3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174bf7c539782db40800000000000000
+      internalID: 5463578364935648369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_furniture_spike_b4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c606ff219ccc3f0800000000000000
+      internalID: -879106743812985856
       vertices: []
       indices: 
       edges: []

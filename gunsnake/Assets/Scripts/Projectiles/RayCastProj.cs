@@ -87,7 +87,6 @@ public class RayCastProj : Projectile
                     {
                         e.TakeDamage(CalculateDamage(), direction);
                     }
-
                     // create effect
                 }
             }
