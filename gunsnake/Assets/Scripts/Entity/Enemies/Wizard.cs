@@ -112,11 +112,10 @@ public class Wizard : Enemy
         for (int i = 0; i < directions.Length; i++)
         {
             GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
-            //  EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
-            BasicProjectile bp = proj.GetComponent<BasicProjectile>();
+            EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
             proj.transform.position = transform.position;
             proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(directions[i].y, directions[i].x) * Mathf.Rad2Deg);
-        //    ep.direction = directions[i]; //something here
+            ep.direction = directions[i]; 
         }
     }
 }

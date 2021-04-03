@@ -20,10 +20,10 @@ public class EnemyProjectile : Projectile
 
     public override void ProjectileTick(int tick)
     {
-        CheckIfEnemyOnSquare();
+        CheckIfPlayerOnSquare();
         if (tick % 2 == 0)
             transform.position += direction;
-        CheckIfEnemyOnSquare();
+        CheckIfPlayerOnSquare();
     }
 
     public override void SetValues(Projectile other)
@@ -32,10 +32,10 @@ public class EnemyProjectile : Projectile
         basePierce = other.basePierce;
     }
 
-    private void CheckIfEnemyOnSquare()
+    private void CheckIfPlayerOnSquare()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullHeightEntitiesMask);
-        foreach (Collider2D col in enemies)
+        Collider2D[] player = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullHeightEntitiesMask);
+        foreach (Collider2D col in player)
         {
             OnTriggerEnter2D(col);
         }
@@ -43,13 +43,9 @@ public class EnemyProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Player")
         {
-           // Enemy e = other.gameObject.GetComponent<Enemy>();
-         //  e.TakeDamage(CalculateDamage(), direction);
-          //  basePierce -= 1;
-         //   if (CalculatePierce() < 0)
-          //      ProjectileManager.RemoveProjectile(gameObject);
+            other.GetComponent<PlayerSegmentHealth>().TakeDamage(1);
         }
         if (other.tag == "Wall")
         {

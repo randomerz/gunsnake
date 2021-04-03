@@ -9613,7 +9613,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1514518727}
   animator: {fileID: 618269005}
   attackSpeed: 4
-  bulletPrefab: {fileID: 1148371326340170767, guid: 37b275174251aac4f80c05c1c8fbee32,
+  bulletPrefab: {fileID: 1148371326340170767, guid: b0dc8579ed9af7e409f071b9b6729aa0,
     type: 3}
 --- !u!114 &618269005 stripped
 MonoBehaviour:
