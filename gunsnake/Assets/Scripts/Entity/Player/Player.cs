@@ -28,16 +28,30 @@ public class Player : MonoBehaviour
     public static ArtifactManager artifactManager;
 
     private bool didInit = false;
+    [SerializeField]
+    private bool debugResetPlayer;
+
+    private static float timeTaken;
+    private static float score; // gold count
 
     private void Awake()
     {
         InitReferences();
         TimeTickSystem.OnTick_PlayerMove += TimeTickSystem_OnTick;
+
+        if (debugResetPlayer)
+            ResetSnakeToDefault();
     }
 
     private void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        // do in update or OnTick?
+        timeTaken += Time.deltaTime;
     }
 
 
@@ -69,9 +83,23 @@ public class Player : MonoBehaviour
 
     public static void ResetSnakeToDefault()
     {
+        timeTaken = 0;
+        score = 0;
+
         playerHealth.ResetValuesToDefault();
+        PlayerInventory.ResetValues();
         playerWeaponManager.ResetWeaponsToDefault();
         artifactManager.ResetArtifacts();
+    }
+
+    public static void EndGame(bool didWin)
+    {
+        UIManager.EndGame(didWin, (int)timeTaken, (int)score);
+    }
+
+    public static void AddScore(float amount)
+    {
+        score += amount;
     }
 
     // my favorite method

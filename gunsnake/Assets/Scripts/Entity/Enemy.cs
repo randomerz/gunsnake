@@ -38,7 +38,7 @@ public abstract class Enemy : Entity
         if (spriteRenderer == null)
             Debug.LogError("Enemy doesn't have SpriteRenderer reference!");
         oldMat = spriteRenderer.material;
-        if (animator != null)
+        if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", false);
 
         EnemyManager.AddEnemy(this);
@@ -57,6 +57,7 @@ public abstract class Enemy : Entity
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
+        doTick = true;
         if (health <= 0)
         {
             Die();
