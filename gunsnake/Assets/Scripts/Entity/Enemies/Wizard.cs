@@ -8,6 +8,7 @@ public class Wizard : Enemy
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
+    public GameObject bulletPrefab;
 
     protected override void Awake()
     {
@@ -44,18 +45,10 @@ public class Wizard : Enemy
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
 
-
-                        // attack if within range
+                        Debug.Log("Wizard atkin?");
+                        Attack();
                         GameObject closestSeg = GetClosestPlayerSegment();
-                        if ((closestSeg.transform.position - transform.position).magnitude <= 1)
-                        {
-                            Attack(closestSeg);
-                        }
-                        // else move closer
-                        else
-                        {
-                            Move(GetDirectionToPlayer(false));
-                        }
+                        Move(GetDirectionToPlayer(false));
                     }
                     break;
             }
@@ -104,12 +97,26 @@ public class Wizard : Enemy
         }
     }
 
-    private void Attack(GameObject seg)
+    private void Attack()
     {
-        PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
-        if (h != null)
+        //       PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
+        //      if (h != null)
+        //       {
+        //            h.TakeDamage(damage);
+        //       }
+
+        Debug.Log("Wizard atking");
+        Vector3[] directions = {new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3 (0, -1, 0),
+        new Vector3(1, 1, 0), new Vector3(-1, 1, 0), new Vector3(1, -1, 0), new Vector3(-1, -1, 0)};
+
+        for (int i = 0; i < directions.Length; i++)
         {
-            h.TakeDamage(damage);
+            GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
+            //  EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
+            BasicProjectile bp = proj.GetComponent<BasicProjectile>();
+            proj.transform.position = transform.position;
+            proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(directions[i].y, directions[i].x) * Mathf.Rad2Deg);
+        //    ep.direction = directions[i]; //something here
         }
     }
 }

@@ -3533,7 +3533,7 @@ PrefabInstance:
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
@@ -5460,7 +5460,7 @@ PrefabInstance:
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
@@ -6031,7 +6031,7 @@ PrefabInstance:
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
@@ -9612,7 +9612,9 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 1514518727}
   animator: {fileID: 618269005}
-  attackSpeed: 13
+  attackSpeed: 4
+  bulletPrefab: {fileID: 1148371326340170767, guid: 37b275174251aac4f80c05c1c8fbee32,
+    type: 3}
 --- !u!114 &618269005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -944116586543906224, guid: fafa098ec160fe043824a4cfe160ded3,
@@ -14713,7 +14715,7 @@ PrefabInstance:
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257175443223125733, guid: 1ecc18d03bbf83047a41f73bf3fe90ba,
         type: 3}
@@ -25677,6 +25679,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   attackSpeed: 0
+  bulletPrefab: {fileID: 0}
 --- !u!212 &1514518727 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3306391595533008146, guid: fafa098ec160fe043824a4cfe160ded3,
