@@ -5935,6 +5935,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
   attackSpeed: 0
+  bulletPrefab: {fileID: 0}
 --- !u!212 &408881380 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8556664536879575055, guid: 5ea3f4393cea49347b22387ac217c00b,
@@ -22248,6 +22249,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 408881380}
   animator: {fileID: 1326061304}
   attackSpeed: 7
+  bulletPrefab: {fileID: 1148371326340170767, guid: b0dc8579ed9af7e409f071b9b6729aa0,
+    type: 3}
 --- !u!1001 &1339806077
 PrefabInstance:
   m_ObjectHideFlags: 0
