@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: 0c28c8afb14275a42801fefdf60b1e47
+guid: 7ca306ebb17140b49af75e32b60c2bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1045181238759104467
-    second: food_0
+      213: 2087599711929598529
+    second: weapon_carton
   - first:
-      213: 3046544090647025007
-    second: food_1
+      213: 5204608754067933960
+    second: weapon_shell
   - first:
-      213: -314262122811554439
-    second: food_2
+      213: 8382664973703491968
+    second: weapon_hs_gun
   - first:
-      213: -6704000743581025313
-    second: food_3
+      213: -6132445398664713869
+    second: weapon_laser
   - first:
-      213: 3783751772801332867
-    second: food_4
+      213: -6608797839199868079
+    second: weapon_pod_shooter
+  - first:
+      213: -5219570967855755084
+    second: weapon_pea_shooter
+  - first:
+      213: 2529660867170283917
+    second: weapon_bep
+  - first:
+      213: 5646971260367943346
+    second: weapon_egg
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -114,34 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: food_0
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 49
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d206cd17335ce71f0800000000000000
-      internalID: -1045181238759104467
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: food_1
+      name: weapon_carton
       rect:
         serializedVersion: 2
         x: 107
-        y: 49
-        width: 10
-        height: 10
+        y: 84
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f65d49b85bf774a20800000000000000
-      internalID: 3046544090647025007
+      spriteID: 14285ce90e4a8fc10800000000000000
+      internalID: 2087599711929598529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_2
+      name: weapon_shell
       rect:
         serializedVersion: 2
-        x: 123
-        y: 49
-        width: 10
-        height: 10
+        x: 124
+        y: 84
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 975057ba34483abf0800000000000000
-      internalID: -314262122811554439
+      spriteID: 80b8b1d261c7a3840800000000000000
+      internalID: 5204608754067933960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_3
+      name: weapon_hs_gun
       rect:
         serializedVersion: 2
-        x: 139
-        y: 49
-        width: 10
-        height: 10
+        x: 140
+        y: 84
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,29 +179,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdbf5e0d7da96f2a0800000000000000
-      internalID: -6704000743581025313
+      spriteID: 081b4bc5165355470800000000000000
+      internalID: 8382664973703491968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: food_4
+      name: weapon_laser
       rect:
         serializedVersion: 2
-        x: 155
-        y: 49
-        width: 10
-        height: 10
+        x: 157
+        y: 84
+        width: 14
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 386f310b036928430800000000000000
-      internalID: 3783751772801332867
+      spriteID: 3796c18a66d25eaa0800000000000000
+      internalID: -6132445398664713869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_pod_shooter
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b6f125165d844a0800000000000000
+      internalID: -6608797839199868079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_pea_shooter
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b01405fbdb5097b0800000000000000
+      internalID: -5219570967855755084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_bep
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8134ede7292b1320800000000000000
+      internalID: 2529660867170283917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_egg
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 69
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6321f31721e5e40800000000000000
+      internalID: 5646971260367943346
       vertices: []
       indices: 
       edges: []

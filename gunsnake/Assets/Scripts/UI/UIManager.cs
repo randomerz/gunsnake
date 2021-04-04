@@ -9,14 +9,18 @@ public class UIManager : MonoBehaviour
     public static bool stopPlayerInput;
 
     private bool isOpen = false;
+    private bool isClosing = false; // for ui animation
     private bool canClose = true;
     public bool devEnabled;
 
     [Header("PlayerInfo")]
 
-    public TextMeshProUGUI[] snakeWeapons = new TextMeshProUGUI[4];
-    public TextMeshProUGUI[] storageWeapons = new TextMeshProUGUI[2];
-    public ArtifactDisplay[] artifactDisplays = new ArtifactDisplay[24];
+    public Image[] snakeWeapons = new Image[4];
+    public Image[] storageWeapons = new Image[2];
+    public ArtifactDisplay[] artifactDisplays = new ArtifactDisplay[22];
+
+    public Image[] snakeWeaponsSelected = new Image[4];
+    public Image[] storageWeaponsSelected = new Image[2];
 
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI goldText;
@@ -25,6 +29,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI descNameText;
     public Image descIcon;
     public TextMeshProUGUI descDescriptionText;
+
+    public Image swapImage;
+    public Image trashImage;
 
     [Header("Options")]
     public GameObject volumeSlider;
@@ -62,6 +69,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     [Header("Panels")]
+    public GameObject leftSidePanel;
+    public GameObject rightSidePanel;
     public GameObject PlayerInfoPanel;
     public GameObject OptionPanel;
     public GameObject QuitPanel;
@@ -77,6 +86,16 @@ public class UIManager : MonoBehaviour
     private const int ARTIFACT_TABLE_ID = 1;
 
     public Sprite defaultIcon;
+    public Sprite selectedIcon;
+    public Sprite defaultSquare;
+    public Sprite selectedSquare;
+    public Sprite defaultSwap;
+    public Sprite selectedSwap;
+    public Sprite defaultTrash;
+    public Sprite selectedTrash;
+
+    public UIAnimationController animationController;
+
 
     // private
     private static Item[] shopItems = new Item[6];
@@ -111,6 +130,8 @@ public class UIManager : MonoBehaviour
             lootIcons[i] = lootButtons[i].GetComponentsInChildren<Image>()[1];
         }
 
+        leftSidePanel.SetActive(true);
+        rightSidePanel.SetActive(true);
     }
 
     void Start()
@@ -132,7 +153,12 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isOpen)
-                CloseUI();
+            {
+                if (!isClosing)
+                    CloseUI();
+                else
+                    CloseUIFunctions();
+            }
             else
                 OpenUI();
         }
@@ -148,17 +174,17 @@ public class UIManager : MonoBehaviour
             for (int i = 0; i < snakeWeapons.Length; i++)
             {
                 if (PlayerInventory.GetWeapon(i) == null)
-                    snakeWeapons[i].text = "-";
+                    snakeWeapons[i].sprite = defaultIcon;
                 else
-                    snakeWeapons[i].text = PlayerInventory.GetWeapon(i).name;
+                    snakeWeapons[i].sprite = PlayerInventory.GetWeapon(i).icon;
             }
 
             for (int i = 0; i < storageWeapons.Length; i++)
             {
                 if (PlayerInventory.weaponStorage[i] == null)
-                    storageWeapons[i].text = "-";
+                    storageWeapons[i].sprite = defaultIcon;
                 else
-                    storageWeapons[i].text = PlayerInventory.weaponStorage[i].name;
+                    storageWeapons[i].sprite = PlayerInventory.weaponStorage[i].icon;
             }
 
             UpdateArtifacts();
@@ -178,7 +204,36 @@ public class UIManager : MonoBehaviour
         currLootSelected = -1;
         currInvSelected = -1;
         currSelectedItem = null;
+
+        RemoveSelectedSprites();
+        swapImage.sprite = defaultSwap;
+        trashImage.sprite = defaultTrash;
+
         UpdateDescription();
+    }
+
+    private void RemoveSelectedSprites()
+    {
+        for (int i = 0; i < snakeWeaponsSelected.Length; i++)
+        {
+            snakeWeaponsSelected[i].sprite = defaultIcon;
+        }
+        for (int i = 0; i < storageWeaponsSelected.Length; i++)
+        {
+            storageWeaponsSelected[i].sprite = defaultIcon;
+        }
+        for (int i = 0; i < artifactDisplays.Length; i++)
+        {
+            artifactDisplays[i].buttonImage.sprite = defaultIcon;
+        }
+        for (int i = 0; i < shopButtons.Length; i++)
+        {
+            shopButtons[i].GetComponent<Button>().image.sprite = defaultSquare;
+        }
+        for (int i = 0; i < lootButtons.Length; i++)
+        {
+            lootButtons[i].GetComponent<Button>().image.sprite = defaultSquare;
+        }
     }
 
     public void UpdateDescription()
@@ -200,9 +255,15 @@ public class UIManager : MonoBehaviour
     public void OpenUI()
     {
         Time.timeScale = 0f;
+
+        //leftSidePanel.SetActive(true);
+        //rightSidePanel.SetActive(true);
         MenuPanel.SetActive(true);
         PlayerInfoPanel.SetActive(true);
+        
         isOpen = true;
+
+        animationController.SetVisible(true);
     }
 
     public void CloseUI()
@@ -210,8 +271,18 @@ public class UIManager : MonoBehaviour
         if (!canClose)
             return;
 
+        animationController.SetVisible(false);
+
+        isClosing = true;
+        //CloseUIFunctions();
+    }
+
+    public void CloseUIFunctions()
+    {
         Time.timeScale = 1f;
 
+        //leftSidePanel.SetActive(false);
+        //rightSidePanel.SetActive(false);
         MenuPanel.SetActive(false);
         ShopPanel.SetActive(false);
         LootPanel.SetActive(false);
@@ -221,6 +292,7 @@ public class UIManager : MonoBehaviour
         QuitPanel.SetActive(false);
 
         isOpen = false;
+        isClosing = false;
         canSwapAndTrash = false;
     }
 
@@ -277,16 +349,23 @@ public class UIManager : MonoBehaviour
     private void UpdateInventorySelected()
     {
         if (currInvSelected == -1)
+        {
+            RemoveSelectedSprites();
             currSelectedItem = null;
+        }
         else
         {
+            RemoveSelectedSprites();
+
             if (currInvSelected < snakeLength)
             {
                 currSelectedItem = PlayerInventory.GetWeapon(currInvSelected);
+                snakeWeaponsSelected[currInvSelected].sprite = selectedIcon;
             }
             else
             {
                 currSelectedItem = PlayerInventory.weaponStorage[currInvSelected - snakeLength];
+                storageWeaponsSelected[currInvSelected - snakeLength].sprite = selectedIcon;
             }
         }
     }
@@ -298,7 +377,16 @@ public class UIManager : MonoBehaviour
             ButtonClicked();
 
             doSwap = !doSwap;
+            if (doSwap)
+            {
+                swapImage.sprite = selectedSwap;
+            }
+            else
+            {
+                swapImage.sprite = defaultSwap;
+            }
             doTrash = false;
+            trashImage.sprite = defaultTrash;
         }
     }
 
@@ -343,6 +431,7 @@ public class UIManager : MonoBehaviour
 
             doSwap = false;
             DeselectAll();
+            swapImage.sprite = defaultSwap;
             // automatically updates inventory
 
             return true;
@@ -356,13 +445,24 @@ public class UIManager : MonoBehaviour
             ButtonClicked();
 
             doTrash = !doTrash;
-            DoTrash();
+            if (doTrash)
+            {
+                trashImage.sprite = selectedTrash;
+                DoTrash();
+            }
+            else
+            {
+                trashImage.sprite = defaultTrash;
+            }
+            doSwap = false;
+            swapImage.sprite = defaultSwap;
         }
     }
 
     public bool DoTrash()
     {
         doSwap = false;
+
         if (currInvSelected == -1)
         {
             doTrash = true;
@@ -381,6 +481,7 @@ public class UIManager : MonoBehaviour
 
             doTrash = false;
             DeselectAll();
+            trashImage.sprite = defaultTrash;
             // automatically updates inventory
             return true;
         }
@@ -397,6 +498,10 @@ public class UIManager : MonoBehaviour
             ButtonClicked();
 
             currSelectedItem = artifactList[i];
+
+            RemoveSelectedSprites();
+            artifactDisplays[i].buttonImage.sprite = selectedIcon;
+
             UpdateDescription();
         }
     }
@@ -438,10 +543,10 @@ public class UIManager : MonoBehaviour
 
     private void OpenShopHelper()
     {
-        Time.timeScale = 0f;
+        OpenUI();
+
+        MenuPanel.SetActive(false);
         ShopPanel.SetActive(true);
-        PlayerInfoPanel.SetActive(true);
-        isOpen = true;
         canSwapAndTrash = true;
 
         UpdateShopLootIcons();
@@ -468,6 +573,10 @@ public class UIManager : MonoBehaviour
 
         currShopSelected = index;
         currSelectedItem = shopItems[index];
+
+        RemoveSelectedSprites();
+        shopButtons[index].GetComponent<Button>().image.sprite = selectedSquare;
+
         shopCostText.text = shopPrices[index].ToString();
 
         UpdateDescription();
@@ -592,10 +701,10 @@ public class UIManager : MonoBehaviour
 
     private void OpenLootHelper()
     {
-        Time.timeScale = 0f;
+        OpenUI();
+
+        MenuPanel.SetActive(false);
         LootPanel.SetActive(true);
-        PlayerInfoPanel.SetActive(true);
-        isOpen = true;
         canSwapAndTrash = true;
 
         AudioManager.Play("ui_open_loot");
@@ -623,6 +732,9 @@ public class UIManager : MonoBehaviour
 
         currLootSelected = index;
         currSelectedItem = lootItems[index];
+
+        RemoveSelectedSprites();
+        lootButtons[index].GetComponent<Button>().image.sprite = selectedSquare;
 
         UpdateDescription();
     }
@@ -746,11 +858,14 @@ public class UIManager : MonoBehaviour
 
     private void EndGameHelper(bool didWin, int time, int score)
     {
+        OpenUI();
+
         Time.timeScale = 0f;
+
+        OptionPanel.SetActive(false);
         winLosePanel.SetActive(true);
-        MenuPanel.SetActive(true);
+
         canClose = false;
-        isOpen = true;
 
         winText.gameObject.SetActive(didWin);
         lossText.gameObject.SetActive(!didWin);

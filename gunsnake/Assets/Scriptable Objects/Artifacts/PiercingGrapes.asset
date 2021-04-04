@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
   m_Name: PiercingGrapes
   m_EditorClassIdentifier: 
-  name: Piercing Grapes
+  name: Pierce Grapes
   description: 'Increases pierce of each bullet by +1 per count. '
-  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
+  icon: {fileID: -8478895259453413395, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
   baseCost: 0
   count: 0

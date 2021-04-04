@@ -4,7 +4,8 @@ using TMPro;
 
 public class ArtifactDisplay : MonoBehaviour
 {
-    public Image image;
+    public Image buttonImage;
+    public Image iconImage;
     public TextMeshProUGUI count;
 
     void Start()
@@ -16,7 +17,7 @@ public class ArtifactDisplay : MonoBehaviour
     {
         if (count > 0)
         {
-            this.image.sprite = image;
+            this.iconImage.sprite = image;
         }
         if (count > 1)
         {

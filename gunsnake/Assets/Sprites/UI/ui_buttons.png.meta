@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: de3c60a0a1d25d847b8294cc682a5532
+guid: 20e7b136e698f1843b1928a3b518e6f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6863221341649095384
-    second: button_square_shadow_18x18
+      213: 8554145993400699108
+    second: button_long_32x11
+  - first:
+      213: 4859838312251957697
+    second: button_long_63x11
+  - first:
+      213: 7682506620281439360
+    second: button_square_18x18
+  - first:
+      213: 5878135272479668998
+    second: button_swap_31x8
+  - first:
+      213: -1506970514328164872
+    second: button_trash_31x8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,7 +114,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: button_square_shadow_18x18
+      name: button_long_32x11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 42
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e8ca7d857e66b670800000000000000
+      internalID: 8554145993400699108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_long_63x11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 63
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c1ac9b423d917340800000000000000
+      internalID: 4859838312251957697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_square_18x18
       rect:
         serializedVersion: 2
         x: 16
@@ -116,8 +170,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dacfd3827f0f3f50800000000000000
-      internalID: 6863221341649095384
+      spriteID: 0844676411fbd9a60800000000000000
+      internalID: 7682506620281439360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_swap_31x8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 114
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b38d9f2e4539150800000000000000
+      internalID: 5878135272479668998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_trash_31x8
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 104
+        width: 31
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f56b7e2d4a261be0800000000000000
+      internalID: -1506970514328164872
       vertices: []
       indices: 
       edges: []
