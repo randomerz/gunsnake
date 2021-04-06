@@ -9588,41 +9588,13 @@ MonoBehaviour:
   keyDrop: {fileID: 0}
   healthDropRate: 0.1
   keyEffect: {fileID: 0}
---- !u!1 &618269002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2228987706198435034, guid: fafa098ec160fe043824a4cfe160ded3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1247246111}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &618269003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618269002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb53b852ff5099644a0fbeca67a06c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 8
-  damage: 15
-  randomizeStartingVars: 1
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 1514518727}
-  animator: {fileID: 618269005}
-  attackSpeed: 4
-  bulletPrefab: {fileID: 1148371326340170767, guid: b0dc8579ed9af7e409f071b9b6729aa0,
-    type: 3}
 --- !u!114 &618269005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -944116586543906224, guid: fafa098ec160fe043824a4cfe160ded3,
     type: 3}
   m_PrefabInstance: {fileID: 1247246111}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618269002}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bad562078a2bb43b14e0e91dafe08b, type: 3}
@@ -12848,39 +12820,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 985885688}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &764669058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2228987706198435034, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
-    type: 3}
-  m_PrefabInstance: {fileID: 915750480}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &764669059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764669058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 215f91d23e893f640aeb47ebb190e0ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  damage: 1
-  randomizeStartingVars: 0
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 1102918652}
-  animator: {fileID: 764669062}
-  attackSpeed: 6
 --- !u!114 &764669062 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8981718172046880783, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
     type: 3}
   m_PrefabInstance: {fileID: 915750480}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764669058}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bad562078a2bb43b14e0e91dafe08b, type: 3}
@@ -15221,6 +15167,16 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3866221669644715802, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 764669062}
+    - target: {fileID: 3866221669644715802, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1102918652}
     m_RemovedComponents:
     - {fileID: 2228987706198435039, guid: 24d81d8c47c0e9e498a89d2f68f75f3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 24d81d8c47c0e9e498a89d2f68f75f3f, type: 3}
@@ -17906,39 +17862,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 362225011}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1082547836 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2228987706198435034, guid: de2d4e356127d9143ae1fcd44e447f92,
-    type: 3}
-  m_PrefabInstance: {fileID: 1347496078}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1082547837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082547836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe313b3c38658c4e9b78b28c5fdebc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  damage: 5
-  randomizeStartingVars: 1
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 465784931}
-  animator: {fileID: 1082547840}
-  attackSpeed: 1
 --- !u!114 &1082547840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5558841365507082243, guid: de2d4e356127d9143ae1fcd44e447f92,
     type: 3}
   m_PrefabInstance: {fileID: 1347496078}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082547836}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bad562078a2bb43b14e0e91dafe08b, type: 3}
@@ -20344,6 +20274,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7835883900885286495, guid: fafa098ec160fe043824a4cfe160ded3,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 618269005}
+    - target: {fileID: -7835883900885286495, guid: fafa098ec160fe043824a4cfe160ded3,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1514518727}
     - target: {fileID: 2228987706198435034, guid: fafa098ec160fe043824a4cfe160ded3,
         type: 3}
       propertyPath: m_Name
@@ -22211,46 +22151,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 935252111}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1326061301 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2228987706198435034, guid: 5ea3f4393cea49347b22387ac217c00b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1793139112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1326061304 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 600452420395707082, guid: 5ea3f4393cea49347b22387ac217c00b,
     type: 3}
   m_PrefabInstance: {fileID: 1793139112}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326061301}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98bad562078a2bb43b14e0e91dafe08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1326061307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326061301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192b53de5cb27e541b1677784b839eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  damage: 10
-  randomizeStartingVars: 1
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 408881380}
-  animator: {fileID: 1326061304}
-  attackSpeed: 7
-  bulletPrefab: {fileID: 1148371326340170767, guid: b0dc8579ed9af7e409f071b9b6729aa0,
-    type: 3}
 --- !u!1001 &1339806077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22327,6 +22239,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1404168584586940246, guid: de2d4e356127d9143ae1fcd44e447f92,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1082547840}
+    - target: {fileID: -1404168584586940246, guid: de2d4e356127d9143ae1fcd44e447f92,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 465784931}
     - target: {fileID: 2228987706198435034, guid: de2d4e356127d9143ae1fcd44e447f92,
         type: 3}
       propertyPath: m_Name
@@ -31647,6 +31569,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7374494693026316834, guid: 5ea3f4393cea49347b22387ac217c00b,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1326061304}
+    - target: {fileID: -7374494693026316834, guid: 5ea3f4393cea49347b22387ac217c00b,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 408881380}
     - target: {fileID: 1185796614760626532, guid: 5ea3f4393cea49347b22387ac217c00b,
         type: 3}
       propertyPath: m_LocalPosition.x
