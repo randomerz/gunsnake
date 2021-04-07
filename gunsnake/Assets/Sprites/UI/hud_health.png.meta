@@ -153,8 +153,8 @@ TextureImporter:
       name: hud_health_1
       rect:
         serializedVersion: 2
-        x: 76
-        y: 131
+        x: 3
+        y: 118
         width: 63
         height: 10
       alignment: 0
@@ -175,7 +175,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 118
+        y: 105
         width: 63
         height: 10
       alignment: 0
@@ -195,8 +195,8 @@ TextureImporter:
       name: hud_health_3
       rect:
         serializedVersion: 2
-        x: 76
-        y: 118
+        x: 3
+        y: 92
         width: 63
         height: 10
       alignment: 0
@@ -217,7 +217,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 105
+        y: 79
         width: 63
         height: 10
       alignment: 0
@@ -238,7 +238,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 76
-        y: 105
+        y: 131
         width: 63
         height: 10
       alignment: 0
@@ -258,8 +258,8 @@ TextureImporter:
       name: hud_health_6
       rect:
         serializedVersion: 2
-        x: 3
-        y: 92
+        x: 76
+        y: 118
         width: 63
         height: 10
       alignment: 0
@@ -280,7 +280,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 76
-        y: 92
+        y: 105
         width: 63
         height: 10
       alignment: 0
@@ -300,8 +300,8 @@ TextureImporter:
       name: hud_health_8
       rect:
         serializedVersion: 2
-        x: 3
-        y: 79
+        x: 76
+        y: 92
         width: 63
         height: 10
       alignment: 0

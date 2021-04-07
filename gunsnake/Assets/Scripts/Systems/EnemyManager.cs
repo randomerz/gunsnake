@@ -63,9 +63,30 @@ public class EnemyManager : MonoBehaviour
 
         Debug.Log("Setting drops for " + currentLevelEnemies.Count + " enemies");
 
-        int randInd = UnityEngine.Random.Range(0, currentLevelEnemies.Count);
-        currentLevelEnemies[randInd].itemDrop = _instance.keyDrop;
-        currentLevelEnemies[randInd].AddEffect(_instance.keyEffect);
+        bool didAddKey = false;
+        int failCount = 0;
+        int randInd = 0;
+
+        while (!didAddKey && failCount < 10000)
+        {
+            randInd = UnityEngine.Random.Range(0, currentLevelEnemies.Count);
+            if (currentLevelEnemies[randInd].doDrop)
+            {
+                didAddKey = true;
+                currentLevelEnemies[randInd].itemDrop = _instance.keyDrop;
+                currentLevelEnemies[randInd].AddEffect(_instance.keyEffect);
+            }
+            else
+                failCount++;
+        }
+
+        if (!didAddKey)
+        {
+            Debug.LogWarning("Failed to add key to enemy!");
+            randInd = 0;
+            currentLevelEnemies[randInd].itemDrop = _instance.keyDrop;
+            currentLevelEnemies[randInd].AddEffect(_instance.keyEffect);
+        }
 
         for (int i = 0; i < currentLevelEnemies.Count; i++)
         {

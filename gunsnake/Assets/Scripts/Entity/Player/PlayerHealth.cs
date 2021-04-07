@@ -41,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateHUD()
     {
-        healthText.text = health.ToString();
+        if (healthText != null)
+            healthText.text = health.ToString();
     }
 
     public void GainHealth(int amount)

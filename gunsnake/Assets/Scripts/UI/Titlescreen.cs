@@ -10,6 +10,8 @@ public class Titlescreen : MonoBehaviour
 
     public string newGameScene;
 
+    [Header("Main UI")]
+    public UIAnimationController mainAnimator;
 
     [Header("Options")]
     public GameObject volumeSlider;
@@ -29,6 +31,8 @@ public class Titlescreen : MonoBehaviour
     {
         creditsPanel.SetActive(false);
         optionPanel.SetActive(false);
+        resumePanel.SetActive(false);
+        mainAnimator.SetVisible(true); // do after fade into main screen
 
         volumeNumber = UIManager.volumeNumber;
         sfxNumber = UIManager.sfxNumber;

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 1
-  basePierce: 1
+  basePierce: 0
   direction: {x: 0, y: 0, z: 0}
 --- !u!61 &-3393710796423226360
 BoxCollider2D:

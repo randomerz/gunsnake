@@ -5,13 +5,17 @@ using UnityEngine;
 // "Projectile"
 public class RayCastProj : Projectile
 {
+    public bool canHit = true;
+    public LayerMask targets;
+
     public Vector3 startPos;
     public Vector3 direction;
     public LineRenderer lineRenderer;
     
     public int ticksAlive;
     private int tickCount;
-    public float alphaRate;
+    public float alphaRate = 1;
+    public float lineShrinkRate = 1;
 
     public override void ProjectileTick(int tick)
     {
@@ -29,6 +33,9 @@ public class RayCastProj : Projectile
             a *= alphaRate;
             lineRenderer.startColor = new Color(sc.r, sc.g, sc.b, a);
             lineRenderer.endColor = new Color(ec.r, ec.g, ec.b, a);
+            float w = lineRenderer.startWidth * lineShrinkRate;
+            lineRenderer.startWidth = w;
+            lineRenderer.endWidth = w;
         }
     }
 
@@ -40,6 +47,9 @@ public class RayCastProj : Projectile
         ticksAlive = rcOther.ticksAlive;
         alphaRate = rcOther.alphaRate;
 
+        canHit = rcOther.canHit;
+        targets = rcOther.targets;
+
         lineRenderer.startColor = rcOther.lineRenderer.startColor;
         lineRenderer.endColor = rcOther.lineRenderer.endColor;
         lineRenderer.startWidth = rcOther.lineRenderer.startWidth;
@@ -48,19 +58,24 @@ public class RayCastProj : Projectile
 
     public void Cast()
     {
-        int targetLayerMask = Entity.fullHeightEntitiesMask;
+        int targetLayerMask = targets;
         int wallLayerMask = Entity.wallLayerMask;
         tickCount = ticksAlive;
 
         if (CalculatePierce() <= 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(startPos, direction, Mathf.Infinity, targetLayerMask | wallLayerMask);
-            if (hit)
+            if (hit && !ignoredColliders.Contains(hit.collider) && canHit)
             {
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
                 {
                     e.TakeDamage(CalculateDamage(), direction);
+                }
+                PlayerSegmentHealth p = hit.transform.GetComponent<PlayerSegmentHealth>();
+                if (p != null)
+                {
+                    p.TakeDamage(CalculateDamage());
                 }
 
                 // create effect
@@ -80,7 +95,7 @@ public class RayCastProj : Projectile
 
             for (int i = 0; i < numHit; i++)
             {
-                if (hits[i])
+                if (hits[i] && !ignoredColliders.Contains(hits[i].collider) && canHit)
                 {
                     Enemy e = hits[i].transform.GetComponent<Enemy>();
                     if (e != null)
@@ -88,6 +103,11 @@ public class RayCastProj : Projectile
                         e.TakeDamage(CalculateDamage(), direction);
                     }
                     // create effect
+                    PlayerSegmentHealth p = hits[i].transform.GetComponent<PlayerSegmentHealth>();
+                    if (p != null)
+                    {
+                        p.TakeDamage(CalculateDamage());
+                    }
                 }
             }
 

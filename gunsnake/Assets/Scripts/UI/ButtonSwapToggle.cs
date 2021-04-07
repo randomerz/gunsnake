@@ -21,6 +21,7 @@ public class ButtonSwapToggle : MonoBehaviour
         {
             button.image.sprite = buttonB;
             spriteState.pressedSprite = buttonPressedB;
+            button.spriteState = spriteState;
         }
     }
 
@@ -37,5 +38,6 @@ public class ButtonSwapToggle : MonoBehaviour
             button.image.sprite = buttonB;
             spriteState.pressedSprite = buttonPressedB;
         }
+        button.spriteState = spriteState;
     }
 }
