@@ -215,7 +215,6 @@ public class UIManager : MonoBehaviour
         MenuPanel.SetActive(false);
         ShopPanel.SetActive(false);
         LootPanel.SetActive(false);
-
         PlayerInfoPanel.SetActive(false);
         OptionPanel.SetActive(false);
         QuitPanel.SetActive(false);

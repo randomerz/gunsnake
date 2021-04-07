@@ -25,6 +25,12 @@ public class Titlescreen : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject resumePanel;
 
+    [Header("fade")]
+    public CanvasGroup CanvasGroup;
+    public bool mFaded = false;
+    public float Duration = .04f;
+
+
     void Start()
     {
         creditsPanel.SetActive(false);
@@ -55,9 +61,8 @@ public class Titlescreen : MonoBehaviour
 
     public void StartGame()
     {
-        LevelHandler.SetToJungle();
-
-        LevelHandler.RestartGame();
+        Fade();
+        StartCoroutine(StartingGame());
     }
  
 
@@ -118,5 +123,34 @@ public class Titlescreen : MonoBehaviour
         UIManager.sfxNumber = volume;
         sfxCounter.text = sfxNumber.ToString();
         AudioManager.SetSfxVolume(volume / volumeSlider.GetComponent<Slider>().maxValue);
+    }
+
+    //fading stuff
+    public void Fade()
+    {
+
+        StartCoroutine(DoFade(CanvasGroup, CanvasGroup.alpha, mFaded ? 1 : 0));
+        mFaded = !mFaded;
+
+    }
+
+    public IEnumerator StartingGame()
+    {
+        yield return new WaitForSeconds(Duration);
+        LevelHandler.SetToJungle();
+        LevelHandler.RestartGame();
+    }
+
+    public IEnumerator DoFade(CanvasGroup CanvasGroup, float start, float end)
+    {
+        float counter = 0f;
+
+        while(counter < Duration)
+        {
+            counter += Time.deltaTime;
+            CanvasGroup.alpha = Mathf.Lerp(start, end, counter / Duration);
+
+            yield return null;
+        }
     }
 }
