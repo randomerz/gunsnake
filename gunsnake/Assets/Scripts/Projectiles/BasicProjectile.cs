@@ -54,6 +54,11 @@ public class BasicProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (ignoredColliders.Contains(other))
+        {
+            return;
+        }
+
         if (other.tag == "Enemy" && !hitEnemyThisTile)
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();

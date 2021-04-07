@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ghost Pepper
   description: Increases Dodge chance by +13% per count.
-  icon: {fileID: 21300000, guid: ae4fbba1dffb5da498233e2f5cdce94f, type: 3}
+  icon: {fileID: 8105601427639678877, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
   baseCost: 10
   count: 0

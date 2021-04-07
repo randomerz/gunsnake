@@ -13,7 +13,8 @@ public abstract class Enemy : Entity
 
     // game stuff
     public bool doTick = true;
-
+    public bool doDrop = true;
+    [HideInInspector()]
     public GameObject itemDrop;
 
     private List<GameObject> effects = new List<GameObject>();
