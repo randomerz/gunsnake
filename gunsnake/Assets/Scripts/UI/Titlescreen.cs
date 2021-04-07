@@ -42,6 +42,9 @@ public class Titlescreen : MonoBehaviour
 
         volumeCounter.text = volumeNumber.ToString();
         sfxCounter.text = sfxNumber.ToString();
+
+
+        Time.timeScale = 1;
     }
 
     void Update()
