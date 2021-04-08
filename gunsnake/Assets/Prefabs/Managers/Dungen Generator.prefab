@@ -91,6 +91,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: Jungle
+  propChance: 0
+  simpleChance: 0
+  simpleProps: []
+  colliderProps: []
+  complexProps: []
+  outOfBoundProps: []
+  decorationTilemap: {fileID: 0}
   roomPlacer: {fileID: 5540342849430687868}
 --- !u!114 &5540342849430687865
 MonoBehaviour:
@@ -118,7 +125,7 @@ MonoBehaviour:
     freq: 0.5
     roomData: {fileID: 11400000, guid: 72ef8aa40a8e2d74db9f80f0b3635764, type: 2}
   - name: HubX_Elizabeth_29x29
-    freq: 1
+    freq: 0.1
     roomData: {fileID: 11400000, guid: f1e3658926d553544a7b25b27c5ca6a1, type: 2}
   - name: DomesticCombat_Allison_21x15
     freq: 1
