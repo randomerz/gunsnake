@@ -118,7 +118,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3306391595533008146}
   animator: {fileID: -944116586543906224}
   attackSpeed: 3
-  bulletPrefab: {fileID: 1148371326340170767, guid: b0dc8579ed9af7e409f071b9b6729aa0,
+  bulletPrefab: {fileID: 2686402708710274360, guid: 81f00918dd15a0f42a200aacb1f6b60e,
     type: 3}
 --- !u!1 &3113130458158014027
 GameObject:
