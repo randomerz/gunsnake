@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public abstract class Enemy : Entity
     [Header("References")]
     public SpriteRenderer spriteRenderer;
     public GeneralEnemyAnimator animator;
+    protected Collider2D myCollider;
 
     [HideInInspector]
     public static Material whiteFlashMat; // set in GameHandler.cs
@@ -42,10 +44,47 @@ public abstract class Enemy : Entity
         if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", false);
 
+        myCollider = GetComponent<Collider2D>();
+        CheckSpawn();
+
         EnemyManager.AddEnemy(this);
     }
 
     public abstract void EnemyTick(int tick);
+
+
+    private void CheckSpawn()
+    {
+        // normal
+        if (CanSpawn(transform.position))
+            return;
+
+        // try something around it
+        Vector3[] difPos = { new Vector3(1, 0), new Vector3(0, 1), new Vector3(-1, 0), new Vector3(0, -1),
+                             new Vector3(1, 1), new Vector3(-1, 1), new Vector3(-1, -1), new Vector3(1, -1) };
+        foreach (Vector3 dif in difPos)
+        {
+            if (CanSpawn(transform.position + dif))
+            {
+                transform.position += dif;
+                return;
+            }
+        }
+    }
+
+    private bool CanSpawn(Vector2 pos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(pos);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit && hit != myCollider && hit.tag != "Room")
+            {
+                Debug.Log("Couldn't place! Conflicting with " + hit.name);
+                return false;
+            }
+        }
+        return true;
+    }
 
     #region Health
 
@@ -71,7 +110,7 @@ public abstract class Enemy : Entity
     
     public virtual void Die()
     {
-        if (animator != null)
+        if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", true);
         foreach (GameObject e in effects)
         {
@@ -181,7 +220,7 @@ public abstract class Enemy : Entity
 
     protected void SetAnimatorBool(string name, bool value)
     {
-        if (animator != null)
+        if (animator != null || animator.animator != null)
         {
             animator.animator.SetBool("isIdle", false);
             animator.animator.SetBool("isPrep", false);

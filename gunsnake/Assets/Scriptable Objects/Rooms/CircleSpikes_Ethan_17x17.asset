@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: CircleSpikes_Ethan_17x17
   roomType: 0
-  isJungle: 1
+  isJungle: 0
   isDungeon: 1
-  isTemple: 1
+  isTemple: 0
   roomObjectPath: SObj Rooms/CircleSpikes_Ethan_17x17
   defaultConnections:
   - pos: {x: 8, y: 0, z: 0}

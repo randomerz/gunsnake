@@ -32,6 +32,21 @@ TextureImporter:
   - first:
       213: -7758738145627192565
     second: hud_health_9
+  - first:
+      213: 1735603025367875452
+    second: hud_health_10
+  - first:
+      213: 2732554557379056177
+    second: hud_health_11
+  - first:
+      213: -1226705648733364941
+    second: hud_health_12
+  - first:
+      213: -2666049362420691991
+    second: hud_health_13
+  - first:
+      213: -2421994756414337329
+    second: hud_health_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,10 +147,10 @@ TextureImporter:
       name: hud_health_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 131
-        width: 63
-        height: 10
+        x: 2
+        y: 130
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +168,10 @@ TextureImporter:
       name: hud_health_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 118
-        width: 63
-        height: 10
+        x: 2
+        y: 117
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +189,10 @@ TextureImporter:
       name: hud_health_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 105
-        width: 63
-        height: 10
+        x: 2
+        y: 104
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +210,10 @@ TextureImporter:
       name: hud_health_3
       rect:
         serializedVersion: 2
-        x: 3
-        y: 92
-        width: 63
-        height: 10
+        x: 2
+        y: 91
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +231,10 @@ TextureImporter:
       name: hud_health_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 79
-        width: 63
-        height: 10
+        x: 2
+        y: 78
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +252,10 @@ TextureImporter:
       name: hud_health_5
       rect:
         serializedVersion: 2
-        x: 76
-        y: 131
-        width: 63
-        height: 10
+        x: 75
+        y: 130
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,10 +273,10 @@ TextureImporter:
       name: hud_health_6
       rect:
         serializedVersion: 2
-        x: 76
-        y: 118
-        width: 63
-        height: 10
+        x: 75
+        y: 117
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,10 +294,10 @@ TextureImporter:
       name: hud_health_7
       rect:
         serializedVersion: 2
-        x: 76
-        y: 105
-        width: 63
-        height: 10
+        x: 75
+        y: 104
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +315,10 @@ TextureImporter:
       name: hud_health_8
       rect:
         serializedVersion: 2
-        x: 76
-        y: 92
-        width: 63
-        height: 10
+        x: 75
+        y: 91
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +336,10 @@ TextureImporter:
       name: hud_health_9
       rect:
         serializedVersion: 2
-        x: 76
-        y: 79
-        width: 63
-        height: 10
+        x: 75
+        y: 78
+        width: 65
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,6 +349,111 @@ TextureImporter:
       bones: []
       spriteID: b034e9c93cc635490800000000000000
       internalID: -7758738145627192565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_health_10
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 130
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f352681c9161810800000000000000
+      internalID: 1735603025367875452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_health_11
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 117
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13214f964ebfbe520800000000000000
+      internalID: 2732554557379056177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_health_12
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 104
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d584b36bdd9fee0800000000000000
+      internalID: -1226705648733364941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_health_13
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 91
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb024fea3a400bd0800000000000000
+      internalID: -2666049362420691991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_health_14
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 78
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce8010f998536ed0800000000000000
+      internalID: -2421994756414337329
       vertices: []
       indices: 
       edges: []

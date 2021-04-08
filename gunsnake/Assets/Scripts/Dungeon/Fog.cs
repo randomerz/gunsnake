@@ -38,6 +38,8 @@ public class Fog : MonoBehaviour
     public static bool isActive;
     private static Fog instance;
 
+    private static Vector3Int nullVector = new Vector3Int(-999, -999, -999);
+
     void Awake()
     {
         if (!didInit)
@@ -140,24 +142,32 @@ public class Fog : MonoBehaviour
 
         Queue<Vector3Int> q = new Queue<Vector3Int>();
         q.Enqueue(start - min); // min is offset
+        q.Enqueue(nullVector); // end of segment
 
-        Debug.Log("Flooding " + min + " to " + max);
-        while (q.Count > 0)
+        //Debug.Log("Flooding " + min + " to " + max);
+        while (q.Count > 1)
         {
-            Vector3Int pos = q.Dequeue();
+            while (q.Peek() != nullVector)
+            {
+                Vector3Int pos = q.Dequeue();
 
-            if (pos.x < 0 || pos.y < 0 || size.x <= pos.x || size.y <= pos.y)
-                continue;
-            if (spaces[pos.x, pos.y])
-                continue;
+                if (pos.x < 0 || pos.y < 0 || size.x <= pos.x || size.y <= pos.y)
+                    continue;
+                if (spaces[pos.x, pos.y])
+                    continue;
 
-            tilemapFull.SetTile(pos + min, tile);
-            spaces[pos.x, pos.y] = true;
+                tilemapFull.SetTile(pos + min, tile);
+                spaces[pos.x, pos.y] = true;
 
-            q.Enqueue(pos + Vector3Int.right);
-            q.Enqueue(pos + Vector3Int.up);
-            q.Enqueue(pos + Vector3Int.left);
-            q.Enqueue(pos + Vector3Int.down);
+                q.Enqueue(pos + Vector3Int.right);
+                q.Enqueue(pos + Vector3Int.up);
+                q.Enqueue(pos + Vector3Int.left);
+                q.Enqueue(pos + Vector3Int.down);
+            }
+
+            q.Enqueue(nullVector);
+            q.Dequeue(); // remove null vec
+
             yield return null;
         }
     }

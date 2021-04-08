@@ -862,7 +862,7 @@ public class UIManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        OptionPanel.SetActive(false);
+        PlayerInfoPanel.SetActive(false);
         winLosePanel.SetActive(true);
 
         canClose = false;

@@ -49,7 +49,6 @@ public class Room : MonoBehaviour
     void Awake()
     {
         // get object in children door => if door isn't locked add to thing
-
         switch (roomData.roomType)
         {
             case RoomType.normal:
@@ -65,7 +64,7 @@ public class Room : MonoBehaviour
 
             case RoomType.challenge:
                 activeEnemies = new List<Enemy>();
-                
+
                 InitWaves();
                 foreach (List<Enemy> wave in waves)
                     foreach (Enemy e in wave)

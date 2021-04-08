@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3707772747981319606}
   m_Layer: 0
   m_Name: _DefaultRoom
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55131187fa94eec40a2f0805b3103893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomData: {fileID: 0}
+  roomData: {fileID: 11400000, guid: 789fbdae39555364aa07fe8d1e2979c3, type: 2}
   doors: []
   didPlayerEnter: 0
 --- !u!1 &6043381939241592305

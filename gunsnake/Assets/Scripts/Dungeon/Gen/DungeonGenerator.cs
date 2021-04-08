@@ -15,6 +15,7 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("References")]
     public DungeonRoomPlacer roomPlacer;
+    public DecorationPlacer decorationPlacer;
     public DungeonRoomTable roomTable;
 
     public static GameObject dungeonContainer;
@@ -43,10 +44,10 @@ public class DungeonGenerator : MonoBehaviour
     {
         //Debug.Log("Creating dungeon!");
         ClearDungeon();
-        //int seed = Random.Range(0, 32768);
+        int seed = Random.Range(0, int.MaxValue);
         //seed = 32024;
         //Random.InitState(seed);
-        //Debug.Log("Random seed: " + seed);
+        Debug.Log("Random seed: " + seed);
 
         //Debug.Log(flow.name);
         currentFlow = flow;
@@ -61,6 +62,8 @@ public class DungeonGenerator : MonoBehaviour
                 Debug.Log("Created dungeon in " + numTries + " tries!");
                 //dungeonComposite.PrintGrid();
                 roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
+                decorationPlacer.PlaceDecorations();
+
                 return dungeonComposite;
             }
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5540342849430687866}
   - component: {fileID: 5540342849430687867}
   - component: {fileID: 5540342849430687868}
+  - component: {fileID: 7984657808008110450}
   - component: {fileID: 5540342849430687865}
   m_Layer: 0
   m_Name: Dungen Generator
@@ -53,6 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd739e4fd087a8e47b5415a00029cf4b, type: 2}
   drawGizmos: 0
   roomPlacer: {fileID: 5540342849430687868}
+  decorationPlacer: {fileID: 7984657808008110450}
   roomTable: {fileID: 5540342849430687865}
 --- !u!114 &5540342849430687868
 MonoBehaviour:
@@ -76,6 +78,20 @@ MonoBehaviour:
     type: 3}
   exitTilePrefab: {fileID: 5451867131178767231, guid: a6206a71e2767c74392f02e52e97ed11,
     type: 3}
+--- !u!114 &7984657808008110450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540342849430687869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd98b0f762021b44bbc9b982d0cff610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: Jungle
+  roomPlacer: {fileID: 5540342849430687868}
 --- !u!114 &5540342849430687865
 MonoBehaviour:
   m_ObjectHideFlags: 0

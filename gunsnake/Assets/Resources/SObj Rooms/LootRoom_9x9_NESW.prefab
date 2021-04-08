@@ -133,6 +133,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 0
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 1787266911702663573}
   horsBox: {fileID: 1787266910388431269}
   vertBox: {fileID: 1787266910388431268}
@@ -396,7 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fbe476e8352cb4eb7ee0e0b8209b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 1
 --- !u!61 &4434697395923415047
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 1
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 1151707849127812749}
   horsBox: {fileID: 2758088528502922968}
   vertBox: {fileID: 2758088528502922969}
@@ -685,7 +686,7 @@ GameObject:
   - component: {fileID: 6163478572368094064}
   m_Layer: 0
   m_Name: LootRoom_9x9_NESW
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -747,7 +748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomData: {fileID: 11400000, guid: 7c6b33c802eeb3440a64731f2cb2425d, type: 2}
-  roomDrop: 0
   doors:
   - {fileID: 1787266910388431270}
   - {fileID: 7195156449965356974}
@@ -1012,6 +1012,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 0
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 5361348868497635320}
   horsBox: {fileID: 7195156449965356973}
   vertBox: {fileID: 7195156449965356972}
@@ -1148,6 +1149,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 1
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 6833151450757454850}
   horsBox: {fileID: 8604472072730713175}
   vertBox: {fileID: 8604472072730713174}

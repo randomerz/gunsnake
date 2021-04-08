@@ -85,6 +85,7 @@ public class DungeonRoomTable : MonoBehaviour
     {
         Start();
 
+        //Debug.Log(type + " " + (int)type);
         TableEntry[] currTable = tables[(int)type];
         float currSum = tableSums[(int)type];
 

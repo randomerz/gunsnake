@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicProjectile : Projectile
 {
     public Vector3 direction;
+    public int moveRate = 2;
 
     private bool hitEnemyThisTile = false;
 
@@ -23,7 +24,7 @@ public class BasicProjectile : Projectile
     public override void ProjectileTick(int tick)
     {
         CheckIfEnemyOnSquare();
-        if (tick % 2 == 0)
+        if (tick % moveRate == 0)
         {
             hitEnemyThisTile = false;
             transform.position += direction;
@@ -35,6 +36,7 @@ public class BasicProjectile : Projectile
     {
         baseDamage = other.baseDamage;
         basePierce = other.basePierce;
+        moveRate = ((BasicProjectile)other).moveRate;
     }
 
     private void CheckIfEnemyOnSquare()
