@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299dfdd0e7236d845b36f240d3c63b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 1
 --- !u!61 &4121514909919471083
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,6 +173,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 1
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 3346937097856517275}
   horsBox: {fileID: 562869990985123022}
   vertBox: {fileID: 562869990985123023}
@@ -392,6 +392,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 0
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 4126599529225165699}
   horsBox: {fileID: 4126599527980954547}
   vertBox: {fileID: 4126599527980954546}
@@ -610,6 +611,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 0
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 7777245703308586478}
   horsBox: {fileID: 4779252735051689403}
   vertBox: {fileID: 4779252735051689402}
@@ -746,6 +748,7 @@ MonoBehaviour:
   isLocked: 0
   isVertical: 1
   isOptional: 1
+  isWall: 0
   spriteRenderer: {fileID: 9177560521519236628}
   horsBox: {fileID: 6260069881936889409}
   vertBox: {fileID: 6260069881936889408}
@@ -991,7 +994,7 @@ GameObject:
   - component: {fileID: 8358705897419127142}
   m_Layer: 0
   m_Name: ShopRoom_9x9_NESW
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1053,7 +1056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomData: {fileID: 11400000, guid: 8983b84dad9d7ba4a865c6adbada9e0f, type: 2}
-  roomDrop: 0
   doors:
   - {fileID: 4126599527980954544}
   - {fileID: 4779252735051689400}

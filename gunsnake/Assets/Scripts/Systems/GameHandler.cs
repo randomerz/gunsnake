@@ -9,11 +9,20 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject enemyDeathParticle;
 
+    public Player player;
+    public LevelHandler levelHandler;
+
     private void Awake()
     {
         Enemy.whiteFlashMat = enemyWhiteFlashMat;
         Enemy.deathParticle = enemyDeathParticle;
         TimeTickSystem.Create();
+
+        if (player != null)
+            player.InitReferences();
+
+        if (levelHandler != null)
+            levelHandler.Initialize();
     }
 
     void Start()

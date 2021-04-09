@@ -19,6 +19,7 @@ public class Item : ScriptableObject
 
     public int baseCost;
 
+    public int count = 0; // to remove
     public GameObject prefab; // i dont know if this is right
 
 }

@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddba19223a2d9ce43a8ac6cb8aaf6e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 1
+  baseDamage: 2
   basePierce: 0
   direction: {x: 0, y: 0, z: 0}
+  moveRate: 8
 --- !u!61 &-3393710796423226360
 BoxCollider2D:
   m_ObjectHideFlags: 0

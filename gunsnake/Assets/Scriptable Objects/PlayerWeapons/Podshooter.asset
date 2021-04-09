@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pod Shooter
   description: Shoots three basic shots.
-  icon: {fileID: 21300000, guid: 89e4726220bc2a04da60bc587cd555c8, type: 3}
+  icon: {fileID: -6608797839199868079, guid: 7ca306ebb17140b49af75e32b60c2bac, type: 3}
   itemType: 0
   baseCost: 20
+  count: 0
   prefab: {fileID: 1793473670551159033, guid: 1b04d9b76c1d878409f190a685140c30, type: 3}

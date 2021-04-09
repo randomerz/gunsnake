@@ -7,11 +7,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private int health;
-    [SerializeField]
-    private int maxHealth;
-    [SerializeField]
-    private int baseMaxHealth = 3;
+    private static int maxHealth;
+    private static int baseMaxHealth = 5;
 
+    private static float dodgeChance = 0f;
     public bool isInvulnerable;
     private int ticksUntilCanTakeDamage;
     public int iFramesTicks = 8;
@@ -30,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnTick(int tick)
     {
+        UpdateHUD();
         if (isInvulnerable)
         {
             ticksUntilCanTakeDamage -= 1;
@@ -41,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void UpdateHUD()
     {
-        healthText.text = health.ToString();
+        if (healthText != null)
+            healthText.text = health.ToString();
     }
 
     public void GainHealth(int amount)
@@ -56,6 +57,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvulnerable)
         {
+            if(Random.Range(0f, 1f) <= dodgeChance)
+            {
+                //Add sound
+                return;
+            }
             AudioManager.Play("player_take_damage" + Random.Range(1, 3));
 
             health -= amount;
@@ -71,11 +77,18 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void UpdateDodge(int c)
+    {
+        dodgeChance = 1 - (1 / (.15f *c + 1));
+    }
+
     public void Die()
     {
         AudioManager.Play("player_death" + Random.Range(1, 3));
 
-        Debug.Log("Player died!");
+        isInvulnerable = true;
+        health = 0;
+        Player.EndGame(false);
     }
 
     public int GetHealth()
@@ -98,7 +111,7 @@ public class PlayerHealth : MonoBehaviour
     public void ChangeMaxHealth()
     {
         maxHealth++;
-        health++;
+        GainHealth(1);
     }
 
     #region Strobe Color
@@ -142,6 +155,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetValuesToDefault()
     {
         maxHealth = baseMaxHealth;
+        dodgeChance = 0f;
 
         //spriteRenderers = new SpriteRenderer[Player.sprites.Length];
         //for (int i = 0; i < Player.sprites.Length; i++)

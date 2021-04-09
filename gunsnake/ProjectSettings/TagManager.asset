@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Room
   - Decoration
+  - Entity
   layers:
   - Default
   - TransparentFX
@@ -66,4 +67,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 4163478019
+    locked: 0
+  - name: Fog
+    uniqueID: 3972845737
     locked: 0

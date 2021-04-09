@@ -15,6 +15,7 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("References")]
     public DungeonRoomPlacer roomPlacer;
+    public DecorationPlacer decorationPlacer;
     public DungeonRoomTable roomTable;
 
     public static GameObject dungeonContainer;
@@ -43,10 +44,10 @@ public class DungeonGenerator : MonoBehaviour
     {
         //Debug.Log("Creating dungeon!");
         ClearDungeon();
-        //int seed = Random.Range(0, 32768);
+        int seed = Random.Range(0, int.MaxValue);
         //seed = 32024;
         //Random.InitState(seed);
-        //Debug.Log("Random seed: " + seed);
+        Debug.Log("Random seed: " + seed);
 
         //Debug.Log(flow.name);
         currentFlow = flow;
@@ -61,6 +62,8 @@ public class DungeonGenerator : MonoBehaviour
                 Debug.Log("Created dungeon in " + numTries + " tries!");
                 //dungeonComposite.PrintGrid();
                 roomPlacer.PlaceComposite(dungeonComposite, 0, 0);
+                decorationPlacer.PlaceDecorations();
+
                 return dungeonComposite;
             }
         }
@@ -97,7 +100,7 @@ public class DungeonGenerator : MonoBehaviour
             }
 
             FlowNode nodeInit = cycles[0][0];
-            RoomData roomInit = roomTable.GetRoom(nodeInit.type);
+            RoomData roomInit = GetRoom(nodeInit);
             RCObj RCInit = new RCObj(roomInit);
             dungeonComposite = new RoomComposite(RCInit);
 
@@ -119,7 +122,7 @@ public class DungeonGenerator : MonoBehaviour
                 if (node.neighbors.Count > maxNode.neighbors.Count)
                     maxNode = node;
 
-            RoomData roomInit = roomTable.GetRoom(maxNode.type);
+            RoomData roomInit = GetRoom(maxNode);
             RCObj RCInit = new RCObj(roomInit);
             dungeonComposite = new RoomComposite(RCInit);
             didGen = AddNode(maxNode, RCInit);
@@ -308,7 +311,7 @@ public class DungeonGenerator : MonoBehaviour
             // try adding first 2 rooms together
             for (int i = 0; i < MAX_TRIES; i++)
             {
-                roomN = roomTable.GetRoom(nodeN.type);
+                roomN = GetRoom(nodeN);
                 RCN = new RCObj(roomN);
 
                 didAdd = TryCombiningRooms(composite, RCA, RCN, RCA.GetAvailableConnections());
@@ -350,7 +353,7 @@ public class DungeonGenerator : MonoBehaviour
 
                 for (int i = 0; i < MAX_TRIES; i++)
                 {
-                    RoomData roomM = roomTable.GetRoom(nodeM.type);
+                    RoomData roomM = GetRoom(nodeM);
                     RCObj RCM = new RCObj(roomM);
 
                     didAdd = TryCombiningRooms(composite, RCN, RCM, indsN);
@@ -391,7 +394,7 @@ public class DungeonGenerator : MonoBehaviour
         // try adding first 2 rooms together
         for (int i = 0; i < MAX_TRIES; i++)
         {
-            roomNew = roomTable.GetRoom(nodeNew.type);
+            roomNew = GetRoom(nodeNew);
             RCNew = new RCObj(roomNew);
 
             bool didAdd = TryCombiningRooms(composite, RCOrig, RCNew, RCOrig.GetAvailableConnections());
@@ -480,6 +483,25 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+
+
+    private RoomData GetRoom(FlowNode node)
+    {
+        if (node.neighbors.Count >= 4 && node.type == RoomType.normal)
+        {
+            //if (doRandom)
+            // 10% to make a normal room instead of a hub room
+            if (Random.Range(0f, 1f) > 0.9f)
+            {
+                return roomTable.GetRoom(node.type);
+            } 
+            else
+            {
+                return roomTable.GetHubRoom();
+            }
+        }
+        return roomTable.GetRoom(node.type);
+    }
 
     #region Gizmos
 

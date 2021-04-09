@@ -24,6 +24,10 @@ public class DungeonRoomTable : MonoBehaviour
     private TableEntry[][] tables;
     private float[] tableSums;
 
+    // should be normal rooms with 8+ exits, just looks at rooms with "hub" in name right now
+    private List<TableEntry> hubRooms = new List<TableEntry>();
+    private float hubSum;
+
     [System.Serializable]
     public class TableEntry
     {
@@ -32,8 +36,15 @@ public class DungeonRoomTable : MonoBehaviour
         public RoomData roomData;
     }
 
+    private bool didInit = false;
+
     private void Start()
     {
+        if (didInit)
+            return;
+
+        didInit = true;
+
         tables = new TableEntry[System.Enum.GetNames(typeof(RoomType)).Length][];
         tables[(int)RoomType.normal] = normalRooms;
         tables[(int)RoomType.challenge] = challengeRooms;
@@ -41,6 +52,15 @@ public class DungeonRoomTable : MonoBehaviour
         tables[(int)RoomType.loot] = lootRooms;
         tables[(int)RoomType.entrance] = entranceRooms;
         tables[(int)RoomType.exit] = exitRooms;
+
+        for (int i = 0; i < normalRooms.Length; i++)
+        {
+            if (normalRooms[i].name.ToLower().Contains("hub"))
+            {
+                hubRooms.Add(normalRooms[i]);
+                normalRooms[i].freq /= 10;
+            }
+        }
 
         tableSums = new float[tables.Length];
         for (int i = 0; i < tables.Length; i++)
@@ -52,15 +72,20 @@ public class DungeonRoomTable : MonoBehaviour
             }
             tableSums[i] = sum;
         }
+
+        float s = 0;
+        for (int j = 0; j < hubRooms.Count; j++)
+        {
+            s += hubRooms[j].freq;
+        }
+        hubSum = s;
     }
 
     public RoomData GetRoom(RoomType type)
     {
-        //if (tables == null)
-        //{
-        //    Start();
-        //}
         Start();
+
+        //Debug.Log(type + " " + (int)type);
         TableEntry[] currTable = tables[(int)type];
         float currSum = tableSums[(int)type];
 
@@ -68,6 +93,29 @@ public class DungeonRoomTable : MonoBehaviour
         RoomData ret = null;
 
         for (int i = 0; i < currTable.Length; i++)
+        {
+            if (random < currTable[i].freq)
+            {
+                ret = currTable[i].roomData;
+                break;
+            }
+            random -= currTable[i].freq;
+        }
+
+        return ret;
+    }
+
+    public RoomData GetHubRoom()
+    {
+        Start();
+
+        List<TableEntry> currTable = hubRooms;
+        float currSum = hubSum;
+
+        float random = Random.Range(0, currSum);
+        RoomData ret = null;
+
+        for (int i = 0; i < currTable.Count; i++)
         {
             if (random < currTable[i].freq)
             {

@@ -21,6 +21,7 @@ public class TimeTickSystem
     public static event EventHandler<OnTickEventArgs> OnTick_Projectiles;
     public static event EventHandler<OnTickEventArgs> OnTick_Enemies;
     public static event EventHandler<OnTickEventArgs> OnTick_Dungeon;
+    public static event EventHandler<OnTickEventArgs> OnTick_Last;
 
     private const float TICK_TIMER_MAX = 0.0625f;
 
@@ -54,6 +55,9 @@ public class TimeTickSystem
         if (OnTick_Dungeon != null)
             foreach (Delegate e in OnTick_Dungeon.GetInvocationList())
                 OnTick_Dungeon -= (EventHandler<OnTickEventArgs>)e;
+        if (OnTick_Last != null)
+            foreach (Delegate e in OnTick_Last.GetInvocationList())
+                OnTick_Last -= (EventHandler<OnTickEventArgs>)e;
         //OnTick_PlayerMove
         //OnTick_PlayerWeapons
         //OnTick_Projectiles
@@ -95,6 +99,7 @@ public class TimeTickSystem
                 if (OnTick_Enemies != null) OnTick_Enemies(this, new OnTickEventArgs { tick = tick });
                 if (OnTick_Dungeon != null) OnTick_Dungeon(this, new OnTickEventArgs { tick = tick });
                 if (OnTick_Projectiles != null) OnTick_Projectiles(this, new OnTickEventArgs { tick = tick });
+                if (OnTick_Last != null) OnTick_Last(this, new OnTickEventArgs { tick = tick });
 
             }
         }

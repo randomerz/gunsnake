@@ -9,12 +9,18 @@ public static class PlayerInventory
 
     public static Item[] weaponStorage = new Item[2];
 
-    // TODO: make Aritact:Item and ArtifactManager for equiping/dequiping arts
-    private static Artifact[] artifacts;
+    public static void ResetValues()
+    {
+        gold = 0;
+        keys = 0;
+        weaponStorage = new Item[2];
+    }
 
     public static void AddGold(int amount)
     {
         gold += amount;
+
+        Player.AddScore(amount);
     }
     public static void AddKey(int amount)
     {
@@ -24,7 +30,6 @@ public static class PlayerInventory
     {
         return keys > 0;
     }
-
 
     public static Item GetWeapon(int index)
     {
@@ -76,20 +81,28 @@ public static class PlayerInventory
         }
     }
 
-    public static void AddArtifact(Artifact artifact)
+    public static void AddArtifact(Item art)
     {
-        switch(artifact.codename)
+        ArtifactManager._instance.AddArtifact(art);
+        switch (art.name)
         {
-            case "attack":
+            case "Protein Shake":
                 Projectile.bonusDamage++;
                 break;
-            case "health":
+            case "Hearty Apple":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
-            case "pierce":
+            case "Piercing Grapes":
                 Projectile.bonusPierce++;
                 break;
+            case "Ghost Pepper":
+                Player.playerHealth.UpdateDodge(art.count);
+                break;
         }
-        ArtifactManager._instance.AddArtifact(artifact);
+    }
+
+    public static Item[] GetArtifactList()
+    {
+        return ArtifactManager._instance.GetArtifacts();
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6913b3f957d674eaa7f6a51c8a7191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 4
   damage: 1
   randomizeStartingVars: 1
   doTick: 1
