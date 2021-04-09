@@ -114,6 +114,7 @@ MonoBehaviour:
   damage: 3
   randomizeStartingVars: 0
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 3306391595533008146}
   animator: {fileID: -944116586543906224}

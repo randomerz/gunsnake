@@ -45,7 +45,6 @@ public class Wizard : Enemy
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
 
-                        Debug.Log("Wizard atkin?");
                         Attack();
                         GameObject closestSeg = GetClosestPlayerSegment();
                         Move(GetDirectionToPlayer(false));
@@ -105,7 +104,7 @@ public class Wizard : Enemy
         //            h.TakeDamage(damage);
         //       }
 
-        Debug.Log("Wizard atking");
+   
         Vector3[] directions = {new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3 (0, -1, 0),
         new Vector3(1, 1, 0), new Vector3(-1, 1, 0), new Vector3(1, -1, 0), new Vector3(-1, -1, 0)};
 

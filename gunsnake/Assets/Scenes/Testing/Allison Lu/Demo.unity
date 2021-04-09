@@ -5909,33 +5909,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 661cc017904f52d4883cf264f4dcdc54, type: 3}
---- !u!1 &408881378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2435080477604078356, guid: 5ea3f4393cea49347b22387ac217c00b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1793139112}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &408881379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 408881378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192b53de5cb27e541b1677784b839eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  damage: 1
-  randomizeStartingVars: 0
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  animator: {fileID: 0}
-  attackSpeed: 0
-  bulletPrefab: {fileID: 0}
 --- !u!212 &408881380 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8556664536879575055, guid: 5ea3f4393cea49347b22387ac217c00b,
@@ -9547,6 +9520,8 @@ MonoBehaviour:
   enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c, type: 2}
   enemyDeathParticle: {fileID: 430776399415774282, guid: 4460e85fd4f162242b1f513ed33cf6f1,
     type: 3}
+  player: {fileID: 0}
+  levelHandler: {fileID: 0}
 --- !u!114 &609240023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21096,13 +21071,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   devEnabled: 1
   snakeWeapons:
-  - {fileID: 1847939630}
-  - {fileID: 709764373}
-  - {fileID: 1097700575}
-  - {fileID: 1875563316}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   storageWeapons:
-  - {fileID: 1767585004}
-  - {fileID: 2023965001}
+  - {fileID: 0}
+  - {fileID: 0}
   artifactDisplays:
   - {fileID: 0}
   - {fileID: 0}
@@ -21128,12 +21103,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  snakeWeaponsSelected:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  storageWeaponsSelected:
+  - {fileID: 0}
+  - {fileID: 0}
   healthText: {fileID: 707227852}
   goldText: {fileID: 1467867617}
   keysText: {fileID: 379441340}
   descNameText: {fileID: 1502002942}
   descIcon: {fileID: 746195466}
   descDescriptionText: {fileID: 473150460}
+  swapImage: {fileID: 0}
+  trashImage: {fileID: 0}
   volumeSlider: {fileID: 1157377235}
   volumeCounter: {fileID: 1766392691}
   sfxSlider: {fileID: 0}
@@ -21156,6 +21141,12 @@ MonoBehaviour:
   - {fileID: 2023823610}
   - {fileID: 362738659}
   - {fileID: 164872005}
+  winText: {fileID: 0}
+  lossText: {fileID: 0}
+  timeText: {fileID: 0}
+  scoreText: {fileID: 0}
+  leftSidePanel: {fileID: 0}
+  rightSidePanel: {fileID: 0}
   PlayerInfoPanel: {fileID: 850490470}
   OptionPanel: {fileID: 437880631}
   QuitPanel: {fileID: 592322496}
@@ -21163,10 +21154,20 @@ MonoBehaviour:
   ShopPanel: {fileID: 1068236783}
   LootPanel: {fileID: 1686685131}
   DevPanel: {fileID: 1709865686}
+  winLosePanel: {fileID: 0}
   lootTable: {fileID: 0}
   defaultIcon: {fileID: -1045181238759104467, guid: 0c28c8afb14275a42801fefdf60b1e47,
     type: 3}
-  currInvSelected: -1
+  selectedIcon: {fileID: 0}
+  defaultSquare: {fileID: 0}
+  selectedSquare: {fileID: 0}
+  defaultSwap: {fileID: 0}
+  selectedSwap: {fileID: 0}
+  defaultTrash: {fileID: 0}
+  selectedTrash: {fileID: 0}
+  animationController: {fileID: 0}
+  invulnToggle: {fileID: 0}
+  damageToggle: {fileID: 0}
 --- !u!114 &1282190838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21501,6 +21502,7 @@ MonoBehaviour:
   damage: 1
   randomizeStartingVars: 0
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 0}
   animator: {fileID: 0}
@@ -25578,33 +25580,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 661cc017904f52d4883cf264f4dcdc54, type: 3}
---- !u!1 &1514518725 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3113130458158014027, guid: fafa098ec160fe043824a4cfe160ded3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1247246111}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1514518726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514518725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb53b852ff5099644a0fbeca67a06c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: -1
-  damage: 1
-  randomizeStartingVars: 0
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  animator: {fileID: 0}
-  attackSpeed: 0
-  bulletPrefab: {fileID: 0}
 --- !u!212 &1514518727 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3306391595533008146, guid: fafa098ec160fe043824a4cfe160ded3,
