@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Mushroom : Enemy
 {
+    [Header("Mushroom")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;

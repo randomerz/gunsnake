@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : Enemy
+public class Archer : Enemy
 {
-    [Header("Slime")]
+    [Header("Archer")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
+    public GameObject bulletPrefab;
 
     protected override void Awake()
     {
@@ -47,9 +48,9 @@ public class Slime : Enemy
 
                         // attack if within range
                         GameObject closestSeg = GetClosestPlayerSegment();
-                        if ((closestSeg.transform.position - transform.position).magnitude <= 1)
+                        if ((closestSeg.transform.position - transform.position).magnitude <= 5)
                         {
-                            Attack(closestSeg);
+                            Attack(GetDirectionToPlayer(true));
                         }
                         // else move closer
                         else
@@ -105,14 +106,17 @@ public class Slime : Enemy
         }
     }
 
-    private void Attack(GameObject seg)
+    private void Attack(Vector3 dir)
     {
-        AudioManager.Play("enemy_slime_attack" + Random.Range(1, 3));
-
-        PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
-        if (h != null)
-        {
-            h.TakeDamage(damage);
-        }
+        //  PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
+        //  if (h != null)
+        //  {
+        //      h.TakeDamage(damage);
+        //  }
+        GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
+        EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
+        proj.transform.position = transform.position;
+        proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        ep.direction = dir;
     }
 }

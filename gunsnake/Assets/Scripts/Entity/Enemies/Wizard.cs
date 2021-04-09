@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : Enemy
+public class Wizard : Enemy
 {
-    [Header("Slime")]
+    [Header("Wizard")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
+    public GameObject bulletPrefab;
 
     protected override void Awake()
     {
@@ -44,18 +45,9 @@ public class Slime : Enemy
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
 
-
-                        // attack if within range
+                        Attack();
                         GameObject closestSeg = GetClosestPlayerSegment();
-                        if ((closestSeg.transform.position - transform.position).magnitude <= 1)
-                        {
-                            Attack(closestSeg);
-                        }
-                        // else move closer
-                        else
-                        {
-                            Move(GetDirectionToPlayer(false));
-                        }
+                        Move(GetDirectionToPlayer(false));
                     }
                     break;
             }
@@ -78,8 +70,7 @@ public class Slime : Enemy
 
         if (CanMove(transform.position + dir))
             transform.position += dir;
-        else
-        {
+        else {
             int randomDir = Random.Range(0, 3);
             switch (randomDir)
             {
@@ -105,14 +96,25 @@ public class Slime : Enemy
         }
     }
 
-    private void Attack(GameObject seg)
+    private void Attack()
     {
-        AudioManager.Play("enemy_slime_attack" + Random.Range(1, 3));
+        //       PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
+        //      if (h != null)
+        //       {
+        //            h.TakeDamage(damage);
+        //       }
 
-        PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
-        if (h != null)
+   
+        Vector3[] directions = {new Vector3(1, 0, 0), new Vector3(-1, 0, 0), new Vector3(0, 1, 0), new Vector3 (0, -1, 0),
+        new Vector3(1, 1, 0), new Vector3(-1, 1, 0), new Vector3(1, -1, 0), new Vector3(-1, -1, 0)};
+
+        for (int i = 0; i < directions.Length; i++)
         {
-            h.TakeDamage(damage);
+            GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
+            EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
+            proj.transform.position = transform.position;
+            proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(directions[i].y, directions[i].x) * Mathf.Rad2Deg);
+            ep.direction = directions[i]; 
         }
     }
 }

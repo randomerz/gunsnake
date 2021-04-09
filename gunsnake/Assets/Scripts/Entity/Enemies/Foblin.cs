@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : Enemy
+public class Foblin : Enemy
 {
-    [Header("Slime")]
+    [Header("Foblin")]
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
@@ -107,8 +107,6 @@ public class Slime : Enemy
 
     private void Attack(GameObject seg)
     {
-        AudioManager.Play("enemy_slime_attack" + Random.Range(1, 3));
-
         PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
         if (h != null)
         {
