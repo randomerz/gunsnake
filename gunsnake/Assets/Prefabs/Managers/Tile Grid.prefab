@@ -46,7 +46,7 @@ MonoBehaviour:
   coverOld: 0
   playerVP:
     transform: {fileID: 0}
-    r: 2.5
+    r: 6.5
   tilemapHalf: {fileID: 7840438804754446146}
   tilemapFull: {fileID: 7840438803273730020}
   fogTile: {fileID: 11400000, guid: 39a5df7b45aafb047b24fd5869060581, type: 2}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 7840438803830036345}
   - component: {fileID: 7840438803830036344}
   m_Layer: 0
-  m_Name: Decorations (Unused)
+  m_Name: Decorations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

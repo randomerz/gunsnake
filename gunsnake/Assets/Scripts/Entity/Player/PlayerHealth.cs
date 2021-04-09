@@ -49,7 +49,8 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManager.Play("pickup_heart");
 
-        health += amount;
+        health = Mathf.Min(health + amount, maxHealth);
+        //health += amount;
         UpdateHUD();
     }
 

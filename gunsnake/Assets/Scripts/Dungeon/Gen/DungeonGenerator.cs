@@ -465,6 +465,11 @@ public class DungeonGenerator : MonoBehaviour
         for (int i = dungeonContainer.transform.childCount - 1; i >= 0; i--)
             DestroyImmediate(dungeonContainer.transform.GetChild(i).gameObject);
         roomPlacer.ClearTilemaps();
+
+        if (decorationPlacer != null)
+        {
+            decorationPlacer.ClearDecorations();
+        }
     }
 
     private void PlaceRoom(RoomData room, int x, int y)

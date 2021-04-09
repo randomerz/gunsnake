@@ -67,6 +67,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2536877950220229174, guid: 5498ac74c0d005e4f9657772e80c8640,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3072806721896967408, guid: ceb9ca2bff021d948b52e6f8f826986a,
+        type: 3}
     - target: {fileID: 2536877950220229175, guid: 5498ac74c0d005e4f9657772e80c8640,
         type: 3}
       propertyPath: isOnTimer

@@ -11,7 +11,7 @@ public class LevelHandler : MonoBehaviour
     public static int currentFloor; // 0, 1
     public const int numFloors = 2;
 
-    public static string jungleSceneName = "Dungeon";
+    public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
     public static string templeSceneName = "Dungeon";
 

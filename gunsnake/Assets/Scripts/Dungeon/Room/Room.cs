@@ -79,6 +79,14 @@ public class Room : MonoBehaviour
             case RoomType.exit:
                 break;
         }
+
+        if (roomData.roomType != RoomType.challenge && roomData.roomType != RoomType.exit)
+        {
+            foreach (Door d in doors)
+            {
+                d.SetShouldRender(false);
+            }
+        }
     }
 
     void Update()
@@ -320,7 +328,7 @@ public class Room : MonoBehaviour
                     if (numSegmentsIn > 0 && !didPlayerEnter)
                     {
                         didPlayerEnter = true;
-                        Debug.Log("Player entered room type " + roomData.roomType);
+                        //Debug.Log("Player entered room type " + roomData.roomType);
 
                         isInCombat = true;
                     }
@@ -330,7 +338,7 @@ public class Room : MonoBehaviour
                     if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
                     {
                         didPlayerEnter = true;
-                        Debug.Log("Player entered room type " + roomData.roomType);
+                        //Debug.Log("Player entered room type " + roomData.roomType);
 
                         isInCombat = true;
                         SetDoorIsClosed(true);

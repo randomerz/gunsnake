@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     public bool isVertical;
     public bool isOptional;
     public bool isWall;
+    private bool shouldRender = true;
 
 
     [Header("References")]
@@ -85,9 +86,16 @@ public class Door : MonoBehaviour
         UpdateSpriteBoxes();
     }
 
+    public void SetShouldRender(bool value)
+    {
+        shouldRender = value;
+        Init();
+        UpdateSpriteBoxes();
+    }
+
     private void UpdateSpriteBoxes()
     {
-        spriteRenderer.enabled = !isWall;
+        spriteRenderer.enabled = !(isWall || !shouldRender);
         if (isVertical)
         {
             horsBox.enabled = false;

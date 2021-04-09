@@ -137,4 +137,19 @@ public class DecorationPlacer : MonoBehaviour
     {
         return Mathf.Sqrt(x * x + y * y);
     }
+
+    public void ClearDecorations()
+    {
+        if (decorationsContainer == null)
+        {
+            decorationsContainer = GameObject.Find("DecorationsContainer");
+            if (decorationsContainer == null)
+                decorationsContainer = new GameObject("DecorationsContainer");
+        }
+
+        for (int i = decorationsContainer.transform.childCount - 1; i >= 0; i--)
+            DestroyImmediate(decorationsContainer.transform.GetChild(i).gameObject);
+
+        decorationTilemap.ClearAllTiles();
+    }
 }

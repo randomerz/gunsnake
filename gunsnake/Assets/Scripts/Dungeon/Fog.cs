@@ -168,7 +168,7 @@ public class Fog : MonoBehaviour
             q.Enqueue(nullVector);
             q.Dequeue(); // remove null vec
 
-            yield return null;
+            yield return 0.1f;
         }
     }
 

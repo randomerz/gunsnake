@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Final/Main Menu.unity
     guid: 91250bbe0a165a8469fc31dc4d703bea
   - enabled: 1
+    path: Assets/Scenes/Final/Jungle.unity
+    guid: c99f8d2ef9188844abb5731ef8b875f9
+  - enabled: 1
     path: Assets/Scenes/Final/Dungeon.unity
     guid: aa9a06c4bd3c19c4b8437661c4caf3d6
   m_configObjects: {}

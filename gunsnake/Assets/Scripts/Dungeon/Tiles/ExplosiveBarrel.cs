@@ -61,7 +61,7 @@ public class ExplosiveBarrel : Enemy
 
         spriteRenderer.sprite = primedSprite;
 
-        Debug.Log("Primed tick: " + primedTick);
+        //Debug.Log("Primed tick: " + primedTick);
     }
 
     private void Explode()

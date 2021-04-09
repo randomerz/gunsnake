@@ -125,7 +125,7 @@ MonoBehaviour:
     freq: 0.5
     roomData: {fileID: 11400000, guid: 72ef8aa40a8e2d74db9f80f0b3635764, type: 2}
   - name: HubX_Elizabeth_29x29
-    freq: 0.1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: f1e3658926d553544a7b25b27c5ca6a1, type: 2}
   - name: DomesticCombat_Allison_21x15
     freq: 1
@@ -139,10 +139,22 @@ MonoBehaviour:
   - name: CircleSpikes_Ethan_17x17
     freq: 0.75
     roomData: {fileID: 11400000, guid: e2893f2e2fb461a4aa7adafdb7e1b62e, type: 2}
+  - name: ExplosivesRoom_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 6b5e2f1c41961714d926234867dd5cbc, type: 2}
+  - name: HubHazards_27x19
+    freq: 0.5
+    roomData: {fileID: 11400000, guid: 20aa6b33020afa042a0b884a60517a7e, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
     roomData: {fileID: 11400000, guid: fc9e252854521ec47a31de892655c49e, type: 2}
+  - name: GridChall_19x19
+    freq: 1
+    roomData: {fileID: 11400000, guid: 88160bad3a1a1014d9f54088a2d973ec, type: 2}
+  - name: JMazeChall_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: 8a647910e39315041895e4d698102193, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1
