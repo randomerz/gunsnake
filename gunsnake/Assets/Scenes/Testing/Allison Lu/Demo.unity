@@ -15090,12 +15090,12 @@ PrefabInstance:
     - target: {fileID: 2228987706198435037, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.23
+      value: -2.88
       objectReference: {fileID: 0}
     - target: {fileID: 2228987706198435037, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: 8.08
       objectReference: {fileID: 0}
     - target: {fileID: 2228987706198435037, guid: 24d81d8c47c0e9e498a89d2f68f75f3f,
         type: 3}
@@ -22269,12 +22269,12 @@ PrefabInstance:
     - target: {fileID: 2228987706198435037, guid: de2d4e356127d9143ae1fcd44e447f92,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.99
+      value: -7.17
       objectReference: {fileID: 0}
     - target: {fileID: 2228987706198435037, guid: de2d4e356127d9143ae1fcd44e447f92,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: 6.08
       objectReference: {fileID: 0}
     - target: {fileID: 2228987706198435037, guid: de2d4e356127d9143ae1fcd44e447f92,
         type: 3}
@@ -27531,7 +27531,7 @@ GameObject:
   - component: {fileID: 1606351026}
   m_Layer: 0
   m_Name: Wall - Top
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40119,12 +40119,12 @@ PrefabInstance:
     - target: {fileID: 3208875469782037515, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.08
+      value: 5.98
       objectReference: {fileID: 0}
     - target: {fileID: 3208875469782037515, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -3.07
       objectReference: {fileID: 0}
     - target: {fileID: 3208875469782037515, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
