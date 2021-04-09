@@ -101,7 +101,7 @@ public class PlayerHealth : MonoBehaviour
         return maxHealth;
     }
 
-    private void SetInvulnerable(int frames)
+    public void SetInvulnerable(int frames)
     {
         isInvulnerable = true;
         ticksUntilCanTakeDamage = frames;

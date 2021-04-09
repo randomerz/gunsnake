@@ -929,7 +929,14 @@ public class UIManager : MonoBehaviour
 
         devIsInvuln = value;
 
-        Player.playerHealth.isInvulnerable = value;
+        if (value)
+        {
+            Player.playerHealth.SetInvulnerable(999999);
+        }
+        else
+        {
+            Player.playerHealth.SetInvulnerable(0);
+        }
     }
 
     public void SetInfDamage(bool value)
