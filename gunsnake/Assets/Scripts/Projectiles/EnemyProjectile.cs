@@ -46,7 +46,6 @@ public class EnemyProjectile : Projectile
         Collider2D[] walls = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullCollidableMask);
         foreach (Collider2D col in walls)
         {
-            Debug.Log("Enemy projectile collision with: " + col.tag);
             OnTriggerEnter2D(col);
 
             if (hitPlayerThisTile)
@@ -55,7 +54,6 @@ public class EnemyProjectile : Projectile
         Collider2D[] player = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.playerLayerMask);
         foreach (Collider2D col in player)
         {
-            Debug.Log("Enemy projectile collision with: " + col.tag);
             OnTriggerEnter2D(col);
 
             if (hitPlayerThisTile)
