@@ -76,7 +76,25 @@ public class Slime : Enemy
         else if (dir.x < 0)
             animator.SetFacing(true);
 
-        if (CanMove(transform.position + dir))
+        if (dir.x > 0)
+        {
+            currDir = Direction.right;
+        }
+        else if (dir.x < 0)
+        {
+            currDir = Direction.left;
+        }
+        else if (dir.y > 0)
+        {
+            currDir = Direction.up;
+        }
+        else
+        {
+            currDir = Direction.down;
+        }
+
+
+        if (CanMove(transform.position + dir, currDir))
             transform.position += dir;
         else
         {
@@ -84,19 +102,19 @@ public class Slime : Enemy
             switch (randomDir)
             {
                 case 0:
-                    if (CanMove(transform.position + new Vector3(1, 0, 0)))
+                    if (CanMove(transform.position + new Vector3(1, 0, 0), Direction.right))
                         transform.position += new Vector3(1, 0, 0);
                     break;
                 case 1:
-                    if (CanMove(transform.position + new Vector3(-1, 0, 0)))
+                    if (CanMove(transform.position + new Vector3(-1, 0, 0), Direction.left))
                         transform.position += new Vector3(-1, 0, 0);
                     break;
                 case 2:
-                    if (CanMove(transform.position + new Vector3(0, 1, 0)))
+                    if (CanMove(transform.position + new Vector3(0, 1, 0), Direction.up))
                         transform.position += new Vector3(0, 1, 0);
                     break;
                 case 3:
-                    if (CanMove(transform.position + new Vector3(0, -1, 0)))
+                    if (CanMove(transform.position + new Vector3(0, -1, 0), Direction.down))
                         transform.position += new Vector3(0, -1, 0);
                     break;
                 default:
