@@ -8,6 +8,9 @@ public class Archer : Enemy
     [Tooltip("1 = 4 game ticks")]
     public int attackSpeed;
     private int ticksTillAttack;
+    public int moveSpeed;
+    private int ticksTillMove;
+    public int distToPlayerRange;
     public GameObject bulletPrefab;
 
     protected override void Awake()
@@ -24,6 +27,7 @@ public class Archer : Enemy
         if (tick % 4 == 0)
         {
             ticksTillAttack -= 1;
+            ticksTillMove -= 1;
 
             // visuals
             if (animator != null)
@@ -45,15 +49,21 @@ public class Archer : Enemy
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
 
+                        Attack(GetDirectionToPlayer(true));
+                    }
+                    break;
+            }
 
-                        // attack if within range
+            switch (ticksTillAttack)
+            {
+                default:
+                    if (ticksTillMove <= 0)
+                    {
+                        ticksTillMove = moveSpeed;
+
+                        // move to within range
                         GameObject closestSeg = GetClosestPlayerSegment();
-                        if ((closestSeg.transform.position - transform.position).magnitude <= 5)
-                        {
-                            Attack(GetDirectionToPlayer(true));
-                        }
-                        // else move closer
-                        else
+                        if ((closestSeg.transform.position - transform.position).magnitude > 5)
                         {
                             Move(GetDirectionToPlayer(false));
                         }
@@ -71,11 +81,7 @@ public class Archer : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-        animator.SetOrigPos(transform.position);
-        if (dir.x > 0)
-            animator.SetFacing(false);
-        else if (dir.x < 0)
-            animator.SetFacing(true);
+
 
         if (dir.x > 0)
         {
@@ -95,32 +101,16 @@ public class Archer : Enemy
         }
 
 
-        if (CanMove(transform.position + dir, currDir))
-            transform.position += dir;
+        if (CanMoveForEnemy(transform.position, currDir))
+        {
+            MoveDir(dir);
+        }
         else
         {
-            int randomDir = Random.Range(0, 3);
-            switch (randomDir)
-            {
-                case 0:
-                    if (CanMove(transform.position + new Vector3(1, 0, 0), Direction.right))
-                        transform.position += new Vector3(1, 0, 0);
-                    break;
-                case 1:
-                    if (CanMove(transform.position + new Vector3(-1, 0, 0), Direction.left))
-                        transform.position += new Vector3(-1, 0, 0);
-                    break;
-                case 2:
-                    if (CanMove(transform.position + new Vector3(0, 1, 0), Direction.up))
-                        transform.position += new Vector3(0, 1, 0);
-                    break;
-                case 3:
-                    if (CanMove(transform.position + new Vector3(0, -1, 0), Direction.down))
-                        transform.position += new Vector3(0, -1, 0);
-                    break;
-                default:
-                    break;
-            }
+            Direction randomDir = (Direction)Random.Range(0, 4);
+            if (CanMoveForEnemy(transform.position, randomDir))
+                MoveDir(DirectionUtil.Convert(randomDir));
+
         }
     }
 
@@ -132,7 +122,7 @@ public class Archer : Enemy
         //      h.TakeDamage(damage);
         //  }
         GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
-        EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
+        BasicProjectile ep = proj.GetComponent<BasicProjectile>();
         proj.transform.position = transform.position;
         proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
         ep.direction = dir;

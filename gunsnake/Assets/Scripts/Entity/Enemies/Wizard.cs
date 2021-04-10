@@ -10,6 +10,8 @@ public class Wizard : Enemy
     private int ticksTillAttack;
     public GameObject bulletPrefab;
 
+    private bool justAttacked = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -31,23 +33,36 @@ public class Wizard : Enemy
 
             switch (ticksTillAttack)
             {
+                case 4:
+                case 3:
                 case 2:
                 case 1:
-                    if (animator != null)
-                        SetAnimatorBool("isPrep", true);
+                    if (!justAttacked)
+                    {
+                        if (animator != null)
+                            SetAnimatorBool("isPrep", true);
+                    }
                     break;
                 default:
                     if (ticksTillAttack <= 0)
                     {
                         ticksTillAttack = attackSpeed;
 
-                        // visuals
-                        if (animator != null)
-                            SetAnimatorBool("isAttack", true);
+                        if (justAttacked)
+                        {
+                            justAttacked = false;
+                            Move(GetDirectionToPlayer(false));
+                        }
+                        else
+                        {
+                            justAttacked = true;
 
-                        Attack();
-                        GameObject closestSeg = GetClosestPlayerSegment();
-                        Move(GetDirectionToPlayer(false));
+                            // visuals
+                            if (animator != null)
+                                SetAnimatorBool("isAttack", true);
+
+                            Attack();
+                        }
                     }
                     break;
             }
@@ -62,11 +77,7 @@ public class Wizard : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-        animator.SetOrigPos(transform.position);
-        if (dir.x > 0)
-            animator.SetFacing(false);
-        else if (dir.x < 0)
-            animator.SetFacing(true);
+
 
         if (dir.x > 0)
         {
@@ -86,32 +97,16 @@ public class Wizard : Enemy
         }
 
 
-        if (CanMove(transform.position + dir, currDir))
-            transform.position += dir;
+        if (CanMoveForEnemy(transform.position, currDir))
+        {
+            MoveDir(dir);
+        }
         else
         {
-            int randomDir = Random.Range(0, 3);
-            switch (randomDir)
-            {
-                case 0:
-                    if (CanMove(transform.position + new Vector3(1, 0, 0), Direction.right))
-                        transform.position += new Vector3(1, 0, 0);
-                    break;
-                case 1:
-                    if (CanMove(transform.position + new Vector3(-1, 0, 0), Direction.left))
-                        transform.position += new Vector3(-1, 0, 0);
-                    break;
-                case 2:
-                    if (CanMove(transform.position + new Vector3(0, 1, 0), Direction.up))
-                        transform.position += new Vector3(0, 1, 0);
-                    break;
-                case 3:
-                    if (CanMove(transform.position + new Vector3(0, -1, 0), Direction.down))
-                        transform.position += new Vector3(0, -1, 0);
-                    break;
-                default:
-                    break;
-            }
+            Direction randomDir = (Direction)Random.Range(0, 4);
+            if (CanMoveForEnemy(transform.position, randomDir))
+                MoveDir(DirectionUtil.Convert(randomDir));
+
         }
     }
 
@@ -130,7 +125,7 @@ public class Wizard : Enemy
         for (int i = 0; i < directions.Length; i++)
         {
             GameObject proj = ProjectileManager.CreateProjectile(bulletPrefab);
-            EnemyProjectile ep = proj.GetComponent<EnemyProjectile>();
+            BasicProjectile ep = proj.GetComponent<BasicProjectile>();
             proj.transform.position = transform.position;
             proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(directions[i].y, directions[i].x) * Mathf.Rad2Deg);
             ep.direction = directions[i]; 

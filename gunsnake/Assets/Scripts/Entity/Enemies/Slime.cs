@@ -70,12 +70,6 @@ public class Slime : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-        animator.SetOrigPos(transform.position);
-        if (dir.x > 0)
-            animator.SetFacing(false);
-        else if (dir.x < 0)
-            animator.SetFacing(true);
-
         if (dir.x > 0)
         {
             currDir = Direction.right;
@@ -94,32 +88,14 @@ public class Slime : Enemy
         }
 
 
-        if (CanMove(transform.position + dir, currDir))
-            transform.position += dir;
+        if (CanMoveForEnemy(transform.position, currDir))
+            MoveDir(dir);
         else
         {
-            int randomDir = Random.Range(0, 3);
-            switch (randomDir)
-            {
-                case 0:
-                    if (CanMove(transform.position + new Vector3(1, 0, 0), Direction.right))
-                        transform.position += new Vector3(1, 0, 0);
-                    break;
-                case 1:
-                    if (CanMove(transform.position + new Vector3(-1, 0, 0), Direction.left))
-                        transform.position += new Vector3(-1, 0, 0);
-                    break;
-                case 2:
-                    if (CanMove(transform.position + new Vector3(0, 1, 0), Direction.up))
-                        transform.position += new Vector3(0, 1, 0);
-                    break;
-                case 3:
-                    if (CanMove(transform.position + new Vector3(0, -1, 0), Direction.down))
-                        transform.position += new Vector3(0, -1, 0);
-                    break;
-                default:
-                    break;
-            }
+            Direction randomDir = (Direction) Random.Range(0, 4);
+            if (CanMoveForEnemy(transform.position, randomDir))
+                MoveDir(DirectionUtil.Convert(randomDir));
+            
         }
     }
 

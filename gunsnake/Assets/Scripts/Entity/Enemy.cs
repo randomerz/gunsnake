@@ -18,6 +18,9 @@ public abstract class Enemy : Entity
     [HideInInspector()]
     public GameObject itemDrop;
 
+    // movement
+    private Vector3 oldPos;
+
     private List<GameObject> effects = new List<GameObject>();
     protected Vector3 lastHitDir = Vector3.zero; // i have no idea how to properly do htis
     private bool strobing;
@@ -26,7 +29,6 @@ public abstract class Enemy : Entity
     [Header("References")]
     public SpriteRenderer spriteRenderer;
     public GeneralEnemyAnimator animator;
-    protected Collider2D myCollider;
 
     [HideInInspector]
     public static Material whiteFlashMat; // set in GameHandler.cs
@@ -213,6 +215,33 @@ public abstract class Enemy : Entity
         }
 
         return dir;
+    }
+
+    protected void MoveDir(Vector3 dir)
+    {
+        animator.SetOrigPos(transform.position);
+        if (dir.x > 0)
+            animator.SetFacing(false);
+        else if (dir.x < 0)
+            animator.SetFacing(true);
+
+        Vector3 oldPos = transform.position;
+
+        transform.position += dir;
+
+        StartCoroutine(CheckToRevertOnNextFixedUpdate(oldPos));
+    }
+
+    IEnumerator CheckToRevertOnNextFixedUpdate(Vector3 oldPos)
+    {
+        yield return new WaitForFixedUpdate();
+
+        Collider2D[] hits = new Collider2D[2];
+        int numHit = Physics2D.OverlapPointNonAlloc(transform.position, hits, fullCollidableMask | playerLayerMask);
+        if (numHit > 1)
+        {
+            transform.position = oldPos;
+        }
     }
 
     #endregion

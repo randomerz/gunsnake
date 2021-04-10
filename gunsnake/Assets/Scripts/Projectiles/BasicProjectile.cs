@@ -36,6 +36,7 @@ public class BasicProjectile : Projectile
     {
         baseDamage = other.baseDamage;
         basePierce = other.basePierce;
+        targets = other.targets;
         moveRate = ((BasicProjectile)other).moveRate;
     }
 
@@ -44,7 +45,7 @@ public class BasicProjectile : Projectile
         if (hitEnemyThisTile)
             return;
 
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullHeightEntitiesMask);
+        Collider2D[] enemies = Physics2D.OverlapPointAll(transform.position, targets);
         foreach (Collider2D col in enemies)
         {
             OnTriggerEnter2D(col);
@@ -60,17 +61,33 @@ public class BasicProjectile : Projectile
         {
             return;
         }
+        // check if it is not in targets
+        if ((targets & (1 << other.gameObject.layer)) == 0) {
+            return;
+        }
 
         if (other.tag == "Enemy" && !hitEnemyThisTile)
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();
             e.TakeDamage(CalculateDamage(), direction);
             basePierce -= 1;
-            if (CalculatePierce() < 0) 
+            if (CalculatePierce() < 0)
                 ProjectileManager.RemoveProjectile(gameObject);
 
             hitEnemyThisTile = true;
         }
+
+        if (other.tag == "Player" && !hitEnemyThisTile)
+        {
+            PlayerSegmentHealth p = other.gameObject.GetComponent<PlayerSegmentHealth>();
+            p.TakeDamage(CalculateDamage());
+            basePierce -= 1;
+            if (CalculatePierce() < 0)
+                ProjectileManager.RemoveProjectile(gameObject);
+
+            hitEnemyThisTile = true;
+        }
+
         if (other.tag == "Wall")
         {
             ProjectileManager.RemoveProjectile(gameObject);

@@ -43,7 +43,7 @@ public class EnemyProjectile : Projectile
         if (hitPlayerThisTile)
             return;
 
-        Collider2D[] walls = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.fullCollidableMask);
+        Collider2D[] walls = Physics2D.OverlapCircleAll(transform.position, 0.1f, Entity.fullCollidableMask);
         foreach (Collider2D col in walls)
         {
             OnTriggerEnter2D(col);
@@ -51,7 +51,7 @@ public class EnemyProjectile : Projectile
             if (hitPlayerThisTile)
                 break;
         }
-        Collider2D[] player = Physics2D.OverlapCircleAll(transform.position, 0.5f, Entity.playerLayerMask);
+        Collider2D[] player = Physics2D.OverlapCircleAll(transform.position, 0.1f, Entity.playerLayerMask);
         foreach (Collider2D col in player)
         {
             OnTriggerEnter2D(col);

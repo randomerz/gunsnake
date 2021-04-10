@@ -110,14 +110,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192b53de5cb27e541b1677784b839eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
-  damage: 2
+  maxHealth: 4
+  damage: 1
   randomizeStartingVars: 0
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 8556664536879575055}
   animator: {fileID: 600452420395707082}
-  attackSpeed: 1
+  attackSpeed: 8
+  moveSpeed: 2
+  distToPlayerRange: 5
   bulletPrefab: {fileID: 7328921005776752705, guid: a0e4a325e369e8b44b1abced98a75858,
     type: 3}
 --- !u!1 &2435080477604078356

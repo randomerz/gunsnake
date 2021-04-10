@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4348767371404124519}
   - component: {fileID: 7408686685824524042}
-  - component: {fileID: 4859747952351906579}
   - component: {fileID: 6658008377701269265}
+  - component: {fileID: 241594027295732726}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Projectile
@@ -83,21 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4859747952351906579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328921005776752705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cc75131ad403c4a8647b439e3ab413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 2
-  basePierce: 1
-  direction: {x: 0, y: 0, z: 0}
 --- !u!61 &6658008377701269265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108,7 +93,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -124,3 +109,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &241594027295732726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328921005776752705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddba19223a2d9ce43a8ac6cb8aaf6e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 1
+  basePierce: 0
+  targets:
+    serializedVersion: 2
+    m_Bits: 1280
+  direction: {x: 0, y: 0, z: 0}
+  moveRate: 2
