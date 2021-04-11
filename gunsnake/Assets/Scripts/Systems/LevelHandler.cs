@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +32,11 @@ public class LevelHandler : MonoBehaviour
     private bool didInit = false;
     private static bool shouldResetPlayer = true;
 
+    [Header("Fade")]
+    public Fade f;
+    public GameObject darkness;
+    public TextMeshProUGUI levelNameText;
+    public float levelTime = .04f;
     public void Awake()
     {
         if (currentArea == null)
@@ -52,7 +58,6 @@ public class LevelHandler : MonoBehaviour
 
     void Start()
     {
-
         StartLevel();
     }
 
@@ -98,20 +103,19 @@ public class LevelHandler : MonoBehaviour
         //else if (currentArea == "Temple")
         //{
         //    AudioManager.Play("Temple Music");
-        //}
-
+        //
 
         // dungeon stuff
         dungeonGen.CreateDungeon();
         fog?.Init();
         EnemyManager.InitializeEnemyDrops();
 
+        //fade shows the title, pauses time as well
+        StartCoroutine(ShowingLevelTitle());
+
         //player.transform.position;
         Player.playerMovement.SetSnakeSpawn(startObject.transform.position, startDirection);
         Player.playerEffects.SetPlayerEntering();
-        // fade screen in
-
-
     }
 
     public void EndLevel()
@@ -176,5 +180,23 @@ public class LevelHandler : MonoBehaviour
     private static void WinGame()
     {
         Player.EndGame(true);
+    }
+
+    //fade stuff
+    public IEnumerator ShowingLevelTitle()
+    {
+        darkness.SetActive(true);
+        Debug.Log("testing tp see if this is running");
+        levelNameText.text = currentArea + "-" + (currentFloor + 1);
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(levelTime);
+        Time.timeScale = 1;
+        StartCoroutine(HidingTitle());
+    }
+    public IEnumerator HidingTitle()
+    {
+        f.FadeOut();
+        yield return new WaitForSeconds(f.Duration);
+        darkness.SetActive(false);
     }
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121114665501073131}
+  - component: {fileID: 2194791714013520026}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -25,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 121114665501073132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 121114667445724146}
   - {fileID: 121114667303724607}
@@ -37,6 +38,39 @@ RectTransform:
   m_AnchoredPosition: {x: 2, y: -2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &2194791714013520026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121114665501073132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fd3fd978900654d9fb0df94dbf45fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthImage: {fileID: 121114667445724145}
+  currentHealth: {fileID: 121114667303724606}
+  healthSpriteArray:
+  - {fileID: -7758738145627192565, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -8841208001763090675, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -2134796013258831237, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 6730422752511052878, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -6276672367586760736, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  emptySpriteArray:
+  - {fileID: -3983430207619195362, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 83438745700653349, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 3534109894200638379, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -9017839394368776682, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 9116925699441068410, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  purpleSpriteArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  empty: {fileID: -1045181238759104467, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
 --- !u!1 &121114667303724592
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6276672367586760736, guid: 04644727049782344acd146cb0d8d03d,
+  m_Sprite: {fileID: -1045181238759104467, guid: 0c28c8afb14275a42801fefdf60b1e47,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0

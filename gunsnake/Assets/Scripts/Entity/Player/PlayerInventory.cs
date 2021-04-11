@@ -31,6 +31,10 @@ public static class PlayerInventory
         return keys > 0;
     }
 
+    public static int GetGold()
+    {
+        return gold;
+    }
     public static Item GetWeapon(int index)
     {
         return Player.playerWeaponManager.GetWeapon(index);
