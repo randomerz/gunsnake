@@ -114,6 +114,7 @@ public class LevelHandler : MonoBehaviour
     public void EndLevel()
     {
         Debug.Log("Level handler called to end level!");
+
         Player.playerEffects.SetPlayerExiting();
         // add a between level UI for short cut quests, etc
 
@@ -187,13 +188,17 @@ public class LevelHandler : MonoBehaviour
     public IEnumerator ShowingLevelTitle()
     {
         darkness.SetActive(true);
-        Debug.Log("testing tp see if this is running");
-        levelNameText.text = currentArea + "-" + (currentFloor + 1);
+        UIManager.canOpen = false;
         Time.timeScale = 0;
+        levelNameText.text = currentArea + " - " + (currentFloor + 1);
+
         yield return new WaitForSecondsRealtime(levelTime);
+
+        UIManager.canOpen = true;
         Time.timeScale = 1;
         StartCoroutine(HidingTitle());
     }
+
     public IEnumerator HidingTitle()
     {
         f.FadeOut();
@@ -203,10 +208,14 @@ public class LevelHandler : MonoBehaviour
 
     public IEnumerator FadeOut()
     {
-        darkness.SetActive(true);
-        levelNameText.text = "";
         f.FadeOut();
+        darkness.SetActive(true);
+        UIManager.canOpen = false;
+        levelNameText.text = "";
+
         yield return new WaitForSeconds(f.Duration);
+
+        UIManager.canOpen = true;
         StartNextLevel();
     }
 }

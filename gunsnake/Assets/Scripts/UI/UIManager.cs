@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public static bool stopPlayerInput;
 
     private bool isOpen = false;
+    public static bool canOpen = true;
     private bool isClosing = false; // for ui animation
     private bool canClose = true;
     public bool devEnabled;
@@ -96,6 +97,8 @@ public class UIManager : MonoBehaviour
 
     public UIAnimationController animationController;
 
+    //public float musicPitchChange;
+
 
     // private
     private static Item[] shopItems = new Item[6];
@@ -160,7 +163,10 @@ public class UIManager : MonoBehaviour
                     CloseUIFunctions();
             }
             else
-                OpenUI();
+            {
+                if (canOpen)
+                    OpenUI();
+            }
         }
         CheckDevPanel();
 
@@ -264,6 +270,8 @@ public class UIManager : MonoBehaviour
         isOpen = true;
 
         animationController.SetVisible(true);
+
+        AudioManager.SetLowPassEnabled(true);
     }
 
     public void CloseUI()
@@ -272,6 +280,8 @@ public class UIManager : MonoBehaviour
             return;
 
         animationController.SetVisible(false);
+
+        AudioManager.SetLowPassEnabled(false);
 
         isClosing = true;
         //CloseUIFunctions();

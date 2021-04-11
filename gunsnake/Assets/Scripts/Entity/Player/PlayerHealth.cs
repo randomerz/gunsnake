@@ -7,8 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
     private int health;
-    [SerializeField]
-    private int maxHealth;
+    private static int maxHealth;
     private static int baseMaxHealth = 5;
 
     private static float dodgeChance = 0f;

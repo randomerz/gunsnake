@@ -12,6 +12,10 @@ public class AudioManager : MonoBehaviour
     private Sound[] music;
     private static Sound[] _music;
 
+    [SerializeField]
+    private GameObject audioListenerObj;
+    private static AudioLowPassFilter menuLowPass;
+
     public static AudioManager instance;
 
     private static string currentMusic;
@@ -49,6 +53,8 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        menuLowPass = audioListenerObj.GetComponent<AudioLowPassFilter>();
     }
 
     private void Start()
@@ -95,8 +101,13 @@ public class AudioManager : MonoBehaviour
 
     private static void StopMusic()
     {
+        if (_music == null)
+            return;
+
         foreach (Sound s in _music)
         {
+            if (s == null || s.source == null)
+                continue;
             s.source.Stop();
         }
     }
@@ -113,6 +124,11 @@ public class AudioManager : MonoBehaviour
                 continue;
             s.source.volume = s.volume * value;
         }
+    }
+
+    public static void SetLowPassEnabled(bool value)
+    {
+        menuLowPass.enabled = value;
     }
 
     public static void SetSfxVolume(float value)

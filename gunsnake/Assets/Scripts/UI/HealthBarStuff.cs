@@ -55,7 +55,6 @@ public class HealthBarStuff : MonoBehaviour
                 break;
             case 4:
                     currentHealth.sprite = healthSpriteArray[3];
-                    Debug.Log("testttttttttttttt");
                 break;
             
             }

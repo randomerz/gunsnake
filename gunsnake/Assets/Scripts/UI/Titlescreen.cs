@@ -27,7 +27,7 @@ public class Titlescreen : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject resumePanel;
 
-    [Header("fade")]
+    [Header("Fade")]
     public float Duration = .04f;
     public Fade f;
 
@@ -37,6 +37,8 @@ public class Titlescreen : MonoBehaviour
         optionPanel.SetActive(false);
         resumePanel.SetActive(false);
         mainAnimator.SetVisible(true); // do after fade into main screen
+
+        AudioManager.PlayMusic("music_main_menu");
 
         volumeNumber = UIManager.volumeNumber;
         sfxNumber = UIManager.sfxNumber;
