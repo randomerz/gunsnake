@@ -27,6 +27,10 @@ public class Titlescreen : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject resumePanel;
 
+    [Header("fade")]
+    public float Duration = .04f;
+    public Fade f;
+
     void Start()
     {
         creditsPanel.SetActive(false);
@@ -62,9 +66,8 @@ public class Titlescreen : MonoBehaviour
 
     public void StartGame()
     {
-        LevelHandler.SetToJungle();
-
-        LevelHandler.RestartGame();
+        f.FadeOut();
+        StartCoroutine(StartingGame());
     }
  
 
@@ -125,5 +128,13 @@ public class Titlescreen : MonoBehaviour
         UIManager.sfxNumber = volume;
         sfxCounter.text = sfxNumber.ToString();
         AudioManager.SetSfxVolume(volume / volumeSlider.GetComponent<Slider>().maxValue);
+    }
+
+    //fading stuff
+    public IEnumerator StartingGame()
+    {
+        yield return new WaitForSeconds(Duration);
+        LevelHandler.SetToJungle();
+        LevelHandler.RestartGame();
     }
 }
