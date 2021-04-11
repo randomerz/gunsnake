@@ -110,14 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215f91d23e893f640aeb47ebb190e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 7
+  maxHealth: 12
   damage: 1
   randomizeStartingVars: 0
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 4239428277471226565}
   animator: {fileID: 8981718172046880783}
-  attackSpeed: 2
+  attackSpeed: 3
 --- !u!1 &5177139840426164560
 GameObject:
   m_ObjectHideFlags: 0

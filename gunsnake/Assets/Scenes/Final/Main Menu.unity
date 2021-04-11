@@ -448,7 +448,6 @@ GameObject:
   - component: {fileID: 185788068}
   - component: {fileID: 185788067}
   - component: {fileID: 185788066}
-  - component: {fileID: 185788065}
   - component: {fileID: 185788063}
   m_Layer: 5
   m_Name: Quit Button
@@ -929,7 +928,6 @@ GameObject:
   - component: {fileID: 453675359}
   - component: {fileID: 453675358}
   - component: {fileID: 453675357}
-  - component: {fileID: 453675356}
   - component: {fileID: 453675354}
   m_Layer: 5
   m_Name: Play Button
@@ -1407,7 +1405,6 @@ GameObject:
   - component: {fileID: 523334986}
   - component: {fileID: 523334985}
   - component: {fileID: 523334984}
-  - component: {fileID: 523334983}
   - component: {fileID: 523334981}
   m_Layer: 5
   m_Name: Options Button

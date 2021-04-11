@@ -110,14 +110,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe313b3c38658c4e9b78b28c5fdebc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 6
   damage: 1
   randomizeStartingVars: 0
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 4514680796039331659}
   animator: {fileID: 5558841365507082243}
-  attackSpeed: 1
+  attackSpeed: 2
+  chargeLength: 4
+  chargeChance: 0.2
 --- !u!1 &8066032449580002978
 GameObject:
   m_ObjectHideFlags: 0
