@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: JMazeChall_21x21
   m_EditorClassIdentifier: 
   roomName: JMazeChall_21x21
-  roomType: 0
+  roomType: 1
   isJungle: 1
   isDungeon: 0
   isTemple: 0

@@ -1622,6 +1622,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5540342849430687865, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: doJungle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687865, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: doTemple
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
         type: 3}
       propertyPath: m_RootOrder

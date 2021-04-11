@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: HubX_Elizabeth_29x29
   roomType: 0
-  isJungle: 1
-  isDungeon: 1
+  isJungle: 0
+  isDungeon: 0
   isTemple: 1
   roomObjectPath: SObj Rooms/HubX_Elizabeth_29x29
   defaultConnections:

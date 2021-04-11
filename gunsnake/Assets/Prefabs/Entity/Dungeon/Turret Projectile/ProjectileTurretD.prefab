@@ -100,7 +100,7 @@ MonoBehaviour:
   fireRate: 8
   ticksTillShot: 8
   direction: 1
-  projectile: {fileID: 1148371326340170767, guid: 550704a0602bc8c439e4042b18af4e61,
+  projectile: {fileID: 7328921005776752705, guid: 759231d6c714c5147865b01bdd362ef6,
     type: 3}
   bulletSpawn: {fileID: 3523706727138849686}
   prepParticles: {fileID: 3238460248845565247, guid: de1e3e90339328243a6f7c40072303e8,

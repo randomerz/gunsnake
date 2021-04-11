@@ -14,7 +14,7 @@ public class LevelHandler : MonoBehaviour
 
     public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
-    public static string templeSceneName = "Dungeon";
+    public static string templeSceneName = "Dungeon"; // TODO: update
 
     // Set by DungeonRoomPlacer
     public static GameObject startObject;
@@ -84,30 +84,23 @@ public class LevelHandler : MonoBehaviour
     public void StartLevel()
     {
         // audio
-        if (Random.Range(0, 2) == 0)
+        if (currentArea == "Jungle")
         {
-            AudioManager.Play("Jungle Music");
+            AudioManager.PlayMusic("music_jungle");
         }
-        else
+        else if (currentArea == "Dungeon")
         {
-            AudioManager.Play("Temple Music");
+            AudioManager.PlayMusic("music_dungeon");
         }
-        //if (currentArea == "Jungle")
-        //{
-        //    AudioManager.Play("Jungle Music");
-        //}
-        //else if (currentArea == "Dungeon")
-        //{
-        //    AudioManager.Play("Dungeon Music");
-        //}
-        //else if (currentArea == "Temple")
-        //{
-        //    AudioManager.Play("Temple Music");
-        //
+        else if (currentArea == "Temple")
+        {
+            AudioManager.PlayMusic("music_temple");
+        }
 
         // dungeon stuff
         dungeonGen.CreateDungeon();
-        fog?.Init();
+        if (fog != null)
+            fog.Init();
         EnemyManager.InitializeEnemyDrops();
 
         //fade shows the title, pauses time as well
@@ -179,7 +172,14 @@ public class LevelHandler : MonoBehaviour
 
     private static void WinGame()
     {
+        //AudioManager.PlayMusic("music_win");
+
         Player.EndGame(true);
+    }
+
+    public static void LoseGame()
+    {
+        //AudioManager.PlayMusic("music_lose");
     }
 
     //fade stuff

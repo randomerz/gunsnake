@@ -145,6 +145,27 @@ MonoBehaviour:
   - name: HubHazards_27x19
     freq: 0.5
     roomData: {fileID: 11400000, guid: 20aa6b33020afa042a0b884a60517a7e, type: 2}
+  - name: JTreeRoom_13x13
+    freq: 1
+    roomData: {fileID: 11400000, guid: 2562dbe8535469843bafb00bf095155c, type: 2}
+  - name: JBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: 34839696a9e537849ad3e05a4b017f86, type: 2}
+  - name: DBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: 4892dd6e18225774b8a24c83ec09ae5d, type: 2}
+  - name: TBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: e2b5965431086224ea2e95eef19c61cb, type: 2}
+  - name: HubDQuad_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: dd39c41f424d6dd4da4327c9a1ea2ac4, type: 2}
+  - name: HubExplosives_23x17
+    freq: 1
+    roomData: {fileID: 11400000, guid: cc5df735418aa1741819ac0e45614575, type: 2}
+  - name: HubJTree_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: f11f8be974593b347926e7367ff39085, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
@@ -155,12 +176,15 @@ MonoBehaviour:
   - name: JMazeChall_21x21
     freq: 1
     roomData: {fileID: 11400000, guid: 8a647910e39315041895e4d698102193, type: 2}
+  - name: JChallSlimes_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 991c46617effe5947b6a1683f4a6ef91, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 8983b84dad9d7ba4a865c6adbada9e0f, type: 2}
   lootRooms:
-  - name: EndRoom_9x9_NESW
+  - name: LootRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 7c6b33c802eeb3440a64731f2cb2425d, type: 2}
   entranceRooms:
@@ -171,3 +195,6 @@ MonoBehaviour:
   - name: EndRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 2804e8daa6459844b8abc1e71c14a80e, type: 2}
+  doJungle: 1
+  doDungeon: 1
+  doTemple: 1

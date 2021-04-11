@@ -159,14 +159,26 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   music:
-  - name: Temple Music
+  - name: music_jungle
+    clip: {fileID: 8300000, guid: 0ecf4d9b9dbfb46469bff08d34d88c70, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: music_dungeon
+    clip: {fileID: 8300000, guid: 4bdbdb8b55bc6334b9222a82a5c0261b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: music_temple
     clip: {fileID: 8300000, guid: c292a4d678b6df4439795f83068e5669, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: Jungle Music
-    clip: {fileID: 8300000, guid: 0ecf4d9b9dbfb46469bff08d34d88c70, type: 3}
+  - name: music_main_menu
+    clip: {fileID: 8300000, guid: 22122cb5e7f891041877fdd406aafa4f, type: 3}
     volume: 1
     pitch: 1
     loop: 1

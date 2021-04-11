@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: GridChall_19x19
   roomType: 1
-  isJungle: 1
-  isDungeon: 1
+  isJungle: 0
+  isDungeon: 0
   isTemple: 1
   roomObjectPath: SObj Rooms/GridChall_19x19
   defaultConnections:
