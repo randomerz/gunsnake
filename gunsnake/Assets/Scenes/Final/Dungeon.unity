@@ -1789,6 +1789,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item Loot Table
       objectReference: {fileID: 0}
+    - target: {fileID: 7410152442715994910, guid: 68a6693c90646934f952690fd282288f,
+        type: 3}
+      propertyPath: artifacts.Array.data[2].name
+      value: Pierce Grapes
+      objectReference: {fileID: 0}
     - target: {fileID: 7410152442715994911, guid: 68a6693c90646934f952690fd282288f,
         type: 3}
       propertyPath: m_RootOrder

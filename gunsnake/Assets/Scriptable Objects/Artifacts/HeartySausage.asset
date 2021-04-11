@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
-  m_Name: PiercingGrapes
+  m_Name: HeartySausage
   m_EditorClassIdentifier: 
-  name: Pierce Grapes
-  description: 'Increases pierce of each bullet by +1 per count. '
-  icon: {fileID: -8478895259453413395, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
+  name: Hearty Sausage
+  description: Adds +1 to your current HP per count.
+  icon: {fileID: 3046544090647025007, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
   baseCost: 10
   count: 0

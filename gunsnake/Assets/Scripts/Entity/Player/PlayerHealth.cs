@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     private static float dodgeChance = 0f;
     public bool isInvulnerable;
+    private int lifesteal = 0;
     private int ticksUntilCanTakeDamage;
     public int iFramesTicks = 8;
 
@@ -112,6 +113,14 @@ public class PlayerHealth : MonoBehaviour
     {
         maxHealth++;
         GainHealth(1);
+    }
+
+    public void Lifesteal(bool heal)
+    {
+        if (heal)
+            GainHealth(lifesteal);
+        else
+            lifesteal++;
     }
 
     #region Strobe Color

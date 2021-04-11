@@ -15,6 +15,8 @@ public class EnemyManager : MonoBehaviour
 
     private static GameObject enemyContainer;
 
+    private static int enemiesKilled = 0;
+    
     // could be static
     public GameObject goldDrop;
     public GameObject healthDrop;
@@ -147,6 +149,9 @@ public class EnemyManager : MonoBehaviour
         Type type = enemy.GetComponent<Enemy>().GetType();
         if (activeEnemies[type].Contains(enemy))
         {
+            enemiesKilled++;
+            if (enemiesKilled % 10 == 0)
+                Player.playerHealth.Lifesteal(true);
             inactiveEnemies[type].Add(enemy);
             activeEnemies[type].Remove(enemy);
             enemy.SetActive(false);
@@ -167,6 +172,7 @@ public class EnemyManager : MonoBehaviour
 
     public static void ResetAllEnemies()
     {
+        enemiesKilled = 0;
         activeEnemies.Clear();
         inactiveEnemies.Clear();
         currentLevelEnemies.Clear();

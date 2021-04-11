@@ -6,7 +6,7 @@ public class BasicProjectile : Projectile
 {
     public Vector3 direction;
 
-    private bool hitEnemyThisTile = false;
+    protected bool hitEnemyThisTile = false;
 
     //  For making gifs
     //private void Awake()
@@ -37,7 +37,7 @@ public class BasicProjectile : Projectile
         basePierce = other.basePierce;
     }
 
-    private void CheckIfEnemyOnSquare()
+    protected void CheckIfEnemyOnSquare()
     {
         if (hitEnemyThisTile)
             return;
