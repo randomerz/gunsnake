@@ -24,6 +24,10 @@ public class DungeonRoomTable : MonoBehaviour
     private TableEntry[][] tables;
     private float[] tableSums;
 
+    public bool doJungle = true;
+    public bool doDungeon = true;
+    public bool doTemple = true;
+
     // should be normal rooms with 8+ exits, just looks at rooms with "hub" in name right now
     private List<TableEntry> hubRooms = new List<TableEntry>();
     private float hubSum;
@@ -81,10 +85,29 @@ public class DungeonRoomTable : MonoBehaviour
         hubSum = s;
     }
 
+    private bool CheckRoom(RoomData room)
+    {
+        Debug.Log(room);
+        Debug.Log(room.name);
+        return (room.isJungle && doJungle) || (room.isDungeon && doDungeon) || (room.isTemple && doTemple);
+    }
+
     public RoomData GetRoom(RoomType type)
     {
         Start();
 
+        RoomData ret = GetRoomHelper(type);
+
+        while (!CheckRoom(ret))
+        {
+            ret = GetRoomHelper(type);
+        }
+
+        return ret;
+    }
+
+    private RoomData GetRoomHelper(RoomType type)
+    {
         TableEntry[] currTable = tables[(int)type];
         float currSum = tableSums[(int)type];
 
@@ -101,6 +124,8 @@ public class DungeonRoomTable : MonoBehaviour
             random -= currTable[i].freq;
         }
 
+        Debug.Log(type + ": " + ret);
+
         return ret;
     }
 
@@ -108,6 +133,18 @@ public class DungeonRoomTable : MonoBehaviour
     {
         Start();
 
+        RoomData ret = GetHubRoomHelper();
+
+        while (!CheckRoom(ret))
+        {
+            ret = GetHubRoomHelper();
+        }
+
+        return ret;
+    }
+
+    private RoomData GetHubRoomHelper()
+    {
         List<TableEntry> currTable = hubRooms;
         float currSum = hubSum;
 

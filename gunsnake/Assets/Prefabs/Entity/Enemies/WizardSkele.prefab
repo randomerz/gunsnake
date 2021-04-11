@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2228987706198435037}
-  - component: {fileID: 2228987706198435039}
   - component: {fileID: -944116586543906224}
   - component: {fileID: 2228987706198435035}
   - component: {fileID: 2228987706198435038}
+  - component: {fileID: -7835883900885286495}
   m_Layer: 9
   m_Name: WizardSkele
   m_TagString: Enemy
@@ -35,25 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2228987706198435039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228987706198435034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5ff97515880bc499763444da99234e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 999
-  damage: 1
-  randomizeStartingVars: 0
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 3306391595533008146}
-  animator: {fileID: -944116586543906224}
 --- !u!114 &-944116586543906224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +98,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-7835883900885286495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228987706198435034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb53b852ff5099644a0fbeca67a06c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 4
+  damage: 1
+  randomizeStartingVars: 0
+  doTick: 1
+  doDrop: 1
+  itemDrop: {fileID: 0}
+  spriteRenderer: {fileID: 3306391595533008146}
+  animator: {fileID: -944116586543906224}
+  attackSpeed: 8
+  bulletPrefab: {fileID: 2686402708710274360, guid: 81f00918dd15a0f42a200aacb1f6b60e,
+    type: 3}
 --- !u!1 &3113130458158014027
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,6 @@ public class Room : MonoBehaviour
     void Awake()
     {
         // get object in children door => if door isn't locked add to thing
-
         switch (roomData.roomType)
         {
             case RoomType.normal:
@@ -65,7 +64,7 @@ public class Room : MonoBehaviour
 
             case RoomType.challenge:
                 activeEnemies = new List<Enemy>();
-                
+
                 InitWaves();
                 foreach (List<Enemy> wave in waves)
                     foreach (Enemy e in wave)
@@ -79,6 +78,14 @@ public class Room : MonoBehaviour
 
             case RoomType.exit:
                 break;
+        }
+
+        if (roomData.roomType != RoomType.challenge && roomData.roomType != RoomType.exit)
+        {
+            foreach (Door d in doors)
+            {
+                d.SetShouldRender(false);
+            }
         }
     }
 
@@ -321,7 +328,7 @@ public class Room : MonoBehaviour
                     if (numSegmentsIn > 0 && !didPlayerEnter)
                     {
                         didPlayerEnter = true;
-                        Debug.Log("Player entered room type " + roomData.roomType);
+                        //Debug.Log("Player entered room type " + roomData.roomType);
 
                         isInCombat = true;
                     }
@@ -331,7 +338,7 @@ public class Room : MonoBehaviour
                     if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
                     {
                         didPlayerEnter = true;
-                        Debug.Log("Player entered room type " + roomData.roomType);
+                        //Debug.Log("Player entered room type " + roomData.roomType);
 
                         isInCombat = true;
                         SetDoorIsClosed(true);

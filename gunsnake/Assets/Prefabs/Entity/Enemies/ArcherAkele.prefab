@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2228987706198435037}
-  - component: {fileID: 2228987706198435039}
   - component: {fileID: 600452420395707082}
   - component: {fileID: 2228987706198435035}
   - component: {fileID: 2228987706198435038}
+  - component: {fileID: -7374494693026316834}
   m_Layer: 9
   m_Name: ArcherAkele
   m_TagString: Enemy
@@ -35,25 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2228987706198435039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228987706198435034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5ff97515880bc499763444da99234e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 999
-  damage: 1
-  randomizeStartingVars: 0
-  doTick: 1
-  itemDrop: {fileID: 0}
-  spriteRenderer: {fileID: 8556664536879575055}
-  animator: {fileID: 600452420395707082}
 --- !u!114 &600452420395707082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +98,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-7374494693026316834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228987706198435034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192b53de5cb27e541b1677784b839eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 4
+  damage: 1
+  randomizeStartingVars: 0
+  doTick: 1
+  doDrop: 1
+  itemDrop: {fileID: 0}
+  spriteRenderer: {fileID: 8556664536879575055}
+  animator: {fileID: 600452420395707082}
+  attackSpeed: 8
+  moveSpeed: 2
+  distToPlayerRange: 5
+  bulletPrefab: {fileID: 7328921005776752705, guid: a0e4a325e369e8b44b1abced98a75858,
+    type: 3}
 --- !u!1 &2435080477604078356
 GameObject:
   m_ObjectHideFlags: 0

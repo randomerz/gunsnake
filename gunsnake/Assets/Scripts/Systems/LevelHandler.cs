@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,9 +12,9 @@ public class LevelHandler : MonoBehaviour
     public static int currentFloor; // 0, 1
     public const int numFloors = 2;
 
-    public static string jungleSceneName = "Dungeon";
+    public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
-    public static string templeSceneName = "Dungeon";
+    public static string templeSceneName = "Dungeon"; // TODO: update
 
     // Set by DungeonRoomPlacer
     public static GameObject startObject;
@@ -31,6 +32,11 @@ public class LevelHandler : MonoBehaviour
     private bool didInit = false;
     private static bool shouldResetPlayer = true;
 
+    [Header("Fade")]
+    public Fade f;
+    public GameObject darkness;
+    public TextMeshProUGUI levelNameText;
+    public float levelTime = .04f;
     public void Awake()
     {
         if (currentArea == null)
@@ -52,7 +58,6 @@ public class LevelHandler : MonoBehaviour
 
     void Start()
     {
-
         StartLevel();
     }
 
@@ -79,49 +84,43 @@ public class LevelHandler : MonoBehaviour
     public void StartLevel()
     {
         // audio
-        if (Random.Range(0, 2) == 0)
+        if (currentArea == "Jungle")
         {
-            AudioManager.Play("Jungle Music");
+            AudioManager.PlayMusic("music_jungle");
         }
-        else
+        else if (currentArea == "Dungeon")
         {
-            AudioManager.Play("Temple Music");
+            AudioManager.PlayMusic("music_dungeon");
         }
-        //if (currentArea == "Jungle")
-        //{
-        //    AudioManager.Play("Jungle Music");
-        //}
-        //else if (currentArea == "Dungeon")
-        //{
-        //    AudioManager.Play("Dungeon Music");
-        //}
-        //else if (currentArea == "Temple")
-        //{
-        //    AudioManager.Play("Temple Music");
-        //}
-
+        else if (currentArea == "Temple")
+        {
+            AudioManager.PlayMusic("music_temple");
+        }
 
         // dungeon stuff
         dungeonGen.CreateDungeon();
-        fog?.Init();
+        if (fog != null)
+            fog.Init();
         EnemyManager.InitializeEnemyDrops();
+
+        //fade shows the title, pauses time as well
+        StartCoroutine(ShowingLevelTitle());
 
         //player.transform.position;
         Player.playerMovement.SetSnakeSpawn(startObject.transform.position, startDirection);
         Player.playerEffects.SetPlayerEntering();
-        // fade screen in
-
-
     }
 
     public void EndLevel()
     {
         Debug.Log("Level handler called to end level!");
+
         Player.playerEffects.SetPlayerExiting();
         // add a between level UI for short cut quests, etc
-        
+
+        StartCoroutine(FadeOut());
         // temp
-        StartNextLevel();
+        //StartNextLevel();
     }
 
     public static void StartNextLevel()
@@ -175,6 +174,48 @@ public class LevelHandler : MonoBehaviour
 
     private static void WinGame()
     {
+        //AudioManager.PlayMusic("music_win");
+
         Player.EndGame(true);
+    }
+
+    public static void LoseGame()
+    {
+        //AudioManager.PlayMusic("music_lose");
+    }
+
+    //fade stuff
+    public IEnumerator ShowingLevelTitle()
+    {
+        darkness.SetActive(true);
+        UIManager.canOpen = false;
+        Time.timeScale = 0;
+        levelNameText.text = currentArea + " - " + (currentFloor + 1);
+
+        yield return new WaitForSecondsRealtime(levelTime);
+
+        UIManager.canOpen = true;
+        Time.timeScale = 1;
+        StartCoroutine(HidingTitle());
+    }
+
+    public IEnumerator HidingTitle()
+    {
+        f.FadeOut();
+        yield return new WaitForSeconds(f.Duration);
+        darkness.SetActive(false);
+    }
+
+    public IEnumerator FadeOut()
+    {
+        f.FadeOut();
+        darkness.SetActive(true);
+        UIManager.canOpen = false;
+        levelNameText.text = "";
+
+        yield return new WaitForSeconds(f.Duration);
+
+        UIManager.canOpen = true;
+        StartNextLevel();
     }
 }

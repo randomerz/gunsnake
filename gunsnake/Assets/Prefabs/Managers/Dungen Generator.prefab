@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5540342849430687866}
   - component: {fileID: 5540342849430687867}
   - component: {fileID: 5540342849430687868}
+  - component: {fileID: 7984657808008110450}
   - component: {fileID: 5540342849430687865}
   m_Layer: 0
   m_Name: Dungen Generator
@@ -53,6 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd739e4fd087a8e47b5415a00029cf4b, type: 2}
   drawGizmos: 0
   roomPlacer: {fileID: 5540342849430687868}
+  decorationPlacer: {fileID: 7984657808008110450}
   roomTable: {fileID: 5540342849430687865}
 --- !u!114 &5540342849430687868
 MonoBehaviour:
@@ -76,6 +78,27 @@ MonoBehaviour:
     type: 3}
   exitTilePrefab: {fileID: 5451867131178767231, guid: a6206a71e2767c74392f02e52e97ed11,
     type: 3}
+--- !u!114 &7984657808008110450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540342849430687869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd98b0f762021b44bbc9b982d0cff610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: Jungle
+  propChance: 0
+  simpleChance: 0
+  simpleProps: []
+  colliderProps: []
+  complexProps: []
+  outOfBoundProps: []
+  decorationTilemap: {fileID: 0}
+  roomPlacer: {fileID: 5540342849430687868}
 --- !u!114 &5540342849430687865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +125,7 @@ MonoBehaviour:
     freq: 0.5
     roomData: {fileID: 11400000, guid: 72ef8aa40a8e2d74db9f80f0b3635764, type: 2}
   - name: HubX_Elizabeth_29x29
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: f1e3658926d553544a7b25b27c5ca6a1, type: 2}
   - name: DomesticCombat_Allison_21x15
     freq: 1
@@ -116,16 +139,52 @@ MonoBehaviour:
   - name: CircleSpikes_Ethan_17x17
     freq: 0.75
     roomData: {fileID: 11400000, guid: e2893f2e2fb461a4aa7adafdb7e1b62e, type: 2}
+  - name: ExplosivesRoom_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 6b5e2f1c41961714d926234867dd5cbc, type: 2}
+  - name: HubHazards_27x19
+    freq: 0.5
+    roomData: {fileID: 11400000, guid: 20aa6b33020afa042a0b884a60517a7e, type: 2}
+  - name: JTreeRoom_13x13
+    freq: 1
+    roomData: {fileID: 11400000, guid: 2562dbe8535469843bafb00bf095155c, type: 2}
+  - name: JBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: 34839696a9e537849ad3e05a4b017f86, type: 2}
+  - name: DBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: 4892dd6e18225774b8a24c83ec09ae5d, type: 2}
+  - name: TBumpRoom_15x11
+    freq: 1
+    roomData: {fileID: 11400000, guid: e2b5965431086224ea2e95eef19c61cb, type: 2}
+  - name: HubDQuad_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: dd39c41f424d6dd4da4327c9a1ea2ac4, type: 2}
+  - name: HubExplosives_23x17
+    freq: 1
+    roomData: {fileID: 11400000, guid: cc5df735418aa1741819ac0e45614575, type: 2}
+  - name: HubJTree_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: f11f8be974593b347926e7367ff39085, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
     roomData: {fileID: 11400000, guid: fc9e252854521ec47a31de892655c49e, type: 2}
+  - name: GridChall_19x19
+    freq: 1
+    roomData: {fileID: 11400000, guid: 88160bad3a1a1014d9f54088a2d973ec, type: 2}
+  - name: JMazeChall_21x21
+    freq: 1
+    roomData: {fileID: 11400000, guid: 8a647910e39315041895e4d698102193, type: 2}
+  - name: JChallSlimes_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 991c46617effe5947b6a1683f4a6ef91, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 8983b84dad9d7ba4a865c6adbada9e0f, type: 2}
   lootRooms:
-  - name: EndRoom_9x9_NESW
+  - name: LootRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 7c6b33c802eeb3440a64731f2cb2425d, type: 2}
   entranceRooms:
@@ -136,3 +195,6 @@ MonoBehaviour:
   - name: EndRoom_9x9_NESW
     freq: 1
     roomData: {fileID: 11400000, guid: 2804e8daa6459844b8abc1e71c14a80e, type: 2}
+  doJungle: 1
+  doDungeon: 1
+  doTemple: 1

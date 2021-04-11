@@ -9,9 +9,11 @@ public class ExplosiveBarrel : Enemy
     private int primedTick = -1;
     private bool didExplode;
 
+    //public Explosion explosion;
+    public GameObject explosionPrefab;
 
     public Sprite primedSprite;
-    public GameObject explosionFX;
+    //public GameObject explosionFX;
 
 
     private Collider2D hitbox;
@@ -33,7 +35,7 @@ public class ExplosiveBarrel : Enemy
             {
                 if (primedTick != e.tick)
                 {
-                    StartCoroutine(Explode());
+                    Explode();
                 }
             }
         }
@@ -59,48 +61,20 @@ public class ExplosiveBarrel : Enemy
 
         spriteRenderer.sprite = primedSprite;
 
-        Debug.Log("Primed tick: " + primedTick);
+        //Debug.Log("Primed tick: " + primedTick);
     }
 
-    private IEnumerator Explode()
+    private void Explode()
     {
         didExplode = true;
-
-        // AudioManager.PlaySound("explode");
-
-        CameraShake.Shake(.75f, 0.5f);
-        explosionFX.SetActive(true);
 
         spriteRenderer.enabled = false;
         hitbox.enabled = false;
 
+        //explosion.Explode(fullHeightEntitiesMask | playerLayerMask, damage);
+        GameObject expGO = Instantiate(explosionPrefab, transform.position, Quaternion.identity, transform.parent);
 
-        
-        //ContactFilter2D targetFilter = new ContactFilter2D();
-        //targetFilter.layerMask = fullHeightEntitiesMask;
-        //RaycastHit2D[] hits = new RaycastHit2D[99];
-        //int numHit = Physics2D.Raycast(startPos, direction, targetFilter, hits, wallHit.distance);
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 2f, fullHeightEntitiesMask | playerLayerMask);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            //Debug.Log("Explosion hit " + hits[i].name + " at " + hits[i].transform.position);
-
-            Enemy e = hits[i].transform.GetComponent<Enemy>();
-            if (e != null)
-            {
-                e.TakeDamage(damage, (e.transform.position - transform.position).normalized);
-            }
-            // create effect
-            PlayerSegmentHealth p = hits[i].transform.GetComponent<PlayerSegmentHealth>();
-            if (p != null)
-            {
-                p.TakeDamage(damage);
-            }
-        }
-
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
         Die();
     }

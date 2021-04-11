@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public abstract class Enemy : Entity
     public bool doDrop = true;
     [HideInInspector()]
     public GameObject itemDrop;
+
+    // movement
+    private Vector3 oldPos;
 
     private List<GameObject> effects = new List<GameObject>();
     protected Vector3 lastHitDir = Vector3.zero; // i have no idea how to properly do htis
@@ -42,10 +46,47 @@ public abstract class Enemy : Entity
         if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", false);
 
+        myCollider = GetComponent<Collider2D>();
+        CheckSpawn();
+
         EnemyManager.AddEnemy(this);
     }
 
     public abstract void EnemyTick(int tick);
+
+
+    private void CheckSpawn()
+    {
+        // normal
+        if (CanSpawn(transform.position))
+            return;
+
+        // try something around it
+        Vector3[] difPos = { new Vector3(1, 0), new Vector3(0, 1), new Vector3(-1, 0), new Vector3(0, -1),
+                             new Vector3(1, 1), new Vector3(-1, 1), new Vector3(-1, -1), new Vector3(1, -1) };
+        foreach (Vector3 dif in difPos)
+        {
+            if (CanSpawn(transform.position + dif))
+            {
+                transform.position += dif;
+                return;
+            }
+        }
+    }
+
+    private bool CanSpawn(Vector2 pos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(pos);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit && hit != myCollider && hit.tag != "Room")
+            {
+                Debug.Log("Couldn't place! Conflicting with " + hit.name);
+                return false;
+            }
+        }
+        return true;
+    }
 
     #region Health
 
@@ -71,7 +112,7 @@ public abstract class Enemy : Entity
     
     public virtual void Die()
     {
-        if (animator != null)
+        if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", true);
         foreach (GameObject e in effects)
         {
@@ -176,12 +217,39 @@ public abstract class Enemy : Entity
         return dir;
     }
 
+    protected void MoveDir(Vector3 dir)
+    {
+        animator.SetOrigPos(transform.position);
+        if (dir.x > 0)
+            animator.SetFacing(false);
+        else if (dir.x < 0)
+            animator.SetFacing(true);
+
+        Vector3 oldPos = transform.position;
+
+        transform.position += dir;
+
+        StartCoroutine(CheckToRevertOnNextFixedUpdate(oldPos));
+    }
+
+    IEnumerator CheckToRevertOnNextFixedUpdate(Vector3 oldPos)
+    {
+        yield return new WaitForFixedUpdate();
+
+        Collider2D[] hits = new Collider2D[2];
+        int numHit = Physics2D.OverlapPointNonAlloc(transform.position, hits, fullCollidableMask | playerLayerMask);
+        if (numHit > 1)
+        {
+            transform.position = oldPos;
+        }
+    }
+
     #endregion
 
 
     protected void SetAnimatorBool(string name, bool value)
     {
-        if (animator != null)
+        if (animator != null || animator.animator != null)
         {
             animator.animator.SetBool("isIdle", false);
             animator.animator.SetBool("isPrep", false);

@@ -10,6 +10,8 @@ public abstract class Projectile : MonoBehaviour
     public int baseDamage;
     public int basePierce; // a bullet with 1 pierce goes through 1 enemy
 
+    public LayerMask targets;
+
     protected List<Collider2D> ignoredColliders = new List<Collider2D>();
     private Collider2D myCollider;
 

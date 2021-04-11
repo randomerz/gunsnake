@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 703823833284269694}
   m_Layer: 0
   m_Name: HubX_Elizabeth_29x29
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

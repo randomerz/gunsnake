@@ -20,6 +20,7 @@ public class Box : Enemy
 
     protected override void Awake()
     {
+        animator.animator = null;
         base.Awake();
 
         UpdateSums();
@@ -63,7 +64,9 @@ public class Box : Enemy
 
     public override void Die()
     {
+        myCollider.enabled = false; // temp fix
         base.Die();
+        myCollider.enabled = true;
 
         // extra particles
         if (extraParticles != null && lastHitDir != Vector3.zero)

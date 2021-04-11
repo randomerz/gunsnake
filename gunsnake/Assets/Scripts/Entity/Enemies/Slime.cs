@@ -70,16 +70,33 @@ public class Slime : Enemy
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-        AudioManager.Play("enemy_slime_move");
-        animator.SetOrigPos(transform.position);
-
         if (dir.x > 0)
-            animator.SetFacing(false);
+        {
+            currDir = Direction.right;
+        }
         else if (dir.x < 0)
-            animator.SetFacing(true);
+        {
+            currDir = Direction.left;
+        }
+        else if (dir.y > 0)
+        {
+            currDir = Direction.up;
+        }
+        else
+        {
+            currDir = Direction.down;
+        }
 
-        if (CanMove(transform.position + dir))
-            transform.position += dir;
+
+        if (CanMoveForEnemy(transform.position, currDir))
+            MoveDir(dir);
+        else
+        {
+            Direction randomDir = (Direction) Random.Range(0, 4);
+            if (CanMoveForEnemy(transform.position, randomDir))
+                MoveDir(DirectionUtil.Convert(randomDir));
+            
+        }
     }
 
     private void Attack(GameObject seg)

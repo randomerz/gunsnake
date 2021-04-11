@@ -6,7 +6,6 @@ using UnityEngine;
 public class RayCastProj : Projectile
 {
     public bool canHit = true;
-    public LayerMask targets;
 
     public Vector3 startPos;
     public Vector3 direction;

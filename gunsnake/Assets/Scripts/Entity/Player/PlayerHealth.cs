@@ -50,7 +50,8 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManager.Play("pickup_heart");
 
-        health += amount;
+        health = Mathf.Min(health + amount, maxHealth);
+        //health += amount;
         UpdateHUD();
     }
 
@@ -102,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
         return maxHealth;
     }
 
-    private void SetInvulnerable(int frames)
+    public void SetInvulnerable(int frames)
     {
         isInvulnerable = true;
         ticksUntilCanTakeDamage = frames;
