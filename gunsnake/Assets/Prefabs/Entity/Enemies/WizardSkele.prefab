@@ -112,7 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 4
   damage: 1
-  randomizeStartingVars: 0
+  randomizeStartingVars: 1
+  reducesCurseOnKill: 1
   doTick: 1
   doDrop: 1
   itemDrop: {fileID: 0}

@@ -14,7 +14,7 @@ public class LevelHandler : MonoBehaviour
 
     public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
-    public static string templeSceneName = "Dungeon"; // TODO: update
+    public static string templeSceneName = "Temple"; // TODO: update
 
     // Set by DungeonRoomPlacer
     public static GameObject startObject;
@@ -79,6 +79,7 @@ public class LevelHandler : MonoBehaviour
         playerObj = GameObject.Find(instance.playerPrefab.name);
         if (playerObj == null)
             playerObj = Instantiate(instance.playerPrefab);
+        playerObj.GetComponent<Player>().InitReferences();
     }
 
     public void StartLevel()

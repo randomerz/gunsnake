@@ -66,7 +66,10 @@ public class Door : MonoBehaviour
 
     public void SetIsClosed(bool shouldClose)
     {
-        AudioManager.Play("dungeon_door_close");
+        if (shouldClose)
+            AudioManager.Play("dungeon_door_close");
+        else
+            AudioManager.Play("dungeon_door_open");
 
         isClosed = shouldClose;
         UpdateSpriteBoxes();

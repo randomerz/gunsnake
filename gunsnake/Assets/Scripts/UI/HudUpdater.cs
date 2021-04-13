@@ -56,8 +56,9 @@ public class HudUpdater : MonoBehaviour
         if (testing_health > healthBarCounter)
         {
             GameObject g = Instantiate(singleHealthBar, transform);
-            
-            g.transform.position -= new Vector3(0, healthBarCounter*ydiff, 0);
+
+            //g.transform.position -= new Vector3(0, healthBarCounter*ydiff, 0);
+            g.GetComponent<RectTransform>().anchoredPosition -= new Vector2(0, healthBarCounter * ydiff);
             healthBars.Add(g.GetComponent<HealthBarStuff>());
             healthBarCounter++;
         }

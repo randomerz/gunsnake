@@ -113,16 +113,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalRooms:
   - name: SquareRoom_15x15_NESW
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: be284d7a6c53a6d408f751300a77a86b, type: 2}
   - name: LongRoom_21x11_NESW
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: 0adeac3eb8b910e42b802be02eb44cc4, type: 2}
   - name: CultRoom_Isaiah_25x17
-    freq: 0.5
+    freq: 0.75
     roomData: {fileID: 11400000, guid: 628b4bf84f53a1140b5068910928a083, type: 2}
   - name: MessHall_Steven_13x16
-    freq: 0.5
+    freq: 0.75
     roomData: {fileID: 11400000, guid: 72ef8aa40a8e2d74db9f80f0b3635764, type: 2}
   - name: HubX_Elizabeth_29x29
     freq: 0.5
@@ -137,7 +137,7 @@ MonoBehaviour:
     freq: 0.75
     roomData: {fileID: 11400000, guid: d7f0b9f456c75d04891edb0c5304c3bd, type: 2}
   - name: CircleSpikes_Ethan_17x17
-    freq: 0.75
+    freq: 1
     roomData: {fileID: 11400000, guid: e2893f2e2fb461a4aa7adafdb7e1b62e, type: 2}
   - name: ExplosivesRoom_15x15
     freq: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
     freq: 1
     roomData: {fileID: 11400000, guid: 34839696a9e537849ad3e05a4b017f86, type: 2}
   - name: DBumpRoom_15x11
-    freq: 1
+    freq: 1.25
     roomData: {fileID: 11400000, guid: 4892dd6e18225774b8a24c83ec09ae5d, type: 2}
   - name: TBumpRoom_15x11
     freq: 1
@@ -166,6 +166,12 @@ MonoBehaviour:
   - name: HubJTree_21x21
     freq: 1
     roomData: {fileID: 11400000, guid: f11f8be974593b347926e7367ff39085, type: 2}
+  - name: DSkullRoom_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 5aa005facf82fd34c9e0e3f01ccd4909, type: 2}
+  - name: HubDTorchExplosion_23x23
+    freq: 1
+    roomData: {fileID: 11400000, guid: 895dd0f3d12fe984db3965f7603ce2cf, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 1
@@ -179,6 +185,12 @@ MonoBehaviour:
   - name: JChallSlimes_15x15
     freq: 1
     roomData: {fileID: 11400000, guid: 991c46617effe5947b6a1683f4a6ef91, type: 2}
+  - name: TrapChallenge_13x30
+    freq: 1
+    roomData: {fileID: 11400000, guid: 1d6788003e9ad2e41a960cd41e484cd2, type: 2}
+  - name: DHiddenTorches_19x19
+    freq: 1
+    roomData: {fileID: 11400000, guid: 8727736d8935a7949a49f54ab8bd726e, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1

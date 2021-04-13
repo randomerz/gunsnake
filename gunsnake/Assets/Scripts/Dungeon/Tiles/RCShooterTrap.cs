@@ -28,8 +28,9 @@ public class RCShooterTrap : ProjectileShooter
 
             if (ticksTillShot <= 0)
             {
-                // AudioManager.PlaySound("");
                 Instantiate(attackParticles, bulletSpawn.position, Quaternion.identity, transform);
+
+                AudioManager.Play("dungeon_turret_laser");
 
                 Shoot();
 

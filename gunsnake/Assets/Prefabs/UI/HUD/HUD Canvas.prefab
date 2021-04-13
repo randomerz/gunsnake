@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &1120552981147791011
 MonoBehaviour:
@@ -118,7 +118,7 @@ MonoBehaviour:
   healthBarCounter: 0
   currentHealthnumber: 0
   maxHealthNumber: 0
-  ydiff: 48
+  ydiff: 12
   coinText: {fileID: 22192271725710740}
   key: {fileID: 22192271032658011}
 --- !u!1001 &6794400302534699539

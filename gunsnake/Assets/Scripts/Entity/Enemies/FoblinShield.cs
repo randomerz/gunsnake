@@ -16,6 +16,8 @@ public class FoblinShield : Enemy
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
             ticksTillAttack = attackSpeed;
+
+        myName = "foblin";
     }
 
     public override void EnemyTick(int tick)
@@ -43,6 +45,8 @@ public class FoblinShield : Enemy
                         // visuals
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
+
+                        AudioManager.Play("foblin_attack");
 
 
                         // attack if within range

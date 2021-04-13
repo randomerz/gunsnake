@@ -15,6 +15,9 @@ public class PlayerHealth : MonoBehaviour
     private int ticksUntilCanTakeDamage;
     public int iFramesTicks = 8;
 
+    [HideInInspector]
+    public bool doesTakeDoubleDamage = false;
+
     public TextMeshProUGUI healthText;
 
     private bool strobing;
@@ -23,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         isInvulnerable = false;
+        doesTakeDoubleDamage = false;
         health = maxHealth;
     }
 
@@ -47,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void GainHealth(int amount)
     {
-        AudioManager.Play("pickup_heart");
+        AudioManager.Play("player_heal");
 
         health = Mathf.Min(health + amount, maxHealth);
         //health += amount;
@@ -63,9 +67,13 @@ public class PlayerHealth : MonoBehaviour
                 //Add sound
                 return;
             }
-            AudioManager.Play("player_take_damage" + Random.Range(1, 3));
+            AudioManager.Play("player_take_damage");// + Random.Range(1, 3));
 
-            health -= amount;
+            if (doesTakeDoubleDamage)
+                health -= 2 * amount;
+            else
+                health -= amount;
+
             UpdateHUD();
 
             if (health <= 0)
@@ -85,11 +93,27 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        AudioManager.Play("player_death" + Random.Range(1, 3));
+        AudioManager.Play("player_die");// + Random.Range(1, 3));
 
-        isInvulnerable = true;
+        Debug.Log("Player died! Health: " + health + "/" + maxHealth);
+
         health = 0;
+
+        SetInvulnerable(3);
+        Player.playerEffects.StartPlayerDieEffect(3);
+        StartCoroutine(FinnaDie(3));
+    }
+
+    private IEnumerator FinnaDie(float seconds)
+    {
+        PlayerMovement.canMove = false;
+        PlayerWeaponManager.canFire = false;
+
+        yield return new WaitForSeconds(seconds);
         Player.EndGame(false);
+
+        PlayerMovement.canMove = true;
+        PlayerWeaponManager.canFire = true;
     }
 
     public int GetHealth()

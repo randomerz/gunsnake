@@ -88,6 +88,7 @@ MonoBehaviour:
     value: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5, type: 3}
   extraParticles: {fileID: 7817669644769367471, guid: d1972d8e29d0bbb47908f9fec55343a9,
     type: 3}
+  nameToSet: dungeon_plant
 --- !u!114 &6032697682571950528
 MonoBehaviour:
   m_ObjectHideFlags: 0

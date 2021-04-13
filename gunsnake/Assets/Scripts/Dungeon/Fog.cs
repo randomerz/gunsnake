@@ -27,12 +27,17 @@ public class Fog : MonoBehaviour
 
 
 
-    public Tilemap tilemapHalf;
     public Tilemap tilemapFull;
-    public TileBase fogTile;
+    public Tilemap tilemapHalf;
+    public Tilemap tilemapHalfCeil;
 
     public Tilemap floorTilemap;
     public Tilemap wallTilemap;
+
+    public TileBase fogTile;
+    public TileBase darkFloorTile;
+    public TileBase darkWallTile;
+    public TileBase darkCeilTile;
 
     private bool didInit = false;
     public static bool isActive;
@@ -57,6 +62,7 @@ public class Fog : MonoBehaviour
 
         Torch.fogController = this;
         playerVP.transform = Player.body[0].transform;
+        torches.Clear();
 
         int offsetX = 16;
         int offsetY = 9;
@@ -82,7 +88,7 @@ public class Fog : MonoBehaviour
 
         if (!coverOld)
         {
-            SetTilesInRadius(offset, playerVP.r, null);
+            SetTilesInRadius(offset, playerVP.r, null, tilemapFull);
         }
         else
         {
@@ -90,17 +96,28 @@ public class Fog : MonoBehaviour
             {
                 for (int y = (int)-playerVP.r - 2; y <= playerVP.r + 2; y += 1)
                 {
+                    Vector3Int pos = new Vector3Int(x, y, 0) + offset;
                     if (Dist(x, y) <= playerVP.r + 2)
                     {
                         if (Dist(x, y) <= playerVP.r)
                         {
-                            //tilemapHalf.SetTile(new Vector3Int(x, y, 0) + offset, null);
-                            tilemapFull.SetTile(new Vector3Int(x, y, 0) + offset, null);
+                            tilemapFull.SetTile(pos, null); // clear fog
+
+                            tilemapHalf.SetTile(pos, null); // clear half
+                            tilemapHalfCeil.SetTile(pos, null); // clear half
+                            tilemapHalfCeil.SetTile(pos - new Vector3Int(0, 1, 0), null); // clear half below half
                         }
                         else
                         {
-                            //tilemapHalf.SetTile(new Vector3Int(x, y, 0) + offset, null);
-                            tilemapFull.SetTile(new Vector3Int(x, y, 0) + offset, fogTile);
+                            if (wallTilemap.GetTile(pos) != null)
+                            {
+                                tilemapHalf.SetTile(pos, darkWallTile); // add half
+                                tilemapHalfCeil.SetTile(pos, darkCeilTile); // add half
+                            }
+                            else if (floorTilemap.GetTile(pos) != null)
+                            {
+                                tilemapHalf.SetTile(pos, darkFloorTile); // add half
+                            }
                         }
                     }
                 }
@@ -111,11 +128,27 @@ public class Fog : MonoBehaviour
         foreach (VisionPoint vp in torches)
         {
             Vector3Int pos = new Vector3Int((int)vp.transform.position.x, (int)vp.transform.position.y, 0);
-            SetTilesInRadius(pos, vp.r, null);
+            SetTilesInRadius(pos, vp.r, null, tilemapFull);
+
+            if (coverOld)
+            {
+                for (int x = (int)-vp.r; x <= vp.r; x += 1)
+                {
+                    for (int y = (int)-vp.r; y <= vp.r; y += 1)
+                    {
+                        if (Dist(x, y) <= vp.r)
+                        {
+                            tilemapHalf.SetTile(pos + new Vector3Int(x, y, 0), null); // clear half
+                            tilemapHalfCeil.SetTile(pos + new Vector3Int(x, y, 0), null); // clear half
+                            tilemapHalfCeil.SetTile(pos + new Vector3Int(x, y - 1, 0), null); // clear half below half
+                        }
+                    }
+                }
+            }
         }
     }
 
-    private void SetTilesInRadius(Vector3Int pos, float radius, TileBase tile)
+    private void SetTilesInRadius(Vector3Int pos, float radius, TileBase tile, Tilemap tilemap)
     {
         for (int x = (int)-radius; x <= radius; x += 1)
         {
@@ -124,7 +157,7 @@ public class Fog : MonoBehaviour
                 if (Dist(x, y) <= radius)
                 {
                     //tilemapHalf.SetTile(new Vector3Int(x, y, 0) + offset, null);
-                    tilemapFull.SetTile(new Vector3Int(x, y, 0) + pos, tile);
+                    tilemap.SetTile(new Vector3Int(x, y, 0) + pos, tile);
                 }
             }
         }

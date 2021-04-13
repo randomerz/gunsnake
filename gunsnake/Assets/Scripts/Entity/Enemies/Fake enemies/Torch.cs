@@ -45,7 +45,7 @@ public class Torch : Enemy // this should not inherit from Enemy, but some gener
     {
         fogController.AddTorch(transform, radius);
 
-        // AudioManager.PlaySound("torch_lit");
+        AudioManager.Play("dungeon_torch_lit");
 
         animator.animator.SetBool("isLit", true);
         smokeParticle.SetActive(true);

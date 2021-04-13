@@ -33,10 +33,8 @@ public class Titlescreen : MonoBehaviour
 
     void Start()
     {
-        creditsPanel.SetActive(false);
-        optionPanel.SetActive(false);
-        resumePanel.SetActive(false);
-        mainAnimator.SetVisible(true); // do after fade into main screen
+        f.FadeIn();
+        StartCoroutine(OpenMenu());
 
         AudioManager.PlayMusic("music_main_menu");
 
@@ -130,6 +128,16 @@ public class Titlescreen : MonoBehaviour
         UIManager.sfxNumber = volume;
         sfxCounter.text = sfxNumber.ToString();
         AudioManager.SetSfxVolume(volume / volumeSlider.GetComponent<Slider>().maxValue);
+    }
+
+    //fading stuff
+    public IEnumerator OpenMenu()
+    {
+        yield return new WaitForSeconds(Duration);
+        creditsPanel.SetActive(false);
+        optionPanel.SetActive(false);
+        resumePanel.SetActive(false);
+        mainAnimator.SetVisible(true); // do after fade into main screen
     }
 
     //fading stuff

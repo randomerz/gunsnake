@@ -16,7 +16,8 @@ public class PlayerMovement : Entity
     private LinkedList<Direction> directionQueue = new LinkedList<Direction>();
     private bool addedDirection = false;
 
-    public bool isSprinting;
+    public bool isSpecialMovement;
+    public static bool canMove = true;
 
 
     protected override void Awake()
@@ -58,8 +59,8 @@ public class PlayerMovement : Entity
             //{
             //    isSprinting = true;
             //}
-            isSprinting = Input.GetKey(KeyCode.LeftShift);
-            Player.playerWeaponManager.isSprinting = isSprinting;
+            isSpecialMovement = Input.GetKey(KeyCode.LeftShift);
+            Player.playerWeaponManager.isSprinting = isSpecialMovement;
 
             //if (Input.GetKeyDown(KeyCode.R))
             //{
@@ -70,9 +71,11 @@ public class PlayerMovement : Entity
 
     public void OnTick(int tick)
     {
-        if (tick % 4 == 0 || (isSprinting && tick % 2 == 0))
+        if (tick % 4 == 0 || (isSpecialMovement && tick % 2 == 0))
         {
             // move
+            if (!canMove)
+                return;
 
             // try moving in front of queue direction, else do nothing
             if (directionQueue.Count != 0 && CanMove(transform.position, directionQueue.First.Value))

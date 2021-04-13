@@ -14286,6 +14286,9 @@ MonoBehaviour:
   - {fileID: 6603713135338207338}
   - {fileID: 6603713134119528146}
   shopCostText: {fileID: 6603713135019421427}
+  healCostText: {fileID: 6603713135854379018}
+  baseHealCost: 10
+  healCostIncrement: 5
   lootButtons:
   - {fileID: 6603713136048926718}
   - {fileID: 6603713135858916714}
@@ -14322,7 +14325,6 @@ MonoBehaviour:
   selectedTrash: {fileID: -8064596521158810988, guid: 04884a6d1e681194f9eaebfc8e6f72c7,
     type: 3}
   animationController: {fileID: 4814301782629858965}
-  musicPitchChange: 0.95
   invulnToggle: {fileID: 6603713134822255698}
   damageToggle: {fileID: 4814301781472952171}
 --- !u!114 &4814301782629858965

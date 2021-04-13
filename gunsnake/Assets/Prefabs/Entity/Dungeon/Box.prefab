@@ -70,6 +70,7 @@ MonoBehaviour:
     value: {fileID: 5647355823583502174, guid: 035abc31f2b056740acc0669ba907e9a, type: 3}
   extraParticles: {fileID: 8625311794173135732, guid: 7c77b0ac3380c324e8fafd493e8d21c7,
     type: 3}
+  nameToSet: dungeon_box
 --- !u!114 &6032697682571950528
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ public abstract class Enemy : Entity
 
     public int damage = 1;
     public bool randomizeStartingVars;
+    public bool reducesCurseOnKill = false;
+
+    protected string myName = "";
 
     // game stuff
     public bool doTick = true;
@@ -88,6 +91,7 @@ public abstract class Enemy : Entity
         return true;
     }
 
+
     #region Health
 
     public virtual void TakeDamage(int damage, Vector3 hitDirection)
@@ -107,6 +111,8 @@ public abstract class Enemy : Entity
         else
         {
             StrobeWhite(1);
+
+            AudioManager.Play(myName + "_damage");
         }
     }
     
@@ -114,12 +120,25 @@ public abstract class Enemy : Entity
     {
         if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", true);
+
+        if (myName != "")
+        {
+            AudioManager.Play(myName + "_die");
+        }
+
         foreach (GameObject e in effects)
         {
             Destroy(e);
         }
+
         if (itemDrop != null)
             Instantiate(itemDrop, transform.position, Quaternion.identity, transform.parent);
+
+        if (TempleCurseSystem.isEnabled)
+        {
+            TempleCurseSystem.GetKill();
+        }
+
         if (deathParticle != null && lastHitDir != Vector3.zero)
         {
             double angle = Mathf.Atan2(lastHitDir.y, lastHitDir.x) * Mathf.Rad2Deg;
@@ -135,6 +154,7 @@ public abstract class Enemy : Entity
     }
 
     #endregion
+
 
     #region Movement
 
@@ -219,6 +239,11 @@ public abstract class Enemy : Entity
 
     protected void MoveDir(Vector3 dir)
     {
+        if (myName != "")
+        {
+            AudioManager.Play(myName + "_move");
+        }
+
         animator.SetOrigPos(transform.position);
         if (dir.x > 0)
             animator.SetFacing(false);

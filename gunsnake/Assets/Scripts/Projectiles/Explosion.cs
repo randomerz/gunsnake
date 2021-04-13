@@ -28,7 +28,7 @@ public class Explosion : MonoBehaviour
 
     private IEnumerator ExplodeHelper(LayerMask target, int damage)
     {
-        // AudioManager.PlaySound("explode");
+        AudioManager.Play("misc_explosion");
 
         CameraShake.Shake(.75f, 0.5f);
         explosionFX.SetActive(true);

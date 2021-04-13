@@ -152,7 +152,9 @@ MonoBehaviour:
   maxHealth: 6
   damage: 2
   randomizeStartingVars: 1
+  reducesCurseOnKill: 1
   doTick: 1
+  doDrop: 1
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 1202914964085415025}
   animator: {fileID: 5709857756534286743}

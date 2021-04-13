@@ -42,6 +42,8 @@ public class ProjectileShooter : Tile
                 // AudioManager.PlaySound("");
                 Instantiate(attackParticles, bulletSpawn.position, Quaternion.identity, transform);
 
+                AudioManager.Play("dungeon_turret_projectile");
+
                 Shoot();
 
                 ticksTillShot = fireRate;

@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
     public GameObject[] shopButtons;
     private Image[] shopIcons;
     public TextMeshProUGUI shopCostText;
+    public TextMeshProUGUI healCostText;
+    private int healCost;
+    public int baseHealCost = 10;
+    public int healCostIncrement = 5;
 
     [Header("Loot")]
     public GameObject[] lootButtons;
@@ -133,6 +137,9 @@ public class UIManager : MonoBehaviour
             lootIcons[i] = lootButtons[i].GetComponentsInChildren<Image>()[1];
         }
 
+        healCost = baseHealCost;
+        UpdateHealCost();
+
         leftSidePanel.SetActive(true);
         rightSidePanel.SetActive(true);
     }
@@ -204,6 +211,11 @@ public class UIManager : MonoBehaviour
         AudioManager.Play("ui_click");
     }
 
+    private void UIError()
+    {
+        AudioManager.Play("ui_error");
+    }
+
     private void DeselectAll()
     {
         currShopSelected = -1;
@@ -272,12 +284,16 @@ public class UIManager : MonoBehaviour
         animationController.SetVisible(true);
 
         AudioManager.SetLowPassEnabled(true);
+        AudioManager.Play("ui_pause");
     }
 
     public void CloseUI()
     {
         if (!canClose)
+        {
+            UIError();
             return;
+        }
 
         animationController.SetVisible(false);
 
@@ -398,6 +414,10 @@ public class UIManager : MonoBehaviour
             doTrash = false;
             trashImage.sprite = defaultTrash;
         }
+        else
+        {
+            UIError();
+        }
     }
 
     public bool DoSwap(int swapTo)
@@ -466,6 +486,10 @@ public class UIManager : MonoBehaviour
             }
             doSwap = false;
             swapImage.sprite = defaultSwap;
+        }
+        else
+        {
+            UIError();
         }
     }
 
@@ -561,6 +585,8 @@ public class UIManager : MonoBehaviour
 
         UpdateShopLootIcons();
         DeselectAll();
+
+        AudioManager.Play("ui_shop_open");
     }
 
     public void SelectFromShop(int index)
@@ -596,11 +622,13 @@ public class UIManager : MonoBehaviour
     {
         if (currShopSelected == -1 || currSelectedItem == null)
         {
+            UIError();
             return;
         }
 
         if (PlayerInventory.gold < shopPrices[currShopSelected])
         {
+            UIError();
             return;
         }
 
@@ -608,6 +636,7 @@ public class UIManager : MonoBehaviour
         {
             if (PlayerInventory.IsStorageFull())
             {
+                UIError();
                 return;
             }
             PlayerInventory.AddWeapon(currSelectedItem);
@@ -618,7 +647,7 @@ public class UIManager : MonoBehaviour
             //Debug.Log("Bought " + currSelectedItem.name + ", but didn't add.");
         }
 
-        AudioManager.Play("ui_buy_item");
+        AudioManager.Play("ui_shop_buy");
 
         PlayerInventory.AddGold(-shopPrices[currShopSelected]);
         shopItems[currShopSelected] = null;
@@ -688,12 +717,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void UpdateHealCost()
+    {
+        healCostText.text = healCost.ToString();
+    }
+
     public void Heal()
     {
-        if (PlayerInventory.gold >= 10)
+        if (PlayerInventory.gold >= healCost)
         {
-            PlayerInventory.AddGold(-10);
+            PlayerInventory.AddGold(-healCost);
             Player.playerHealth.GainHealth(1);
+
+            healCost += healCostIncrement;
+            UpdateHealCost();
+        }
+        else
+        {
+            UIError();
         }
     }
 
@@ -717,7 +758,7 @@ public class UIManager : MonoBehaviour
         LootPanel.SetActive(true);
         canSwapAndTrash = true;
 
-        AudioManager.Play("ui_open_loot");
+        AudioManager.Play("ui_loot_open");
 
         UpdateShopLootIcons();
         DeselectAll();
@@ -727,6 +768,7 @@ public class UIManager : MonoBehaviour
     {
         if (lootItems[index] == null)
         {
+            UIError();
             return;
         }
 
@@ -753,6 +795,7 @@ public class UIManager : MonoBehaviour
     {
         if (currLootSelected == -1 || currSelectedItem == null)
         {
+            UIError();
             return;
         }
 
@@ -760,6 +803,7 @@ public class UIManager : MonoBehaviour
         {
             if (PlayerInventory.IsStorageFull())
             {
+                UIError();
                 return;
             }
             PlayerInventory.AddWeapon(currSelectedItem);
@@ -774,6 +818,9 @@ public class UIManager : MonoBehaviour
         {
             lootItems[i] = null;
         }
+
+        AudioManager.Play("ui_loot_obtain");
+
         DeselectAll();
         UpdateShopLootIcons();
     }
@@ -863,7 +910,8 @@ public class UIManager : MonoBehaviour
 
     public static void EndGame(bool didWin, int time, int score)
     {
-        instance?.EndGameHelper(didWin, time, score);
+        if (instance != null)
+            instance.EndGameHelper(didWin, time, score);
     }
 
     private void EndGameHelper(bool didWin, int time, int score)

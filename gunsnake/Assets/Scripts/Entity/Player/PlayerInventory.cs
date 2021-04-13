@@ -20,6 +20,8 @@ public static class PlayerInventory
     {
         gold += amount;
 
+        AudioManager.Play("player_gain_gold");
+
         Player.AddScore(amount);
     }
     public static void AddKey(int amount)

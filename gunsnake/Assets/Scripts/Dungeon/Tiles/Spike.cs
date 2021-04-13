@@ -60,6 +60,11 @@ public class Spike : Tile
         spikeCollider.enabled = value;
 
         animator.SetBool("isActive", value);
+
+        if (isActive)
+        {
+            AudioManager.Play("dungeon_spike_raise");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

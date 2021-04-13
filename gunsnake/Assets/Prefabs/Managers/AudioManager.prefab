@@ -45,8 +45,230 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: dungeon_door_close
-    clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
+  - name: ui_click
+    clip: {fileID: 8300000, guid: a518682eb98fa3141bf13fb4126555ab, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_error
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_pause
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_shop_open
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_shop_buy
+    clip: {fileID: 8300000, guid: 5061b3cbdaaf2594b9862a3f02e6c96e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_loot_open
+    clip: {fileID: 8300000, guid: 79e90cf6219dd78428e05a6e7501381e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ui_loot_obtain
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_take_damage
+    clip: {fileID: 8300000, guid: dc84f677c45d01742be3cb8917dd689b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_die
+    clip: {fileID: 8300000, guid: 3a0088914db8238468cac2b74921c274, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_heal
+    clip: {fileID: 8300000, guid: bed0902a39f4ae44cba62dcb8a421b35, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_gain_gold
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: player_reversing
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_pea
+    clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_egg
+    clip: {fileID: 8300000, guid: 28c8d53b16c2484478925cf45ab1c5c1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_hs_gun
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: weapon_laser
+    clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: artifact_pepper_dodge
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: artifact_pea_split
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: slime_move
+    clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: slime_attack
+    clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: slime_damage
+    clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: slime_die
+    clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: foblin_move
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: foblin_attack
+    clip: {fileID: 8300000, guid: a3d8fe52e8ff2e64aa415ea4d9fb2bfb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: foblin_damage
+    clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: foblin_die
+    clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: foblin_charge
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: archer_move
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: archer_attack
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: archer_damage
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: archer_die
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: wizard_move
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: wizard_attack
+    clip: {fileID: 8300000, guid: 0330a86c1192bd64f8662402bfb7b4fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: wizard_damage
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: wizard_die
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_turret_projectile
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_turret_laser
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_spike_raise
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
@@ -57,104 +279,80 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: enemy_goblin_attack
-    clip: {fileID: 8300000, guid: a3d8fe52e8ff2e64aa415ea4d9fb2bfb, type: 3}
+  - name: dungeon_start_curse
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: enemy_goblin_death
-    clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: enemy_skeleton_wizard_attack
-    clip: {fileID: 8300000, guid: 0330a86c1192bd64f8662402bfb7b4fd, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: enemy_slime_attack1
-    clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: enemy_slime_attack2
-    clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: enemy_slime_move
-    clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: pickup_heart
-    clip: {fileID: 8300000, guid: bed0902a39f4ae44cba62dcb8a421b35, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: player_death1
-    clip: {fileID: 8300000, guid: 3a0088914db8238468cac2b74921c274, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: player_death2
-    clip: {fileID: 8300000, guid: f0cd5577f7761fd4fb554323ca2aeb5b, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: player_take_damage1
-    clip: {fileID: 8300000, guid: dc84f677c45d01742be3cb8917dd689b, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: player_take_damage2
-    clip: {fileID: 8300000, guid: 3c22d5fdec1c4f24494e98690a330736, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ui_buy_item
-    clip: {fileID: 8300000, guid: 5061b3cbdaaf2594b9862a3f02e6c96e, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ui_click
-    clip: {fileID: 8300000, guid: a518682eb98fa3141bf13fb4126555ab, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: ui_open_loot
-    clip: {fileID: 8300000, guid: 79e90cf6219dd78428e05a6e7501381e, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: weapon_egg
-    clip: {fileID: 8300000, guid: 28c8d53b16c2484478925cf45ab1c5c1, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: weapon_laser
-    clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: weapon_pea
+  - name: dungeon_end_curse
     clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_door_open
+    clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_door_close
+    clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_door_unlock
+    clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_box_damage
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_box_die
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_plant_damage
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dungeon_plant_die
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: misc_explosion
+    clip: {fileID: 8300000, guid: 0ada12dfc04f18844bc70a6d3fa6255d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: misc_mushroom_attack
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: misc_mushroom_damage
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: misc_mushroom_die
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0

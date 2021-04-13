@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: CultRoom_Isaiah_25x17
   roomType: 0
-  isJungle: 1
-  isDungeon: 1
+  isJungle: 0
+  isDungeon: 0
   isTemple: 1
   roomObjectPath: SObj Rooms/CultRoom_Isaiah_25x17
   defaultConnections:

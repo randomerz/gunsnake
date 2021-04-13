@@ -12,10 +12,13 @@ public class Slime : Enemy
     protected override void Awake()
     {
         base.Awake();
+
         if (randomizeStartingVars)
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
             ticksTillAttack = attackSpeed;
+
+        myName = "slime";
     }
 
     public override void EnemyTick(int tick)
@@ -49,6 +52,7 @@ public class Slime : Enemy
                         GameObject closestSeg = GetClosestPlayerSegment();
                         if ((closestSeg.transform.position - transform.position).magnitude <= 1)
                         {
+                            AudioManager.Play("slime_attack");
                             Attack(closestSeg);
                         }
                         // else move closer
@@ -89,19 +93,23 @@ public class Slime : Enemy
 
 
         if (CanMoveForEnemy(transform.position, currDir))
+        {
             MoveDir(dir);
+        }
         else
         {
-            Direction randomDir = (Direction) Random.Range(0, 4);
+            Direction randomDir = (Direction)Random.Range(0, 4);
             if (CanMoveForEnemy(transform.position, randomDir))
+            {
                 MoveDir(DirectionUtil.Convert(randomDir));
-            
+            }
+
         }
     }
 
     private void Attack(GameObject seg)
     {
-        AudioManager.Play("enemy_slime_attack" + Random.Range(1, 3));
+        AudioManager.Play("slime_attack");// + Random.Range(1, 3));
 
         PlayerSegmentHealth h = seg.GetComponent<PlayerSegmentHealth>();
         if (h != null)

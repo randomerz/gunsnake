@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerEffects : MonoBehaviour
 {
+    public GameObject playerExplosion;
+    public GameObject playerSmoke;
+
     private int entranceInvisInd = -1;
     private int exitInvisInd = -1;
 
@@ -67,5 +70,35 @@ public class PlayerEffects : MonoBehaviour
     public int GetExitingIndex()
     {
         return exitInvisInd;
+    }
+
+    public void StartPlayerDieEffect(float length)
+    {
+        StartCoroutine(PlayerDieEffect(length));
+    }
+
+    private IEnumerator PlayerDieEffect(float length)
+    {
+        List<GameObject> smoke = new List<GameObject>();
+        for (int i = 0; i < segSprites.Length; i++)
+        {
+            smoke.Add(Instantiate(playerSmoke, segSprites[i].transform.position, Quaternion.identity, transform));
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(length - (0.5f * (segSprites.Length + 1)));
+
+        for (int i = 0; i < segSprites.Length; i++)
+        {
+            smoke.Add(Instantiate(playerExplosion, segSprites[i].transform.position, Quaternion.identity, transform));
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (GameObject g in smoke)
+        {
+            Destroy(g);
+        }
     }
 }

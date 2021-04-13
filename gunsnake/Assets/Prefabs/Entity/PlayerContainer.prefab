@@ -66,6 +66,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 3208875470261152530}
   _playerWeaponManager: {fileID: 2683957711208423870}
   _ArtifactManager: {fileID: 2397604436162327792}
+  debugResetPlayer: 0
 --- !u!114 &3845154875371999623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d971365c454bef44fbd21c4348c3cd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerExplosion: {fileID: 7510067960025716666, guid: ed16bf7e0bc9235499d26e7743a54c89,
+    type: 3}
+  playerSmoke: {fileID: 1328751874085859681, guid: 079cbfbbf60d94446add34fcf9697d08,
+    type: 3}
 --- !u!114 &3208875469782037514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,10 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 3
-  baseMaxHealth: 3
   isInvulnerable: 0
   iFramesTicks: 8
+  doesTakeDoubleDamage: 0
   healthText: {fileID: 0}
 --- !u!114 &2683957711208423870
 MonoBehaviour:
@@ -173,7 +177,7 @@ MonoBehaviour:
     type: 3}
   snakeTail: {fileID: 8951306585610963716, guid: 2314bd4b58793cf45a9bb103c8b6d1ab,
     type: 3}
-  isSprinting: 0
+  isSpecialMovement: 0
 --- !u!114 &3208875470261152541
 MonoBehaviour:
   m_ObjectHideFlags: 0
