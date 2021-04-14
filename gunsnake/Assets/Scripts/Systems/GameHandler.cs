@@ -8,6 +8,10 @@ public class GameHandler : MonoBehaviour
     private Material enemyWhiteFlashMat;
     [SerializeField]
     private GameObject enemyDeathParticle;
+    [SerializeField]
+    private GameObject enemyPreSpawnParticle;
+    [SerializeField]
+    private GameObject enemySpawnParticle;
 
     public Player player;
     public LevelHandler levelHandler;
@@ -16,6 +20,8 @@ public class GameHandler : MonoBehaviour
     {
         Enemy.whiteFlashMat = enemyWhiteFlashMat;
         Enemy.deathParticle = enemyDeathParticle;
+        Enemy.spawnParticle = enemySpawnParticle;
+        Enemy.preSpawnParticle = enemyPreSpawnParticle;
         TimeTickSystem.Create();
 
         if (player != null)

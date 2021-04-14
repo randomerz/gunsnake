@@ -109,6 +109,7 @@ public class LevelHandler : MonoBehaviour
 
         //player.transform.position;
         Player.playerMovement.SetSnakeSpawn(startObject.transform.position, startDirection);
+        startObject.GetComponent<TeleporterTile>().SetTeleporterAnimation(false, 2);
         Player.playerEffects.SetPlayerEntering();
     }
 
@@ -161,6 +162,7 @@ public class LevelHandler : MonoBehaviour
     {
         SetToJungle();
         shouldResetPlayer = true;
+        TempleCurseSystem.isEnabled = false;
         LoadScene(jungleSceneName);
     }
 

@@ -6,6 +6,8 @@ public class PlayerMovement : Entity
 {
     //public GameObject[] body = new GameObject[4];
     private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[Player.body.Length];
+    public GameObject tip;
+    private SpriteRenderer tipSprite;
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
 
     public Sprite snakeHead;
@@ -18,11 +20,13 @@ public class PlayerMovement : Entity
 
     public bool isSpecialMovement;
     public static bool canMove = true;
-
+    private bool canOpenChest = true;
 
     protected override void Awake()
     {
         base.Awake();
+
+        tipSprite = tip.GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -83,6 +87,12 @@ public class PlayerMovement : Entity
                 currDir = directionQueue.First.Value;
                 directionQueue.RemoveFirst();
             }
+            // check if door/chest is in dQ.first
+            if (directionQueue.Count != 0 && CheckUnlockDoor(directionQueue.First.Value))
+            {
+                directionQueue.RemoveFirst();
+            }
+
             // clear queue if nothing was added
             if (!addedDirection)
                 directionQueue.Clear();
@@ -121,7 +131,7 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void CheckUnlockDoor(Direction dir)
+    private bool CheckUnlockDoor(Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
@@ -142,7 +152,7 @@ public class PlayerMovement : Entity
         }
         rh = Physics2D.Raycast(transform.position, rcDir, 1, wallLayerMask);
 
-        if (rh.collider != null)
+        if (rh.collider != null && canOpenChest)
         {
             Door d = rh.collider.gameObject.GetComponent<Door>();
             //Debug.Log("checking door " + d.isLocked + "  " + d.isClosed + " " + PlayerInventory.HasKeys() + " " + PlayerInventory.keys);
@@ -150,18 +160,34 @@ public class PlayerMovement : Entity
             {
                 PlayerInventory.AddKey(-1);
                 d.UnlockDoor();
+
+                return true;
+            }
+
+            LootActivatorTile l = rh.collider.gameObject.GetComponent<LootActivatorTile>();
+            if (l != null)
+            {
+                canOpenChest = false;
+
+                l.OpenLoot();
+
+                return true;
             }
         }
 
+        return false;
     }
 
     public void MoveBody()
     {
+        canOpenChest = true;
+
         Vector3 headDir = DirectionUtil.Convert(currDir);
         if (Player.playerEffects.GetExitingIndex() > 0)
             headDir = Vector3.zero;
         Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
 
+        tipSprite.transform.position = Player.body[3].transform.position;
         Player.body[3].transform.position = Player.body[2].transform.position;
         Player.body[2].transform.position = Player.body[1].transform.position;
         Player.body[1].transform.position = Player.body[0].transform.position;
@@ -170,11 +196,17 @@ public class PlayerMovement : Entity
         // setting sprites
         float headRot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
 
+        // tip
+        Vector3 tipDir = Player.body[3].transform.position - tip.transform.position;
+        float tipRot = Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg;
+
+        tipSprite.transform.rotation = Quaternion.Euler(0, 0, tipRot);
+
         // tail
         Vector3 tailBodyDir = Player.body[2].transform.position - Player.body[3].transform.position;
         float tailRot = Mathf.Atan2(tailBodyDir.y, tailBodyDir.x) * Mathf.Rad2Deg;
 
-        segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, Vector3.zero);
+        segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, -tipDir);
         
         // body
         bool body1ShouldBend = Vector3.Dot(headDir, body2Dir) == 0;

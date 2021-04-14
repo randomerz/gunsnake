@@ -68,6 +68,7 @@ public class TempleCurseSystem : MonoBehaviour
         curseTicks = Mathf.Clamp(curseTicks - amountRemoveOnKill, 0, curseMax);
         Debug.Log("Got kill! curse is now " + curseTicks);
 
+        SetIsCursed(false);
         UpdatePostProcessing((float)curseTicks / curseMax);
     }
 

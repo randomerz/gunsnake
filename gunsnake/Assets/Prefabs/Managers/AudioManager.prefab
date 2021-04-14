@@ -106,7 +106,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: player_gain_gold
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f384154849a245d458cf0b0929ecb4a3, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: archer_attack
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2de219fde93f7ec4187d1517aa5b7e9d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: archer_die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 63704c8fb96da984494ee8b1f3584c5e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: wizard_die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 63704c8fb96da984494ee8b1f3584c5e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: misc_mushroom_attack
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: misc_mushroom_die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
     volume: 1
     pitch: 1
     loop: 0

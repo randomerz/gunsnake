@@ -14,6 +14,11 @@ public static class PlayerInventory
         gold = 0;
         keys = 0;
         weaponStorage = new Item[2];
+
+        // Artifact resets
+
+        Projectile.bonusDamage = 0;
+        Projectile.bonusPierce = 0;
     }
 
     public static void AddGold(int amount)

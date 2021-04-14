@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   area: Jungle
   propChance: 0
-  simpleChance: 0
+  simpleChance: 0.9
   simpleProps: []
   colliderProps: []
   complexProps: []
@@ -158,7 +158,7 @@ MonoBehaviour:
     freq: 1
     roomData: {fileID: 11400000, guid: e2b5965431086224ea2e95eef19c61cb, type: 2}
   - name: HubDQuad_21x21
-    freq: 1
+    freq: 100
     roomData: {fileID: 11400000, guid: dd39c41f424d6dd4da4327c9a1ea2ac4, type: 2}
   - name: HubExplosives_23x17
     freq: 1
@@ -174,7 +174,7 @@ MonoBehaviour:
     roomData: {fileID: 11400000, guid: 895dd0f3d12fe984db3965f7603ce2cf, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
-    freq: 1
+    freq: 0
     roomData: {fileID: 11400000, guid: fc9e252854521ec47a31de892655c49e, type: 2}
   - name: GridChall_19x19
     freq: 1

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: DomesticCombat_Allison_21x15
   roomType: 0
-  isJungle: 1
-  isDungeon: 1
+  isJungle: 0
+  isDungeon: 0
   isTemple: 1
   roomObjectPath: SObj Rooms/DomesticCombat_Allison_21x15
   defaultConnections:

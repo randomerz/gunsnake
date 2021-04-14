@@ -50,6 +50,9 @@ MonoBehaviour:
   maxHealth: 4
   damage: 0
   randomizeStartingVars: 1
+  hasSpawnEffect: 0
+  dropsSmallGold: 1
+  reducesCurseOnKill: 0
   doTick: 1
   doDrop: 0
   itemDrop: {fileID: 0}
@@ -57,10 +60,10 @@ MonoBehaviour:
   animator: {fileID: 6032697682571950528}
   table:
   - name: Nothing
-    freq: 0.1
+    freq: 0.2
     value: {fileID: 0}
   - name: Small Gold
-    freq: 0.1
+    freq: 0.2
     value: {fileID: 7862952247370397497, guid: 9fe4a9a7559e9e64fbe3d0a493f50cd6, type: 3}
   - name: Medium Gold
     freq: 0.1
@@ -72,19 +75,19 @@ MonoBehaviour:
     freq: 0.1
     value: {fileID: 5647355823583502174, guid: 035abc31f2b056740acc0669ba907e9a, type: 3}
   - name: Blue Slime
-    freq: 0.1
-    value: {fileID: 6825726326987646208, guid: b7922fcbff4941249afd422cd5bbdbb4, type: 3}
+    freq: 0.15
+    value: {fileID: 5267305425320537183, guid: 04a82ca06efbc01409f81d5268b62f2a, type: 3}
   - name: Foblin
-    freq: 0.1
-    value: {fileID: 2228987706198435034, guid: de2d4e356127d9143ae1fcd44e447f92, type: 3}
+    freq: 0.05
+    value: {fileID: 5659367504717390376, guid: c49e7647848f30b44a14efa424b7ea88, type: 3}
   - name: Explosion
-    freq: 0.1
+    freq: 0
     value: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5, type: 3}
   - name: Box
     freq: 0.1
     value: {fileID: 937218738253671621, guid: 103650c6f492e0d488f467cd90e360c7, type: 3}
   - name: Spike
-    freq: 0.1
+    freq: 0
     value: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5, type: 3}
   extraParticles: {fileID: 7817669644769367471, guid: d1972d8e29d0bbb47908f9fec55343a9,
     type: 3}

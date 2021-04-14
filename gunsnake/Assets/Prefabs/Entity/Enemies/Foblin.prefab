@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe313b3c38658c4e9b78b28c5fdebc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 5
   damage: 1
   randomizeStartingVars: 1
+  dropsSmallGold: 0
   reducesCurseOnKill: 1
   doTick: 1
   doDrop: 1

@@ -38,9 +38,11 @@ public class Room : MonoBehaviour
     //[SerializeField]
     private List<Enemy> activeEnemies;
 
-    private const int MAX_WAVES = 5;
+    private const int MAX_WAVES = 6;
     private List<List<Enemy>> waves; // may want to have different wave spawn conditions
     private int currentWave;
+
+    private GameObject chestObj; // for challenge
 
     // entrance/exit
     public static GameObject entrancePrefab;
@@ -69,6 +71,8 @@ public class Room : MonoBehaviour
                 foreach (List<Enemy> wave in waves)
                     foreach (Enemy e in wave)
                         e.gameObject.SetActive(false);
+                InitChest();
+                chestObj.SetActive(false);
 
                 break;
 
@@ -137,6 +141,7 @@ public class Room : MonoBehaviour
                     {
                         isInCombat = false;
                         SetDoorIsClosed(false);
+                        chestObj.SetActive(true);
                         Debug.Log("Room complete!");
                     }
                     else
@@ -224,7 +229,24 @@ public class Room : MonoBehaviour
         }
     }
 
+    private void InitChest()
+    {
+
+        // Room_WxH_Doors
+        // - Objects
+        //   - Chest [Name]
+        //   - ..
+        GameObject objectContainer = transform.Find("Objects").gameObject;
+        if (objectContainer != null)
+        {
+            LootActivatorTile loot = objectContainer.GetComponentInChildren<LootActivatorTile>();
+            if (loot != null)
+                chestObj = loot.gameObject;
+        }
+    }
+
     #endregion
+
 
     #region Entrance/Exit
 

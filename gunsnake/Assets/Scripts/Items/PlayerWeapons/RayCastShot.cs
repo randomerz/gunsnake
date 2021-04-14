@@ -34,7 +34,7 @@ public class RayCastShot : PlayerWeapon
 
             Vector3 dir1;
             Vector3 dir2;
-            if (mount.isBent && !mount.isTail)
+            if (mount.isBent)
             {
                 if (doDiagonal)
                 {

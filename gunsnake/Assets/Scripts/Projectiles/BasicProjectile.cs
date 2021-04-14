@@ -80,9 +80,9 @@ public class BasicProjectile : Projectile
         if (other.tag == "Player" && !hitEnemyThisTile)
         {
             PlayerSegmentHealth p = other.gameObject.GetComponent<PlayerSegmentHealth>();
-            p.TakeDamage(CalculateDamage());
+            p.TakeDamage(baseDamage);// CalculateDamage());
             basePierce -= 1;
-            if (CalculatePierce() < 0)
+            if (basePierce < 0) //CalculatePierce() < 0)
                 ProjectileManager.RemoveProjectile(gameObject);
 
             hitEnemyThisTile = true;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7862952247370397444}
   - component: {fileID: 7862952247370397445}
   m_Layer: 0
-  m_Name: Gold Pickup1-2
+  m_Name: Gold Pickup4-7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 331369119
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -7729092655846301277, guid: ceb9ca2bff021d948b52e6f8f826986a,
+  m_Sprite: {fileID: 7325937843289347054, guid: ceb9ca2bff021d948b52e6f8f826986a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKey: 0
-  goldAmount: 2
+  goldAmount: 5
   randomizeGold: 1
-  minGold: 1
-  maxGold: 2
+  minGold: 4
+  maxGold: 7
 --- !u!61 &7862952247370397445
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4192388584600907767
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5540342849430687865, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: doJungle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687865, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: doDungeon
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687866, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687868, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: ceil
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687868, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: wall
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687868, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: floor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5540342849430687869, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: m_Name
+      value: Temple Generator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: area
+      value: Temple
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
+      propertyPath: decorationTilemap
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 050f973b658bd4246b7c1a36457b0c42, type: 3}

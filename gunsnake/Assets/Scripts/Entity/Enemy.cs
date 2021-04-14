@@ -11,6 +11,8 @@ public abstract class Enemy : Entity
 
     public int damage = 1;
     public bool randomizeStartingVars;
+    public bool hasSpawnEffect = false;
+    public bool dropsSmallGold = true;
     public bool reducesCurseOnKill = false;
 
     protected string myName = "";
@@ -33,10 +35,10 @@ public abstract class Enemy : Entity
     public SpriteRenderer spriteRenderer;
     public GeneralEnemyAnimator animator;
 
-    [HideInInspector]
     public static Material whiteFlashMat; // set in GameHandler.cs
-    [HideInInspector]
     public static GameObject deathParticle; // set in GameHandler.cs
+    public static GameObject preSpawnParticle; // set in GameHandler.cs
+    public static GameObject spawnParticle; // set in GameHandler.cs
 
     protected override void Awake()
     {
@@ -50,13 +52,40 @@ public abstract class Enemy : Entity
             animator.animator.SetBool("isDead", false);
 
         myCollider = GetComponent<Collider2D>();
+
+        if (hasSpawnEffect)
+            StartCoroutine(SpawnAfterDelay());
+        else
+            Spawn();
+    }
+
+    public abstract void EnemyTick(int tick);
+
+
+    private void Spawn()
+    {
         CheckSpawn();
 
         EnemyManager.AddEnemy(this);
     }
 
-    public abstract void EnemyTick(int tick);
+    private IEnumerator SpawnAfterDelay()
+    {
+        bool origDoTick = doTick;
+        doTick = false;
+        myCollider.enabled = false;
+        spriteRenderer.enabled = false;
 
+        Instantiate(preSpawnParticle, transform.position, Quaternion.identity, transform);
+        yield return new WaitForSeconds(1.4f);
+        Instantiate(spawnParticle, transform.position, Quaternion.identity, transform);
+        yield return new WaitForSeconds(.1f);
+        Spawn();
+
+        doTick = origDoTick;
+        myCollider.enabled = true;
+        spriteRenderer.enabled = true;
+    }
 
     private void CheckSpawn()
     {
@@ -84,7 +113,7 @@ public abstract class Enemy : Entity
         {
             if (hit && hit != myCollider && hit.tag != "Room")
             {
-                Debug.Log("Couldn't place! Conflicting with " + hit.name);
+                //Debug.Log("Couldn't place! Conflicting with " + hit.name);
                 return false;
             }
         }
@@ -134,7 +163,7 @@ public abstract class Enemy : Entity
         if (itemDrop != null)
             Instantiate(itemDrop, transform.position, Quaternion.identity, transform.parent);
 
-        if (TempleCurseSystem.isEnabled)
+        if (TempleCurseSystem.isEnabled && reducesCurseOnKill)
         {
             TempleCurseSystem.GetKill();
         }

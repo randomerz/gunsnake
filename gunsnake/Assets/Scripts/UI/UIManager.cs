@@ -82,6 +82,7 @@ public class UIManager : MonoBehaviour
     public GameObject MenuPanel;
     public GameObject ShopPanel;
     public GameObject LootPanel;
+    public GameObject ArtifactPanel;
     public GameObject DevPanel;
     public GameObject winLosePanel;
 
@@ -107,7 +108,7 @@ public class UIManager : MonoBehaviour
     // private
     private static Item[] shopItems = new Item[6];
     private static int[] shopPrices = new int[6];
-    private static Item[] lootItems = new Item[3];
+    private static Item[] lootItems = new Item[4];
     private static Item currSelectedItem;
 
     // -1 means not selected
@@ -151,7 +152,8 @@ public class UIManager : MonoBehaviour
         volumeCounter.text = volumeNumber.ToString();
         sxfCounter.text = sfxNumber.ToString();
 
-        areaText.text = LevelHandler.currentArea.ToLower() + " - " + (LevelHandler.currentFloor + 1);
+        if (LevelHandler.currentArea != null)
+            areaText.text = LevelHandler.currentArea.ToLower() + " - " + (LevelHandler.currentFloor + 1);
 
         UpdateDescription();
 
@@ -283,8 +285,11 @@ public class UIManager : MonoBehaviour
 
         animationController.SetVisible(true);
 
-        AudioManager.SetLowPassEnabled(true);
-        AudioManager.Play("ui_pause");
+        if (AudioManager.instance != null)
+        {
+            AudioManager.SetLowPassEnabled(true);
+            AudioManager.Play("ui_pause");
+        }
     }
 
     public void CloseUI()
@@ -312,6 +317,7 @@ public class UIManager : MonoBehaviour
         MenuPanel.SetActive(false);
         ShopPanel.SetActive(false);
         LootPanel.SetActive(false);
+        ArtifactPanel.SetActive(false);
 
         PlayerInfoPanel.SetActive(false);
         OptionPanel.SetActive(false);
@@ -320,6 +326,8 @@ public class UIManager : MonoBehaviour
         isOpen = false;
         isClosing = false;
         canSwapAndTrash = false;
+        doSwap = false;
+        doTrash = false;
     }
 
 
@@ -681,6 +689,7 @@ public class UIManager : MonoBehaviour
                 lootItems[i] = lootTable.GetEntry(ARTIFACT_TABLE_ID);
             }
         }
+        lootItems[3] = lootTable.GetEntry(ARTIFACT_TABLE_ID);
     }
 
     private int CalculatePrice(Item item)
@@ -740,22 +749,25 @@ public class UIManager : MonoBehaviour
 
 
 
-    public static void OpenLoot()
+    public static void OpenLoot(bool isArtifact)
     {
         if (instance != null)
-            instance.OpenLootHelper();
+            instance.OpenLootHelper(isArtifact);
         else
         {
             Debug.Log("Tried opening loot, but no UI Manager in current scene.");
         }
     }
 
-    private void OpenLootHelper()
+    private void OpenLootHelper(bool isArtifact)
     {
         OpenUI();
 
         MenuPanel.SetActive(false);
-        LootPanel.SetActive(true);
+        if (isArtifact)
+            ArtifactPanel.SetActive(true);
+        else
+            LootPanel.SetActive(true);
         canSwapAndTrash = true;
 
         AudioManager.Play("ui_loot_open");
@@ -814,9 +826,14 @@ public class UIManager : MonoBehaviour
             //Debug.Log("Chose " + currSelectedItem.name + ", but didn't add.");
         }
 
-        for (int i = 0; i < lootItems.Length; i++)
+        if (currLootSelected == 3)
+            lootItems[3] = null;
+        else
         {
-            lootItems[i] = null;
+            for (int i = 0; i < 3; i++)
+            {
+                lootItems[i] = null;
+            }
         }
 
         AudioManager.Play("ui_loot_obtain");
@@ -824,8 +841,6 @@ public class UIManager : MonoBehaviour
         DeselectAll();
         UpdateShopLootIcons();
     }
-
-
 
     #endregion
 

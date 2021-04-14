@@ -70,6 +70,8 @@ public class Foblin : Enemy
                                 AudioManager.Play("foblin_attack");
 
                                 Attack(closestSeg);
+
+                                ticksTillAttack += attackSpeed;
                             }
                             // else move closer
                             else

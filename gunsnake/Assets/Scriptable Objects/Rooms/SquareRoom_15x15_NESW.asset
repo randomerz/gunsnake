@@ -16,7 +16,7 @@ MonoBehaviour:
   roomType: 0
   isJungle: 1
   isDungeon: 1
-  isTemple: 1
+  isTemple: 0
   roomObjectPath: SObj Rooms/SquareRoom_15x15_NESW
   defaultConnections:
   - pos: {x: 7, y: 0, z: 0}
