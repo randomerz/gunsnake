@@ -65,12 +65,13 @@ MonoBehaviour:
   - {fileID: -9017839394368776682, guid: 04644727049782344acd146cb0d8d03d, type: 3}
   - {fileID: 9116925699441068410, guid: 04644727049782344acd146cb0d8d03d, type: 3}
   purpleSpriteArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -2421994756414337329, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -2666049362420691991, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: -1226705648733364941, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 2732554557379056177, guid: 04644727049782344acd146cb0d8d03d, type: 3}
+  - {fileID: 1735603025367875452, guid: 04644727049782344acd146cb0d8d03d, type: 3}
   empty: {fileID: -1045181238759104467, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
+  isPurple: 0
 --- !u!1 &121114667303724592
 GameObject:
   m_ObjectHideFlags: 0

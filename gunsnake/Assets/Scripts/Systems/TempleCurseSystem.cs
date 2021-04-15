@@ -53,7 +53,7 @@ public class TempleCurseSystem : MonoBehaviour
     {
         isCursed = value;
 
-        // HUD.SetHealthBarPurple(value);
+        HudUpdater.SetHealthBarPurple(value);
 
         Player.playerHealth.doesTakeDoubleDamage = value;
     }
