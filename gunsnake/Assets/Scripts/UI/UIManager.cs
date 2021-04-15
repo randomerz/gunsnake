@@ -733,17 +733,20 @@ public class UIManager : MonoBehaviour
 
     public void Heal()
     {
-        if (PlayerInventory.gold >= healCost)
+        if(Player.playerHealth.GetMaxHealth() > Player.playerHealth.GetHealth())
         {
-            PlayerInventory.AddGold(-healCost);
-            Player.playerHealth.GainHealth(1);
+            if (PlayerInventory.gold >= healCost)
+            {
+                PlayerInventory.AddGold(-healCost);
+                Player.playerHealth.GainHealth(1);
 
-            healCost += healCostIncrement;
-            UpdateHealCost();
-        }
-        else
-        {
-            UIError();
+                healCost += healCostIncrement;
+                UpdateHealCost();
+            }
+            else
+            {
+                UIError();
+            }
         }
     }
 
