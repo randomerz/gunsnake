@@ -90,6 +90,8 @@ public class PlayerMovement : Entity
             //{
             //    RestartSnake();
             //}
+
+
         }
     }
 

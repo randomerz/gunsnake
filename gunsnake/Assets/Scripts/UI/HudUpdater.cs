@@ -13,6 +13,7 @@ public class HudUpdater : MonoBehaviour
     public int currentHealthnumber;
     public int maxHealthNumber;
 
+    public int displaygold;
     public int ydiff = 50;
     // coin stuff here
     public TextMeshProUGUI coinText;
@@ -28,10 +29,12 @@ public class HudUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         currentHealthnumber = Player.playerHealth.GetHealth();
         maxHealthNumber = Player.playerHealth.GetMaxHealth();
+        coinText.text = displaygold.ToString();
+        GoldDisplayer();
 
-        coinText.text = PlayerInventory.GetGold().ToString();
         //make key appear
         if (PlayerInventory.HasKeys())
         {
@@ -90,5 +93,17 @@ public class HudUpdater : MonoBehaviour
     public static bool getPurple()
     {
         return isPurple;
+    }
+
+    public void GoldDisplayer()
+    {
+        if (displaygold < PlayerInventory.GetGold())
+        {
+            displaygold += 1;
+        }
+        else if (displaygold > PlayerInventory.GetGold())
+        {
+            displaygold -= 1;
+        }
     }
 }
