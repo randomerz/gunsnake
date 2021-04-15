@@ -39,7 +39,10 @@ public class PlayerEffects : MonoBehaviour
             segSprites[entranceInvisInd].spriteRenderer.enabled = true;
             entranceInvisInd++;
             if (entranceInvisInd >= segSprites.Length)
+            {
                 entranceInvisInd = -1;
+                PlayerMovement.canSpecialMove = true;
+            }
         }
         if (exitInvisInd != -1)
         {
@@ -50,6 +53,7 @@ public class PlayerEffects : MonoBehaviour
                 for (int i = 0; i < segSprites.Length; i++)
                     segSprites[i].spriteRenderer.enabled = true;
                 exitInvisInd = -1;
+                PlayerMovement.canSpecialMove = true;
             }
         }
     }
@@ -60,11 +64,13 @@ public class PlayerEffects : MonoBehaviour
             segSprites[i].spriteRenderer.enabled = false;
         segSprites[0].spriteRenderer.enabled = true;
         entranceInvisInd = 1;
+        PlayerMovement.canSpecialMove = false;
     }
 
     public void SetPlayerExiting()
     {
         exitInvisInd = 0;
+        PlayerMovement.canSpecialMove = false;
     }
 
     public int GetExitingIndex()

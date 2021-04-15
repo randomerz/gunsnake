@@ -50,312 +50,364 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_error
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_pause
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_shop_open
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_shop_buy
     clip: {fileID: 8300000, guid: 5061b3cbdaaf2594b9862a3f02e6c96e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_loot_open
     clip: {fileID: 8300000, guid: 79e90cf6219dd78428e05a6e7501381e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_loot_obtain
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: player_take_damage
     clip: {fileID: 8300000, guid: dc84f677c45d01742be3cb8917dd689b, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: player_die
     clip: {fileID: 8300000, guid: 3a0088914db8238468cac2b74921c274, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: player_heal
     clip: {fileID: 8300000, guid: bed0902a39f4ae44cba62dcb8a421b35, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: player_gain_gold
     clip: {fileID: 8300000, guid: f384154849a245d458cf0b0929ecb4a3, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: player_reversing
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: de4e977d6808bde49be27712a77a4fbb, type: 3}
+    volume: 0.7
     pitch: 1
     loop: 0
+    doRandomPitch: 0
     source: {fileID: 0}
   - name: weapon_pea
     clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: weapon_egg
     clip: {fileID: 8300000, guid: 28c8d53b16c2484478925cf45ab1c5c1, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: weapon_hs_gun
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: weapon_laser
     clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: artifact_pepper_dodge
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: artifact_pea_split
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: slime_move
     clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: slime_attack
     clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: slime_damage
     clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: slime_die
     clip: {fileID: 8300000, guid: 85b419f81fb131648a210a1c7be77f13, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_move
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_attack
     clip: {fileID: 8300000, guid: a3d8fe52e8ff2e64aa415ea4d9fb2bfb, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_damage
     clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_die
     clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_charge
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: archer_move
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: archer_attack
     clip: {fileID: 8300000, guid: 2de219fde93f7ec4187d1517aa5b7e9d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: archer_damage
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: archer_die
     clip: {fileID: 8300000, guid: 63704c8fb96da984494ee8b1f3584c5e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: wizard_move
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: wizard_attack
     clip: {fileID: 8300000, guid: 0330a86c1192bd64f8662402bfb7b4fd, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: wizard_damage
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: wizard_die
     clip: {fileID: 8300000, guid: 63704c8fb96da984494ee8b1f3584c5e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_turret_projectile
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_turret_laser
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_spike_raise
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_torch_lit
     clip: {fileID: 8300000, guid: 8e6cec12ce0ba024aa19d24b25e6e467, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_start_curse
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_end_curse
     clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_door_open
     clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_door_close
     clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_door_unlock
     clip: {fileID: 8300000, guid: 8acfe0e8ccbbf604a825775787262cb1, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_box_damage
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_box_die
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_plant_damage
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_plant_die
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_explosion
     clip: {fileID: 8300000, guid: 0ada12dfc04f18844bc70a6d3fa6255d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_mushroom_attack
     clip: {fileID: 8300000, guid: c21abb5e821f6f24295f6558e7b80488, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_mushroom_damage
     clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_mushroom_die
     clip: {fileID: 8300000, guid: 9978089306ae4d2429dc593a877e440e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    doRandomPitch: 1
     source: {fileID: 0}
   music:
   - name: music_jungle
@@ -363,24 +415,28 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 1
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: music_dungeon
     clip: {fileID: 8300000, guid: 4bdbdb8b55bc6334b9222a82a5c0261b, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: music_temple
     clip: {fileID: 8300000, guid: c292a4d678b6df4439795f83068e5669, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    doRandomPitch: 1
     source: {fileID: 0}
   - name: music_main_menu
     clip: {fileID: 8300000, guid: 22122cb5e7f891041877fdd406aafa4f, type: 3}
     volume: 1
     pitch: 1
     loop: 1
+    doRandomPitch: 1
     source: {fileID: 0}
   audioListenerObj: {fileID: 6017590308248494188}
 --- !u!1 &6017590308248494188

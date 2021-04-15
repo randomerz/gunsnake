@@ -74,7 +74,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
+        if (s.doRandomPitch)
+            s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
 
         s.source.Play();
     }
