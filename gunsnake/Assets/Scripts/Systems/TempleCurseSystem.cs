@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -8,6 +9,7 @@ public class TempleCurseSystem : MonoBehaviour
 {
     [Tooltip("16 ticks = 1 second here")]
     public int curseMax;
+    public int curseEffectPoint;
     public int amountRemoveOnKill;
     private static int curseTicks;
 
@@ -35,17 +37,27 @@ public class TempleCurseSystem : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
+        //Debug.Log("Curse: " + curseTicks);
+
+        curseTicks = Mathf.Min(curseTicks + 1, curseMax);
+
         if (!isCursed)
         {
-            curseTicks += 1;
+            CheckCursed();
+        }
 
-            if (curseTicks >= curseMax)
-            {
-                curseTicks = curseMax;
-                SetIsCursed(true);
-            }
+        UpdatePostProcessing((float)curseTicks / curseMax);
+    }
 
-            UpdatePostProcessing((float)curseTicks / curseMax);
+    private static void CheckCursed()
+    {
+        if (curseTicks >= instance.curseEffectPoint)
+        {
+            SetIsCursed(true);
+        }
+        else
+        {
+            SetIsCursed(false);
         }
     }
 
@@ -56,6 +68,19 @@ public class TempleCurseSystem : MonoBehaviour
         HudUpdater.SetHealthBarPurple(value);
 
         Player.playerHealth.doesTakeDoubleDamage = value;
+
+        if (value)
+        {
+            AudioManager.Play("dungeon_start_curse");
+
+            Sprite ss = GetScreenshot();
+            instance.impulseImage.sprite = ss;
+            instance.impulseAnimator.SetTrigger("doImpulse");
+        }
+        else
+        {
+            AudioManager.Play("dungeon_end_curse");
+        }
     }
 
     public static void GetKill()
@@ -66,22 +91,32 @@ public class TempleCurseSystem : MonoBehaviour
     private void GetKillHelper()
     {
         curseTicks = Mathf.Clamp(curseTicks - amountRemoveOnKill, 0, curseMax);
-        Debug.Log("Got kill! curse is now " + curseTicks);
+        //Debug.Log("Got kill! curse is now " + curseTicks);
 
-        SetIsCursed(false);
+        CheckCursed();
         UpdatePostProcessing((float)curseTicks / curseMax);
+    }
+
+    public static void Reset()
+    {
+        if (instance != null)
+            instance.ResetHelper();
+    }
+
+    private void ResetHelper()
+    {
+        curseTicks = 0;
+        SetIsCursed(false);
+        UpdatePostProcessing(0);
     }
 
     private static void UpdatePostProcessing(float percent)
     {
-        if (percent >= 1)
+        if (isCursed)
         {
             // spawn effect
-            instance.vignetteGroup.alpha = 1;
-            instance.curseProcess.weight = 1;
-            Sprite ss = GetScreenshot();
-            instance.impulseImage.sprite = ss;
-            instance.impulseAnimator.SetTrigger("doImpulse");
+            instance.vignetteGroup.alpha = percent;
+            instance.curseProcess.weight = percent;
         }
         else
         {

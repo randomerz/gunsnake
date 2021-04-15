@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Cinemachine;
 
-// script from @ixikos
-
+[RequireComponent(typeof(CinemachineVirtualCamera))]
 public class CameraShake : MonoBehaviour
 {
 
-    private Vector3 _originalPos;
+    private CinemachineVirtualCamera vCam;
     public static CameraShake _instance;
 
-    private static float curDuration;
+    private static float startingIntensity;
+    private static float curIntensity;
 
     void Awake()
     {
-        _originalPos = transform.localPosition;
+        vCam = GetComponent<CinemachineVirtualCamera>();
 
         _instance = this;
     }
 
     public static void Shake(float duration, float amount)
     {
-        if (duration < curDuration)
+        if (amount < startingIntensity)
             return;
         _instance.StopAllCoroutines();
         _instance.StartCoroutine(_instance.cShake(duration, amount));
@@ -28,21 +29,27 @@ public class CameraShake : MonoBehaviour
 
     public IEnumerator cShake(float duration, float amount)
     {
-        float endTime = Time.time + duration;
+        float curTime = 0;
 
-        while (Time.time < endTime)
+        CinemachineBasicMultiChannelPerlin perlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        perlin.m_AmplitudeGain = amount;
+
+        while (curTime <= duration)
         {
             if (Time.timeScale == 0)
                 break;
 
-            transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
+            //transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
 
-            duration -= Time.deltaTime;
-            curDuration = duration;
+            curIntensity = Mathf.Lerp(amount, 0, curTime / duration);
+            perlin.m_AmplitudeGain = curIntensity;
+
+            curTime += Time.deltaTime;
 
             yield return null;
         }
 
-        transform.localPosition = _originalPos;
+        perlin.m_AmplitudeGain = 0;
     }
 }

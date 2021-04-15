@@ -152,6 +152,8 @@ MonoBehaviour:
   maxHealth: 2
   damage: 1
   randomizeStartingVars: 1
+  hasSpawnEffect: 0
+  dropsSmallGold: 1
   reducesCurseOnKill: 1
   doTick: 1
   doDrop: 1
@@ -159,7 +161,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 295414182892680606}
   animator: {fileID: 8842955829443823792}
   attackSpeed: 8
-  mushroomAttackEffect: {fileID: 5007785607388935045, guid: 3f66e9fb4ab7c104880758a7f3d112a5,
+  mushroomAttackEffect: {fileID: 1865406789920404978, guid: 1a5fcf8b603ece14d8f6f4dd07c8f40c,
     type: 3}
 --- !u!114 &8842955829443823792
 MonoBehaviour:

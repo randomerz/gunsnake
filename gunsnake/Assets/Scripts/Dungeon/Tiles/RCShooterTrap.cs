@@ -21,7 +21,7 @@ public class RCShooterTrap : ProjectileShooter
                 Instantiate(prepParticles, bulletSpawn.position, Quaternion.identity, transform);
             }
 
-            if (ticksTillShot == 4)
+            if (ticksTillShot == 4 || ticksTillShot == 2)
             {
                 Prefire();
             }

@@ -406,26 +406,26 @@ public class UIManager : MonoBehaviour
 
     public void SetSwapStatus()
     {
-        if (canSwapAndTrash)
-        {
-            ButtonClicked();
+        //if (canSwapAndTrash)
+        //{
+        ButtonClicked();
 
-            doSwap = !doSwap;
-            if (doSwap)
-            {
-                swapImage.sprite = selectedSwap;
-            }
-            else
-            {
-                swapImage.sprite = defaultSwap;
-            }
-            doTrash = false;
-            trashImage.sprite = defaultTrash;
+        doSwap = !doSwap;
+        if (doSwap)
+        {
+            swapImage.sprite = selectedSwap;
         }
         else
         {
-            UIError();
+            swapImage.sprite = defaultSwap;
         }
+        doTrash = false;
+        trashImage.sprite = defaultTrash;
+        //}
+        //else
+        //{
+        //    UIError();
+        //}
     }
 
     public bool DoSwap(int swapTo)
@@ -478,27 +478,27 @@ public class UIManager : MonoBehaviour
 
     public void SetTrashStatus()
     {
-        if (canSwapAndTrash)
-        {
-            ButtonClicked();
+        //if (canSwapAndTrash)
+        //{
+        ButtonClicked();
 
-            doTrash = !doTrash;
-            if (doTrash)
-            {
-                trashImage.sprite = selectedTrash;
-                DoTrash();
-            }
-            else
-            {
-                trashImage.sprite = defaultTrash;
-            }
-            doSwap = false;
-            swapImage.sprite = defaultSwap;
+        doTrash = !doTrash;
+        if (doTrash)
+        {
+            trashImage.sprite = selectedTrash;
+            DoTrash();
         }
         else
         {
-            UIError();
+            trashImage.sprite = defaultTrash;
         }
+        doSwap = false;
+        swapImage.sprite = defaultSwap;
+        //}
+        //else
+        //{
+        //    UIError();
+        //}
     }
 
     public bool DoTrash()
@@ -733,20 +733,17 @@ public class UIManager : MonoBehaviour
 
     public void Heal()
     {
-        if(Player.playerHealth.GetMaxHealth() > Player.playerHealth.GetHealth())
+        if (PlayerInventory.gold >= healCost && !PlayerHealth.IsMaxHealth())
         {
-            if (PlayerInventory.gold >= healCost)
-            {
-                PlayerInventory.AddGold(-healCost);
-                Player.playerHealth.GainHealth(1);
+            PlayerInventory.AddGold(-healCost);
+            Player.playerHealth.GainHealth(1);
 
-                healCost += healCostIncrement;
-                UpdateHealCost();
-            }
-            else
-            {
-                UIError();
-            }
+            healCost += healCostIncrement;
+            UpdateHealCost();
+        }
+        else
+        {
+            UIError();
         }
     }
 
@@ -878,8 +875,19 @@ public class UIManager : MonoBehaviour
 
     #region Quit
 
+    public void QuickRestart()
+    {
+        ButtonClicked();
+
+        canClose = true;
+        CloseUI();
+        LevelHandler.RestartGame();
+    }
+
     public void QuitToMainMenu()
     {
+        ButtonClicked();
+
         LevelHandler.SetToJungle();
 
         canClose = true;

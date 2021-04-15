@@ -100,7 +100,8 @@ public class DecorationPlacer : MonoBehaviour
                             // check theres nothing on this tile
                             Collider2D[] hits = Physics2D.OverlapPointAll(new Vector2(x, y));
                             bool isOverlapping = false;
-                            foreach (Collider2D hit in hits) {
+                            foreach (Collider2D hit in hits)
+                            {
                                 if (hit && hit.tag != "Room")
                                 {
                                     //Debug.Log("Hit something at " + pos + ", not putting down artifact");
@@ -113,7 +114,7 @@ public class DecorationPlacer : MonoBehaviour
 
                             if (Random.Range(0f, 1f) < simpleChance)
                             {
-                                if (Random.Range(0f, 1f) < 0.85f)
+                                if (Random.Range(0f, 1f) < 0.9f)
                                 {
                                     decorationTilemap.SetTile(pos, simpleProps[Random.Range(0, simpleProps.Length)]);
                                 }
@@ -125,6 +126,120 @@ public class DecorationPlacer : MonoBehaviour
                             else
                             {
                                 Instantiate(complexProps[Random.Range(0, complexProps.Length)], pos, Quaternion.identity, decorationsContainer.transform);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (area == "Dungeon")
+        {
+            int offsetX = 16; // copied from fog offset
+            int offsetY = 9;
+            BoundsInt bounds = floor.cellBounds;
+            Vector3Int min = bounds.min;
+            Vector3Int max = bounds.max;
+
+            Vector3Int pos;
+            for (int x = min.x - offsetX; x <= max.x + offsetX; x++)
+            {
+                for (int y = min.y - offsetY; y <= max.y + offsetY; y++)
+                {
+                    pos = new Vector3Int(x, y, 0);
+                    if (floor.GetTile(pos) == null)
+                    {
+                        if (wall.GetTile(pos) == null)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        // === On floor ===
+                        if (Random.Range(0f, 1f) < propChance)
+                        {
+                            // check theres nothing on this tile
+                            Collider2D[] hits = Physics2D.OverlapPointAll(new Vector2(x, y));
+                            bool isOverlapping = false;
+                            foreach (Collider2D hit in hits)
+                            {
+                                if (hit && hit.tag != "Room")
+                                {
+                                    //Debug.Log("Hit something at " + pos + ", not putting down artifact");
+                                    isOverlapping = true;
+                                    break;
+                                }
+                            }
+                            if (isOverlapping)
+                                continue;
+
+                            if (Random.Range(0f, 1f) < simpleChance)
+                            {
+                                if (Random.Range(0f, 1f) < 0.95f)
+                                {
+                                    decorationTilemap.SetTile(pos, simpleProps[Random.Range(0, simpleProps.Length)]);
+                                }
+                                else
+                                {
+                                    decorationTilemap.SetTile(pos, colliderProps[Random.Range(0, colliderProps.Length)]);
+                                }
+                            }
+                            else
+                            {
+                                Instantiate(complexProps[Random.Range(0, complexProps.Length)], pos, Quaternion.identity, decorationsContainer.transform);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (area == "Temple")
+        {
+            int offsetX = 16; // copied from fog offset
+            int offsetY = 9;
+            BoundsInt bounds = floor.cellBounds;
+            Vector3Int min = bounds.min;
+            Vector3Int max = bounds.max;
+
+            Vector3Int pos;
+            for (int x = min.x - offsetX; x <= max.x + offsetX; x++)
+            {
+                for (int y = min.y - offsetY; y <= max.y + offsetY; y++)
+                {
+                    pos = new Vector3Int(x, y, 0);
+                    if (floor.GetTile(pos) == null)
+                    {
+
+                    }
+                    else
+                    {
+                        // === On floor ===
+                        if (Random.Range(0f, 1f) < propChance)
+                        {
+                            // check theres nothing on this tile
+                            Collider2D[] hits = Physics2D.OverlapPointAll(new Vector2(x, y));
+                            bool isOverlapping = false;
+                            foreach (Collider2D hit in hits)
+                            {
+                                if (hit && hit.tag != "Room")
+                                {
+                                    //Debug.Log("Hit something at " + pos + ", not putting down artifact");
+                                    isOverlapping = true;
+                                    break;
+                                }
+                            }
+                            if (isOverlapping)
+                                continue;
+
+                            if (Random.Range(0f, 1f) < 0.95f)
+                            {
+                                decorationTilemap.SetTile(pos, simpleProps[Random.Range(0, simpleProps.Length)]);
+                            }
+                            else
+                            {
+                                decorationTilemap.SetTile(pos, colliderProps[Random.Range(0, colliderProps.Length)]);
                             }
                         }
                     }

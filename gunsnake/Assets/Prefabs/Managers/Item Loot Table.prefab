@@ -45,39 +45,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - name: Pea Shooter
-    freq: 1
+    freq: 0.25
     value: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07, type: 2}
   - name: BEP Shooter
-    freq: 0.75
+    freq: 1.25
     value: {fileID: 11400000, guid: 166391f65fc0b5d4ea4ba018ae404dd3, type: 2}
   - name: Pod Shooter
     freq: 0.5
     value: {fileID: 11400000, guid: 8acdc1d9efa408d44a52f2168112b726, type: 2}
   - name: Eggshot
-    freq: 1
+    freq: 1.25
     value: {fileID: 11400000, guid: 86b3bf726241cbf4a95ffa5dd047dbba, type: 2}
   - name: Shellshot
-    freq: 0.75
+    freq: 1
     value: {fileID: 11400000, guid: 6b0143620e7780e4f8fd5303cbe8ac33, type: 2}
   - name: Cartonshot
     freq: 0.5
     value: {fileID: 11400000, guid: a9b2f1d6b383d3e4bac7f13dea46b57b, type: 2}
   - name: H.S. Gun
-    freq: 0.75
+    freq: 1
     value: {fileID: 11400000, guid: 8e2c541b138397e4dbee0a50ace8450e, type: 2}
   - name: Laser Gun
     freq: 0.5
     value: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6, type: 2}
   artifacts:
   - name: Hearty Apple
-    freq: 0.75
+    freq: 1.5
     value: {fileID: 11400000, guid: a6199c77ca1b54f41974afaf4a2ff569, type: 2}
   - name: Protein Shake
     freq: 0.5
     value: {fileID: 11400000, guid: 55ecd22c0e51e9c46ac9db9386a88579, type: 2}
-  - name: Piercing Grapes
+  - name: Pierce Grapes
     freq: 0.5
     value: {fileID: 11400000, guid: 5a61f2236b4202c4f8185983ed588b50, type: 2}
   - name: Ghost Pepper
-    freq: 0.4
+    freq: 0.5
     value: {fileID: 11400000, guid: b4f73d05a7d490a49947054dea8c8084, type: 2}

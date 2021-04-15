@@ -13,6 +13,9 @@ public class Archer : Enemy
     public int distToPlayerRange;
     public GameObject bulletPrefab;
 
+    public GameObject attackIndicator;
+    private Vector3 attackDir;
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,6 +25,8 @@ public class Archer : Enemy
             ticksTillAttack = attackSpeed;
 
         myName = "archer";
+
+        attackIndicator.SetActive(false);
     }
 
     public override void EnemyTick(int tick)
@@ -37,10 +42,21 @@ public class Archer : Enemy
 
             switch (ticksTillAttack)
             {
-                case 2:
-                case 1:
+                case 4:
+                case 3:
                     if (animator != null)
                         SetAnimatorBool("isPrep", true);
+                    break;
+                case 2:
+                case 1:
+                    attackDir = GetDirectionToPlayer(true);
+                    if (animator != null)
+                        SetAnimatorBool("isPrep", true);
+
+                    attackIndicator.transform.position = transform.position + attackDir * 0.5f;
+                    attackIndicator.SetActive(true);
+
+                    ticksTillMove += 2;
                     break;
                 default:
                     if (ticksTillAttack <= 0)
@@ -53,12 +69,14 @@ public class Archer : Enemy
 
                         AudioManager.Play("archer_attack");
 
-                        Attack(GetDirectionToPlayer(true));
+                        Attack(attackDir);
+
+                        attackIndicator.SetActive(false);
                     }
                     break;
             }
 
-            switch (ticksTillAttack)
+            switch (ticksTillMove)
             {
                 default:
                     if (ticksTillMove <= 0)

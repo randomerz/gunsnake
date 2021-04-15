@@ -71,9 +71,9 @@ MonoBehaviour:
   floor: {fileID: 0}
   wall: {fileID: 0}
   ceil: {fileID: 0}
-  defaultFloor: {fileID: 11400000, guid: 36a52c635193e3c488513bb725a67293, type: 2}
-  defaultWall: {fileID: 11400000, guid: f60cdb17edfeebb4590913ff13899e6b, type: 2}
-  defaultCeil: {fileID: 11400000, guid: 39a5df7b45aafb047b24fd5869060581, type: 2}
+  defaultFloor: {fileID: 11400000, guid: becdce04f66e31b4da37bd152bd0eede, type: 2}
+  defaultWall: {fileID: 11400000, guid: 51d9ef9831d312a4f99f76172099526b, type: 2}
+  defaultCeil: {fileID: 11400000, guid: 330aa2bf6cfe69346841fc6123410af0, type: 2}
   entranceTilePrefab: {fileID: 5451867131178767231, guid: 71462f9ad7806ee48a96b017a57772c3,
     type: 3}
   exitTilePrefab: {fileID: 5451867131178767231, guid: a6206a71e2767c74392f02e52e97ed11,
@@ -90,12 +90,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd98b0f762021b44bbc9b982d0cff610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: Jungle
-  propChance: 0
-  simpleChance: 0.9
-  simpleProps: []
-  colliderProps: []
-  complexProps: []
+  area: Dungeon
+  propChance: 0.01
+  simpleChance: 0.95
+  simpleProps:
+  - {fileID: 11400000, guid: a1e508267f5477f46ac5da694c74e351, type: 2}
+  colliderProps:
+  - {fileID: 11400000, guid: 9eb08ebc2f314a44e93ba8dda153b59f, type: 2}
+  complexProps:
+  - {fileID: 937218738253671621, guid: 20470949f0f09d7469050dcbd9337238, type: 3}
   outOfBoundProps: []
   decorationTilemap: {fileID: 0}
   roomPlacer: {fileID: 5540342849430687868}

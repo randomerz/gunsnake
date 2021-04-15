@@ -82,7 +82,7 @@ public class PlayerHealth : MonoBehaviour
             }
 
             SetInvulnerable(iFramesTicks);
-            CameraShake.Shake(0.25f, 0.25f);
+            CameraShake.Shake(0.5f, 1f);
         }
     }
 
@@ -124,6 +124,11 @@ public class PlayerHealth : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public static bool IsMaxHealth()
+    {
+        return Player.playerHealth.GetHealth() == Player.playerHealth.GetMaxHealth();
     }
 
     public void SetInvulnerable(int frames)

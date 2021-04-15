@@ -103,6 +103,7 @@ public class LevelHandler : MonoBehaviour
         if (fog != null)
             fog.Init();
         EnemyManager.InitializeEnemyDrops();
+        TempleCurseSystem.Reset();
 
         //fade shows the title, pauses time as well
         StartCoroutine(ShowingLevelTitle());
@@ -179,6 +180,7 @@ public class LevelHandler : MonoBehaviour
     {
         //AudioManager.PlayMusic("music_win");
 
+        instance.darkness.SetActive(false);
         Player.EndGame(true);
     }
 

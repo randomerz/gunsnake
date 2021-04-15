@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Shoots a basic, single egg.
   icon: {fileID: 5646971260367943346, guid: 7ca306ebb17140b49af75e32b60c2bac, type: 3}
   itemType: 0
-  baseCost: 10
+  baseCost: 12
   count: 0
   prefab: {fileID: 1793473670551159033, guid: 334fdf1929d6e8d4c85e777b19a8be36, type: 3}

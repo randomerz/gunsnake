@@ -11,9 +11,10 @@ public class PlayerMovement : Entity
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
 
     public Sprite snakeHead;
-    public Sprite snakeStraight;
-    public Sprite snakeBent;
-    public Sprite snakeTail;
+    public Sprite snakeBodyStraight;
+    public Sprite snakeBodyBent;
+    public Sprite snakeTailStraight;
+    public Sprite snakeTailBent;
 
     private LinkedList<Direction> directionQueue = new LinkedList<Direction>();
     private bool addedDirection = false;
@@ -120,11 +121,11 @@ public class PlayerMovement : Entity
                 directionQueue.Clear();
             addedDirection = false;
 
-            CheckUnlockDoor(currDir);
-
             // moving snake code
             if (!isReversing)
             {
+                CheckUnlockDoor(currDir);
+
                 if (CanMove(transform.position, currDir) || Player.playerEffects.GetExitingIndex() != -1)
                 {
                     MoveBody();
@@ -262,7 +263,14 @@ public class PlayerMovement : Entity
         Vector3 tailBodyDir = Player.body[2].transform.position - Player.body[3].transform.position;
         float tailRot = Mathf.Atan2(tailBodyDir.y, tailBodyDir.x) * Mathf.Rad2Deg;
 
-        segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, -tipDir);
+        if (segSprites[2].isBent)
+        {
+            segSprites[3].SetSprite(segSprites[2], snakeTailBent);
+        }
+        else
+        {
+            segSprites[3].SetSprite(segSprites[2], snakeTailStraight);
+        }
         
         // body
         bool body1ShouldBend = Vector3.Dot(headDir, body2Dir) == 0;
@@ -275,12 +283,12 @@ public class PlayerMovement : Entity
             Vector3 bendDir = headDir + body2Dir;
             body1Rot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
             // float forwardAngle = (headRot - body1Rot - 45) * 2 + body1Rot + 45
-            segSprites[1].SetSprite(snakeBent, true, body1Rot, headDir, body2Dir);
+            segSprites[1].SetSprite(snakeBodyBent, true, body1Rot, headDir, body2Dir);
         }
         else
         {
             body1Rot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
-            segSprites[1].SetSprite(snakeStraight, false, body1Rot, headDir, body2Dir);
+            segSprites[1].SetSprite(snakeBodyStraight, false, body1Rot, headDir, body2Dir);
         }
 
         
@@ -349,7 +357,7 @@ public class PlayerMovement : Entity
 
         segSprites[1].SetSprite(segSprites[2]);
 
-        Sprite s = segSprites[3].isBent ? snakeBent : snakeStraight;
+        Sprite s = segSprites[3].isBent ? snakeBodyBent : snakeBodyStraight;
         segSprites[2].SetSprite(segSprites[3], s);
 
 
@@ -362,12 +370,12 @@ public class PlayerMovement : Entity
         {
             Vector3 bendDir = tailTipDir + tailBodyDir;
             tailRot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
-            segSprites[3].SetSprite(snakeBent, true, tailRot, tailTipDir, tailBodyDir);
+            segSprites[3].SetSprite(snakeTailBent, true, tailRot, tailTipDir, tailBodyDir);
         }
         else
         {
             tailRot = Mathf.Atan2(-tipDir.y, -tipDir.x) * Mathf.Rad2Deg;
-            segSprites[3].SetSprite(snakeTail, false, tailRot, tailTipDir, tailBodyDir);
+            segSprites[3].SetSprite(snakeTailStraight, false, tailRot, tailTipDir, tailBodyDir);
         }
 
         //segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, -tipDir);

@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Shoots an instant piercing laser.
   icon: {fileID: -6132445398664713869, guid: 7ca306ebb17140b49af75e32b60c2bac, type: 3}
   itemType: 0
-  baseCost: 20
+  baseCost: 25
   count: 0
   prefab: {fileID: 1793473670551159033, guid: b29b65dba62be104dac56452b9b266f3, type: 3}

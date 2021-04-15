@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.75342274, a: 0.627451}
+  m_Color: {r: 1, g: 0, b: 0.75342274, a: 0.78431374}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -360,7 +360,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403cf37bde9d73e4dbfa0bddae29ec06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curseMax: 160
+  curseMax: 320
+  curseEffectPoint: 160
   amountRemoveOnKill: 80
   curseProcess: {fileID: 8466830112711070937}
   vignetteGroup: {fileID: 1191241570}

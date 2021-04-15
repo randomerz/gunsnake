@@ -111,12 +111,12 @@ TextureImporter:
       name: hug_gold
       rect:
         serializedVersion: 2
-        x: 203
-        y: 130
-        width: 49
-        height: 11
+        x: 202
+        y: 129
+        width: 51
+        height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -132,12 +132,12 @@ TextureImporter:
       name: hug_key_on
       rect:
         serializedVersion: 2
-        x: 217
-        y: 115
-        width: 16
-        height: 13
+        x: 216
+        y: 114
+        width: 18
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: hug_key_off
       rect:
         serializedVersion: 2
-        x: 235
-        y: 115
-        width: 16
-        height: 13
+        x: 234
+        y: 114
+        width: 18
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

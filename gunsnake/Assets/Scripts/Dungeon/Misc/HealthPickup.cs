@@ -10,9 +10,12 @@ public class HealthPickup : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player.playerHealth.GainHealth(healthAmount);
-            
-            Destroy(gameObject);
+            if (!PlayerHealth.IsMaxHealth())
+            {
+                Player.playerHealth.GainHealth(healthAmount);
+
+                Destroy(gameObject);
+            }
         }
     }
 }
