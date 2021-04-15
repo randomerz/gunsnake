@@ -18,6 +18,7 @@ public class HudUpdater : MonoBehaviour
     public TextMeshProUGUI coinText;
     //
     public Image key;
+    public static bool isPurple = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,5 +72,23 @@ public class HudUpdater : MonoBehaviour
             Debug.Log(" about to destory" + healthBars[healthBarCounter].gameObject.name);
             healthBars.RemoveAt(healthBarCounter);
         }    
+    }
+    public void yespurple()
+    {
+        SetHealthBarPurple(true);
+    }
+
+    public void nopurple()
+    {
+        SetHealthBarPurple(false);
+    }
+
+    public static void SetHealthBarPurple(bool yespurple)
+    {
+        isPurple = yespurple;
+    }
+    public static bool getPurple()
+    {
+        return isPurple;
     }
 }

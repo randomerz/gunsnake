@@ -13,7 +13,7 @@ public class HealthBarStuff : MonoBehaviour
     public Sprite[] emptySpriteArray;
     public Sprite[] purpleSpriteArray;
     public Sprite empty;
-
+    public bool isPurple;
 
 
 
@@ -26,39 +26,41 @@ public class HealthBarStuff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        isPurple = HudUpdater.getPurple();
     }
 
 
     public void healthBarUpdater(int currentHealthNumber, int MaxhealthNumber)
     {
-        if (currentHealthNumber >= 5)
+        if (!isPurple)
         {
-            currentHealth.sprite = healthSpriteArray[4];
-        }
-        else if (currentHealthNumber <= 0)
-        {
-            currentHealth.sprite = empty;
-        }
-        else
-        {
-            switch (currentHealthNumber)
+            if (currentHealthNumber >= 5)
             {
-            case 1:
-                    currentHealth.sprite = healthSpriteArray[0];
-                break;
-            case 2:
-                    currentHealth.sprite = healthSpriteArray[1];
-                break;
-            case 3:
-                    currentHealth.sprite = healthSpriteArray[2];
-                break;
-            case 4:
-                    currentHealth.sprite = healthSpriteArray[3];
-                break;
-            
+                currentHealth.sprite = healthSpriteArray[4];
             }
-        }
+            else if (currentHealthNumber <= 0)
+            {
+                currentHealth.sprite = empty;
+            }
+            else
+            {
+                switch (currentHealthNumber)
+                {
+                    case 1:
+                        currentHealth.sprite = healthSpriteArray[0];
+                        break;
+                    case 2:
+                        currentHealth.sprite = healthSpriteArray[1];
+                        break;
+                    case 3:
+                        currentHealth.sprite = healthSpriteArray[2];
+                        break;
+                    case 4:
+                        currentHealth.sprite = healthSpriteArray[3];
+                        break;
+
+                }
+            }
             if (MaxhealthNumber >= 5)
             {
                 maxHealthImage.sprite = emptySpriteArray[4];
@@ -84,5 +86,61 @@ public class HealthBarStuff : MonoBehaviour
                         break;
                 }
             }
-    }
+        }
+        else
+        {
+            if (currentHealthNumber >= 5)
+            {
+                currentHealth.sprite = purpleSpriteArray[4];
+            }
+            else if (currentHealthNumber <= 0)
+            {
+                currentHealth.sprite = empty;
+            }
+            else
+            {
+                switch (currentHealthNumber)
+                {
+                    case 1:
+                        currentHealth.sprite = purpleSpriteArray[0];
+                        break;
+                    case 2:
+                        currentHealth.sprite = purpleSpriteArray[1];
+                        break;
+                    case 3:
+                        currentHealth.sprite = purpleSpriteArray[2];
+                        break;
+                    case 4:
+                        currentHealth.sprite = purpleSpriteArray[3];
+                        break;
+
+                }
+            }
+            if (MaxhealthNumber >= 5)
+            {
+                maxHealthImage.sprite = emptySpriteArray[4];
+            }
+            else
+            {
+                switch (MaxhealthNumber)
+                {
+                    case 0:
+                        maxHealthImage.sprite = empty;
+                        break;
+                    case 1:
+                        maxHealthImage.sprite = emptySpriteArray[0];
+                        break;
+                    case 2:
+                        maxHealthImage.sprite = emptySpriteArray[1];
+                        break;
+                    case 3:
+                        maxHealthImage.sprite = emptySpriteArray[2];
+                        break;
+                    case 4:
+                        maxHealthImage.sprite = emptySpriteArray[3];
+                        break;
+                }
+            }
+        }
+    }   
 }
