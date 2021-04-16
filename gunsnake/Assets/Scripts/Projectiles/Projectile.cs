@@ -18,7 +18,7 @@ public abstract class Projectile : MonoBehaviour
     //private int pierce;
     //private int damage;
 
-    public void Awake()
+    public virtual void Awake()
     {
         //damage = CalculateDamage();
         // pierce = CalculatePierce();

@@ -5,12 +5,12 @@ using UnityEngine;
 public class PeaProj : BasicProjectile
 {
     public GameObject thisPrefab;
-    public static int split = 1;
+    public static int split = 0;
     public int toSplit;
     // Start is called before the first frame update
 
     // Update is called once per frame
-    new void Awake()
+    public override void Awake()
     {
         SetSplit(split);
         base.Awake();
@@ -42,7 +42,6 @@ public class PeaProj : BasicProjectile
     {
         if (toSplit > 0)
         {
-            Debug.Log("penis");
             GameObject pea1 = ProjectileManager.CreateProjectile(thisPrefab);
             GameObject pea2 = ProjectileManager.CreateProjectile(thisPrefab);
             pea1.transform.position = transform.position;
@@ -61,7 +60,8 @@ public class PeaProj : BasicProjectile
         }
     }
     private void SetSplit(int p)
-    {
+    { 
         toSplit = p;
+        Debug.Log(toSplit);
     }
 }
