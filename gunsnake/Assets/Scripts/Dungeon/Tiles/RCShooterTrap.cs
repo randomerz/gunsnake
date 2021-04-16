@@ -21,15 +21,16 @@ public class RCShooterTrap : ProjectileShooter
                 Instantiate(prepParticles, bulletSpawn.position, Quaternion.identity, transform);
             }
 
-            if (ticksTillShot == 4)
+            if (ticksTillShot == 4 || ticksTillShot == 2)
             {
                 Prefire();
             }
 
             if (ticksTillShot <= 0)
             {
-                // AudioManager.PlaySound("");
                 Instantiate(attackParticles, bulletSpawn.position, Quaternion.identity, transform);
+
+                AudioManager.Play("dungeon_turret_laser");
 
                 Shoot();
 

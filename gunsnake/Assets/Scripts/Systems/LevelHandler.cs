@@ -14,7 +14,7 @@ public class LevelHandler : MonoBehaviour
 
     public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
-    public static string templeSceneName = "Dungeon"; // TODO: update
+    public static string templeSceneName = "Temple"; // TODO: update
 
     // Set by DungeonRoomPlacer
     public static GameObject startObject;
@@ -79,6 +79,7 @@ public class LevelHandler : MonoBehaviour
         playerObj = GameObject.Find(instance.playerPrefab.name);
         if (playerObj == null)
             playerObj = Instantiate(instance.playerPrefab);
+        playerObj.GetComponent<Player>().InitReferences();
     }
 
     public void StartLevel()
@@ -102,12 +103,14 @@ public class LevelHandler : MonoBehaviour
         if (fog != null)
             fog.Init();
         EnemyManager.InitializeEnemyDrops();
+        TempleCurseSystem.Reset();
 
         //fade shows the title, pauses time as well
         StartCoroutine(ShowingLevelTitle());
 
         //player.transform.position;
         Player.playerMovement.SetSnakeSpawn(startObject.transform.position, startDirection);
+        startObject.GetComponent<TeleporterTile>().SetTeleporterAnimation(false, 2);
         Player.playerEffects.SetPlayerEntering();
     }
 
@@ -160,6 +163,7 @@ public class LevelHandler : MonoBehaviour
     {
         SetToJungle();
         shouldResetPlayer = true;
+        TempleCurseSystem.isEnabled = false;
         LoadScene(jungleSceneName);
     }
 
@@ -176,6 +180,7 @@ public class LevelHandler : MonoBehaviour
     {
         //AudioManager.PlayMusic("music_win");
 
+        instance.darkness.SetActive(false);
         Player.EndGame(true);
     }
 

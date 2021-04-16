@@ -18,6 +18,7 @@ public class PlayerWeaponManager : MonoBehaviour
     public bool isSprinting;
 
     private bool didInit;
+    public static bool canFire = true;
 
     private void Awake()
     {
@@ -57,7 +58,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
     public bool CanFire()
     {
-        return !isSprinting;
+        return !isSprinting && canFire;
     }
 
 

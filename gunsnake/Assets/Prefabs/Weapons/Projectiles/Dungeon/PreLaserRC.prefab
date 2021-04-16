@@ -133,7 +133,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.125
+        value: 0.075
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -194,11 +194,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 0
   basePierce: 100
+  targets:
+    serializedVersion: 2
+    m_Bits: 0
   canHit: 0
-  hitsPlayer: 1
   startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   lineRenderer: {fileID: 5544460565853276446}
   ticksAlive: 16
-  alphaRate: 0.85
+  alphaRate: 0.75
   lineShrinkRate: 0.95

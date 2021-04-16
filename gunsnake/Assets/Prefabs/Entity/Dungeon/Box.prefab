@@ -50,6 +50,9 @@ MonoBehaviour:
   maxHealth: 1
   damage: 1
   randomizeStartingVars: 1
+  hasSpawnEffect: 0
+  dropsSmallGold: 1
+  reducesCurseOnKill: 0
   doTick: 1
   doDrop: 0
   itemDrop: {fileID: 0}
@@ -57,19 +60,20 @@ MonoBehaviour:
   animator: {fileID: 6032697682571950528}
   table:
   - name: Nothing
-    freq: 0.7
+    freq: 0.9
     value: {fileID: 0}
   - name: Small Gold
-    freq: 0.25
+    freq: 0.09
     value: {fileID: 7862952247370397497, guid: 9fe4a9a7559e9e64fbe3d0a493f50cd6, type: 3}
   - name: Medium Gold
-    freq: 0.04
+    freq: 0.01
     value: {fileID: 7862952247370397497, guid: 833fee754ef235e49b4053ad8faea667, type: 3}
   - name: Health
-    freq: 0.01
+    freq: 0
     value: {fileID: 5647355823583502174, guid: 035abc31f2b056740acc0669ba907e9a, type: 3}
   extraParticles: {fileID: 8625311794173135732, guid: 7c77b0ac3380c324e8fafd493e8d21c7,
     type: 3}
+  nameToSet: dungeon_box
 --- !u!114 &6032697682571950528
 MonoBehaviour:
   m_ObjectHideFlags: 0

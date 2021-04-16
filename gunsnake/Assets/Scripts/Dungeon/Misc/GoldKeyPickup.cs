@@ -15,7 +15,7 @@ public class GoldKeyPickup : MonoBehaviour
     private void Awake()
     {
         if (randomizeGold)
-            goldAmount = Random.Range(minGold, maxGold);
+            goldAmount = Random.Range(minGold, maxGold + 1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

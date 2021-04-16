@@ -18,7 +18,8 @@ public class EnemyManager : MonoBehaviour
     private static int enemiesKilled = 0;
     
     // could be static
-    public GameObject goldDrop;
+    public GameObject smallGoldDrop;
+    public GameObject medGoldDrop;
     public GameObject healthDrop;
     public GameObject keyDrop;
     public float healthDropRate = 0.1f;
@@ -96,7 +97,12 @@ public class EnemyManager : MonoBehaviour
                 if (UnityEngine.Random.Range(0f, 1f) < _instance.healthDropRate)
                     currentLevelEnemies[i].itemDrop = _instance.healthDrop;
                 else
-                    currentLevelEnemies[i].itemDrop = _instance.goldDrop;
+                {
+                    if (currentLevelEnemies[i].dropsSmallGold)
+                        currentLevelEnemies[i].itemDrop = _instance.smallGoldDrop;
+                    else
+                        currentLevelEnemies[i].itemDrop = _instance.medGoldDrop;
+                }
             }
         }
     }

@@ -763,8 +763,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af83830fd6a2f4190cd31b84b953dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldDrop: {fileID: 7862952247370397497, guid: 9fe4a9a7559e9e64fbe3d0a493f50cd6,
-    type: 3}
+  smallGoldDrop: {fileID: 0}
+  medGoldDrop: {fileID: 0}
   healthDrop: {fileID: 5647355823583502174, guid: 035abc31f2b056740acc0669ba907e9a,
     type: 3}
   keyDrop: {fileID: 2124286722061074426, guid: 95f1f3076a8e0d3439469c35f3e7a3bc, type: 3}
@@ -798,6 +798,8 @@ MonoBehaviour:
   enemyWhiteFlashMat: {fileID: 2100000, guid: 419d39f9557cfd04eb860a61da57061c, type: 2}
   enemyDeathParticle: {fileID: 430776399415774282, guid: 4460e85fd4f162242b1f513ed33cf6f1,
     type: 3}
+  enemyPreSpawnParticle: {fileID: 0}
+  enemySpawnParticle: {fileID: 0}
   player: {fileID: 0}
   levelHandler: {fileID: 0}
 --- !u!4 &1455916478
@@ -1449,6 +1451,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 869905776433562918, guid: 1eb5d935c66103147b09e52a58f7efab,
+        type: 3}
+      propertyPath: displaygold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 869905776433562918, guid: 1eb5d935c66103147b09e52a58f7efab,
+        type: 3}
+      propertyPath: maxHealthNumber
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6242673999305176472, guid: 1eb5d935c66103147b09e52a58f7efab,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1747,6 +1759,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6603713135048850760, guid: db43c2e5dad498547970a901a43a56e8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6603713135679270310, guid: db43c2e5dad498547970a901a43a56e8,
         type: 3}
       propertyPath: m_Name

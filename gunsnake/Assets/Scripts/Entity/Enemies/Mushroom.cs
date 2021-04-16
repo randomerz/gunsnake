@@ -14,6 +14,8 @@ public class Mushroom : Enemy
     protected override void Awake()
     {
         base.Awake();
+        myName = "misc_mushroom";
+
         if (randomizeStartingVars)
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
@@ -44,6 +46,7 @@ public class Mushroom : Enemy
                         if (animator != null)
                             SetAnimatorBool("isAttack", true);
 
+                        AudioManager.Play("misc_mushroom_attack");
 
                         ticksTillAttack = attackSpeed;
                         Attack();

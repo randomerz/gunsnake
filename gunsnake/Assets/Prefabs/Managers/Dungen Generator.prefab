@@ -71,9 +71,9 @@ MonoBehaviour:
   floor: {fileID: 0}
   wall: {fileID: 0}
   ceil: {fileID: 0}
-  defaultFloor: {fileID: 11400000, guid: 36a52c635193e3c488513bb725a67293, type: 2}
-  defaultWall: {fileID: 11400000, guid: f60cdb17edfeebb4590913ff13899e6b, type: 2}
-  defaultCeil: {fileID: 11400000, guid: 39a5df7b45aafb047b24fd5869060581, type: 2}
+  defaultFloor: {fileID: 11400000, guid: becdce04f66e31b4da37bd152bd0eede, type: 2}
+  defaultWall: {fileID: 11400000, guid: 51d9ef9831d312a4f99f76172099526b, type: 2}
+  defaultCeil: {fileID: 11400000, guid: 330aa2bf6cfe69346841fc6123410af0, type: 2}
   entranceTilePrefab: {fileID: 5451867131178767231, guid: 71462f9ad7806ee48a96b017a57772c3,
     type: 3}
   exitTilePrefab: {fileID: 5451867131178767231, guid: a6206a71e2767c74392f02e52e97ed11,
@@ -90,12 +90,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd98b0f762021b44bbc9b982d0cff610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: Jungle
-  propChance: 0
-  simpleChance: 0
-  simpleProps: []
-  colliderProps: []
-  complexProps: []
+  area: Dungeon
+  propChance: 0.01
+  simpleChance: 0.95
+  simpleProps:
+  - {fileID: 11400000, guid: a1e508267f5477f46ac5da694c74e351, type: 2}
+  colliderProps:
+  - {fileID: 11400000, guid: 9eb08ebc2f314a44e93ba8dda153b59f, type: 2}
+  complexProps:
+  - {fileID: 937218738253671621, guid: 20470949f0f09d7469050dcbd9337238, type: 3}
   outOfBoundProps: []
   decorationTilemap: {fileID: 0}
   roomPlacer: {fileID: 5540342849430687868}
@@ -113,16 +116,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalRooms:
   - name: SquareRoom_15x15_NESW
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: be284d7a6c53a6d408f751300a77a86b, type: 2}
   - name: LongRoom_21x11_NESW
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: 0adeac3eb8b910e42b802be02eb44cc4, type: 2}
   - name: CultRoom_Isaiah_25x17
-    freq: 0.5
+    freq: 0.75
     roomData: {fileID: 11400000, guid: 628b4bf84f53a1140b5068910928a083, type: 2}
   - name: MessHall_Steven_13x16
-    freq: 0.5
+    freq: 0.75
     roomData: {fileID: 11400000, guid: 72ef8aa40a8e2d74db9f80f0b3635764, type: 2}
   - name: HubX_Elizabeth_29x29
     freq: 0.5
@@ -137,7 +140,7 @@ MonoBehaviour:
     freq: 0.75
     roomData: {fileID: 11400000, guid: d7f0b9f456c75d04891edb0c5304c3bd, type: 2}
   - name: CircleSpikes_Ethan_17x17
-    freq: 0.75
+    freq: 1
     roomData: {fileID: 11400000, guid: e2893f2e2fb461a4aa7adafdb7e1b62e, type: 2}
   - name: ExplosivesRoom_15x15
     freq: 1
@@ -152,13 +155,13 @@ MonoBehaviour:
     freq: 1
     roomData: {fileID: 11400000, guid: 34839696a9e537849ad3e05a4b017f86, type: 2}
   - name: DBumpRoom_15x11
-    freq: 1
+    freq: 1.25
     roomData: {fileID: 11400000, guid: 4892dd6e18225774b8a24c83ec09ae5d, type: 2}
   - name: TBumpRoom_15x11
     freq: 1
     roomData: {fileID: 11400000, guid: e2b5965431086224ea2e95eef19c61cb, type: 2}
   - name: HubDQuad_21x21
-    freq: 1
+    freq: 100
     roomData: {fileID: 11400000, guid: dd39c41f424d6dd4da4327c9a1ea2ac4, type: 2}
   - name: HubExplosives_23x17
     freq: 1
@@ -166,9 +169,15 @@ MonoBehaviour:
   - name: HubJTree_21x21
     freq: 1
     roomData: {fileID: 11400000, guid: f11f8be974593b347926e7367ff39085, type: 2}
+  - name: DSkullRoom_15x15
+    freq: 1
+    roomData: {fileID: 11400000, guid: 5aa005facf82fd34c9e0e3f01ccd4909, type: 2}
+  - name: HubDTorchExplosion_23x23
+    freq: 1
+    roomData: {fileID: 11400000, guid: 895dd0f3d12fe984db3965f7603ce2cf, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
-    freq: 1
+    freq: 0
     roomData: {fileID: 11400000, guid: fc9e252854521ec47a31de892655c49e, type: 2}
   - name: GridChall_19x19
     freq: 1
@@ -179,6 +188,12 @@ MonoBehaviour:
   - name: JChallSlimes_15x15
     freq: 1
     roomData: {fileID: 11400000, guid: 991c46617effe5947b6a1683f4a6ef91, type: 2}
+  - name: TrapChallenge_13x30
+    freq: 1
+    roomData: {fileID: 11400000, guid: 1d6788003e9ad2e41a960cd41e484cd2, type: 2}
+  - name: DHiddenTorches_19x19
+    freq: 1
+    roomData: {fileID: 11400000, guid: 8727736d8935a7949a49f54ab8bd726e, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1

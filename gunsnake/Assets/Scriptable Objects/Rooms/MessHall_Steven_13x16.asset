@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: MessHall_Steven_13x16
   roomType: 0
-  isJungle: 1
+  isJungle: 0
   isDungeon: 1
   isTemple: 1
   roomObjectPath: SObj Rooms/MessHall_Steven_13x16

@@ -27,6 +27,7 @@ public class Foblin : Enemy
         else
             ticksTillAttack = attackSpeed;
 
+        myName = "foblin";
     }
 
     public override void EnemyTick(int tick)
@@ -66,7 +67,11 @@ public class Foblin : Enemy
                                 if (animator != null)
                                     SetAnimatorBool("isAttack", true);
 
+                                AudioManager.Play("foblin_attack");
+
                                 Attack(closestSeg);
+
+                                ticksTillAttack += attackSpeed;
                             }
                             // else move closer
                             else
@@ -77,6 +82,8 @@ public class Foblin : Enemy
                                 {
                                     if ((closestSeg.transform.position - transform.position).magnitude > 4)
                                     {
+                                        AudioManager.Play("foblin_charge");
+
                                         preCharge = true;
                                         ticksTillAttack = 4;
                                         chargeCount = chargeLength;
@@ -108,6 +115,8 @@ public class Foblin : Enemy
                                 // visuals
                                 if (animator != null)
                                     SetAnimatorBool("isAttack", true);
+
+                                AudioManager.Play("foblin_attack");
 
                                 Attack(closestSeg);
                             }

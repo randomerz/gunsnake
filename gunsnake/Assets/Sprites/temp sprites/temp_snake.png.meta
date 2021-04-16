@@ -4,16 +4,22 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 5738895926818950657
-    second: temp_bend
+    second: temp_tail_normal
   - first:
       213: -1753873495748311669
-    second: temp_head
+    second: temp_tail_bent
   - first:
       213: 8951306585610963716
-    second: temp_tail
+    second: temp_tip
   - first:
       213: 2596357051369448574
-    second: temp_straight
+    second: temp_head
+  - first:
+      213: -4218282523443453313
+    second: temp_body_normal
+  - first:
+      213: -6204959849889920636
+    second: temp_body_bent
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -111,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: temp_bend
+      name: temp_tail_normal
       rect:
         serializedVersion: 2
         x: 0
@@ -132,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: temp_head
+      name: temp_tail_bent
       rect:
         serializedVersion: 2
         x: 16
@@ -153,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: temp_tail
+      name: temp_tip
       rect:
         serializedVersion: 2
         x: 0
@@ -174,11 +180,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: temp_straight
+      name: temp_head
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 0
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -190,6 +196,48 @@ TextureImporter:
       bones: []
       spriteID: e74e4fc6bfc180420800000000000000
       internalID: 2596357051369448574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_body_normal
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f722ae3f466a575c0800000000000000
+      internalID: -4218282523443453313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_body_bent
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48900cd44ed83e9a0800000000000000
+      internalID: -6204959849889920636
       vertices: []
       indices: 
       edges: []

@@ -67,13 +67,15 @@ public class AudioManager : MonoBehaviour
         if (_sounds == null)
             return;
         Sound s = Array.Find(_sounds, sound => sound.name == name);
+        
         if (s == null)
         {
             Debug.LogError("Sound: " + name + " not found!");
             return;
         }
 
-        s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
+        if (s.doRandomPitch)
+            s.source.pitch = s.pitch * UnityEngine.Random.Range(.95f, 1.05f);
 
         s.source.Play();
     }

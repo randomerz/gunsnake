@@ -13,11 +13,13 @@ public class HudUpdater : MonoBehaviour
     public int currentHealthnumber;
     public int maxHealthNumber;
 
+    public int displaygold;
     public int ydiff = 50;
     // coin stuff here
     public TextMeshProUGUI coinText;
     //
     public Image key;
+    public static bool isPurple = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,12 @@ public class HudUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         currentHealthnumber = Player.playerHealth.GetHealth();
         maxHealthNumber = Player.playerHealth.GetMaxHealth();
+        coinText.text = displaygold.ToString();
+        GoldDisplayer();
 
-        coinText.text = PlayerInventory.GetGold().ToString();
         //make key appear
         if (PlayerInventory.HasKeys())
         {
@@ -56,8 +60,9 @@ public class HudUpdater : MonoBehaviour
         if (testing_health > healthBarCounter)
         {
             GameObject g = Instantiate(singleHealthBar, transform);
-            
-            g.transform.position -= new Vector3(0, healthBarCounter*ydiff, 0);
+
+            //g.transform.position -= new Vector3(0, healthBarCounter*ydiff, 0);
+            g.GetComponent<RectTransform>().anchoredPosition -= new Vector2(0, healthBarCounter * ydiff);
             healthBars.Add(g.GetComponent<HealthBarStuff>());
             healthBarCounter++;
         }
@@ -70,5 +75,35 @@ public class HudUpdater : MonoBehaviour
             Debug.Log(" about to destory" + healthBars[healthBarCounter].gameObject.name);
             healthBars.RemoveAt(healthBarCounter);
         }    
+    }
+    public void yespurple()
+    {
+        SetHealthBarPurple(true);
+    }
+
+    public void nopurple()
+    {
+        SetHealthBarPurple(false);
+    }
+
+    public static void SetHealthBarPurple(bool yespurple)
+    {
+        isPurple = yespurple;
+    }
+    public static bool getPurple()
+    {
+        return isPurple;
+    }
+
+    public void GoldDisplayer()
+    {
+        if (displaygold < PlayerInventory.GetGold())
+        {
+            displaygold += 1;
+        }
+        else if (displaygold > PlayerInventory.GetGold())
+        {
+            displaygold -= 1;
+        }
     }
 }

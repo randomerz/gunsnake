@@ -28,6 +28,44 @@ public static class DirectionUtil
         return Vector3Int.zero;
     }
 
+    public static Direction Convert(Vector3Int dir)
+    {
+        if (dir.magnitude > 1)
+        {
+            Debug.LogError("DirectionUtil.Convert() shouldn't be used with Vector's who's magnitude is greater than 1!");
+        }
+
+        if (dir.x > 0)
+            return Direction.right;
+        if (dir.y > 0)
+            return Direction.up;
+        if (dir.x < 0)
+            return Direction.left;
+        if (dir.y < 0)
+            return Direction.down;
+
+        return 0;
+    }
+
+    public static Direction Convert(Vector3 dir)
+    {
+        if (dir.magnitude > 1)
+        {
+            Debug.LogError("DirectionUtil.Convert() shouldn't be used with Vector's who's magnitude is greater than 1!");
+        }
+
+        if (dir.x > 0)
+            return Direction.right;
+        if (dir.y > 0)
+            return Direction.up;
+        if (dir.x < 0)
+            return Direction.left;
+        if (dir.y < 0)
+            return Direction.down;
+
+        return 0;
+    }
+
     public static Direction NextDir(Direction dir)
     {
         return (Direction)(((int)dir + 1) % 4);

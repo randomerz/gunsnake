@@ -19,6 +19,8 @@ public class Wizard : Enemy
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
             ticksTillAttack = attackSpeed;
+
+        myName = "wizard";
     }
 
     public override void EnemyTick(int tick)
@@ -60,6 +62,8 @@ public class Wizard : Enemy
                             // visuals
                             if (animator != null)
                                 SetAnimatorBool("isAttack", true);
+
+                            AudioManager.Play("wizard_attack");
 
                             Attack();
                         }

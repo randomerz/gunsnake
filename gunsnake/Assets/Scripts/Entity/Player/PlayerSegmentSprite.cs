@@ -27,4 +27,9 @@ public class PlayerSegmentSprite : MonoBehaviour
     {
         SetSprite(newSeg.spriteRenderer.sprite, newSeg.isBent, newSeg.rotationAmount, newSeg.nextSegDir, newSeg.prevSegDir);
     }
+
+    public void SetSprite(PlayerSegmentSprite newSeg, Sprite newSprite)
+    {
+        SetSprite(newSprite, newSeg.isBent, newSeg.rotationAmount, newSeg.nextSegDir, newSeg.prevSegDir);
+    }
 }

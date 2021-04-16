@@ -87,8 +87,6 @@ public class DungeonRoomTable : MonoBehaviour
 
     private bool CheckRoom(RoomData room)
     {
-        Debug.Log(room);
-        Debug.Log(room.name);
         return (room.isJungle && doJungle) || (room.isDungeon && doDungeon) || (room.isTemple && doTemple);
     }
 
@@ -123,8 +121,6 @@ public class DungeonRoomTable : MonoBehaviour
             }
             random -= currTable[i].freq;
         }
-
-        Debug.Log(type + ": " + ret);
 
         return ret;
     }

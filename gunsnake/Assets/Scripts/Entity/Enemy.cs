@@ -11,6 +11,11 @@ public abstract class Enemy : Entity
 
     public int damage = 1;
     public bool randomizeStartingVars;
+    public bool hasSpawnEffect = false;
+    public bool dropsSmallGold = true;
+    public bool reducesCurseOnKill = false;
+
+    protected string myName = "";
 
     // game stuff
     public bool doTick = true;
@@ -30,10 +35,10 @@ public abstract class Enemy : Entity
     public SpriteRenderer spriteRenderer;
     public GeneralEnemyAnimator animator;
 
-    [HideInInspector]
     public static Material whiteFlashMat; // set in GameHandler.cs
-    [HideInInspector]
     public static GameObject deathParticle; // set in GameHandler.cs
+    public static GameObject preSpawnParticle; // set in GameHandler.cs
+    public static GameObject spawnParticle; // set in GameHandler.cs
 
     protected override void Awake()
     {
@@ -47,13 +52,40 @@ public abstract class Enemy : Entity
             animator.animator.SetBool("isDead", false);
 
         myCollider = GetComponent<Collider2D>();
+
+        if (hasSpawnEffect)
+            StartCoroutine(SpawnAfterDelay());
+        else
+            Spawn();
+    }
+
+    public abstract void EnemyTick(int tick);
+
+
+    private void Spawn()
+    {
         CheckSpawn();
 
         EnemyManager.AddEnemy(this);
     }
 
-    public abstract void EnemyTick(int tick);
+    private IEnumerator SpawnAfterDelay()
+    {
+        bool origDoTick = doTick;
+        doTick = false;
+        myCollider.enabled = false;
+        spriteRenderer.enabled = false;
 
+        Instantiate(preSpawnParticle, transform.position, Quaternion.identity, transform);
+        yield return new WaitForSeconds(1.4f);
+        Instantiate(spawnParticle, transform.position, Quaternion.identity, transform);
+        yield return new WaitForSeconds(.1f);
+        Spawn();
+
+        doTick = origDoTick;
+        myCollider.enabled = true;
+        spriteRenderer.enabled = true;
+    }
 
     private void CheckSpawn()
     {
@@ -81,12 +113,13 @@ public abstract class Enemy : Entity
         {
             if (hit && hit != myCollider && hit.tag != "Room")
             {
-                Debug.Log("Couldn't place! Conflicting with " + hit.name);
+                //Debug.Log("Couldn't place! Conflicting with " + hit.name);
                 return false;
             }
         }
         return true;
     }
+
 
     #region Health
 
@@ -107,6 +140,8 @@ public abstract class Enemy : Entity
         else
         {
             StrobeWhite(1);
+
+            AudioManager.Play(myName + "_damage");
         }
     }
     
@@ -114,12 +149,25 @@ public abstract class Enemy : Entity
     {
         if (animator != null && animator.animator != null)
             animator.animator.SetBool("isDead", true);
+
+        if (myName != "")
+        {
+            AudioManager.Play(myName + "_die");
+        }
+
         foreach (GameObject e in effects)
         {
             Destroy(e);
         }
+
         if (itemDrop != null)
             Instantiate(itemDrop, transform.position, Quaternion.identity, transform.parent);
+
+        if (TempleCurseSystem.isEnabled && reducesCurseOnKill)
+        {
+            TempleCurseSystem.GetKill();
+        }
+
         if (deathParticle != null && lastHitDir != Vector3.zero)
         {
             double angle = Mathf.Atan2(lastHitDir.y, lastHitDir.x) * Mathf.Rad2Deg;
@@ -135,6 +183,7 @@ public abstract class Enemy : Entity
     }
 
     #endregion
+
 
     #region Movement
 
@@ -219,6 +268,11 @@ public abstract class Enemy : Entity
 
     protected void MoveDir(Vector3 dir)
     {
+        if (myName != "")
+        {
+            AudioManager.Play(myName + "_move");
+        }
+
         animator.SetOrigPos(transform.position);
         if (dir.x > 0)
             animator.SetFacing(false);

@@ -9,6 +9,7 @@ public class Box : Enemy
     private static float tableSum = -1;
 
     public GameObject extraParticles;
+    public string nameToSet;
 
     [System.Serializable]
     public class TableEntry
@@ -22,6 +23,7 @@ public class Box : Enemy
     {
         animator.animator = null;
         base.Awake();
+        myName = nameToSet;
 
         UpdateSums();
 

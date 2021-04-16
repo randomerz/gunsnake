@@ -6,22 +6,34 @@ public class PlayerMovement : Entity
 {
     //public GameObject[] body = new GameObject[4];
     private PlayerSegmentSprite[] segSprites = new PlayerSegmentSprite[Player.body.Length];
+    public GameObject tip;
+    private SpriteRenderer tipSprite;
     public Vector3 snakeSpawn = new Vector3(0, 0, 0);
 
     public Sprite snakeHead;
-    public Sprite snakeStraight;
-    public Sprite snakeBent;
-    public Sprite snakeTail;
+    public Sprite snakeBodyStraight;
+    public Sprite snakeBodyBent;
+    public Sprite snakeTailStraight;
+    public Sprite snakeTailBent;
 
     private LinkedList<Direction> directionQueue = new LinkedList<Direction>();
     private bool addedDirection = false;
 
-    public bool isSprinting;
+    public bool isSpecialMovement;
+    public static bool canMove = true;
+    public static bool canSpecialMove = true;
+    private bool canOpenChest = true;
+    private bool isSprinting;
+    private bool isReversing;
 
+    // temp
+    private bool didBeep = false;
 
     protected override void Awake()
     {
         base.Awake();
+
+        tipSprite = tip.GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -54,25 +66,43 @@ public class PlayerMovement : Entity
                 ChangeDirection(Direction.up);
             }
 
-            //if (Input.GetKeyDown(KeyCode.LeftShift))
-            //{
-            //    isSprinting = true;
-            //}
-            isSprinting = Input.GetKey(KeyCode.LeftShift);
-            Player.playerWeaponManager.isSprinting = isSprinting;
+
+            isSprinting = canSpecialMove && !isReversing && Input.GetKey(KeyCode.LeftShift);
+
+            bool wasReversing = isReversing;
+            isReversing = canSpecialMove && !isSprinting && Input.GetKey(KeyCode.LeftControl);
+
+            if (isReversing != wasReversing)
+            {
+                if (isReversing) // start reversing
+                {
+                    currDir = DirectionUtil.Convert(tip.transform.position - Player.body[3].transform.position);
+                }
+                else // stop reversing
+                {
+                    currDir = DirectionUtil.Convert(transform.position - Player.body[1].transform.position);
+                }
+            }
+
+            isSpecialMovement = isSprinting || isReversing;
+            Player.playerWeaponManager.isSprinting = isSpecialMovement;
 
             //if (Input.GetKeyDown(KeyCode.R))
             //{
             //    RestartSnake();
             //}
+
+
         }
     }
 
     public void OnTick(int tick)
     {
-        if (tick % 4 == 0 || (isSprinting && tick % 2 == 0))
+        if ((!isReversing && tick % 4 == 0) || (isSprinting && tick % 2 == 0) || (isReversing && tick % 8 == 0))
         {
             // move
+            if (!canMove)
+                return;
 
             // try moving in front of queue direction, else do nothing
             if (directionQueue.Count != 0 && CanMove(transform.position, directionQueue.First.Value))
@@ -80,20 +110,50 @@ public class PlayerMovement : Entity
                 currDir = directionQueue.First.Value;
                 directionQueue.RemoveFirst();
             }
+            // check if door/chest is in dQ.first
+            if (directionQueue.Count != 0 && CheckUnlockDoor(directionQueue.First.Value))
+            {
+                directionQueue.RemoveFirst();
+            }
+
             // clear queue if nothing was added
             if (!addedDirection)
                 directionQueue.Clear();
             addedDirection = false;
 
-            CheckUnlockDoor(currDir);
-
             // moving snake code
-            if (CanMove(transform.position, currDir) || Player.playerEffects.GetExitingIndex() != -1)
+            if (!isReversing)
             {
-                MoveBody();
+                CheckUnlockDoor(currDir);
+
+                if (CanMove(transform.position, currDir) || Player.playerEffects.GetExitingIndex() != -1)
+                {
+                    MoveBody();
+                }
+            }
+            else
+            {
+                if (CanMove(tip.transform.position, currDir))
+                {
+                    ReverseBody();
+                }
             }
 
             Player.playerEffects.UpdateMovementEffects();
+        }
+
+        // sfx
+        if (isReversing && tick % 8 == 0)
+        {
+            if (!didBeep)
+            {
+                didBeep = true;
+                AudioManager.Play("player_reversing");
+            }
+            else
+            {
+                didBeep = false;
+            }
         }
     }
 
@@ -118,7 +178,7 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void CheckUnlockDoor(Direction dir)
+    private bool CheckUnlockDoor(Direction dir)
     {
         RaycastHit2D rh;
         Vector3 rcDir = Vector3.zero;
@@ -139,7 +199,7 @@ public class PlayerMovement : Entity
         }
         rh = Physics2D.Raycast(transform.position, rcDir, 1, wallLayerMask);
 
-        if (rh.collider != null)
+        if (rh.collider != null && canOpenChest)
         {
             Door d = rh.collider.gameObject.GetComponent<Door>();
             //Debug.Log("checking door " + d.isLocked + "  " + d.isClosed + " " + PlayerInventory.HasKeys() + " " + PlayerInventory.keys);
@@ -147,18 +207,44 @@ public class PlayerMovement : Entity
             {
                 PlayerInventory.AddKey(-1);
                 d.UnlockDoor();
+
+                return true;
+            }
+
+            LootActivatorTile l = rh.collider.gameObject.GetComponent<LootActivatorTile>();
+            if (l != null)
+            {
+                canOpenChest = false;
+
+                l.OpenLoot();
+
+                return true;
+            }
+
+            ShopActivatorTile s = rh.collider.gameObject.GetComponent<ShopActivatorTile>();
+            if (s != null)
+            {
+                canOpenChest = false;
+
+                s.OpenShop();
+
+                return true;
             }
         }
 
+        return false;
     }
 
     public void MoveBody()
     {
+        canOpenChest = true;
+
         Vector3 headDir = DirectionUtil.Convert(currDir);
         if (Player.playerEffects.GetExitingIndex() > 0)
             headDir = Vector3.zero;
         Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
 
+        tipSprite.transform.position = Player.body[3].transform.position;
         Player.body[3].transform.position = Player.body[2].transform.position;
         Player.body[2].transform.position = Player.body[1].transform.position;
         Player.body[1].transform.position = Player.body[0].transform.position;
@@ -167,11 +253,24 @@ public class PlayerMovement : Entity
         // setting sprites
         float headRot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
 
+        // tip
+        Vector3 tipDir = Player.body[3].transform.position - tip.transform.position;
+        float tipRot = Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg;
+
+        tipSprite.transform.rotation = Quaternion.Euler(0, 0, tipRot);
+
         // tail
         Vector3 tailBodyDir = Player.body[2].transform.position - Player.body[3].transform.position;
         float tailRot = Mathf.Atan2(tailBodyDir.y, tailBodyDir.x) * Mathf.Rad2Deg;
 
-        segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, Vector3.zero);
+        if (segSprites[2].isBent)
+        {
+            segSprites[3].SetSprite(segSprites[2], snakeTailBent);
+        }
+        else
+        {
+            segSprites[3].SetSprite(segSprites[2], snakeTailStraight);
+        }
         
         // body
         bool body1ShouldBend = Vector3.Dot(headDir, body2Dir) == 0;
@@ -184,17 +283,107 @@ public class PlayerMovement : Entity
             Vector3 bendDir = headDir + body2Dir;
             body1Rot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
             // float forwardAngle = (headRot - body1Rot - 45) * 2 + body1Rot + 45
-            segSprites[1].SetSprite(snakeBent, true, body1Rot, headDir, body2Dir);
+            segSprites[1].SetSprite(snakeBodyBent, true, body1Rot, headDir, body2Dir);
         }
         else
         {
             body1Rot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
-            segSprites[1].SetSprite(snakeStraight, false, body1Rot, headDir, body2Dir);
+            segSprites[1].SetSprite(snakeBodyStraight, false, body1Rot, headDir, body2Dir);
         }
 
         
         // head
         segSprites[0].SetSprite(snakeHead, false, headRot, Vector3.zero, -headDir);
+
+    }
+
+    public void ReverseBody()
+    {
+        //AudioManager.Play("player_reversing");
+
+        canOpenChest = true;
+
+        //Vector3 headDir = DirectionUtil.Convert(currDir);
+        Vector3 tipDir = DirectionUtil.Convert(currDir);
+        //if (Player.playerEffects.GetExitingIndex() > 0)
+        //    headDir = Vector3.zero;
+        //Vector3 body2Dir = Player.body[1].transform.position - Player.body[0].transform.position;
+        Vector3 body2TailDir = Player.body[2].transform.position - Player.body[3].transform.position;
+
+        //tipSprite.transform.position = Player.body[3].transform.position;
+        //Player.body[3].transform.position = Player.body[2].transform.position;
+        //Player.body[2].transform.position = Player.body[1].transform.position;
+        //Player.body[1].transform.position = Player.body[0].transform.position;
+        //transform.position += headDir;
+        Player.body[0].transform.position = Player.body[1].transform.position;
+        Player.body[1].transform.position = Player.body[2].transform.position;
+        Player.body[2].transform.position = Player.body[3].transform.position;
+        Player.body[3].transform.position = tipSprite.transform.position;
+        tipSprite.transform.position += tipDir;
+
+        // setting sprites
+        //float headRot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
+        //float tailRot = Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg;
+
+
+        // head
+        //Vector3 tipDir = Player.body[3].transform.position - tip.transform.position;
+        //float tipRot = Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg;
+        Vector3 headDir = transform.position - Player.body[1].transform.position;
+        float headRot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
+
+        //Player.body[0].transform.rotation = Quaternion.Euler(0, 0, tipRot);
+        segSprites[0].SetSprite(snakeHead, false, headRot, Vector3.zero, -headDir);
+
+
+        // body
+        //bool body1ShouldBend = Vector3.Dot(headDir, body2Dir) == 0;
+        //float body1Rot = 0;
+
+        //segSprites[2].SetSprite(segSprites[1]);
+
+        //if (body1ShouldBend)
+        //{
+        //    Vector3 bendDir = headDir + body2Dir;
+        //    body1Rot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
+        //    // float forwardAngle = (headRot - body1Rot - 45) * 2 + body1Rot + 45
+        //    segSprites[1].SetSprite(snakeBent, true, body1Rot, headDir, body2Dir);
+        //}
+        //else
+        //{
+        //    body1Rot = Mathf.Atan2(headDir.y, headDir.x) * Mathf.Rad2Deg;
+        //    segSprites[1].SetSprite(snakeStraight, false, body1Rot, headDir, body2Dir);
+        //}
+
+        segSprites[1].SetSprite(segSprites[2]);
+
+        Sprite s = segSprites[3].isBent ? snakeBodyBent : snakeBodyStraight;
+        segSprites[2].SetSprite(segSprites[3], s);
+
+
+        // tail
+        Vector3 tailBodyDir = Player.body[2].transform.position - Player.body[3].transform.position;
+        Vector3 tailTipDir = tip.transform.position - Player.body[3].transform.position;
+        bool tailShouldBend = Vector3.Dot(tailTipDir, tailBodyDir) == 0;
+        float tailRot;
+        if (tailShouldBend)
+        {
+            Vector3 bendDir = tailTipDir + tailBodyDir;
+            tailRot = Mathf.Atan2(bendDir.y, bendDir.x) * Mathf.Rad2Deg - 45;
+            segSprites[3].SetSprite(snakeTailBent, true, tailRot, tailTipDir, tailBodyDir);
+        }
+        else
+        {
+            tailRot = Mathf.Atan2(-tipDir.y, -tipDir.x) * Mathf.Rad2Deg;
+            segSprites[3].SetSprite(snakeTailStraight, false, tailRot, tailTipDir, tailBodyDir);
+        }
+
+        //segSprites[3].SetSprite(snakeTail, segSprites[2].isBent, tailRot, tailBodyDir, -tipDir);
+
+
+        // tip
+        float tipRot = 180 + Mathf.Atan2(tipDir.y, tipDir.x) * Mathf.Rad2Deg;
+        tipSprite.transform.rotation = Quaternion.Euler(0, 0, tipRot);
 
     }
 

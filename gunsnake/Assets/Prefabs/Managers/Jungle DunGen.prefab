@@ -112,13 +112,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
         type: 3}
+      propertyPath: area
+      value: Jungle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
+        type: 3}
       propertyPath: propChance
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
         type: 3}
       propertyPath: simpleChance
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7984657808008110450, guid: 050f973b658bd4246b7c1a36457b0c42,
         type: 3}
