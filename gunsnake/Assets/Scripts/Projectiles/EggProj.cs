@@ -31,7 +31,7 @@ public class EggProj : BasicProjectile
             if (explode > 0)
             {
                 GameObject egg = Instantiate(eggsplosionPrefab, transform.position, Quaternion.identity, transform.parent);
-                egg.GetComponent<Eggsplosion>().Init(explode);
+                egg.GetComponent<Eggsplosion>().Init(explode, CalculateDamage());
             }
             if (CalculatePierce() < 0)
                 ProjectileManager.RemoveProjectile(gameObject);

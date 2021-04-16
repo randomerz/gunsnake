@@ -17,10 +17,9 @@ public class RayCastProj : Projectile
     public float alphaRate = 1;
     public float lineShrinkRate = 1;
 
-    //private static int stop = 0;
-    //public static int chain = 10;
-    //private const int radius = 10;
-    //protected bool chained = false;
+    public static int chain = 10;
+    private const int radius = 10;
+    protected bool chained = false;
 
     public override void ProjectileTick(int tick)
     {
@@ -51,7 +50,7 @@ public class RayCastProj : Projectile
         basePierce = rcOther.basePierce;
         ticksAlive = rcOther.ticksAlive;
         alphaRate = rcOther.alphaRate;
-        //chained = false;
+        chained = false;
 
         canHit = rcOther.canHit;
         targets = rcOther.targets;
@@ -108,7 +107,7 @@ public class RayCastProj : Projectile
                     if (e != null)
                     {
                         e.TakeDamage(CalculateDamage(), direction);
-                        //Lightning(e);
+                        Lightning(e);
                     }
                     // create effect
                     PlayerSegmentHealth p = hits[i].transform.GetComponent<PlayerSegmentHealth>();
@@ -118,38 +117,34 @@ public class RayCastProj : Projectile
                     }
                 }
             }
-            if (wallHit.point == Vector2.zero)
-            {
-                Debug.Log("dick");
-            }
+
             lineRenderer.SetPosition(0, startPos);
             lineRenderer.SetPosition(1, wallHit.point);
         }
     }
-    /*private void Lightning(Enemy e)
+    private void Lightning(Enemy e)
     {
         if (chained)
             return;
         int enemynum = 0;
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), radius, targets);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), radius, Entity.fullHeightEntitiesMask);
         for( int i = chain; i > 0; i--)
         {
-            if (enemynum < enemies.Length && enemies[enemynum].transform.position - e.GetComponent<Collider2D>().transform.position == Vector3.zero)
+
+            if(enemynum < enemies.Length && enemies[enemynum].gameObject.name == e.gameObject.name)
                 enemynum++;
             if(enemynum < enemies.Length)
             {
+                Debug.Log("enemy first hit:   " + e.gameObject.name  + "the collider to hit:  " + enemies[enemynum].gameObject.name);
                 GameObject c = ProjectileManager.CreateProjectile(thisPrefab);
                 RayCastProj rc = c.GetComponent<RayCastProj>();
                 c.transform.position = e.transform.position;
                 rc.chained = true;
                 rc.startPos = e.transform.position;
                 rc.direction = enemies[enemynum].transform.position - e.transform.position;
-                if(stop == 3)
-                    Debug.Log(rc.direction);
                 rc.Cast();
                 enemynum++;
             }
         }
-        stop++;
-    }*/
+    }
 }
