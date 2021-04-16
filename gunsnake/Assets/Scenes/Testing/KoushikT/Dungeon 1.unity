@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 1557827368722502035, guid: 324966f159aa14740b885003134fe6a9,
         type: 3}
       propertyPath: playerVP.r
-      value: 3.7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1557827368722502035, guid: 324966f159aa14740b885003134fe6a9,
         type: 3}
@@ -966,21 +966,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
+      propertyPath: defaultItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
+        type: 2}
+    - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
+        type: 3}
       propertyPath: defaultItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
         type: 2}
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: defaultItems.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
         type: 2}
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: defaultItems.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
         type: 2}
     - target: {fileID: 3208875469782037512, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
