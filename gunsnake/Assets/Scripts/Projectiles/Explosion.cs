@@ -30,7 +30,7 @@ public class Explosion : MonoBehaviour
     {
         AudioManager.Play("misc_explosion");
 
-        CameraShake.Shake(.75f, 1.5f);
+        CameraShake.Shake(.75f, 1.25f);
         explosionFX.SetActive(true);
 
         //spriteRenderer.enabled = false;

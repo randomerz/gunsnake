@@ -66,6 +66,24 @@ public class PlayerMovement : Entity
                 ChangeDirection(Direction.up);
             }
 
+            //  Legacy Movement
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+            //    ChangeDirection(Direction.right);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.D))
+            //{
+            //    ChangeDirection(Direction.down);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.L))
+            //{
+            //    ChangeDirection(Direction.left);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.U))
+            //{
+            //    ChangeDirection(Direction.up);
+            //}
+
 
             isSprinting = canSpecialMove && !isReversing && Input.GetKey(KeyCode.LeftShift);
 

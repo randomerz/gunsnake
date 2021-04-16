@@ -10,7 +10,7 @@ public class RCShooterTrap : ProjectileShooter
     {
         if (e.tick % 4 == 0)
         {
-            if (!isEnabled)
+            if (!isTileEnabled)
                 return;
 
             ticksTillShot -= 1;

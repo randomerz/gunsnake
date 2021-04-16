@@ -182,6 +182,11 @@ public abstract class Enemy : Entity
         EnemyManager.RemoveEnemy(gameObject);
     }
 
+    public void GainBonusHealth(int amount)
+    {
+        health += amount;
+    }
+
     #endregion
 
 

@@ -11,6 +11,34 @@ public class Wizard : Enemy
     public GameObject bulletPrefab;
 
     private bool justAttacked = false;
+    private int attackCount;
+    private int summonThresh = 2;
+
+    // === Boss Stuff ===
+    private int curPhase;
+
+    private GameObject curEnemySpawn;
+    public GameObject slime0Prefab;
+    public GameObject slime1Prefab;
+    public GameObject slime2Prefab;
+    public GameObject explosiveBarrelPrefab;
+
+    public GameObject shieldSprite;
+    private bool isShielded;
+    private int shieldTicks;
+
+    // Phase 0
+
+    public GameObject[] spawnLocs;
+
+    // Phase 1
+    public int phase1Cutoff;
+    public GameObject spikeContainer;
+
+    // Phase 2
+    public int phase2Cutoff;
+    public GameObject turretContainer;
+    public GameObject[] turrets;
 
     protected override void Awake()
     {
@@ -21,6 +49,8 @@ public class Wizard : Enemy
             ticksTillAttack = attackSpeed;
 
         myName = "wizard";
+
+        SetPhase(0);
     }
 
     public override void EnemyTick(int tick)
@@ -45,6 +75,7 @@ public class Wizard : Enemy
                             SetAnimatorBool("isPrep", true);
                     }
                     break;
+
                 default:
                     if (ticksTillAttack <= 0)
                     {
@@ -54,6 +85,7 @@ public class Wizard : Enemy
                         {
                             justAttacked = false;
                             Move(GetDirectionToPlayer(false));
+                            break;
                         }
                         else
                         {
@@ -65,10 +97,36 @@ public class Wizard : Enemy
 
                             AudioManager.Play("wizard_attack");
 
-                            Attack();
+
+                            // Attacking code
+                            if (attackCount >= summonThresh)
+                            {
+                                // Summon
+                                attackCount = 0;
+
+                                Summon();
+                            }
+                            else
+                            {
+                                // AoE attack
+                                attackCount += 1;
+
+                                Attack();
+                            }
                         }
                     }
                     break;
+            }
+
+            // other nonstandard
+
+            if (isShielded)
+            {
+                shieldTicks -= 1;
+                if (shieldTicks < 0)
+                {
+                    SetShieldStatus(false);
+                }
             }
 
         }
@@ -77,12 +135,109 @@ public class Wizard : Enemy
         animator.UpdatePosition();
     }
 
+    public override void TakeDamage(int damage)
+    {
+        doTick = true;
+        if (!isShielded)
+        {
+            health -= damage;
+
+            if (curPhase == 2 && health <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                StrobeWhite(1);
+
+                AudioManager.Play(myName + "_damage");
+            }
+        }
+
+        // check phase stuff + timing
+
+        CheckPhase();
+
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        Player.playerHealth.SetInvulnerable(8);
+
+        ScreenFlash.Flash(0.5f);
+        CameraShake.Shake(3f, 1f);
+
+        LevelHandler.ClearEnemiesAndProjectiles();
+        spikeContainer.SetActive(false);
+        foreach (GameObject g in turrets)
+            g.GetComponent<Tile>().isTileEnabled = false;
+        turretContainer.SetActive(false);
+    }
+
+    private void SetShieldStatus(bool value)
+    {
+        shieldSprite.SetActive(value);
+        isShielded = value;
+        if (value)
+            shieldTicks = 16;
+    }
+
+    private void CheckPhase()
+    {
+        switch (curPhase)
+        {
+            case 0:
+                if (health < phase1Cutoff)
+                    SetPhase(1);
+                break;
+            case 1:
+                if (health < phase2Cutoff)
+                    SetPhase(2);
+                break;
+        }
+    }
+
+    private void SetPhase(int phase)
+    {
+        curPhase = phase;
+        switch (curPhase)
+        {
+            case 0:
+                curEnemySpawn = slime0Prefab;
+                break;
+            case 1:
+                health = phase1Cutoff;
+                SetShieldStatus(true);
+
+                ScreenFlash.Flash(0.5f);
+
+                curEnemySpawn = slime1Prefab;
+                spikeContainer.SetActive(true);
+
+                break;
+            case 2:
+                health = phase2Cutoff;
+                SetShieldStatus(true);
+
+                ScreenFlash.Flash(0.5f);
+
+                curEnemySpawn = slime2Prefab;
+                turretContainer.SetActive(true);
+                foreach (GameObject g in turrets)
+                {
+                    g.GetComponent<Tile>().isTileEnabled = true;
+                }
+
+                break;
+        }
+    }
+
     // TODO: fix movement, see card. 
     // May need new to create new method, GetDirectionsToPlayer(shouldDiag)
     private void Move(Vector3 dir)
     {
-
-
         if (dir.x > 0)
         {
             currDir = Direction.right;
@@ -133,6 +288,16 @@ public class Wizard : Enemy
             proj.transform.position = transform.position;
             proj.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(directions[i].y, directions[i].x) * Mathf.Rad2Deg);
             ep.direction = directions[i]; 
+        }
+    }
+
+    private void Summon()
+    {
+        foreach (GameObject g in spawnLocs)
+        {
+            //GameObject e = EnemyManager.CreateEnemy(curEnemySpawn);
+            //e.transform.position = g.transform.position;
+            Instantiate(curEnemySpawn, g.transform.position, Quaternion.identity, transform.parent);
         }
     }
 }

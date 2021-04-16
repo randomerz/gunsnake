@@ -11,6 +11,7 @@ public class DungeonGenerator : MonoBehaviour
     public RoomFlow currentFlow;
     public RoomFlow[] flows;
 
+    public bool randomFlow = true;
     public bool drawGizmos;
 
     [Header("References")]
@@ -73,7 +74,11 @@ public class DungeonGenerator : MonoBehaviour
 
     public RoomComposite CreateDungeon()
     {
-        RoomFlow flow = flows[Random.Range(0, flows.Length)];
+        RoomFlow flow = currentFlow;
+        if (randomFlow || flows == null)
+        {
+            flow = flows[Random.Range(0, flows.Length)];
+        }
         return CreateDungeon(flow);
     }
 

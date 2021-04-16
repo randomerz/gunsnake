@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     private static Dictionary<Type, List<GameObject>> inactiveEnemies = 
         new Dictionary<Type, List<GameObject>>();
     private static List<Enemy> currentLevelEnemies = new List<Enemy>();
+    public static int levelBonusHealth = 0;
 
     private static EnemyManager _instance;
 
@@ -132,6 +133,8 @@ public class EnemyManager : MonoBehaviour
             enemy = Instantiate(enemyPrefab, enemyContainer.transform);
         }
 
+        enemy.GetComponent<Enemy>().GainBonusHealth(levelBonusHealth);
+
         activeEnemies[type].Add(enemy);
         return enemy;
     }
@@ -182,5 +185,16 @@ public class EnemyManager : MonoBehaviour
         activeEnemies.Clear();
         inactiveEnemies.Clear();
         currentLevelEnemies.Clear();
+    }
+
+    public static void ClearCurrentEnemies()
+    {
+        foreach (Type enemyType in activeEnemies.Keys)
+        {
+            for (int i = activeEnemies[enemyType].Count - 1; i >= 0; i--)
+            {
+                RemoveEnemy(activeEnemies[enemyType][i]);
+            }
+        }
     }
 }

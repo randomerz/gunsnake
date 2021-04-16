@@ -14,7 +14,8 @@ public class LevelHandler : MonoBehaviour
 
     public static string jungleSceneName = "Jungle";
     public static string dungeonSceneName = "Dungeon";
-    public static string templeSceneName = "Temple"; // TODO: update
+    public static string templeSceneName = "Temple";
+    public static string templeBossSceneName = "Temple Boss";
 
     // Set by DungeonRoomPlacer
     public static GameObject startObject;
@@ -93,7 +94,7 @@ public class LevelHandler : MonoBehaviour
         {
             AudioManager.PlayMusic("music_dungeon");
         }
-        else if (currentArea == "Temple")
+        else if (currentArea == "Temple" || currentArea == "Temple Boss")
         {
             AudioManager.PlayMusic("music_temple");
         }
@@ -128,6 +129,12 @@ public class LevelHandler : MonoBehaviour
 
     public static void StartNextLevel()
     {
+        if (currentArea == "Temple Boss")
+        {
+            WinGame();
+            return;
+        }
+
         currentFloor += 1;
         if (currentFloor < numFloors)
         {
@@ -146,9 +153,14 @@ public class LevelHandler : MonoBehaviour
                 currentArea = "Temple";
                 LoadScene(templeSceneName);
             }
+            else if (currentArea == "Temple")
+            {
+                currentArea = "Temple Boss";
+                LoadScene(templeBossSceneName);
+            }
             else
             {
-                WinGame();
+                Debug.LogWarning("Tried loading an unknown area! Current area: " + currentArea + ", current floor: " + currentFloor);
             }
         }
     }
@@ -167,13 +179,43 @@ public class LevelHandler : MonoBehaviour
         LoadScene(jungleSceneName);
     }
 
+    public static void ClearEnemiesAndProjectiles()
+    {
+        EnemyManager.ClearCurrentEnemies();
+        ProjectileManager.ClearAllProjectiles();
+    }
+
+    public static string GetCurrentLevelAsString()
+    {
+        if (currentArea == "Temple Boss")
+            return "Temple - X";
+        return currentArea + " - " + (currentFloor + 1);
+    }
+
     private static void LoadScene(string sceneName)
     {
-        Debug.Log("Now loading " + currentArea + "-" + (currentFloor + 1));
+        Debug.Log("Now loading " + GetCurrentLevelAsString());
         TimeTickSystem.ClearDelegates();
         ProjectileManager.ResetAllProjectiles();
         EnemyManager.ResetAllEnemies();
+        UpdateEnemyBonusHealth();
         SceneManager.LoadScene(sceneName);
+    }
+
+    private static void UpdateEnemyBonusHealth()
+    {
+        switch (currentArea)
+        {
+            case "Jungle":
+                break;
+            case "Dungeon":
+                EnemyManager.levelBonusHealth = 1;
+                break;
+            case "Temple":
+            case "Temple Boss":
+                EnemyManager.levelBonusHealth = 2;
+                break;
+        }
     }
 
     private static void WinGame()
@@ -195,7 +237,7 @@ public class LevelHandler : MonoBehaviour
         darkness.SetActive(true);
         UIManager.canOpen = false;
         Time.timeScale = 0;
-        levelNameText.text = currentArea + " - " + (currentFloor + 1);
+        levelNameText.text = GetCurrentLevelAsString();
 
         yield return new WaitForSecondsRealtime(levelTime);
 
