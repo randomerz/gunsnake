@@ -11,14 +11,15 @@ public class RayCastProj : Projectile
     public Vector3 startPos;
     public Vector3 direction;
     public LineRenderer lineRenderer;
+    public bool chainable;
     
     public int ticksAlive;
     private int tickCount;
     public float alphaRate = 1;
     public float lineShrinkRate = 1;
 
-    public static int chain = 10;
-    private const int radius = 10;
+    public static int chain = 0;
+    private const int radius = 5;
     protected bool chained = false;
 
     public override void ProjectileTick(int tick)
@@ -124,18 +125,17 @@ public class RayCastProj : Projectile
     }
     private void Lightning(Enemy e)
     {
-        if (chained)
+        if (chained || !chainable)
             return;
         int enemynum = 0;
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), radius, Entity.fullHeightEntitiesMask);
-        for( int i = chain; i > 0; i--)
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(new Vector2(e.transform.position.x, e.transform.position.y), radius, Entity.fullHeightEntitiesMask);
+        for ( int i = chain; i > 0; i--)
         {
 
             if(enemynum < enemies.Length && enemies[enemynum].gameObject.name == e.gameObject.name)
                 enemynum++;
             if(enemynum < enemies.Length)
             {
-                Debug.Log("enemy first hit:   " + e.gameObject.name  + "the collider to hit:  " + enemies[enemynum].gameObject.name);
                 GameObject c = ProjectileManager.CreateProjectile(thisPrefab);
                 RayCastProj rc = c.GetComponent<RayCastProj>();
                 c.transform.position = e.transform.position;
