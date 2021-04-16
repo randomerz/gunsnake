@@ -5,17 +5,17 @@ using UnityEngine;
 public class PeaProj : BasicProjectile
 {
     public GameObject thisPrefab;
-    public static int split = 0;
-    private int toSplit;
+    public static int split = 1;
+    public int toSplit;
     // Start is called before the first frame update
 
     // Update is called once per frame
     new void Awake()
     {
-        SetPierce(split);
+        SetSplit(split);
         base.Awake();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (ignoredColliders.Contains(other))
         {
@@ -26,16 +26,7 @@ public class PeaProj : BasicProjectile
         {
             Enemy e = other.gameObject.GetComponent<Enemy>();
             e.TakeDamage(CalculateDamage(), direction);
-            if (toSplit > 0)
-            {
-                GameObject pea1 = ProjectileManager.CreateProjectile(thisPrefab);
-                GameObject pea2 = ProjectileManager.CreateProjectile(thisPrefab);
-                pea1.transform.Rotate(0f, 0f, -90f);
-                pea2.transform.Rotate(0f, 0f, 90f);
-                toSplit--;
-                pea1.GetComponent<PeaProj>().SetPierce(toSplit);
-                pea2.GetComponent<PeaProj>().SetPierce(toSplit);
-            }
+            Split(other);
             basePierce -= 1;
             if (CalculatePierce() < 0)
                 ProjectileManager.RemoveProjectile(gameObject);
@@ -47,7 +38,29 @@ public class PeaProj : BasicProjectile
             ProjectileManager.RemoveProjectile(gameObject);
         }
     }
-    void SetPierce(int p)
+    private void Split(Collider2D c)
+    {
+        if (toSplit > 0)
+        {
+            Debug.Log("penis");
+            GameObject pea1 = ProjectileManager.CreateProjectile(thisPrefab);
+            GameObject pea2 = ProjectileManager.CreateProjectile(thisPrefab);
+            pea1.transform.position = transform.position;
+            pea2.transform.position = transform.position;
+            pea1.transform.rotation = transform.rotation;
+            pea2.transform.rotation = transform.rotation;
+            pea1.GetComponent<PeaProj>().direction = Vector3.Cross(Vector3.forward, direction);
+            pea2.GetComponent<PeaProj>().direction = Vector3.Cross(Vector3.back, direction);
+            pea1.GetComponent<PeaProj>().IgnoreCollision(c);
+            pea2.GetComponent<PeaProj>().IgnoreCollision(c);
+            pea1.transform.Rotate(0f, 0f, 90f);
+            pea2.transform.Rotate(0f, 0f, -90f);
+            toSplit--;
+            pea1.GetComponent<PeaProj>().SetSplit(toSplit);
+            pea2.GetComponent<PeaProj>().SetSplit(toSplit);
+        }
+    }
+    private void SetSplit(int p)
     {
         toSplit = p;
     }

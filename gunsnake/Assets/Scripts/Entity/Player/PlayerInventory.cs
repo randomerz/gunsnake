@@ -95,7 +95,7 @@ public static class PlayerInventory
             case "Protein Shake":
                 Projectile.bonusDamage++;
                 break;
-            case "Hearty Apple":
+            case "Hearty Sausage":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
             case "Piercing Grapes":
@@ -111,6 +111,7 @@ public static class PlayerInventory
                 Player.playerHealth.Lifesteal(false);
                 break;
             case "Scrambled Eggs":
+                EggProj.explode++;
                 break;
             case "Canned Peas":
                 PeaProj.split++;

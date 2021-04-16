@@ -55,7 +55,7 @@ public class BasicProjectile : Projectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (ignoredColliders.Contains(other))
         {
