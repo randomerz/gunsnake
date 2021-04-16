@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoldBerry
   m_EditorClassIdentifier: 
   name: Gold Berry
-  description: 'This artifact grants extra gold per kill. '
+  description: 'Grants extra gold on pickup. '
   icon: {fileID: 5404224517495535782, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
   baseCost: 10

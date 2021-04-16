@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e60f684a50217b4e8aa5e15961111e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   fireRate: 0
   attackSound: weapon_hs_gun
   mount: {fileID: 0}

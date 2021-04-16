@@ -220,7 +220,7 @@ public class LevelHandler : MonoBehaviour
 
     private static void WinGame()
     {
-        //AudioManager.PlayMusic("music_win");
+        AudioManager.Play("misc_win_sound");
 
         instance.darkness.SetActive(false);
         Player.EndGame(true);
@@ -228,7 +228,7 @@ public class LevelHandler : MonoBehaviour
 
     public static void LoseGame()
     {
-        //AudioManager.PlayMusic("music_lose");
+        AudioManager.PlayMusic("music_lose");
     }
 
     //fade stuff

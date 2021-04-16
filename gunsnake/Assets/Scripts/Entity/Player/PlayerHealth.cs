@@ -65,7 +65,8 @@ public class PlayerHealth : MonoBehaviour
         {
             if(Random.Range(0f, 1f) <= dodgeChance)
             {
-                //Add sound
+                // dodge
+                AudioManager.Play("artifact_pepper_dodge");
                 return;
             }
             AudioManager.Play("player_take_damage");// + Random.Range(1, 3));

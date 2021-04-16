@@ -25,16 +25,27 @@ public static class PlayerInventory
 
     public static void AddGold(int amount)
     {
-        gold += (int)(amount * (1 + (0.2*goldBonus)));
+        if (amount > 0)
+        {
+            gold += Mathf.RoundToInt(amount * (1 + (0.2f * goldBonus)));
+        }
+        else
+        {
+            gold -= -amount;
+        }
 
         AudioManager.Play("player_gain_gold");
 
         Player.AddScore(amount);
     }
+
     public static void AddKey(int amount)
     {
+        AudioManager.Play("misc_pickup_key");
+
         keys += amount;
     }
+
     public static bool HasKeys()
     {
         return keys > 0;
@@ -102,7 +113,7 @@ public static class PlayerInventory
             case "Protein Shake":
                 Projectile.bonusDamage++;
                 break;
-            case "Hearty Sausage":
+            case "Hearty 'Sage":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
             case "Piercing Grapes":

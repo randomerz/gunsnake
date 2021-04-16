@@ -99,6 +99,7 @@ public class HudUpdater : MonoBehaviour
     {
         if (displaygold < PlayerInventory.GetGold())
         {
+            //AudioManager.Play("player_gain_gold");
             displaygold += 1;
         }
         else if (displaygold > PlayerInventory.GetGold())

@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: Scrambled Eggs
   m_EditorClassIdentifier: 
   name: Scrambled Eggs
-  description: 'This artifact causes egg projectiles to eggsplode on impact. More
-    counts result in subseequent eggsplosions in the same area (Applies only to egg
-    projectiles). '
+  description: Egg projectiles to eggsplode on impact.
   icon: {fileID: 3783751772801332867, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 20
   count: 0
   prefab: {fileID: 0}

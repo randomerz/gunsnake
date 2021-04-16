@@ -53,7 +53,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: ui_error
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: ed59b24a20b4e3542aad28d7d3547f08, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
     doRandomPitch: 0
     source: {fileID: 0}
   - name: weapon_pea
-    clip: {fileID: 8300000, guid: 70976f5c46055e44788399d85595ba77, type: 3}
+    clip: {fileID: 8300000, guid: 40dd51b875ba6704cb62f5e5a250df99, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: weapon_hs_gun
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: dc84f677c45d01742be3cb8917dd689b, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: weapon_laser
     clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     doRandomPitch: 1
@@ -214,7 +214,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: foblin_damage
-    clip: {fileID: 8300000, guid: 5f186e69edfe25b41996837eaf5f67eb, type: 3}
+    clip: {fileID: 0}
     volume: 1
     pitch: 1
     loop: 0
@@ -291,16 +291,16 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_turret_projectile
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2de219fde93f7ec4187d1517aa5b7e9d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_turret_laser
-    clip: {fileID: 0}
-    volume: 1
-    pitch: 1
+    clip: {fileID: 8300000, guid: 8792adaeaa25edc458ece54ba82e9957, type: 3}
+    volume: 0.05
+    pitch: 0.7
     loop: 0
     doRandomPitch: 1
     source: {fileID: 0}
@@ -319,8 +319,8 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_start_curse
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: 68096c44491812540bd64086de8d19a8, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     doRandomPitch: 1
@@ -361,7 +361,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_box_die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9b02dbf53e5d83444a69a619d405cc63, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -375,14 +375,14 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: dungeon_plant_die
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e2f3c9b61bfdda74f91d52e59a361206, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_explosion
-    clip: {fileID: 8300000, guid: 0ada12dfc04f18844bc70a6d3fa6255d, type: 3}
+    clip: {fileID: 8300000, guid: a31c9fd104de7994fa35a0b7f92047be, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -409,6 +409,20 @@ MonoBehaviour:
     loop: 0
     doRandomPitch: 1
     source: {fileID: 0}
+  - name: misc_pickup_key
+    clip: {fileID: 8300000, guid: a9b34d7a4540f354fb3ee35e8fa6aefb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    doRandomPitch: 1
+    source: {fileID: 0}
+  - name: misc_win_sound
+    clip: {fileID: 8300000, guid: 5fc3d8015e5a66544bbf3e05853af5f1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    doRandomPitch: 0
+    source: {fileID: 0}
   music:
   - name: music_jungle
     clip: {fileID: 8300000, guid: 0ecf4d9b9dbfb46469bff08d34d88c70, type: 3}
@@ -433,6 +447,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: music_main_menu
     clip: {fileID: 8300000, guid: a57ec63e51b6ae64f84727772f3e2524, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    doRandomPitch: 1
+    source: {fileID: 0}
+  - name: music_lose
+    clip: {fileID: 8300000, guid: 3e08a5d6ffb9e5a44abfdefbd361aa93, type: 3}
     volume: 1
     pitch: 1
     loop: 1

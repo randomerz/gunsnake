@@ -121,7 +121,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 3306391595533008146}
   animator: {fileID: -944116586543906224}
-  attackSpeed: 4
+  attackSpeed: 6
   bulletPrefab: {fileID: 2686402708710274360, guid: 81f00918dd15a0f42a200aacb1f6b60e,
     type: 3}
   slime0Prefab: {fileID: 5267305425320537183, guid: 04a82ca06efbc01409f81d5268b62f2a,
@@ -138,6 +138,7 @@ MonoBehaviour:
   spikeContainer: {fileID: 0}
   phase2Cutoff: 8
   turretContainer: {fileID: 0}
+  turrets: []
 --- !u!1 &3113130458158014027
 GameObject:
   m_ObjectHideFlags: 0

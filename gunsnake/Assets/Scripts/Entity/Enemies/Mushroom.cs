@@ -11,6 +11,10 @@ public class Mushroom : Enemy
 
     public GameObject mushroomAttackEffect;
 
+    public MushroomEnabler mushRoomEnabler;
+    public bool enableOnAwake;
+    public bool disableOnDeath;
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,6 +24,11 @@ public class Mushroom : Enemy
             ticksTillAttack = Random.Range(1, attackSpeed);
         else
             ticksTillAttack = attackSpeed;
+
+        if (mushRoomEnabler != null && enableOnAwake)
+        {
+            mushRoomEnabler.SetEnable(true);
+        }
     }
 
     public override void EnemyTick(int tick)
@@ -53,6 +62,16 @@ public class Mushroom : Enemy
                     }
                     break;
             }
+        }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        if (mushRoomEnabler != null && disableOnDeath)
+        {
+            mushRoomEnabler.SetEnable(false);
         }
     }
 
