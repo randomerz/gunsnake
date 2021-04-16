@@ -20,6 +20,7 @@ public class DungeonRoomTable : MonoBehaviour
     public TableEntry[] lootRooms;
     public TableEntry[] entranceRooms;
     public TableEntry[] exitRooms;
+    public TableEntry[] bossRooms;
 
     private TableEntry[][] tables;
     private float[] tableSums;
@@ -56,6 +57,7 @@ public class DungeonRoomTable : MonoBehaviour
         tables[(int)RoomType.loot] = lootRooms;
         tables[(int)RoomType.entrance] = entranceRooms;
         tables[(int)RoomType.exit] = exitRooms;
+        tables[(int)RoomType.boss] = bossRooms;
 
         for (int i = 0; i < normalRooms.Length; i++)
         {

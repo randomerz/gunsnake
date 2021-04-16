@@ -47,7 +47,7 @@ public class LootActivatorTile : Tile
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isEnabled && other.tag == "Player")
+        if (isTileEnabled && other.tag == "Player")
         {
             if (other.GetComponent<PlayerMovement>() != null) // is head
             {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2228987706198435038}
   - component: {fileID: -7835883900885286495}
   m_Layer: 9
-  m_Name: WizardSkele
+  m_Name: BossWizardSkele
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb53b852ff5099644a0fbeca67a06c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
+  maxHealth: 22
   damage: 1
   randomizeStartingVars: 1
+  hasSpawnEffect: 0
   dropsSmallGold: 0
   reducesCurseOnKill: 1
   doTick: 1
@@ -120,9 +121,23 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 3306391595533008146}
   animator: {fileID: -944116586543906224}
-  attackSpeed: 8
+  attackSpeed: 4
   bulletPrefab: {fileID: 2686402708710274360, guid: 81f00918dd15a0f42a200aacb1f6b60e,
     type: 3}
+  slime0Prefab: {fileID: 5267305425320537183, guid: 04a82ca06efbc01409f81d5268b62f2a,
+    type: 3}
+  slime1Prefab: {fileID: 923801209596595271, guid: 1e6609d3236175e4ab005cc82c0e353a,
+    type: 3}
+  slime2Prefab: {fileID: 8191432221472296939, guid: b1e0813d4f4790b42968678d04c7ed3c,
+    type: 3}
+  explosiveBarrelPrefab: {fileID: 4765855343493743571, guid: e59ba7d16d996394382baa870e0f4915,
+    type: 3}
+  shieldSprite: {fileID: 3249708960572750073}
+  spawnLocs: []
+  phase1Cutoff: 16
+  spikeContainer: {fileID: 0}
+  phase2Cutoff: 8
+  turretContainer: {fileID: 0}
 --- !u!1 &3113130458158014027
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +166,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4305131153655095190}
   m_Father: {fileID: 2228987706198435037}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,3 +241,84 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &3249708960572750073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4305131153655095190}
+  - component: {fileID: 8970453459737179797}
+  m_Layer: 0
+  m_Name: ShieldSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4305131153655095190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249708960572750073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0625, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3757580977835129744}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8970453459737179797
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249708960572750073}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -131489277
+  m_SortingLayer: 7
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: aa75b8d18aaab694abcfb9c03caef0d8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

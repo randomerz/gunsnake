@@ -10,6 +10,7 @@ public enum RoomType
     loot,
     entrance,
     exit,
+    boss,
 }
 
 [RequireComponent(typeof(Collider2D))]
@@ -76,6 +77,17 @@ public class Room : MonoBehaviour
 
                 break;
 
+            case RoomType.boss:
+                activeEnemies = new List<Enemy>();
+
+                InitWaves();
+                foreach (List<Enemy> wave in waves)
+                    foreach (Enemy e in wave)
+                        e.gameObject.SetActive(false);
+                //InitChest();
+                //chestObj.SetActive(false);
+                break;
+
             case RoomType.entrance:
                 didPlayerEnter = true;
                 break;
@@ -84,7 +96,7 @@ public class Room : MonoBehaviour
                 break;
         }
 
-        if (roomData.roomType != RoomType.challenge && roomData.roomType != RoomType.exit)
+        if (roomData.roomType != RoomType.challenge && roomData.roomType != RoomType.exit && roomData.roomType != RoomType.boss)
         {
             foreach (Door d in doors)
             {
@@ -142,6 +154,33 @@ public class Room : MonoBehaviour
                         isInCombat = false;
                         SetDoorIsClosed(false);
                         chestObj.SetActive(true);
+                        Debug.Log("Room complete!");
+                    }
+                    else
+                    {
+                        SetNextWaveActive(true);
+                    }
+                }
+                break;
+
+            case RoomType.boss:
+                if (!isInCombat)
+                    break;
+
+                for (int i = activeEnemies.Count - 1; i >= 0; i--)
+                {
+                    if (!activeEnemies[i].gameObject.activeSelf)
+                    {
+                        activeEnemies.RemoveAt(i);
+                    }
+                }
+
+                if (activeEnemies.Count == 0)
+                {
+                    if (currentWave == waves.Count)
+                    {
+                        isInCombat = false;
+                        SetDoorIsClosed(false);
                         Debug.Log("Room complete!");
                     }
                     else
@@ -356,6 +395,7 @@ public class Room : MonoBehaviour
                     }
                     break;
                 case RoomType.challenge:
+                case RoomType.boss:
 
                     if (numSegmentsIn == Player.body.Length && !didPlayerEnter)
                     {

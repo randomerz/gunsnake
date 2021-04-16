@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    protected bool isEnabled = true;
+    public bool isTileEnabled = true;
 
     protected SpriteRenderer spriteRenderer;
 

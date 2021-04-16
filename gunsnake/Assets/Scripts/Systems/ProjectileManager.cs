@@ -37,6 +37,9 @@ public class ProjectileManager : MonoBehaviour
         {
             for (int i = projList.Count - 1; i >= 0; i--)
             {
+                if (i < 0 || i >= projList.Count) // i don't know why i need this, for when LevelHandler calls ClearAllProjectiles();
+                    break;
+                //Debug.Log(i + " " + projList.Count);
                 GameObject g = projList[i];
                 if (g.GetComponent<Projectile>() != null)
                 {
@@ -122,6 +125,19 @@ public class ProjectileManager : MonoBehaviour
         foreach (System.Type type in inactiveProjectiles.Keys)
         {
             inactiveProjectiles[type].Clear();
+        }
+    }
+
+    public static void ClearAllProjectiles()
+    {
+        //activeProjectiles.Clear();
+        //inactiveProjectiles.Clear();
+        foreach (List<GameObject> projList in activeProjectiles.Values)
+        {
+            while (projList.Count > 0)
+            {
+                RemoveProjectile(projList[0]);
+            }
         }
     }
 }

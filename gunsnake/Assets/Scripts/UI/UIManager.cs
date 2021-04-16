@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
         sxfCounter.text = sfxNumber.ToString();
 
         if (LevelHandler.currentArea != null)
-            areaText.text = LevelHandler.currentArea.ToLower() + " - " + (LevelHandler.currentFloor + 1);
+            areaText.text = LevelHandler.GetCurrentLevelAsString().ToLower();
 
         UpdateDescription();
 

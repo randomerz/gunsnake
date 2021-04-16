@@ -432,7 +432,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: music_main_menu
-    clip: {fileID: 8300000, guid: 22122cb5e7f891041877fdd406aafa4f, type: 3}
+    clip: {fileID: 8300000, guid: a57ec63e51b6ae64f84727772f3e2524, type: 3}
     volume: 1
     pitch: 1
     loop: 1
