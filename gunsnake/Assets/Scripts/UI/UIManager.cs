@@ -323,6 +323,8 @@ public class UIManager : MonoBehaviour
         OptionPanel.SetActive(false);
         QuitPanel.SetActive(false);
 
+        DevPanel.SetActive(false);
+
         isOpen = false;
         isClosing = false;
         canSwapAndTrash = false;
@@ -980,15 +982,18 @@ public class UIManager : MonoBehaviour
             if (DevPanel.activeSelf)
             {
                 Time.timeScale = 1f;
-                DevPanel.SetActive(false);
-
-                invulnToggle.isOn = devIsInvuln;
-                damageToggle.isOn = devIsDamage;
+                CloseUI();
+                CloseUIFunctions();
+                //DevPanel.SetActive(false);
             }
             else
             {
                 Time.timeScale = 0f;
+
                 DevPanel.SetActive(true);
+
+                invulnToggle.isOn = devIsInvuln;
+                damageToggle.isOn = devIsDamage;
             }
         }
     }

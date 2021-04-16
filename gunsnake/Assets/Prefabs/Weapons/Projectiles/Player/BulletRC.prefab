@@ -198,7 +198,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   canHit: 1
-  thisPrefab: {fileID: 0}
+  thisPrefab: {fileID: 1148371326340170767}
   startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   lineRenderer: {fileID: 5544460565853276446}

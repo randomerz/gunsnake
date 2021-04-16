@@ -117,10 +117,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalRooms:
   - name: SquareRoom_15x15_NESW
-    freq: 0.5
+    freq: 0.25
     roomData: {fileID: 11400000, guid: be284d7a6c53a6d408f751300a77a86b, type: 2}
   - name: LongRoom_21x11_NESW
-    freq: 0.5
+    freq: 0.25
     roomData: {fileID: 11400000, guid: 0adeac3eb8b910e42b802be02eb44cc4, type: 2}
   - name: CultRoom_Isaiah_25x17
     freq: 0.75
@@ -144,7 +144,7 @@ MonoBehaviour:
     freq: 1
     roomData: {fileID: 11400000, guid: e2893f2e2fb461a4aa7adafdb7e1b62e, type: 2}
   - name: ExplosivesRoom_15x15
-    freq: 1
+    freq: 0.5
     roomData: {fileID: 11400000, guid: 6b5e2f1c41961714d926234867dd5cbc, type: 2}
   - name: HubHazards_27x19
     freq: 0.5
@@ -195,7 +195,7 @@ MonoBehaviour:
     freq: 1
     roomData: {fileID: 11400000, guid: f9d58a2aa22e700419d5f8db8ba9ec37, type: 2}
   - name: SmallTrap
-    freq: 1
+    freq: 0.75
     roomData: {fileID: 11400000, guid: d985ee9d4cd64d84283ddfee72f070aa, type: 2}
   challengeRooms:
   - name: SquareChall_19x19

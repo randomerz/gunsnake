@@ -410,11 +410,11 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_pickup_key
-    clip: {fileID: 8300000, guid: a9b34d7a4540f354fb3ee35e8fa6aefb, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 9be90bfd1cb5852448162209fcd75c92, type: 3}
+    volume: 0.9
     pitch: 1
     loop: 0
-    doRandomPitch: 1
+    doRandomPitch: 0
     source: {fileID: 0}
   - name: misc_win_sound
     clip: {fileID: 8300000, guid: 5fc3d8015e5a66544bbf3e05853af5f1, type: 3}

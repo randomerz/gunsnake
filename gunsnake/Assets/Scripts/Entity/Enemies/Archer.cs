@@ -20,7 +20,7 @@ public class Archer : Enemy
     {
         base.Awake();
         if (randomizeStartingVars)
-            ticksTillAttack = attackSpeed + Random.Range(1, attackSpeed);
+            ticksTillAttack = Mathf.Max(5, Random.Range(1, attackSpeed));
         else
             ticksTillAttack = attackSpeed;
 

@@ -71,12 +71,23 @@ public class RayCastProj : Projectile
         if (CalculatePierce() <= 0)
         {
             RaycastHit2D hit = Physics2D.Raycast(startPos, direction, Mathf.Infinity, targetLayerMask | wallLayerMask);
+            if (hit && ignoredColliders.Contains(hit.collider) && canHit)
+            {
+                // try regenerating once
+                ContactFilter2D targetFilter = new ContactFilter2D();
+                targetFilter.layerMask = targetLayerMask | wallLayerMask;
+                targetFilter.useLayerMask = true;
+                RaycastHit2D[] hits = new RaycastHit2D[2];
+                int numHit = Physics2D.Raycast(startPos, direction, targetFilter, hits, Mathf.Infinity);
+                hit = hits[1];
+            }
             if (hit && !ignoredColliders.Contains(hit.collider) && canHit)
             {
                 Enemy e = hit.transform.GetComponent<Enemy>();
                 if (e != null)
                 {
                     e.TakeDamage(CalculateDamage(), direction);
+                    Lightning(e);
                 }
                 PlayerSegmentHealth p = hit.transform.GetComponent<PlayerSegmentHealth>();
                 if (p != null)
@@ -114,7 +125,7 @@ public class RayCastProj : Projectile
                     PlayerSegmentHealth p = hits[i].transform.GetComponent<PlayerSegmentHealth>();
                     if (p != null)
                     {
-                        p.TakeDamage(CalculateDamage());
+                        p.TakeDamage(baseDamage);
                     }
                 }
             }
@@ -142,6 +153,7 @@ public class RayCastProj : Projectile
                 rc.chained = true;
                 rc.startPos = e.transform.position;
                 rc.direction = enemies[enemynum].transform.position - e.transform.position;
+                rc.IgnoreCollision(e.GetComponent<Collider2D>());
                 rc.Cast();
                 enemynum++;
             }

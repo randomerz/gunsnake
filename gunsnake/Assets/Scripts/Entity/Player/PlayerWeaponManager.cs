@@ -33,6 +33,10 @@ public class PlayerWeaponManager : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
+        foreach (PlayerWeapon w in weapons)
+            if (w != null)
+                w.UpdateSprite();
+
         if (!CanFire())
             return;
 

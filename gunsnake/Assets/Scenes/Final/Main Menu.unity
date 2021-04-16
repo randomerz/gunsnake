@@ -3018,7 +3018,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: And thank you to everyone who supported the team and gave advice!
+  m_text: And thank you to everyone who supported the team, beta tested, and gave
+    advice!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02bb6f5ae86a17a41b2ffe2e3ba42a3d, type: 2}
   m_sharedMaterial: {fileID: 715575314537471276, guid: 02bb6f5ae86a17a41b2ffe2e3ba42a3d,

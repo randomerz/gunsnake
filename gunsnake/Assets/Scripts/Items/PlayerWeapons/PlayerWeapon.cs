@@ -27,6 +27,11 @@ public abstract class PlayerWeapon : MonoBehaviour
     // runs once per game tick
     public virtual void WeaponTick(int tick)
     {
+        UpdateSprite();
+    }
+
+    public void UpdateSprite()
+    {
         weaponSprite.SetSprite(mount.isBent, mount.isHead);
     }
 

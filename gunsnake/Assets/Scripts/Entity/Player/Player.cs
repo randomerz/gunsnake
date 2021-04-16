@@ -95,7 +95,14 @@ public class Player : MonoBehaviour
     public static void EndGame(bool didWin)
     {
         UIManager.EndGame(didWin, (int)timeTaken, (int)score);
-        LevelHandler.LoseGame();
+        if (didWin)
+        {
+            // This is called by LevelHandler.WinGame();
+        }
+        else
+        {
+            LevelHandler.LoseGame();
+        }
     }
 
     public static void AddScore(float amount)

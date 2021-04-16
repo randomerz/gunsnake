@@ -122,7 +122,7 @@ MonoBehaviour:
   itemDrop: {fileID: 0}
   spriteRenderer: {fileID: 8556664536879575055}
   animator: {fileID: 600452420395707082}
-  attackSpeed: 8
+  attackSpeed: 12
   moveSpeed: 2
   distToPlayerRange: 5
   bulletPrefab: {fileID: 7328921005776752705, guid: a0e4a325e369e8b44b1abced98a75858,

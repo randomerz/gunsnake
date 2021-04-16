@@ -27,6 +27,8 @@ public static class PlayerInventory
     {
         if (amount > 0)
         {
+            AudioManager.Play("player_gain_gold");
+
             gold += Mathf.RoundToInt(amount * (1 + (0.2f * goldBonus)));
         }
         else
@@ -34,14 +36,15 @@ public static class PlayerInventory
             gold -= -amount;
         }
 
-        AudioManager.Play("player_gain_gold");
-
         Player.AddScore(amount);
     }
 
     public static void AddKey(int amount)
     {
-        AudioManager.Play("misc_pickup_key");
+        if (amount > 0)
+        {
+            AudioManager.Play("misc_pickup_key");
+        }
 
         keys += amount;
     }
@@ -116,7 +119,7 @@ public static class PlayerInventory
             case "Hearty 'Sage":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
-            case "Piercing Grapes":
+            case "Pierce Grapes":
                 Projectile.bonusPierce++;
                 break;
             case "Ghost Pepper":
