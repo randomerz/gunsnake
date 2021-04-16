@@ -16,6 +16,6 @@ MonoBehaviour:
   description: 'Increases pierce of each bullet by +1 per count. '
   icon: {fileID: -8478895259453413395, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 12
   count: 0
   prefab: {fileID: 0}

@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public static bool canOpen = true;
     private bool isClosing = false; // for ui animation
     private bool canClose = true;
-    public bool devEnabled;
+    public static bool devEnabled = false;
 
     [Header("PlayerInfo")]
 
@@ -72,6 +72,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI lossText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI scoreText;
+    public GameObject devOn;
+    public GameObject hardcoreOn;
 
     [Header("Panels")]
     public GameObject leftSidePanel;
@@ -143,6 +145,10 @@ public class UIManager : MonoBehaviour
 
         leftSidePanel.SetActive(true);
         rightSidePanel.SetActive(true);
+
+        // dev
+        if (devIsInvuln)
+            SetInvuln(true);
     }
 
     void Start()
@@ -162,7 +168,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
         {
             if (isOpen)
             {
@@ -955,6 +961,9 @@ public class UIManager : MonoBehaviour
 
         winText.gameObject.SetActive(didWin);
         lossText.gameObject.SetActive(!didWin);
+
+        devOn.SetActive(devEnabled);
+        hardcoreOn.SetActive(PlayerHealth.isHardcore);
 
         int mins = time / 60;
         int secs = time % 60;

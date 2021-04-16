@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Increases Dodge chance by +13% per count.
   icon: {fileID: 8105601427639678877, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 15
   count: 0
   prefab: {fileID: 0}

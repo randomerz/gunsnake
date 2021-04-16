@@ -84,11 +84,12 @@ public class PlayerMovement : Entity
             //    ChangeDirection(Direction.up);
             //}
 
+            bool sprintInp = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1");
+            isSprinting = canSpecialMove && !isReversing && sprintInp;
 
-            isSprinting = canSpecialMove && !isReversing && Input.GetKey(KeyCode.LeftShift);
-
+            bool reverseInp = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.R) || Input.GetButton("Fire2");
             bool wasReversing = isReversing;
-            isReversing = canSpecialMove && !isSprinting && Input.GetKey(KeyCode.LeftControl);
+            isReversing = canSpecialMove && !isSprinting && reverseInp;
 
             if (isReversing != wasReversing)
             {

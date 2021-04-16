@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Shoots an eggshell that pierces 1 enemy.
   icon: {fileID: 5204608754067933960, guid: 7ca306ebb17140b49af75e32b60c2bac, type: 3}
   itemType: 0
-  baseCost: 16
+  baseCost: 20
   count: 0
   prefab: {fileID: 1793473670551159033, guid: dbfb8eb302f96674984aef492596c689, type: 3}

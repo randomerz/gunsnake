@@ -5,8 +5,7 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField]
-    private int health;
+    private static int health;
     private static int maxHealth;
     private static int baseMaxHealth = 5;
 
@@ -18,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
 
     [HideInInspector]
     public bool doesTakeDoubleDamage = false;
+    [HideInInspector]
+    public static bool isHardcore = false;
 
     public TextMeshProUGUI healthText;
 
@@ -28,7 +29,8 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvulnerable = false;
         doesTakeDoubleDamage = false;
-        health = maxHealth;
+        if (!isHardcore)
+            health = maxHealth;
     }
 
 
@@ -135,9 +137,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void SetInvulnerable(int frames)
     {
-        isInvulnerable = true;
-        ticksUntilCanTakeDamage = frames;
-        StrobeAlpha(frames / 4, 0.5f);
+        if (frames == 0)
+        {
+            ticksUntilCanTakeDamage = 0;
+        }
+        else
+        {
+            isInvulnerable = true;
+            ticksUntilCanTakeDamage = Mathf.Max(frames, ticksUntilCanTakeDamage);
+            StrobeAlpha(ticksUntilCanTakeDamage / 4, 0.5f);
+        }
     }
 
     public void ChangeMaxHealth()
@@ -195,6 +204,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetValuesToDefault()
     {
         maxHealth = baseMaxHealth;
+        health = maxHealth;
         dodgeChance = 0f;
 
         //spriteRenderers = new SpriteRenderer[Player.sprites.Length];

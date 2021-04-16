@@ -16,6 +16,6 @@ MonoBehaviour:
   description: Lasers chain from enemies. +1 chain per count.
   icon: {fileID: -282634975160208067, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 20
+  baseCost: 25
   count: 0
   prefab: {fileID: 0}

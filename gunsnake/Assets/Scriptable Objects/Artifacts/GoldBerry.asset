@@ -16,6 +16,6 @@ MonoBehaviour:
   description: 'Grants extra gold on pickup. '
   icon: {fileID: 5404224517495535782, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 15
   count: 0
   prefab: {fileID: 0}

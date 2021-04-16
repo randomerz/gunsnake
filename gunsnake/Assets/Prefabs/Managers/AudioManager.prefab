@@ -138,7 +138,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: weapon_egg
     clip: {fileID: 8300000, guid: 28c8d53b16c2484478925cf45ab1c5c1, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
     doRandomPitch: 1
@@ -410,7 +410,7 @@ MonoBehaviour:
     doRandomPitch: 1
     source: {fileID: 0}
   - name: misc_pickup_key
-    clip: {fileID: 8300000, guid: 9be90bfd1cb5852448162209fcd75c92, type: 3}
+    clip: {fileID: 8300000, guid: ba76d7709ceca45478a5ef725e10a13c, type: 3}
     volume: 0.9
     pitch: 1
     loop: 0

@@ -22,6 +22,9 @@ public class DungeonGenerator : MonoBehaviour
     public static GameObject dungeonContainer;
     // static instance
 
+    public static bool doSeed;
+    public static int seedToSet;
+
 
     private RoomComposite dungeonComposite;
     private List<List<FlowNode>> addedCycles;
@@ -45,10 +48,19 @@ public class DungeonGenerator : MonoBehaviour
     {
         //Debug.Log("Creating dungeon!");
         ClearDungeon();
-        int seed = Random.Range(0, int.MaxValue);
+
+        if (!doSeed)
+        {
+            seedToSet = Random.Range(0, int.MaxValue);
+            Debug.Log("Random seed: " + seedToSet);
+        }
+        else
+        {
+            doSeed = false;
+        }
+
         //seed = 32024;
-        //Random.InitState(seed);
-        Debug.Log("Random seed: " + seed);
+        Random.InitState(seedToSet);
 
         //Debug.Log(flow.name);
         currentFlow = flow;
