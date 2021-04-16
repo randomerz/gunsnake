@@ -202,6 +202,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   lineRenderer: {fileID: 5544460565853276446}
+  chainable: 1
   ticksAlive: 8
   alphaRate: 0.6
   lineShrinkRate: 1

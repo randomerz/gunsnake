@@ -69,8 +69,8 @@ MonoBehaviour:
     freq: 0.5
     value: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6, type: 2}
   artifacts:
-  - name: Hearty Sausage
-    freq: 1.5  
+  - name: Hearty 'Sage
+    freq: 1.5
     value: {fileID: 11400000, guid: a6199c77ca1b54f41974afaf4a2ff569, type: 2}
   - name: Protein Shake
     freq: 0.5
@@ -93,3 +93,6 @@ MonoBehaviour:
   - name: Canned Peas
     freq: 0.2
     value: {fileID: 11400000, guid: 75c41b323fb319949b5cc74e42efbb60, type: 2}
+  - name: Electric Bean
+    freq: 0.2
+    value: {fileID: 11400000, guid: 46b04d0cbd7192f4d9abcec50eaa31fc, type: 2}

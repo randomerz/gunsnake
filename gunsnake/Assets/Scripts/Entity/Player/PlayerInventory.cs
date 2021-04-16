@@ -134,6 +134,9 @@ public static class PlayerInventory
             case "Canned Peas":
                 PeaProj.split++;
                 break;
+            case "Electric Bean":
+                RayCastProj.chain++;
+                break;
         }
     }
 
