@@ -15,12 +15,13 @@ using UnityEngine;
 
 public class ArtifactManager : MonoBehaviour
 {
-    public Item attack;
+    /*public Item attack;
     public Item health;
     public Item pierce;
     public Item dodger;
+    public Item xplode;*/
 
-    private Item[] artifactList;
+    public Item[] artifactList;
     private bool didInit = false;
     //private float freqsum = 0;
 
@@ -51,16 +52,18 @@ public class ArtifactManager : MonoBehaviour
         {
             artifactList[i].count = 0;
         }
+        EggProj.explode = 0;
+        PeaProj.split = 0;
     }
     private void Initialize()
     {
         if (_instance == null)
             _instance = this;
-        artifactList = new Item[System.Enum.GetNames(typeof(ArtIndex)).Length];
+        /*artifactList = new Item[System.Enum.GetNames(typeof(ArtIndex)).Length];
         artifactList[(int)ArtIndex.attack] = attack;
         artifactList[(int)ArtIndex.health] = health;
         artifactList[(int)ArtIndex.pierce] = pierce;
-        artifactList[(int)ArtIndex.dodger] = dodger;
+        artifactList[(int)ArtIndex.dodger] = dodger;*/
         didInit = true;
     }
     //    private float ResetFreq(Artifact a)

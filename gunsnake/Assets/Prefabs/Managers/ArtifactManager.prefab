@@ -43,7 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b0fd5daa569d4d8acf41131d82215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 11400000, guid: 55ecd22c0e51e9c46ac9db9386a88579, type: 2}
-  health: {fileID: 11400000, guid: a6199c77ca1b54f41974afaf4a2ff569, type: 2}
-  pierce: {fileID: 11400000, guid: 5a61f2236b4202c4f8185983ed588b50, type: 2}
-  dodger: {fileID: 11400000, guid: b4f73d05a7d490a49947054dea8c8084, type: 2}
+  artifactList:
+  - {fileID: 11400000, guid: 55ecd22c0e51e9c46ac9db9386a88579, type: 2}
+  - {fileID: 11400000, guid: a6199c77ca1b54f41974afaf4a2ff569, type: 2}
+  - {fileID: 11400000, guid: 5a61f2236b4202c4f8185983ed588b50, type: 2}
+  - {fileID: 11400000, guid: b4f73d05a7d490a49947054dea8c8084, type: 2}
+  - {fileID: 11400000, guid: 26f60f9757500764da70ab3c6372815d, type: 2}
+  - {fileID: 11400000, guid: 84eb7fe25cfd8654e85b8c61684adcbe, type: 2}
+  - {fileID: 11400000, guid: e8207e87837e1d34397bfc7e73bb8c96, type: 2}
+  - {fileID: 11400000, guid: 75c41b323fb319949b5cc74e42efbb60, type: 2}

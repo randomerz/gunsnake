@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd53814d2bfdf0c4a8741f81b21c139f, type: 3}
+  m_Name: ThirstySucculent
+  m_EditorClassIdentifier: 
+  name: Thirsty Succulent
+  description: 'This artifact grants +1 health (times the number of owned Thirsty
+    Succulents) per ten kills. '
+  icon: {fileID: -4386416826654776762, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
+  itemType: 1
+  baseCost: 10
+  count: 0
+  prefab: {fileID: 0}

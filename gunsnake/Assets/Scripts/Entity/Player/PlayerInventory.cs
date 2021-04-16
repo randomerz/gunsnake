@@ -9,6 +9,8 @@ public static class PlayerInventory
 
     public static Item[] weaponStorage = new Item[2];
 
+    private static int goldBonus = 0;
+
     public static void ResetValues()
     {
         gold = 0;
@@ -23,7 +25,7 @@ public static class PlayerInventory
 
     public static void AddGold(int amount)
     {
-        gold += amount;
+        gold += (int)(amount * (1 + (0.2*goldBonus)));
 
         AudioManager.Play("player_gain_gold");
 
@@ -100,7 +102,7 @@ public static class PlayerInventory
             case "Protein Shake":
                 Projectile.bonusDamage++;
                 break;
-            case "Hearty Apple":
+            case "Hearty Sausage":
                 Player.playerHealth.ChangeMaxHealth();
                 break;
             case "Piercing Grapes":
@@ -108,6 +110,18 @@ public static class PlayerInventory
                 break;
             case "Ghost Pepper":
                 Player.playerHealth.UpdateDodge(art.count);
+                break;
+            case "Gold Berry":
+                goldBonus++;
+                break;
+            case "Thirsty Succulent":
+                Player.playerHealth.Lifesteal(false);
+                break;
+            case "Scrambled Eggs":
+                EggProj.explode++;
+                break;
+            case "Canned Peas":
+                PeaProj.split++;
                 break;
         }
     }

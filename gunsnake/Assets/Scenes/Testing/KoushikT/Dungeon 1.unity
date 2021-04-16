@@ -964,6 +964,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
+        type: 3}
+      propertyPath: defaultItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+        type: 2}
+    - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
+        type: 3}
+      propertyPath: defaultItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+        type: 2}
+    - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
+        type: 3}
+      propertyPath: defaultItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 43a4f17a5fbc8324c8d9d1978f8c7d07,
+        type: 2}
     - target: {fileID: 3208875469782037512, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: m_Name
@@ -1067,6 +1085,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4275041181016418789, guid: db43c2e5dad498547970a901a43a56e8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.040405273
+      objectReference: {fileID: 0}
     - target: {fileID: 6603713135679270310, guid: db43c2e5dad498547970a901a43a56e8,
         type: 3}
       propertyPath: m_Name

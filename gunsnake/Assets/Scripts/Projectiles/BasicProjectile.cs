@@ -7,7 +7,7 @@ public class BasicProjectile : Projectile
     public Vector3 direction;
     public int moveRate = 2;
 
-    private bool hitEnemyThisTile = false;
+    protected bool hitEnemyThisTile = false;
     private Vector3 origPosition;
     private Vector3 realPosition;
 
@@ -84,7 +84,7 @@ public class BasicProjectile : Projectile
         moveRate = ((BasicProjectile)other).moveRate;
     }
 
-    private void CheckIfEnemyOnSquare()
+    protected void CheckIfEnemyOnSquare()
     {
         if (hitEnemyThisTile)
             return;
@@ -99,7 +99,7 @@ public class BasicProjectile : Projectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (ignoredColliders.Contains(other))
         {
