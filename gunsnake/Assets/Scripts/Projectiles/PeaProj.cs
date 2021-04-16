@@ -62,6 +62,6 @@ public class PeaProj : BasicProjectile
     private void SetSplit(int p)
     { 
         toSplit = p;
-        Debug.Log(toSplit);
+        //Debug.Log(toSplit);
     }
 }

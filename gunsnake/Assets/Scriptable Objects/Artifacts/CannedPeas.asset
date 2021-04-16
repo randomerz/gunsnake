@@ -17,6 +17,6 @@ MonoBehaviour:
     and tertiary splits (Applies only to pea projectiles).
   icon: {fileID: -6704000743581025313, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 20
   count: 0
   prefab: {fileID: 0}

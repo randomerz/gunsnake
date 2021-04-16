@@ -20,6 +20,7 @@ public class TempleCurseSystem : MonoBehaviour
 
     public HudUpdater HUD;
 
+    private static bool wasCursed;
     private static bool isCursed;
 
     private static TempleCurseSystem instance;
@@ -40,6 +41,7 @@ public class TempleCurseSystem : MonoBehaviour
         //Debug.Log("Curse: " + curseTicks);
 
         curseTicks = Mathf.Min(curseTicks + 1, curseMax);
+        wasCursed = isCursed;
 
         if (!isCursed)
         {
@@ -63,6 +65,9 @@ public class TempleCurseSystem : MonoBehaviour
 
     private static void SetIsCursed(bool value)
     {
+        if (value == wasCursed)
+            return;
+
         isCursed = value;
 
         HudUpdater.SetHealthBarPurple(value);
@@ -101,6 +106,7 @@ public class TempleCurseSystem : MonoBehaviour
     {
         if (instance != null)
             instance.ResetHelper();
+        HudUpdater.SetHealthBarPurple(false);
     }
 
     private void ResetHelper()

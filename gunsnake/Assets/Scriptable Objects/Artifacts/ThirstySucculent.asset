@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: ThirstySucculent
   m_EditorClassIdentifier: 
   name: Thirsty Succulent
-  description: 'This artifact grants +1 health (times the number of owned Thirsty
-    Succulents) per ten kills. '
+  description: 'Grants +1 health per ten kills. '
   icon: {fileID: -4386416826654776762, guid: 0c28c8afb14275a42801fefdf60b1e47, type: 3}
   itemType: 1
-  baseCost: 10
+  baseCost: 15
   count: 0
   prefab: {fileID: 0}

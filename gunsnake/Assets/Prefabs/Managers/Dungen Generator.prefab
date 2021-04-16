@@ -176,6 +176,27 @@ MonoBehaviour:
   - name: HubDTorchExplosion_23x23
     freq: 1
     roomData: {fileID: 11400000, guid: 895dd0f3d12fe984db3965f7603ce2cf, type: 2}
+  - name: DTableRoom
+    freq: 1
+    roomData: {fileID: 11400000, guid: 3c4da8d182cd4b94a9db14b4cd9a9c04, type: 2}
+  - name: TAltarRoom
+    freq: 0.75
+    roomData: {fileID: 11400000, guid: 0c250c3b719a13142b739d648f066bad, type: 2}
+  - name: MushFarmRoom
+    freq: 0.75
+    roomData: {fileID: 11400000, guid: 33c31b55752ced44a92a134c68345e70, type: 2}
+  - name: DHub_Library
+    freq: 1
+    roomData: {fileID: 11400000, guid: a322492f3d3f9c34193133f5d88b99cb, type: 2}
+  - name: DHub_NinjaBooks
+    freq: 1
+    roomData: {fileID: 11400000, guid: a656246baf20f074b8c6b0778e3d2b23, type: 2}
+  - name: THub_Captured_Skeletons
+    freq: 1
+    roomData: {fileID: 11400000, guid: f9d58a2aa22e700419d5f8db8ba9ec37, type: 2}
+  - name: SmallTrap
+    freq: 1
+    roomData: {fileID: 11400000, guid: d985ee9d4cd64d84283ddfee72f070aa, type: 2}
   challengeRooms:
   - name: SquareChall_19x19
     freq: 0
@@ -195,6 +216,12 @@ MonoBehaviour:
   - name: DHiddenTorches_19x19
     freq: 1
     roomData: {fileID: 11400000, guid: 8727736d8935a7949a49f54ab8bd726e, type: 2}
+  - name: D_ExplosiveSlimes
+    freq: 1
+    roomData: {fileID: 11400000, guid: cafbf2032bc560249b80f6f580b8678b, type: 2}
+  - name: TRunningLasers
+    freq: 1
+    roomData: {fileID: 11400000, guid: d54d7b2657947f84da09769d652bdab9, type: 2}
   shopRooms:
   - name: ShopRoom_9x9_NESW
     freq: 1

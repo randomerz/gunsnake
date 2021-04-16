@@ -9225,6 +9225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fbe476e8352cb4eb7ee0e0b8209b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileEnabled: 1
   openChestSprite: {fileID: 0}
   isArtifact: 0
 --- !u!212 &1052047976
@@ -10580,7 +10581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1212540612
 Transform:
   m_ObjectHideFlags: 0
@@ -16058,6 +16059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299dfdd0e7236d845b36f240d3c63b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTileEnabled: 1
 --- !u!212 &1670337355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24368,22 +24370,26 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultItems.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
+        type: 2}
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: defaultItems.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
+        type: 2}
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: defaultItems.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
+        type: 2}
     - target: {fileID: 2683957711208423870, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: defaultItems.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: c70cd8c5293dfe842bfe3760ecc49fe6,
+        type: 2}
     - target: {fileID: 3208875469782037512, guid: 617af451e03083f4b85451ddfc77bbb5,
         type: 3}
       propertyPath: m_Name

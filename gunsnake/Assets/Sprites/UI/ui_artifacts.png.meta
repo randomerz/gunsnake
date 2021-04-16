@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: 5404224517495535782
     second: food_cherry
+  - first:
+      213: -282634975160208067
+    second: food_electric_bean
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -310,6 +313,27 @@ TextureImporter:
       bones: []
       spriteID: 6a837cbd099affa40800000000000000
       internalID: 5404224517495535782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: food_electric_bean
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 31
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d357970dcf0e31cf0800000000000000
+      internalID: -282634975160208067
       vertices: []
       indices: 
       edges: []
