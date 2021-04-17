@@ -78,6 +78,7 @@ public class Titlescreen : MonoBehaviour
             DungeonGenerator.doSeed = true;
             DungeonGenerator.seedToSet = seedInput.text.GetHashCode();
             Debug.Log("Seed: " + seedInput.text.GetHashCode());
+            Random.InitState(DungeonGenerator.seedToSet);
         }
         else
         {

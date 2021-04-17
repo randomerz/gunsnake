@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e500703be784f418df14986267bdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 2
+  baseDamage: 1
   basePierce: 0
   targets:
     serializedVersion: 2

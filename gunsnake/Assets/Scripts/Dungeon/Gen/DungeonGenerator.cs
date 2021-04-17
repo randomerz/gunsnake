@@ -49,18 +49,18 @@ public class DungeonGenerator : MonoBehaviour
         //Debug.Log("Creating dungeon!");
         ClearDungeon();
 
-        if (!doSeed)
-        {
-            seedToSet = Random.Range(0, int.MaxValue);
-            Debug.Log("Random seed: " + seedToSet);
-        }
-        else
-        {
-            doSeed = false;
-        }
+        //if (!doSeed)
+        //{
+        //    seedToSet = Random.Range(0, int.MaxValue);
+        //    Debug.Log("Random seed: " + seedToSet);
+        //}
+        //else
+        //{
+        //    doSeed = false;
+        //    Debug.Log("Input seed: " + seedToSet);
+        //}
 
-        //seed = 32024;
-        Random.InitState(seedToSet);
+        //Random.InitState(seedToSet);
 
         //Debug.Log(flow.name);
         currentFlow = flow;
