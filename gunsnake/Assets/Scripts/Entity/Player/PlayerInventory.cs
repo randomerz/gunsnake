@@ -30,13 +30,13 @@ public static class PlayerInventory
             AudioManager.Play("player_gain_gold");
 
             gold += Mathf.RoundToInt(amount * (1 + (0.2f * goldBonus)));
+            Player.AddScore(amount * (1 + (0.2f * goldBonus)));
         }
         else
         {
             gold -= -amount;
         }
 
-        Player.AddScore(amount);
     }
 
     public static void AddKey(int amount)

@@ -91,6 +91,9 @@ public class PlayerMovement : Entity
             bool wasReversing = isReversing;
             isReversing = canSpecialMove && !isSprinting && reverseInp;
 
+            //Debug.Log("sprint inputs: " + Input.GetKey(KeyCode.LeftShift) + " " + Input.GetKey(KeyCode.RightShift) + " " + Input.GetKey(KeyCode.Space) + " " + Input.GetButton("Fire1"));
+            //Debug.Log(sprintInp + " " + reverseInp);
+
             if (isReversing != wasReversing)
             {
                 if (isReversing) // start reversing
