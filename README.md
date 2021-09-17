@@ -25,3 +25,5 @@ This game wouldn't be possible without the help of my lovely team!
 * Bertram Zhai - Programming - UI
 
 And thank you to everyone who Beta tested and supported the team!
+
+[Trailer](https://youtu.be/72J5DKxEBv4)
