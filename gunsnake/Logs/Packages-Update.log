@@ -56,3 +56,22 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.test-framework from version 1.1.19 to 1.1.20
+
+=== Sat Dec 11 18:54:18 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ide.visualstudio@2.0.11
+The following packages were updated:
+  com.unity.2d.animation from version 3.2.6 to 3.2.9
+  com.unity.2d.psdimporter from version 2.1.6 to 2.1.8
+  com.unity.2d.spriteshape from version 3.0.14 to 3.0.17
+  com.unity.collab-proxy from version 1.2.16 to 1.10.2
+  com.unity.ide.rider from version 1.1.4 to 1.2.1
+  com.unity.ide.vscode from version 1.2.3 to 1.2.4
+  com.unity.recorder from version 2.5.2 to 2.5.5
+  com.unity.test-framework from version 1.1.20 to 1.1.29
+  com.unity.textmeshpro from version 2.1.1 to 2.1.4
+  com.unity.timeline from version 1.2.17 to 1.2.18
