@@ -1,7 +1,7 @@
 # project gunsnake
 GT VGDev Club Spring 2021 Game
 
-![Image](production/gunsnake_title.jpg?raw=true "Title")
+![Image](production/gunsnake_title.png?raw=true "Title")
 
 [Play on Itch](https://randomerz.itch.io/gunsnake)
 
